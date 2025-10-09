@@ -8,33 +8,6 @@ using UnityEngine.AddressableAssets;
 public static class ResManager
 {
     private static readonly Dictionary<string, Sprite> cache = new Dictionary<string, Sprite>();
-
-    public static IEnumerator LoadPrefabAsync(string path, Transform parent, System.Action<GameObject> callback)
-    {
-        var handle = Addressables.LoadAssetAsync<GameObject>(path);
-        yield return handle; // 等待异步加载完成
-
-        if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-        {
-            var obj = Object.Instantiate(handle.Result, parent);
-            callback?.Invoke(obj);
-        }
-        else
-        {
-            Debug.LogError("Failed to load prefab: " + path);
-            callback?.Invoke(null);
-        }
-    }
-    public static GameObject LoadPrefab(string path)
-    {
-        var handle = Addressables.LoadAssetAsync<GameObject>(path);
-
-        handle.WaitForCompletion();
-
-        var obj = handle.Result;
-
-        return obj;
-    }
     public static T LoadDataByAsset<T>(string path)
     {
         var handle = Addressables.LoadAssetAsync<T>(path);
@@ -45,17 +18,19 @@ public static class ResManager
 
         return obj;
     }
-    
+    /// <summary>
+    /// 用于加载sprite资源
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public static Sprite LoadSprite(string path)
     {
         string fullPath = Path.Combine(Application.streamingAssetsPath, path);
-        // 先检查缓存
         if (cache.TryGetValue(fullPath, out Sprite cachedObj))
         {
             return cachedObj;
         }
 
-        // 尝试 StreamingAssets
         if (File.Exists(fullPath))
         {
                 byte[] fileData = File.ReadAllBytes(fullPath);
@@ -75,8 +50,6 @@ public static class ResManager
         {
             Debug.LogWarning($"StreamingAssets 文件不存在: {fullPath}, 尝试从 Resources 加载...");
         }
-
-        // 尝试 Resources
         string resourcePath = Path.ChangeExtension(path, null);
         var resource = Resources.Load<Sprite>(resourcePath);
         if (resource != null)
