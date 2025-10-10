@@ -18,11 +18,19 @@ public class CursorManager : MonoBehaviour
         GameController.Controller.Main.LeftClick.started += Hold;
         GameController.Controller.Main.LeftClick.canceled += Release;
     }
+    /// <summary>
+    /// 鼠标按下时切换动画并且发出音效
+    /// </summary>
+    /// <param name="context"></param>
     void Hold(InputAction.CallbackContext context)
     {
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         Cursor.SetCursor(transCursor, hotspot, CursorMode.Auto);
     }
+    /// <summary>
+    /// 鼠标按下时切换动画
+    /// </summary>
+    /// <param name="context"></param>
     void Release(InputAction.CallbackContext context)
     {
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
