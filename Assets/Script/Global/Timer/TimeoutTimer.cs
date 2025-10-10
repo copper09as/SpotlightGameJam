@@ -1,7 +1,9 @@
 using System;
+using Global.Data;
+using Global.ObjectCreate;
 using UnityEngine;
 
-public class TimeoutTimer : MonoBehaviour
+public class TimeoutTimer : MonoBehaviour,IObjectByCreate
 {
     private float duration;         // 倒计时时长
     private float currentTime;      // 当前计时
@@ -9,6 +11,14 @@ public class TimeoutTimer : MonoBehaviour
     private Action onTimeout;       // 超时回调
     private bool loop;
     public Action<float> OnTick;
+
+    string IObjectByCreate.Name 
+    { 
+      get => StringResource.TimeoutTimerName; 
+      set => throw new NotImplementedException(); 
+    }
+
+
 
     /// <summary>
     /// 初始化计时器

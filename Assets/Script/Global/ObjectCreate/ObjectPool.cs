@@ -6,6 +6,15 @@ namespace Global.ObjectCreate
     public class ObjectPool:MonoBehaviour
     {
         private Dictionary<string, Stack<GameObject>> poolDic = new();
+        public static ObjectPool Instance;
+        private void Awake()
+        {
+            if(Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(Instance);
+            }
+        }
         [SerializeField] private int maxCapacity;
         /// <summary>
         /// 从池中获取对象
@@ -30,6 +39,11 @@ namespace Global.ObjectCreate
             {
                 GameObject data = ResManager.LoadDataByAsset<GameObject>(path);
                 ob = Instantiate(data, parent);
+                if(ob.GetComponent<IObjectByCreate>()==null)
+                {
+                    Debug.LogWarning("目标物体不拥有创建接口");
+                    poolDic.Remove(name);
+                }
             }
             ob.SetActive(true);
             return ob;

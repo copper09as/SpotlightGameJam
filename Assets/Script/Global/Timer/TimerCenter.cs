@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Global.Data;
+using Global.ObjectCreate;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimerCenter : MonoBehaviour
 {
@@ -22,12 +25,12 @@ public class TimerCenter : MonoBehaviour
 
     public TimeoutTimer CreateTimer(float duration, Action onTimeout, Action<float> onTick = null,bool loop = false)
     {
-        GameObject go = new GameObject("TimeoutTimer");
-        go.transform.parent = transform; // 方便 hierarchy 管理
-        TimeoutTimer timer = go.AddComponent<TimeoutTimer>();
+        GameObject go = 
+            ObjectPool.Instance.Get
+            (StringResource.TimeoutTimerPath,StringResource.TimeoutTimerName,transform);
+        TimeoutTimer timer = go.GetComponent<TimeoutTimer>();
         timer.OnTick = onTick;
         timer.StartTimer(duration, onTimeout,loop);
-
         timers.Add(timer);
         return timer;
     }
@@ -37,13 +40,13 @@ public class TimerCenter : MonoBehaviour
         if (timers.Contains(timer))
         {
             timers.Remove(timer);
-            Destroy(timer.gameObject);
+            ObjectPool.Instance.Release(timer.gameObject);
         }
     }
     public void ClearAllTimers()
     {
         foreach (var timer in timers)
-            Destroy(timer.gameObject);
+            ObjectPool.Instance.Release(timer.gameObject);
         timers.Clear();
     }
 }

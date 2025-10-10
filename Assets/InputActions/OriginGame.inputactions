@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "OriginGame",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "3a90962f-a19c-4f49-8981-03217e831be1",
+            "actions": [
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "dbbf3d88-3ced-4c2f-b9af-68033af3cd6c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dcb469fd-2633-4b41-9fa5-ae2530973b78",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

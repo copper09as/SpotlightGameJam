@@ -8,6 +8,6 @@ namespace Global.ObjectCreate
 {
     internal interface IObjectByCreate
     {
-        public string Name { get; set; }
+        public string Name { get; protected set; }
     }
 }
