@@ -41,10 +41,13 @@ namespace Global.Data
                 data.OnDestroyPath.Add("4");
                 data.OnMouseDownPath.Add("4");
                 data.OnMouseDownPath.Add("4");
+                data.OnCollisionPath.Add("123");
+                data.OnCollisionPath.Add("123");
                 EntitySDC.entityScriptList.Add(data);
             }
             JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "EntityScriptData.json"),EntitySDC);
             */
+            
         }
         private static T LoadConfigData<T>(string relativePath)
         {

@@ -14,7 +14,7 @@ namespace Global.Data.Entity
         public List<string> UpdatePath = new List<string>();//Update脚本路径
         public List<string> OnDestroyPath = new List<string>();//被摧毁脚本路径
         public List<string> OnMouseDownPath = new List<string>();//被点击脚本路径
-
+        public List<string> OnCollisionPath = new List<string>();//在接触到时触发脚本路径
     }
     [Serializable]
     public class EntityScriptDataCollection

@@ -1,1 +1,127 @@
-{"entityScriptList":[{"id":10000,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10001,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10002,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10003,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10004,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10005,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10006,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10007,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10008,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]},{"id":10009,"InitPath":["1","2"],"UpdatePath":["3","4"],"OnDestroyPath":["4","4"],"OnMouseDownPath":["4","4"]}]}
+{
+	"entityScriptList": [{
+		"id": 10000,
+		"InitPath": [],
+		"UpdatePath": ["CharacterMove","CharacterJump"],
+		"OnDestroyPath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": []
+	},
+	{
+		"id": 10001,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10002,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10003,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10004,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10005,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10006,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10007,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10008,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	},
+	{
+		"id": 10009,
+		"InitPath": ["1",
+		"2"],
+		"UpdatePath": ["3",
+		"4"],
+		"OnDestroyPath": ["4",
+		"4"],
+		"OnMouseDownPath": ["4",
+		"4"],
+		"OnCollisionPath": ["123",
+		"123"]
+	}]
+}

@@ -23,5 +23,4 @@ function CharacterMove(character)
             character.animator:SetTrigger("Idle")
         end
     end
-	CS.UnityEngine.Debug.Log(1)
 end

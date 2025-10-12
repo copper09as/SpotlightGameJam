@@ -10,6 +10,7 @@ namespace Game.Battle.Entity
     {
         private EntityScriptData scriptData = new();
         private Animator animator;
+        [SerializeField] private int id;
         public CharacterEntityData CharacterData;
         public Rigidbody2D rb;
         string IObjectByCreate.Name 
@@ -22,7 +23,7 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-            this.scriptData.UpdatePath.Add("CharacterMove");
+            scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
         }
         #region ½Å±¾·½·¨
         public void Init(EntityScriptData scriptData)
@@ -32,8 +33,6 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-            this.scriptData.UpdatePath.Add("CharacterMove");
-            
         }
         void Update()
         {

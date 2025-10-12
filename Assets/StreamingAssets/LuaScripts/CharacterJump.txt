@@ -1,0 +1,5 @@
+local GC = CS.GameController
+
+function CharacterJump(character)
+
+end
