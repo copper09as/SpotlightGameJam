@@ -118,6 +118,15 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Space"",
+                    ""type"": ""Button"",
+                    ""id"": ""d56f9c1a-e3c7-4a08-a0f9-f6df501045c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -175,6 +184,17 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04407024-ec4f-43ed-b554-823f9e1cc2c7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Space"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +206,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         m_Main_LeftClick = m_Main.FindAction("LeftClick", throwIfNotFound: true);
         m_Main_MousePos = m_Main.FindAction("MousePos", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
+        m_Main_Space = m_Main.FindAction("Space", throwIfNotFound: true);
     }
 
     ~@OriginGame()
@@ -269,6 +290,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_LeftClick;
     private readonly InputAction m_Main_MousePos;
     private readonly InputAction m_Main_Move;
+    private readonly InputAction m_Main_Space;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -292,6 +314,10 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Main_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/Space".
+        /// </summary>
+        public InputAction @Space => m_Wrapper.m_Main_Space;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -327,6 +353,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Space.started += instance.OnSpace;
+            @Space.performed += instance.OnSpace;
+            @Space.canceled += instance.OnSpace;
         }
 
         /// <summary>
@@ -347,6 +376,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Space.started -= instance.OnSpace;
+            @Space.performed -= instance.OnSpace;
+            @Space.canceled -= instance.OnSpace;
         }
 
         /// <summary>
@@ -408,5 +440,12 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Space" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpace(InputAction.CallbackContext context);
     }
 }
