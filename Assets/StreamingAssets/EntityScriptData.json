@@ -5,22 +5,19 @@
 		"UpdatePath": ["CharacterMove"],
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": ["DamageEntityOnHead"],
 		"OnSpacePath": ["CharacterJump"],
 		"OnDragPath":["FollowMouse"]
 	},
 	{
 		"id": 10001,
-		"InitPath": ["1",
-		"2"],
-		"UpdatePath": ["3",
-		"4"],
-		"OnDestroyPath": ["4",
-		"4"],
-		"OnMouseDownPath": ["4",
-		"4"],
-		"OnCollisionPath": ["123",
-		"123"]
+		"InitPath": [],
+		"UpdatePath": [],
+		"OnDestroyPath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnSpacePath": [],
+		"OnDragPath":[]
 	},
 	{
 		"id": 10002,

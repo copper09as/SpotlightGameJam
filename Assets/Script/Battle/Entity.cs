@@ -23,7 +23,7 @@ namespace Game.Battle.Entity
             set => value = "Entity"; }
         private void Awake()
         {
-            Init(10000);
+            Init(id);
         }
         #region 脚本方法
         public void Init(int id)
@@ -97,15 +97,27 @@ namespace Game.Battle.Entity
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            var otherEntity = collision.gameObject.GetComponent<Entity>();
+            if (otherEntity == null) return;
+
+            Vector2 contactNormal = Vector2.zero;
+
+            if (collision.contacts.Length > 0)
             {
-                isGrounded = true;
+                contactNormal = collision.contacts[0].normal;
             }
+            else
+            {
+                // 没有接触点则直接返回或者用默认值
+                return;
+            }
+
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this, collision.gameObject.GetComponent<Entity>());
+                LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);
             }
         }
+
 
         private void OnCollisionStay2D(Collision2D collision)
         {
@@ -115,7 +127,7 @@ namespace Game.Battle.Entity
             }
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this,collision.gameObject.GetComponent<Entity>());
+                //LuaManager.Instance.CallFunction(i, i, this,collision.gameObject.GetComponent<Entity>());
             }
         }
 
