@@ -1,0 +1,8 @@
+local GC = CS.GameController
+
+function FollowMouseY(entity)
+    local mousePos = GC.GetWorldMousePos()
+    local pos = entity.transform.position
+    pos.x = mousePos.y
+    entity.transform.position = pos
+end

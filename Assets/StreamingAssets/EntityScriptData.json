@@ -6,7 +6,8 @@
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnSpacePath": ["CharacterJump"]
+		"OnSpacePath": ["CharacterJump"],
+		"OnDragPath":["FollowMouse"]
 	},
 	{
 		"id": 10001,

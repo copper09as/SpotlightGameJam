@@ -9,7 +9,8 @@ public class CursorManager : MonoBehaviour
 
     [SerializeField] private Texture2D defaultCursor;
     [SerializeField] private Texture2D transCursor;
-
+    private bool isHold = false;
+    private Entity currentEntity;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -23,10 +24,12 @@ public class CursorManager : MonoBehaviour
     /// <param name="context"></param>
     void Hold(InputAction.CallbackContext context)
     {
+        isHold = true;
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         Cursor.SetCursor(transCursor, hotspot, CursorMode.Auto);
         Vector2 screenPos = GameController.Controller.Main.MousePos.ReadValue<Vector2>();
         TryClick(screenPos);
+        
     }
     /// <summary>
     /// 鼠标按下时切换动画
@@ -34,6 +37,7 @@ public class CursorManager : MonoBehaviour
     /// <param name="context"></param>
     void Release(InputAction.CallbackContext context)
     {
+        isHold = false;
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
     }
     private void TryClick(Vector2 screenPos)
@@ -47,8 +51,22 @@ public class CursorManager : MonoBehaviour
             Debug.Log($"点击到：{hit.collider.name}");
             if (entity != null)
             {
+                currentEntity = entity;
                 entity.OnClick();
             }
+        }
+        else
+        {
+            currentEntity = null;
+        }
+    }
+    void Update()
+    {
+        if (isHold && currentEntity != null)
+        {
+            Debug.Log("OnDrag");
+            Debug.Log(GameController.GetWorldMousePos());
+            currentEntity.OnDrag();
         }
     }
 }

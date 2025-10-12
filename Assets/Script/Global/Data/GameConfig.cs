@@ -28,26 +28,6 @@ namespace Global.Data
         {
             CharacterDT = LoadConfigData<CharacterData>("CharacterData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
-            /*EntitySDC = new EntityScriptDataCollection();
-            for (int i = 0; i < 10; i++)
-            {
-                EntityScriptData data = new EntityScriptData();
-                data.id = 10000 + i;
-                data.InitPath.Add("1");
-                data.InitPath.Add("2");
-                data.UpdatePath.Add("3");
-                data.UpdatePath.Add("4");
-                data.OnDestroyPath.Add("4");
-                data.OnDestroyPath.Add("4");
-                data.OnMouseDownPath.Add("4");
-                data.OnMouseDownPath.Add("4");
-                data.OnCollisionPath.Add("123");
-                data.OnCollisionPath.Add("123");
-                EntitySDC.entityScriptList.Add(data);
-            }
-            JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "EntityScriptData.json"),EntitySDC);
-            */
-            
         }
         private static T LoadConfigData<T>(string relativePath)
         {

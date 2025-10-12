@@ -19,4 +19,11 @@ public static class GameController
     {
         return GameController.Controller.Main.Move.ReadValue<float>();
     }
+    public static Vector3 GetWorldMousePos()
+    {
+        Vector2 screenPos = Controller.Main.MousePos.ReadValue<Vector2>();
+        var worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        worldPos.z = 0f;
+        return worldPos;
+    }
 }

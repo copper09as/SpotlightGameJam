@@ -7,11 +7,9 @@ function CharacterMove(character)
         return
     end
 
-    -- 设置速度
     local rb = character.rb
     local speed = character.CharacterData.speed
 
-    -- 保留原来的 y 速度，防止重力被覆盖
     local velocity = rb.velocity
     velocity.x = x * speed
     rb.velocity = velocity

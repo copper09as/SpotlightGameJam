@@ -16,6 +16,7 @@ namespace Global.Data.Entity
         public List<string> OnMouseDownPath = new List<string>();//被点击脚本路径
         public List<string> OnCollisionPath = new List<string>();//在接触到时触发脚本路径
         public List<string> OnSpacePath = new List<string>();//空格按下时
+        public List<string> OnDragPath = new List<string>();//拖拽时触发
     }
     [Serializable]
     public class EntityScriptDataCollection

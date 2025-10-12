@@ -23,7 +23,11 @@ namespace Game.Battle.Entity
             set => value = "Entity"; }
         private void Awake()
         {
-            id = 10000;
+            Init(10000);
+        }
+        #region 脚本方法
+        public void Init(int id)
+        {
             GameController.Controller.Main.Space.started += OnSpace;
             CharacterData = GameConfig.Instance.CharacterDT.ToEntityData();
             foreach (var i in scriptData.InitPath)
@@ -31,15 +35,6 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, i, this);
             }
             scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
-        }
-        #region 脚本方法
-        public void Init(EntityScriptData scriptData)
-        {
-            this.scriptData = scriptData;
-            foreach(var i in scriptData.InitPath)
-            {
-                LuaManager.Instance.CallFunction(i, i, this);
-            }
         }
         void Update()
         {
@@ -95,7 +90,6 @@ namespace Game.Battle.Entity
             animator.SetTrigger(aniName);
         }
         [SerializeField]private bool isGrounded = false;
-
         public bool GroundCheck()
         {
             return isGrounded;
@@ -130,6 +124,14 @@ namespace Game.Battle.Entity
             if (collision.gameObject.CompareTag("Ground"))
             {
                 isGrounded = false;
+            }
+        }
+
+        public void OnDrag()
+        {
+            foreach (var i in scriptData.OnDragPath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this);
             }
         }
     }
