@@ -2,10 +2,11 @@
 	"entityScriptList": [{
 		"id": 10000,
 		"InitPath": [],
-		"UpdatePath": ["CharacterMove","CharacterJump"],
+		"UpdatePath": ["CharacterMove"],
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": []
+		"OnCollisionPath": [],
+		"OnSpacePath": ["CharacterJump"]
 	},
 	{
 		"id": 10001,

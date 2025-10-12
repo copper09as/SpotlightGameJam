@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Global.Data;
 using Global.Data.Entity;
 using Global.ObjectCreate;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Game.Battle.Entity
 {
     public class Entity : MonoBehaviour,IObjectByCreate
@@ -13,11 +15,14 @@ namespace Game.Battle.Entity
         [SerializeField] private int id;
         public CharacterEntityData CharacterData;
         public Rigidbody2D rb;
+        public Collider2D col;
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
         private void Awake()
         {
+            id = 10000;
+            GameController.Controller.Main.Space.started += OnSpace;
             CharacterData = GameConfig.Instance.CharacterDT.ToEntityData();
             foreach (var i in scriptData.InitPath)
             {
@@ -25,6 +30,8 @@ namespace Game.Battle.Entity
             }
             scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
         }
+
+
         #region 脚本方法
         public void Init(EntityScriptData scriptData)
         {
@@ -39,7 +46,13 @@ namespace Game.Battle.Entity
             foreach (var i in scriptData.UpdatePath)
             {
                 LuaManager.Instance.CallFunction(i, i, this);
-                Debug.Log(i);
+            }
+        }
+        private void OnSpace(InputAction.CallbackContext context)
+        {
+            foreach (var i in scriptData.OnSpacePath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this);
             }
         }
         public void OnClick()
@@ -57,6 +70,7 @@ namespace Game.Battle.Entity
             }
             CharacterData.signId = -1;
         }
+
         #endregion
         /// <summary>
         /// 若有动画则设置动画
@@ -80,6 +94,36 @@ namespace Game.Battle.Entity
                 return;
 
             animator.SetTrigger(aniName);
+        }
+        private bool isGrounded = false;
+
+        public bool GroundCheck()
+        {
+            return isGrounded;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = true;
+            }
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = true;
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                isGrounded = false;
+            }
         }
     }
 }
