@@ -2,7 +2,6 @@ local GC = CS.GameController
 
 function CharacterJump(character)
     if character.rb == nil then return end
-
     -- 判断是否在地面
     if character:GroundCheck() then
         -- 设置垂直速度实现跳跃

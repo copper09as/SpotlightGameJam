@@ -188,7 +188,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""04407024-ec4f-43ed-b554-823f9e1cc2c7"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

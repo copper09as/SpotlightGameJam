@@ -50,8 +50,10 @@ namespace Game.Battle.Entity
         }
         private void OnSpace(InputAction.CallbackContext context)
         {
+            Debug.Log(1);
             foreach (var i in scriptData.OnSpacePath)
             {
+                Debug.Log(i);
                 LuaManager.Instance.CallFunction(i, i, this);
             }
         }
@@ -95,7 +97,7 @@ namespace Game.Battle.Entity
 
             animator.SetTrigger(aniName);
         }
-        private bool isGrounded = false;
+        [SerializeField]private bool isGrounded = false;
 
         public bool GroundCheck()
         {

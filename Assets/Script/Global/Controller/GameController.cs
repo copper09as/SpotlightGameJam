@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public static class GameController
         Controller.Main.LeftClick.Enable();
         Controller.Main.Move.Enable();
         Controller.Main.MousePos.Enable();
+        Controller.Main.Space.Enable();
     }
     public static float MoveX()
     {
