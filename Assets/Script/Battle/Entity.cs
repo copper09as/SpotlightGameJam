@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Global.Data;
 using Global.Data.Entity;
 using Global.ObjectCreate;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Game.Battle.Entity
@@ -15,6 +16,7 @@ namespace Game.Battle.Entity
         [SerializeField] private int id;
         public CharacterEntityData CharacterData;
         public Rigidbody2D rb;
+        public TextMeshProUGUI text;
         public Collider2D col;
         string IObjectByCreate.Name 
         { get => "Entity";
