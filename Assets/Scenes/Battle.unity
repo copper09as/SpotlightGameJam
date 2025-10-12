@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1050711673}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,7 +415,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 1615984509}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -731,7 +731,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

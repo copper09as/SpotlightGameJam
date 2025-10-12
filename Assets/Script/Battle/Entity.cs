@@ -32,8 +32,6 @@ namespace Game.Battle.Entity
             }
             scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
         }
-
-
         #region 脚本方法
         public void Init(EntityScriptData scriptData)
         {
@@ -52,10 +50,8 @@ namespace Game.Battle.Entity
         }
         private void OnSpace(InputAction.CallbackContext context)
         {
-            Debug.Log(1);
             foreach (var i in scriptData.OnSpacePath)
             {
-                Debug.Log(i);
                 LuaManager.Instance.CallFunction(i, i, this);
             }
         }
@@ -74,7 +70,6 @@ namespace Game.Battle.Entity
             }
             CharacterData.signId = -1;
         }
-
         #endregion
         /// <summary>
         /// 若有动画则设置动画
@@ -112,6 +107,10 @@ namespace Game.Battle.Entity
             {
                 isGrounded = true;
             }
+            foreach (var i in scriptData.OnCollisionPath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this, collision.gameObject.GetComponent<Entity>());
+            }
         }
 
         private void OnCollisionStay2D(Collision2D collision)
@@ -119,6 +118,10 @@ namespace Game.Battle.Entity
             if (collision.gameObject.CompareTag("Ground"))
             {
                 isGrounded = true;
+            }
+            foreach (var i in scriptData.OnCollisionPath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this,collision.gameObject.GetComponent<Entity>());
             }
         }
 

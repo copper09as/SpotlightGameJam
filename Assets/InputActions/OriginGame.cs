@@ -144,7 +144,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""72b5dcae-259b-49b4-b220-3c112d497f94"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

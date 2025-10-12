@@ -38,10 +38,13 @@ public class CursorManager : MonoBehaviour
     }
     private void TryClick(Vector2 screenPos)
     {
-        Ray ray = Camera.main.ScreenPointToRay(screenPos);
-        foreach (var hit in Physics.RaycastAll(ray))
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        if (hit.collider != null)
         {
             var entity = hit.collider.GetComponent<Entity>();
+            Debug.Log($"点击到：{hit.collider.name}");
             if (entity != null)
             {
                 entity.OnClick();
