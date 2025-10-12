@@ -1,23 +1,25 @@
 {
 	"entityScriptList": [{
 		"id": 10000,
-		"InitPath": [],
+		"InitPath": ["SetDynamic"],
 		"UpdatePath": ["CharacterMove"],
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["DamageEntityOnHead"],
 		"OnSpacePath": ["CharacterJump"],
-		"OnDragPath":["FollowMouse"]
+		"OnDragPath":["FollowMouse"],
+		"OnTread":[]
 	},
 	{
 		"id": 10001,
-		"InitPath": [],
+		"InitPath": ["SetDynamic"],
 		"UpdatePath": [],
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnSpacePath": [],
-		"OnDragPath":[]
+		"OnDragPath":["FollowMouse"],
+		"OnTread":[]
 	},
 	{
 		"id": 10002,

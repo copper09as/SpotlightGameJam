@@ -11,7 +11,7 @@ namespace Game.Battle.Entity
 {
     public class Entity : MonoBehaviour,IObjectByCreate
     {
-        private EntityScriptData scriptData = new();
+        [SerializeField] private EntityScriptData scriptData;
         private Animator animator;
         [SerializeField] private int id;
         public CharacterEntityData CharacterData;
@@ -21,20 +21,23 @@ namespace Game.Battle.Entity
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-        private void Awake()
+        private void OnEnable()
         {
-            Init(id);
+            if(id>=10000)
+                Init(id);
         }
         #region 脚本方法
         public void Init(int id)
         {
             GameController.Controller.Main.Space.started += OnSpace;
             CharacterData = GameConfig.Instance.CharacterDT.ToEntityData();
+            
+            scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
             foreach (var i in scriptData.InitPath)
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-            scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
+            
         }
         void Update()
         {
@@ -111,7 +114,7 @@ namespace Game.Battle.Entity
                 // 没有接触点则直接返回或者用默认值
                 return;
             }
-
+            
             foreach (var i in scriptData.OnCollisionPath)
             {
                 LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);

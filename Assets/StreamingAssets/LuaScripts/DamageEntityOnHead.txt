@@ -2,11 +2,9 @@ local GC = CS.GameController
 
 function DamageEntityOnHead(entity, otherEntity, collisionNormal)
     if collisionNormal > 0.5 then
-        -- 调用敌人死亡方法
         ---if otherEntity.Die ~= nil then
             ---otherEntity:Die()
         ---end
-		CS.UnityEngine.Debug.Log(111)
         if entity.rb ~= nil then
             local velocity = entity.rb.velocity
             velocity.y = 7

@@ -1,0 +1,4 @@
+local GC = CS.GameController
+function SetDynamic(entity)
+	entity.rb.bodyType = CS.UnityEngine.RigidbodyType2D.Static;
+end
