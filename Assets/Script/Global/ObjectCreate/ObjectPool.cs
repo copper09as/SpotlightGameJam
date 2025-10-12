@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Global.ObjectCreate
 {
-    public class ObjectPool:MonoBehaviour
+    public class ObjectPool:SingleCaseMono<ObjectPool>
     {
         private Dictionary<string, Stack<GameObject>> poolDic = new();
-        public static ObjectPool Instance;
-        private void Awake()
-        {
-            if(Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(Instance);
-            }
-        }
-        [SerializeField] private int maxCapacity;
+        
+        [SerializeField] private int maxCapacity = 100;
         /// <summary>
         /// 从池中获取对象
         /// </summary>
