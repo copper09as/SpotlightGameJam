@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class GameSave
+public class JsonTool
 {
     public static void SaveByJson(string path, object data)
     {

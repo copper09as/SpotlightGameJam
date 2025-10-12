@@ -1,5 +1,4 @@
-﻿using System;
-using System.Resources;
+﻿using Game.Battle.Entity;
 using Global.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,8 +7,8 @@ public class CursorManager : MonoBehaviour
 {
     public Vector2 hotspot = Vector2.zero;
 
-    [SerializeField]private Texture2D defaultCursor;
-    [SerializeField] private Texture2D transCursor; 
+    [SerializeField] private Texture2D defaultCursor;
+    [SerializeField] private Texture2D transCursor;
 
     void Awake()
     {
@@ -26,6 +25,8 @@ public class CursorManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         Cursor.SetCursor(transCursor, hotspot, CursorMode.Auto);
+        Vector2 screenPos = GameController.Controller.Main.MousePos.ReadValue<Vector2>();
+        TryClick(screenPos);
     }
     /// <summary>
     /// 鼠标按下时切换动画
@@ -35,5 +36,17 @@ public class CursorManager : MonoBehaviour
     {
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
     }
-
+    private void TryClick(Vector2 screenPos)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+        foreach (var hit in Physics.RaycastAll(ray))
+        {
+            var entity = hit.collider.GetComponent<Entity>();
+            if (entity != null)
+            {
+                entity.OnClick();
+            }
+        }
+    }
 }
+

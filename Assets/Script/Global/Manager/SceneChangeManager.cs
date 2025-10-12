@@ -12,6 +12,7 @@ public class SceneChangeManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadScene("Battle");
         }
         else
         {

@@ -1,0 +1,27 @@
+local GC = CS.GameController
+
+function CharacterMove(character)
+    local x = GC.MoveX()  -- -1 左, +1 右
+
+    if character.rb == nil then
+        return
+    end
+
+    -- 设置速度
+    local rb = character.rb
+    local speed = character.CharacterData.speed
+
+    -- 保留原来的 y 速度，防止重力被覆盖
+    local velocity = rb.velocity
+    velocity.x = x * speed
+    rb.velocity = velocity
+    -- 可选：触发动画
+    if character.animator ~= nil then
+        if x ~= 0 then
+            character.animator:SetTrigger("Walk")
+        else
+            character.animator:SetTrigger("Idle")
+        end
+    end
+	CS.UnityEngine.Debug.Log(1)
+end

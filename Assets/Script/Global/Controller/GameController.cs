@@ -10,5 +10,11 @@ public static class GameController
     static GameController()
     {
         Controller.Main.LeftClick.Enable();
+        Controller.Main.Move.Enable();
+        Controller.Main.MousePos.Enable();
+    }
+    public static float MoveX()
+    {
+        return GameController.Controller.Main.Move.ReadValue<float>();
     }
 }
