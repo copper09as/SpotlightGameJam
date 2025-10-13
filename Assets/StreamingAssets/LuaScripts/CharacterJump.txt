@@ -2,9 +2,10 @@ local GC = CS.GameController
 
 function CharacterJump(character)
     if character.rb == nil then return end
+	local characterData = character.CommonEntityData.CharacterData
     if character:GroundCheck() then
         local velocity = character.rb.velocity
-        velocity.y = character.CharacterData.JumpHeight
+        velocity.y = characterData.JumpHeight
         character.rb.velocity = velocity
     end
 end

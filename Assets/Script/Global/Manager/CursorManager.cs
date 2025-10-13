@@ -64,8 +64,6 @@ public class CursorManager : MonoBehaviour
     {
         if (isHold && currentEntity != null)
         {
-            Debug.Log("OnDrag");
-            Debug.Log(GameController.GetWorldMousePos());
             currentEntity.OnDrag();
         }
     }

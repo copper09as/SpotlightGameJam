@@ -1,38 +1,59 @@
-﻿namespace Global.Data
+﻿using System;
+using System.Collections.Generic;
+
+namespace Global.Data
 {
-    public class CharacterData
+    /// <summary>
+    /// 对于需要移动的实体的数据
+    /// </summary>
+    [Serializable]
+    public class CharacterEntityData
     {
-        public float ScaleX;
-        public float ScaleY;
-        public float Hp;
         public float JumpHeight;
-        public float Damage;
         public float speed;
         public float Gravity;
-        public CharacterEntityData ToEntityData()
+        public int signId = -1;
+        public CharacterEntityData Copy()
         {
             return new CharacterEntityData
             {
-                ScaleX = this.ScaleX,
-                ScaleY = this.ScaleY,
-                Hp = this.Hp,
                 JumpHeight = this.JumpHeight,
-                Damage = this.Damage,
                 speed = this.speed,
                 Gravity = this.Gravity,
                 signId = -1
             };
         }
     }
-    public class CharacterEntityData
+    [Serializable]
+    /// <summary>
+    /// 所有实体通用的数据
+    /// </summary>
+    public class CommonEntityData
     {
+        public int id;
+        public int EffectId;
         public float ScaleX;
         public float ScaleY;
-        public float Hp;
-        public float JumpHeight;
-        public float Damage;
-        public float speed;
-        public float Gravity;
-        public int signId = -1;
+        public CharacterEntityData CharacterData;
+        public CommonEntityData Copy()
+        {
+            var data = new CommonEntityData
+            {
+                EffectId = this.EffectId,
+                ScaleX = this.ScaleX,
+                ScaleY = this.ScaleY,
+                CharacterData = this.CharacterData.Copy()
+            };
+            return data;
+        }
     }
+    [Serializable]
+    /// <summary>
+    /// 通用数据库
+    /// </summary>
+    public class CommonEntityDataCollection
+    { 
+        public List<CommonEntityData> CommonEntityList = new List<CommonEntityData>();
+    }
+
 }

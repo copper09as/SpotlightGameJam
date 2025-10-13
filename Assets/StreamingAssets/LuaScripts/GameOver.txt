@@ -1,0 +1,3 @@
+function GameOver(character)
+	CS.SceneChangeManager.Instance:ReloadCurrentScene()
+end

@@ -99,7 +99,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""MousePos"",
@@ -123,6 +123,15 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""name"": ""Space"",
                     ""type"": ""Button"",
                     ""id"": ""d56f9c1a-e3c7-4a08-a0f9-f6df501045c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""30aee6b3-4218-4f70-a5f2-36026bcece51"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -195,6 +204,28 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""action"": ""Space"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""784f91ee-ea1b-4b17-b876-31cb8e93650a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c9e51f7-f4b1-4d88-a45a-67bd71196521"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -207,6 +238,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         m_Main_MousePos = m_Main.FindAction("MousePos", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
         m_Main_Space = m_Main.FindAction("Space", throwIfNotFound: true);
+        m_Main_Esc = m_Main.FindAction("Esc", throwIfNotFound: true);
     }
 
     ~@OriginGame()
@@ -291,6 +323,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_MousePos;
     private readonly InputAction m_Main_Move;
     private readonly InputAction m_Main_Space;
+    private readonly InputAction m_Main_Esc;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -318,6 +351,10 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Space".
         /// </summary>
         public InputAction @Space => m_Wrapper.m_Main_Space;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/Esc".
+        /// </summary>
+        public InputAction @Esc => m_Wrapper.m_Main_Esc;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -356,6 +393,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Space.started += instance.OnSpace;
             @Space.performed += instance.OnSpace;
             @Space.canceled += instance.OnSpace;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         /// <summary>
@@ -379,6 +419,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Space.started -= instance.OnSpace;
             @Space.performed -= instance.OnSpace;
             @Space.canceled -= instance.OnSpace;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         /// <summary>
@@ -447,5 +490,12 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Esc" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEsc(InputAction.CallbackContext context);
     }
 }

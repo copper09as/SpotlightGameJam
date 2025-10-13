@@ -14,6 +14,7 @@ public static class GameController
         Controller.Main.Move.Enable();
         Controller.Main.MousePos.Enable();
         Controller.Main.Space.Enable();
+        Controller.Main.Esc.Enable();
     }
     public static float MoveX()
     {

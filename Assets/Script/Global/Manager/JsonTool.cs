@@ -26,9 +26,9 @@ public class JsonTool
             Debug.Log($"成功在{path}读取");
             return data;
         }
-        catch
+        catch(Exception ex)
         {
-            Debug.Log($"在{path}读取失败");
+            Debug.Log($"在{path}读取失败"+ex.Message);
         }
         return default(T);
     }

@@ -9,7 +9,7 @@ namespace Global.Data
     public class GameConfig : MonoBehaviour
     {
         public static GameConfig Instance { get; private set; }
-        public CharacterData CharacterDT;
+        public CommonEntityDataCollection CommonEDC { get; private set; }
         public EntityScriptDataCollection EntitySDC { get; private set; }
         private void Awake()
         {
@@ -21,12 +21,25 @@ namespace Global.Data
             Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
-
         }
 
         private void LoadAllConfig()
         {
-            CharacterDT = LoadConfigData<CharacterData>("CharacterData.json");
+            /*CommonEDC = new CommonEntityDataCollection();
+            for(int i = 0;i<10;i++)
+            {
+                CommonEntityData commonEntityData = new CommonEntityData();
+                CharacterEntityData characterEntityData = new CharacterEntityData();
+                characterEntityData.signId = -1;
+                commonEntityData.id = 20000 + i;
+                commonEntityData.EffectId = 10000;
+                commonEntityData.ScaleX = 1.0f;
+                commonEntityData.ScaleY = 1.0f;
+                commonEntityData.CharacterData = characterEntityData.Copy();
+                CommonEDC.CommonEntityList.Add(commonEntityData);
+            }
+            JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "CommonEntityData.json"),CommonEDC);*/
+            CommonEDC = LoadConfigData<CommonEntityDataCollection>("CommonEntityData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
         }
         private static T LoadConfigData<T>(string relativePath)

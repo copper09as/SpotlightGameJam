@@ -1,0 +1,3 @@
+function OpenMenu2()
+	CS.EntityUIManager.Instance:SwitchToMenu2()
+end

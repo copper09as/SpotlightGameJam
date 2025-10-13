@@ -2,30 +2,32 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangeManager : MonoBehaviour
+public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
 {
-    public static SceneChangeManager Instance;
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            LoadScene("Battle");
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        LoadScene("Battle");
     }
-
     /// <summary>
     /// 异步加载新场景并卸载旧场景（无进度UI）
     /// </summary>
-    public void LoadScene(string newScene)
+    private bool isLoading = false;
+    public void ReloadCurrentScene()
     {
-        StartCoroutine(LoadSceneCoroutine(newScene,LoadSceneMode.Single));
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        LoadScene(currentSceneName, LoadSceneMode.Single);
+    }
+    public void LoadScene(string newScene, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        if (isLoading)
+        {
+            Debug.LogWarning($"Scene {newScene} is already loading, skip duplicate request.");
+            return;
+        }
+
+        isLoading = true;
+        StartCoroutine(LoadSceneCoroutine(newScene, mode));
     }
 
     private IEnumerator LoadSceneCoroutine(string newScene,LoadSceneMode mode)
@@ -42,5 +44,6 @@ public class SceneChangeManager : MonoBehaviour
         Scene newLoadedScene = SceneManager.GetSceneByName(newScene);
         if (newLoadedScene.IsValid())
             SceneManager.SetActiveScene(newLoadedScene);
+        isLoading = false;
     }
 }

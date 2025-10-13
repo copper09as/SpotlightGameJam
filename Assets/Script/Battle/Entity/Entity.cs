@@ -11,28 +11,33 @@ namespace Game.Battle.Entity
 {
     public class Entity : MonoBehaviour,IObjectByCreate
     {
-        [SerializeField] private EntityScriptData scriptData;
-        private Animator animator;
-        [SerializeField] private int id;
-        public CharacterEntityData CharacterData;
+        [NonSerialized] private EntityScriptData scriptData;//储存与随时修改脚本数据
+        [SerializeField]private Animator animator;
+        [SerializeField] private int dataId;//用于读取数据
+        public int entityId;//存在实体表里面
+        [NonSerialized]public CommonEntityData CommonEntityData;//实体通用数据
         public Rigidbody2D rb;
         public TextMeshProUGUI text;
+        public EntityManager entityManager;
         public Collider2D col;
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
         private void OnEnable()
         {
-            if(id>=10000)
-                Init(id);
+           Init(dataId);
         }
         #region 脚本方法
-        public void Init(int id)
+        public void Init(int id)//,EntityManager entityManager)
         {
+            //this.entityManager = entityManager;
             GameController.Controller.Main.Space.started += OnSpace;
-            CharacterData = GameConfig.Instance.CharacterDT.ToEntityData();
+            CommonEntityData = 
+                GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
+            Debug.Log(CommonEntityData.EffectId);
+            scriptData = 
+                GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == CommonEntityData.EffectId);
             
-            scriptData = GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == id);
             foreach (var i in scriptData.InitPath)
             {
                 LuaManager.Instance.CallFunction(i, i, this);
@@ -66,7 +71,6 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-            CharacterData.signId = -1;
         }
         #endregion
         /// <summary>
@@ -111,7 +115,6 @@ namespace Game.Battle.Entity
             }
             else
             {
-                // 没有接触点则直接返回或者用默认值
                 return;
             }
             
@@ -121,7 +124,13 @@ namespace Game.Battle.Entity
             }
         }
 
-
+        public void Dead()
+        {
+            foreach (var i in scriptData.DeadPath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this);
+            }
+        }
         private void OnCollisionStay2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Ground"))

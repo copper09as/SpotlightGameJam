@@ -18,6 +18,7 @@ namespace Global.Data.Entity
         public List<string> OnSpacePath = new List<string>();//空格按下时
         public List<string> OnDragPath = new List<string>();//拖拽时触发
         public List<string> OnTread = new List<string>();//被踩的时候触发
+        public List<string> DeadPath = new List<string>();//被其他脚本调用死亡效果
     }
     [Serializable]
     public class EntityScriptDataCollection
