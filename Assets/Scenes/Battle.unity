@@ -375,7 +375,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
+  m_Material: {fileID: 6200000, guid: f6ed31e7c5707bc48b4d143674ba70eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -801,6 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027292107}
   - component: {fileID: 1027292106}
+  - component: {fileID: 1027292108}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -853,6 +854,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1027292108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027292105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &1050711672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,7 +1881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1567470212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2486,7 +2510,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
+  m_Material: {fileID: 6200000, guid: f6ed31e7c5707bc48b4d143674ba70eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
