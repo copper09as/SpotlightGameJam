@@ -5,10 +5,10 @@ function FollowMouseX(entity, dt)
     local pos = entity.transform.position
     local targetX = mousePos.x
 
-    -- 控制跟随速度（数值越大越快）
+    -- 控制跟随速度
     local followSpeed = 10  
 
-    -- 使用线性插值让它慢慢靠近
+    -- 使用线性插值
     pos.x = CS.UnityEngine.Mathf.Lerp(pos.x, targetX, followSpeed * dt)
 
     entity.transform.position = pos

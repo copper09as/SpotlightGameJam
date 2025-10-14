@@ -1,8 +1,15 @@
 local GC = CS.GameController
 
-function FollowMouseY(entity)
+function FollowMouseY(entity, dt)
     local mousePos = GC.GetWorldMousePos()
     local pos = entity.transform.position
-    pos.x = mousePos.y
+    local targetY = mousePos.y
+
+    -- 控制跟随速度
+    local followSpeed = 10  
+
+    -- 使用线性插值
+    pos.y = CS.UnityEngine.Mathf.Lerp(pos.y, targetY, followSpeed * dt)
+
     entity.transform.position = pos
 end
