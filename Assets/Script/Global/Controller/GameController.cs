@@ -36,6 +36,7 @@ public static class GameController
         worldPos.z = 0f;
         return worldPos;
     }
+    public static Vector3 GetScreenPos()=> Controller.Main.MousePos.ReadValue<Vector2>();
 
     //按下空格
     private static void OnSpacePressed()
