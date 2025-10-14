@@ -3,44 +3,37 @@
 		"id": 10000,
 		"InitPath": ["SetDynamic","CharacterInit"],
 		"UpdatePath": ["CharacterMove","FasterFall","CharacterJumpUseForce"],
-		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["DamageEntityOnHead"],
 		"OnSpacePath": [],
 		"OnDragPath":["FollowMouse"],
-		"DeadPath":["GameOver"],
-		"OnSpacePressPath":[]
+		"DeadPath":["GameOver"]
 		
 	},
 	{
 		"id": 10001,
 		"InitPath": ["SetKinematic"],
 		"UpdatePath": [],
-		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["DamageEntity"],
 		"OnSpacePath": [],
 		"OnDragPath":[],
-		"DeadPath":[],
-		"OnSpacePressPath":[]
+		"DeadPath":[]
 	},
 	{
 		"id": 10002,
 		"InitPath": ["SetKinematic"],
 		"UpdatePath": [],
-		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnSpacePath": [],
 		"OnDragPath":[],
-		"DeadPath":[],
-		"OnSpacePressPath":[]
+		"DeadPath":[]
 	},
 	{
 		"id": 10003,
 		"InitPath": ["SetKinematic"],
 		"UpdatePath": [],
-		"OnDestroyPath": [],
 		"OnMouseDownPath": ["OpenMenu2"],
 		"OnCollisionPath": [],
 		"OnSpacePath": [],
@@ -52,12 +45,10 @@
 		"id": 10004,
 		"InitPath": ["SetStatic"],
 		"UpdatePath": [],
-		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": ["StickPlayerUp"],
 		"OnSpacePath": [],
 		"OnDragPath":["FollowMouseX"],
-		"DeadPath":[],
-		"OnSpacePressPath":[]
+		"DeadPath":[]
 	}]
 }
