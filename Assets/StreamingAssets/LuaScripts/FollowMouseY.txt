@@ -1,15 +1,32 @@
 local GC = CS.GameController
 
 function FollowMouseY(entity, dt)
-    local mousePos = GC.GetWorldMousePos()
+    local data = entity.dataTable
+    local mousePos = GC.GetScreenMousePos()  -- ✅ 获取屏幕坐标（像素）
+
+    -- 限制鼠标 Y 坐标在屏幕区域
+    mousePos.y = CS.UnityEngine.Mathf.Clamp(mousePos.y, data.limitYMin, data.limitYMax)
+
+    -- 转换成世界坐标
+    local cam = CS.UnityEngine.Camera.main
+    local worldPos = cam:ScreenToWorldPoint(mousePos)
+
+    -- 平滑插值
     local pos = entity.transform.position
-    local targetY = mousePos.y
+    local targetY = worldPos.y
+    local followSpeed = data.scrollSpeed
 
-    -- 控制跟随速度
-    local followSpeed = 10  
-
-    -- 使用线性插值
     pos.y = CS.UnityEngine.Mathf.Lerp(pos.y, targetY, followSpeed * dt)
 
+    -- 再做一次最终 Clamp（避免插值超限）
+    local clampedScreenY = CS.UnityEngine.Mathf.Clamp(cam:WorldToScreenPoint(pos).y, data.limitYMin, data.limitYMax)
+    local finalWorldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(mousePos.x, clampedScreenY, mousePos.z))
+    pos.y = finalWorldPos.y
+
     entity.transform.position = pos
+
+    -- 当前在区域内的比例 (0~1)
+    local rangeY = data.limitYMax - data.limitYMin
+    data.scrollProgressY = (mousePos.y - data.limitYMin) / rangeY
 end
+
