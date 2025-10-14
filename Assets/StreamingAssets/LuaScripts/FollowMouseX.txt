@@ -4,9 +4,9 @@ function FollowMouseX(entity, dt)
     local mousePos = GC.GetWorldMousePos()
     local pos = entity.transform.position
     local targetX = mousePos.x
-
+	local data = entity.dataTable
     -- 控制跟随速度
-    local followSpeed = 10  
+    local followSpeed = data.scrollSpeed
 
     -- 使用线性插值
     pos.x = CS.UnityEngine.Mathf.Lerp(pos.x, targetX, followSpeed * dt)
