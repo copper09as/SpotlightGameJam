@@ -3,120 +3,60 @@
 		"id": 20000,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 10.0,
-			"speed": 10.0,
-			"Gravity": 0.0,
-			"signId": 1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20001,
 		"EffectId": 10001,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20002,
 		"EffectId": 10002,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20003,
 		"EffectId": 10003,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20004,
 		"EffectId": 10004,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20005,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20006,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20007,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20008,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	},
 	{
 		"id": 20009,
 		"EffectId": 10000,
 		"ScaleX": 1.0,
-		"ScaleY": 1.0,
-		"CharacterData": {
-			"JumpHeight": 0.0,
-			"speed": 0.0,
-			"Gravity": 0.0,
-			"signId": -1
-		}
+		"ScaleY": 1.0
 	}]
 }

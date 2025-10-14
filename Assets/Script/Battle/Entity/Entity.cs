@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using Global.Data;
@@ -7,15 +7,17 @@ using Global.ObjectCreate;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using XLua;
 namespace Game.Battle.Entity
 {
     public class Entity : MonoBehaviour,IObjectByCreate
     {
-        [NonSerialized] private EntityScriptData scriptData;//¥¢¥Ê”ÎÀÊ ±–ﬁ∏ƒΩ≈±æ ˝æ›
+        [NonSerialized]private EntityScriptData scriptData;//ÂÇ®Â≠ò‰∏éÈöèÊó∂‰øÆÊîπËÑöÊú¨Êï∞ÊçÆ
         [SerializeField]private Animator animator;
-        [SerializeField] private int dataId;//”√”⁄∂¡»° ˝æ›
-        public int entityId;//¥Ê‘⁄ µÃÂ±Ì¿Ô√Ê
-        [NonSerialized]public CommonEntityData CommonEntityData;// µÃÂÕ®”√ ˝æ›
+        [SerializeField] private int dataId;//Áî®‰∫éËØªÂèñÊï∞ÊçÆ
+        public int entityId;//Â≠òÂú®ÂÆû‰ΩìË°®ÈáåÈù¢
+        [NonSerialized]public CommonEntityData CommonEntityData;//ÂÆû‰ΩìÈÄöÁî®Êï∞ÊçÆ
+        [NonSerialized] public LuaTable dataTable;//‰øùÂ≠òluaÂàùÂßãÂåñÁöÑÊï∞ÊçÆ
         public Rigidbody2D rb;
         public TextMeshProUGUI text;
         public EntityManager entityManager;
@@ -23,15 +25,17 @@ namespace Game.Battle.Entity
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-        private void OnEnable()
+        private void Start()
         {
-           Init(dataId);
+            Init(dataId);
         }
-        #region Ω≈±æ∑Ω∑®
+        #region ËÑöÊú¨ÊñπÊ≥ï
         public void Init(int id)//,EntityManager entityManager)
         {
+            dataTable = LuaManager.Instance._luaEnv.NewTable();
+
             //this.entityManager = entityManager;
-            GameController.Controller.Main.Space.started += OnSpace;
+            GameController.Controller.Main.Space.canceled += OnSpace;
             CommonEntityData = 
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
             Debug.Log(CommonEntityData.EffectId);
@@ -48,7 +52,7 @@ namespace Game.Battle.Entity
         {
             foreach (var i in scriptData.UpdatePath)
             {
-                LuaManager.Instance.CallFunction(i, i, this);
+                LuaManager.Instance.CallFunction(i, i, this,Time.deltaTime);
             }
         }
         private void OnSpace(InputAction.CallbackContext context)
@@ -71,37 +75,13 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-        }
-        #endregion
-        /// <summary>
-        /// »Ù”–∂Øª≠‘Ú…Ë÷√∂Øª≠
-        /// </summary>
-        /// <param name="aniName"></param>
-        public void SetAnimation(string aniName)
-        {
-            if (animator == null)
-                return;
-
-            bool hasTrigger = false;
-            foreach (var param in animator.parameters)
+            if (dataTable != null)
             {
-                if (param.type == AnimatorControllerParameterType.Trigger && param.name == aniName)
-                {
-                    hasTrigger = true;
-                    break;
-                }
+                dataTable.Dispose(); // ‚ùóÈáäÊîæ LuaTable ÂºïÁî®
+                dataTable = null;
             }
-            if (!hasTrigger)
-                return;
-
-            animator.SetTrigger(aniName);
+            GameController.Controller.Main.Space.canceled -= OnSpace;
         }
-        [SerializeField]private bool isGrounded = false;
-        public bool GroundCheck()
-        {
-            return isGrounded;
-        }
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
             var otherEntity = collision.gameObject.GetComponent<Entity>();
@@ -117,7 +97,7 @@ namespace Game.Battle.Entity
             {
                 return;
             }
-            
+
             foreach (var i in scriptData.OnCollisionPath)
             {
                 LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);
@@ -158,5 +138,39 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, i, this);
             }
         }
+
+        #endregion
+        #region ÂêëluaÂÖ¨ÂºÄÁöÑÊñπÊ≥ï
+        /// <summary>
+        /// Ëã•ÊúâÂä®ÁîªÂàôËÆæÁΩÆÂä®Áîª
+        /// </summary>
+        /// <param name="aniName"></param>
+        public void SetAnimation(string aniName)
+        {
+            if (animator == null)
+                return;
+
+            bool hasTrigger = false;
+            foreach (var param in animator.parameters)
+            {
+                if (param.type == AnimatorControllerParameterType.Trigger && param.name == aniName)
+                {
+                    hasTrigger = true;
+                    break;
+                }
+            }
+            if (!hasTrigger)
+                return;
+
+            animator.SetTrigger(aniName);
+        }
+        [SerializeField]private bool isGrounded = false;
+        public bool GroundCheck()
+        {
+            return isGrounded;
+        }
+        #endregion
+
+
     }
 }

@@ -1,0 +1,10 @@
+function CharacterInit(entity)
+    entity.dataTable = {
+        speed = 10,
+        baseJumpHeight = 5,      -- 基础跳跃高度
+        maxJumpHeight = 20,      -- 最大跳跃高度
+        maxChargeTime = 1.5,     -- 最大蓄力时长
+        currentJumpHeight = 0,   -- 计算出来的本次跳跃高度
+		gravity = 10
+    }
+end

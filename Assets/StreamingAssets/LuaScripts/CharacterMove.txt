@@ -1,15 +1,14 @@
 local GC = CS.GameController
 
-function CharacterMove(character)
-    local x = GC.MoveX()
-	local characterData = character.CommonEntityData.CharacterData
-    if character.rb == nil then
+function CharacterMove(entity)
+    local x = GC:MoveX()
+	--local entityData = entity.CommonEntityData.entityData
+    if entity.rb == nil then
         return
     end
-
-    local rb = character.rb
-    local speed = characterData.speed
-
+    local rb = entity.rb
+    --local speed = entityData.speed
+	local speed = entity.dataTable.speed or 10
     local velocity = rb.velocity
     velocity.x = x * speed
     rb.velocity = velocity

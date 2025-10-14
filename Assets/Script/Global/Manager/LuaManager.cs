@@ -7,7 +7,7 @@ using XLua;
 public class LuaManager : MonoBehaviour
 {
     public static LuaManager Instance { get; private set; }
-    private LuaEnv _luaEnv;
+    public LuaEnv _luaEnv;
     private readonly Dictionary<string, LuaTable> _loadedScripts = new();
     public const string LUA_SCRIPTS_PATH = "LuaScripts/";
 

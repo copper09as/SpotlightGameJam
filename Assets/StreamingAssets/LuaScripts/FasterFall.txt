@@ -1,0 +1,8 @@
+function FasterFall(entity, deltaTime)
+    if not entity:GroundCheck() then
+        local velocity = entity.rb.velocity
+		local gravity = entity.dataTable.gravity
+        velocity.y = velocity.y - gravity * deltaTime
+        entity.rb.velocity = velocity
+    end
+end

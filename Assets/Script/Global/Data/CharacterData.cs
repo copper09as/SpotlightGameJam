@@ -34,7 +34,7 @@ namespace Global.Data
         public int EffectId;
         public float ScaleX;
         public float ScaleY;
-        public CharacterEntityData CharacterData;
+        //public CharacterEntityData CharacterData;
         public CommonEntityData Copy()
         {
             var data = new CommonEntityData
@@ -42,7 +42,7 @@ namespace Global.Data
                 EffectId = this.EffectId,
                 ScaleX = this.ScaleX,
                 ScaleY = this.ScaleY,
-                CharacterData = this.CharacterData.Copy()
+                //CharacterData = this.CharacterData.Copy()
             };
             return data;
         }

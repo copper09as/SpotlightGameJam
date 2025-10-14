@@ -1,8 +1,8 @@
 {
 	"entityScriptList": [{
 		"id": 10000,
-		"InitPath": ["SetDynamic"],
-		"UpdatePath": ["CharacterMove"],
+		"InitPath": ["SetDynamic","CharacterInit"],
+		"UpdatePath": ["CharacterMove","FasterFall"],
 		"OnDestroyPath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["DamageEntityOnHead"],

@@ -31,8 +31,6 @@ public class EntityUIManager : MonoBehaviour
     {
 
         GameController.Controller.Main.Esc.started += OnEscPressed;
-        menu1.SetActive(false);
-        menu2.SetActive(false);
     }
 
     private void OnDestroy()
