@@ -10,7 +10,7 @@ public static class GameController
     // 跳跃时间控制变量
     public static bool isSpacePressed = false;
     private static float spacePressStartTime = 0f;
-    private static float lastJumpChargeTime;
+
     static GameController()
     {
         Controller.Main.LeftClick.Enable();
@@ -18,17 +18,14 @@ public static class GameController
         Controller.Main.MousePos.Enable();
         Controller.Main.Space.Enable();
         Controller.Main.Esc.Enable();
-
         // 注册输入事件
         Controller.Main.Space.performed += ctx => OnSpacePressed();
         Controller.Main.Space.canceled += ctx => OnSpaceReleased();
     }
-
     public static float MoveX()
     {
         return Controller.Main.Move.ReadValue<float>();
     }
-
     public static Vector3 GetWorldMousePos()
     {
         Vector2 screenPos = Controller.Main.MousePos.ReadValue<Vector2>();

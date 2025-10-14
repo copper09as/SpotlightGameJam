@@ -82,16 +82,16 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, i, this);
             }
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
-
             if (dataTable != null)
             {
                 dataTable.Dispose();
                 dataTable = null;
             }
-            GameController.Controller.Main.Space.started-= OnSpace;
+            GameController.Controller.Main.Space.started -= OnSpace;
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             var otherEntity = collision.gameObject.GetComponent<Entity>();
