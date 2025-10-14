@@ -7,7 +7,8 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
 
     private void Start()
     {
-        LoadScene("Battle");
+        //LoadScene("Battle");
+        LoadScene("Enemy");
     }
     /// <summary>
     /// 异步加载新场景并卸载旧场景（无进度UI）
