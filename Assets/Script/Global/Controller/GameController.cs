@@ -8,7 +8,7 @@ public static class GameController
     public static OriginGame Controller = new OriginGame();
 
     // 跳跃时间控制变量
-    private static bool isSpacePressed = false;
+    public static bool isSpacePressed = false;
     private static float spacePressStartTime = 0f;
     private static float lastJumpChargeTime;
     static GameController()
@@ -48,13 +48,21 @@ public static class GameController
     private static void OnSpaceReleased()
     {
         isSpacePressed = false;
-        lastJumpChargeTime = Time.time - spacePressStartTime;
     }
 
     //获取当前按住空格的持续时间
     public static float GetJumpChargeTime()
     {
-        return lastJumpChargeTime;
+        if (isSpacePressed)
+        {
+            // 当前按压时间
+            return Time.time - spacePressStartTime;
+        }
+        else
+        {
+            // 如果空格未按下，返回0或者上一次按压时间
+            return 0f;
+        }
     }
 
 }

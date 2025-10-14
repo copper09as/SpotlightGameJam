@@ -1,0 +1,75 @@
+local GC = CS.GameController
+
+function CharacterUpdate(entity, dt)
+    local data = entity.dataTable
+    local rb = entity.rb
+    local inputJump = GC.isSpacePressed
+	local currentHeight = data.currentHeight
+	dt = dt*data.jumpRate
+    -- 起跳
+    if inputJump and entity:GroundCheck() and not data.isJumping then
+        data.isJumping = true
+        data.isJumpFalling = false
+        data.jumpCut = false
+        data.startY = entity.transform.position.y
+        CharacterJump(entity)
+    end
+
+    -- 长按空格延长跳跃
+    if data.isJumping and inputJump then
+        currentHeight = entity.transform.position.y - data.startY
+        if currentHeight < data.maxJumpHeight then
+            local addSpeed = data.gravity * dt
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y + addSpeed)
+        end
+    end
+
+    -- 跳跃上升阶段自然衰减（只对未长按叠加的速度生效）
+    if data.isJumping then
+        if currentHeight >= data.maxJumpHeight or data.jumpCut then
+			CS.UnityEngine.Debug.Log("In")
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt)
+        else
+            -- 如果还未达到 maxJumpHeight，则不减速度（长按叠加）
+            currentHeight = entity.transform.position.y - data.startY
+            if currentHeight >= data.maxJumpHeight then
+                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * dt)
+            end
+
+            if math.abs(rb.velocity.y) < data.jumpHangTimeThreshold then
+                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * 0.5 * dt)
+            end
+        end
+
+        if rb.velocity.y <= 0 then
+            data.isJumping = false
+            data.isJumpFalling = true
+        end
+    end
+
+    -- 下落阶段
+    if data.isJumpFalling then
+        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt)
+        if entity:GroundCheck() then
+			currentHeight = 0
+            data.isJumpFalling = false
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
+            data.jumpCut = false
+        end
+    end
+end
+
+-- 初次跳跃施加力
+function CharacterJump(entity)
+    local data = entity.dataTable
+    local rb = entity.rb
+    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce)
+end
+
+-- 短按跳跃判断
+function AddJumpHeight(entity, jumpReleased)
+    local data = entity.dataTable
+    if jumpReleased and data.isJumping and entity.rb.velocity.y > 0 then
+        data.jumpCut = true
+    end
+end

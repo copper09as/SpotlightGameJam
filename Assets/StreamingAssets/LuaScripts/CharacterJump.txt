@@ -1,24 +1,6 @@
 local GC = CS.GameController
 
 function CharacterJump(entity)
-    if entity.rb == nil then return end
-    if entity:GroundCheck() then
-        -- 读取 C# 提供的跳跃蓄力时间
-        local pressTime = GC:GetJumpChargeTime()
-        local maxTime = entity.dataTable.maxChargeTime
-
-        if pressTime > maxTime then
-            pressTime = maxTime
-        end
-
-        local minJump = entity.dataTable.baseJumpHeight
-        local maxJump = entity.dataTable.maxJumpHeight
-
-        local ratio = pressTime / maxTime
-        entity.dataTable.currentJumpHeight = minJump + (maxJump - minJump) * ratio
-
-        local velocity = entity.rb.velocity
-        velocity.y = entity.dataTable.currentJumpHeight
-        entity.rb.velocity = velocity
-    end
+    local data = entity.dataTable
+    data.velocityY = data.jumpForce
 end

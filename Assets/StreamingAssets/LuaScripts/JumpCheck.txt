@@ -1,0 +1,7 @@
+function JumpCheck(entity)
+    local startTime = entity.dataTable.jumpStartTime
+    if startTime ~= nil and entity:GroundCheck() and CS.UnityEngine.Time.time - startTime > 0.1 then
+        entity.dataTable.hasJumped = false
+        entity.dataTable.jumpStartTime = nil
+    end
+end

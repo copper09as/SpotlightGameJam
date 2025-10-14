@@ -9,8 +9,8 @@ namespace Global.Data
     public class GameConfig : MonoBehaviour
     {
         public static GameConfig Instance { get; private set; }
-        public CommonEntityDataCollection CommonEDC { get; private set; }
-        public EntityScriptDataCollection EntitySDC { get; private set; }
+        public CommonEntityDataCollection CommonEDC;
+        public EntityScriptDataCollection EntitySDC;
         private void Awake()
         {
             if (Instance != null)

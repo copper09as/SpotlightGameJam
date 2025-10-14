@@ -12,11 +12,11 @@ namespace Game.Battle.Entity
 {
     public class Entity : MonoBehaviour,IObjectByCreate
     {
-        [NonSerialized]private EntityScriptData scriptData;//储存与随时修改脚本数据
+        [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
         [SerializeField]private Animator animator;
         [SerializeField] private int dataId;//用于读取数据
         public int entityId;//存在实体表里面
-        [NonSerialized]public CommonEntityData CommonEntityData;//实体通用数据
+        [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
         public Rigidbody2D rb;
         public TextMeshProUGUI text;
@@ -35,7 +35,7 @@ namespace Game.Battle.Entity
             dataTable = LuaManager.Instance._luaEnv.NewTable();
 
             //this.entityManager = entityManager;
-            GameController.Controller.Main.Space.canceled += OnSpace;
+            GameController.Controller.Main.Space.started += OnSpace;
             CommonEntityData = 
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
             Debug.Log(CommonEntityData.EffectId);
@@ -46,14 +46,27 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, i, this);
             }
-            
         }
+
+        private void OnSpacePress()
+        {
+            foreach (var i in scriptData.OnSpacePressPath)
+            {
+                LuaManager.Instance.CallFunction(i, i, this);
+            }
+        }
+
         void Update()
         {
+            if (GameController.isSpacePressed)
+            {
+                OnSpacePress();
+            }
             foreach (var i in scriptData.UpdatePath)
             {
                 LuaManager.Instance.CallFunction(i, i, this,Time.deltaTime);
             }
+
         }
         private void OnSpace(InputAction.CallbackContext context)
         {
@@ -77,10 +90,10 @@ namespace Game.Battle.Entity
             }
             if (dataTable != null)
             {
-                dataTable.Dispose(); // ❗释放 LuaTable 引用
+                dataTable.Dispose();
                 dataTable = null;
             }
-            GameController.Controller.Main.Space.canceled -= OnSpace;
+            GameController.Controller.Main.Space.started-= OnSpace;
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
