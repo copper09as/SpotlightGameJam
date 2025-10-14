@@ -11,5 +11,6 @@ namespace Global.Data
         public const string TimeoutTimerPath = @"Assets/Prefab/Global/TimeroutTimer.prefab";
         public const string TimeoutTimerName = "TimeoutTimer";
         public const string LeftClickSfxPath = @"Assets/Audio/Sfx/LeftClick.ogg";
+        public const string BattleBgmPath = @"Assets/Audio/Bgm/Battle.ogg";
     }
 }

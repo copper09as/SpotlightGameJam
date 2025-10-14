@@ -48,7 +48,17 @@
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["StickPlayerUp"],
 		"OnSpacePath": [],
-		"OnDragPath":["FollowMouseX"],
+		"OnDragPath":["FollowMouseX","ScrollBgm"],
+		"DeadPath":[]
+	},
+	{
+		"id": 10005,
+		"InitPath": ["SetStatic","RollInit"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["StickPlayerUp"],
+		"OnSpacePath": [],
+		"OnDragPath":["FollowMouseX","ScrollSfx"],
 		"DeadPath":[]
 	}]
 }

@@ -318,7 +318,7 @@ MonoBehaviour:
     DeadPath: []
     OnSpacePressPath: []
   animator: {fileID: 0}
-  dataId: 20004
+  dataId: 20005
   entityId: 0
   CommonEntityData:
     id: 0

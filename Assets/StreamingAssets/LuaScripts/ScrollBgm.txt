@@ -1,0 +1,5 @@
+local autio = CS.AudioManager.Instance
+function ScrollBgm(entity)
+	local data = entity.dataTable
+	autio:SetBGMVolume(data.scrollProgress)
+end

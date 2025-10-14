@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Global.Data;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -30,6 +31,7 @@ using UnityEngine.Audio;
             Instance = this;
             DontDestroyOnLoad(gameObject);
             bgmSource.loop = true;
+            PlayBGM(StringResource.BattleBgmPath);
         }
 
         #region “Ù¡øπ‹¿Ì

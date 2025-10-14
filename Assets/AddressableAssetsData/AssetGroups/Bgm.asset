@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 6ff20f9336afb9a40b5f64640a9837a0
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 21bef62571f5cc14d9fa91ad112faa7c
+    m_Address: Assets/Audio/Bgm/Battle.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ff711988d18b0ff4b81ea2654b75ca12, type: 2}
   m_SchemaSet:
