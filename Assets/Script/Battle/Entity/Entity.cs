@@ -128,7 +128,7 @@ namespace Game.Battle.Entity
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
-                isGrounded = true;
+                //isGrounded = true;
             }
             foreach (var i in scriptData.OnCollisionPath)
             {
@@ -140,7 +140,7 @@ namespace Game.Battle.Entity
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
-                isGrounded = false;
+                //isGrounded = false;
             }
         }
 
@@ -177,11 +177,11 @@ namespace Game.Battle.Entity
 
             animator.SetTrigger(aniName);
         }
-        [SerializeField]private bool isGrounded = false;
-        public bool GroundCheck()
-        {
-            return isGrounded;
-        }
+        //[SerializeField]private bool isGrounded = false;
+       // public bool GroundCheck()
+        //{
+           // return isGrounded;
+        //}
         #endregion
 
 

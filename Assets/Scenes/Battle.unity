@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 106007863}
   - component: {fileID: 106007862}
   - component: {fileID: 106007861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SfxRoll
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -307,13 +307,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20004
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 106007863}
   text: {fileID: 0}
   col: {fileID: 106007862}
-  isGrounded: 0
 --- !u!61 &106007862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1048,7 +1063,7 @@ GameObject:
   - component: {fileID: 1059481702}
   - component: {fileID: 1059481701}
   - component: {fileID: 1059481700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Setting
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1083,13 +1098,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20003
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 1059481702}
   text: {fileID: 0}
   col: {fileID: 1059481701}
-  isGrounded: 0
 --- !u!61 &1059481701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1362,7 +1392,7 @@ GameObject:
   - component: {fileID: 1254916386}
   - component: {fileID: 1254916385}
   - component: {fileID: 1254916384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1674,13 +1704,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20001
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 1479053799}
   text: {fileID: 0}
   col: {fileID: 1479053798}
-  isGrounded: 0
 --- !u!61 &1479053798
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2074,13 +2119,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20001
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 1615984510}
   text: {fileID: 0}
   col: {fileID: 1615984509}
-  isGrounded: 0
 --- !u!1 &1743027581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2154,7 @@ GameObject:
   - component: {fileID: 1743027584}
   - component: {fileID: 1743027583}
   - component: {fileID: 1743027582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pause
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2113,13 +2173,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20002
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 1743027584}
   text: {fileID: 0}
   col: {fileID: 1743027583}
-  isGrounded: 0
 --- !u!61 &1743027583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2407,7 +2482,7 @@ GameObject:
   - component: {fileID: 2002787375}
   - component: {fileID: 2002787374}
   - component: {fileID: 2002787373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BgmRoll
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2442,13 +2517,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20004
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 2002787375}
   text: {fileID: 0}
   col: {fileID: 2002787374}
-  isGrounded: 0
 --- !u!61 &2002787374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2745,13 +2835,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20000
   entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
   rb: {fileID: 2102822022}
   text: {fileID: 1922059278}
   col: {fileID: 2102822021}
-  isGrounded: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

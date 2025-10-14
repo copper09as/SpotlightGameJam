@@ -15,8 +15,9 @@ function CharacterInit(entity)
         fallGravityMult = 1.0,        -- 正常下落重力倍率
         startY = 0,                    -- 记录起跳位置
 		currentHeight = 0,				--给lua用的
-		jumpRate = 2				 --跳跃倍率(过小会导致无法抵达最高高度)
-    }
+		jumpRate = 2,				 --跳跃倍率(过小会导致无法抵达最高高度)
+		rayLen = 0.1					--检测射线长度
+	}
 
     local data = entity.dataTable
     -- 计算初始跳跃力: v = sqrt(2 * g * h)
