@@ -84,10 +84,7 @@ namespace Game.Battle.Entity
         }
         private void OnDisable()
         {
-            foreach (var i in scriptData.OnDestroyPath)
-            {
-                LuaManager.Instance.CallFunction(i, i, this);
-            }
+
             if (dataTable != null)
             {
                 dataTable.Dispose();
@@ -126,29 +123,36 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            var otherEntity = collision.gameObject.GetComponent<Entity>();
+            if (otherEntity == null) return;
+
+            Vector2 contactNormal = Vector2.zero;
+
+            if (collision.contacts.Length > 0)
             {
-                isGrounded = true;
+                contactNormal = collision.contacts[0].normal;
             }
+            else
+            {
+                return;
+            }
+
             foreach (var i in scriptData.OnCollisionPath)
             {
-                //LuaManager.Instance.CallFunction(i, i, this,collision.gameObject.GetComponent<Entity>());
+                LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);
             }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                isGrounded = false;
-            }
+
         }
 
         public void OnDrag()
         {
             foreach (var i in scriptData.OnDragPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this);
+                LuaManager.Instance.CallFunction(i, i, this,Time.deltaTime);
             }
         }
 
@@ -177,11 +181,11 @@ namespace Game.Battle.Entity
 
             animator.SetTrigger(aniName);
         }
-        [SerializeField]private bool isGrounded = false;
-        public bool GroundCheck()
-        {
-            return isGrounded;
-        }
+        //[SerializeField]private bool isGrounded = false;
+       // public bool GroundCheck()
+        //{
+           // return isGrounded;
+        //}
         #endregion
 
 

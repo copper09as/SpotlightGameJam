@@ -1,0 +1,11 @@
+local Ray = CS.RayManager
+function StickPlayerUp(entity, otherEntity, collisionNormal)
+	local playerCheck = otherEntity.transform.tag == "Player";
+	if playerCheck then
+	    otherEntity.transform.position = CS.UnityEngine.Vector3(
+        entity.transform.position.x,
+       otherEntity.transform.position.y,
+        otherEntity.transform.position.z
+    )
+	end
+end

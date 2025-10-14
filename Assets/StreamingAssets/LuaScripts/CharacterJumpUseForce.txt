@@ -1,18 +1,24 @@
 local GC = CS.GameController
-
-function CharacterUpdate(entity, dt)
+local Ray = CS.RayManager
+function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
 	local currentHeight = data.currentHeight
+	
+	
+	local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
+	local groundCheck = Ray.RayHit2D(origin,CS.UnityEngine.Vector2(0,-1),data.rayLen,"Ground")
+	
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 	dt = dt*data.jumpRate
     -- 起跳
-    if inputJump and entity:GroundCheck() and not data.isJumping then
+    if inputJump and groundCheck and not data.isJumping then
         data.isJumping = true
         data.isJumpFalling = false
         data.jumpCut = false
         data.startY = entity.transform.position.y
-        CharacterJump(entity)
+        Jump(entity)
     end
 
     -- 长按空格延长跳跃
@@ -50,7 +56,7 @@ function CharacterUpdate(entity, dt)
     -- 下落阶段
     if data.isJumpFalling then
         rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt)
-        if entity:GroundCheck() then
+        if groundCheck then
 			currentHeight = 0
             data.isJumpFalling = false
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
@@ -60,7 +66,7 @@ function CharacterUpdate(entity, dt)
 end
 
 -- 初次跳跃施加力
-function CharacterJump(entity)
+function Jump(entity)
     local data = entity.dataTable
     local rb = entity.rb
     rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce)

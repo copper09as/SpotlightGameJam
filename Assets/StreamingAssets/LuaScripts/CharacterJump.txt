@@ -1,6 +1,4 @@
 local GC = CS.GameController
 
 function CharacterJump(entity)
-    local data = entity.dataTable
-    data.velocityY = data.jumpForce
 end

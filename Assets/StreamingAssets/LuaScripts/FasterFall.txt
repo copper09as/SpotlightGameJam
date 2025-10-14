@@ -1,8 +1,16 @@
+local Ray = CS.RayManager
 function FasterFall(entity, deltaTime)
-    if not entity:GroundCheck() then
-        local velocity = entity.rb.velocity
-		local gravity = entity.dataTable.gravity
+	local data = entity.dataTable
+    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y)
+    local direction = CS.UnityEngine.Vector2(0, -1)
+
+    local groundCheck = Ray.RayHit2D(origin, direction, data.rayLen,"Ground")
+
+    if not groundCheck then
+        local rb = entity.rb
+        local gravity = entity.dataTable.gravity
+        local velocity = rb.velocity
         velocity.y = velocity.y - gravity * deltaTime
-        entity.rb.velocity = velocity
+        rb.velocity = velocity
     end
 end
