@@ -307,6 +307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20004
   entityId: 0
@@ -315,11 +326,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 106007863}
   text: {fileID: 0}
   col: {fileID: 106007862}
@@ -496,6 +502,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20000
   entityId: 0
@@ -504,11 +521,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 141136038}
   text: {fileID: 1672868023}
   col: {fileID: 141136037}
@@ -968,7 +980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &830707794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5423,7 +5435,7 @@ GameObject:
   - component: {fileID: 1059481700}
   m_Layer: 0
   m_Name: Setting
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5456,6 +5468,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20003
   entityId: 0
@@ -5464,11 +5487,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 1059481702}
   text: {fileID: 0}
   col: {fileID: 1059481701}
@@ -5482,7 +5500,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1059481698}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5899,6 +5917,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20001
   entityId: 0
@@ -5907,11 +5936,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 1479053799}
   text: {fileID: 0}
   col: {fileID: 1479053798}
@@ -6116,7 +6140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1567470212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6332,7 +6356,7 @@ GameObject:
   - component: {fileID: 1743027582}
   m_Layer: 0
   m_Name: Pause
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6349,6 +6373,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20002
   entityId: 0
@@ -6357,11 +6392,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 1743027584}
   text: {fileID: 0}
   col: {fileID: 1743027583}
@@ -6375,7 +6405,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1743027581}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6688,6 +6718,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20004
   entityId: 0
@@ -6696,11 +6737,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 2002787375}
   text: {fileID: 0}
   col: {fileID: 2002787374}
@@ -7001,6 +7037,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnDestroyPath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnSpacePath: []
+    OnDragPath: []
+    DeadPath: []
+    OnSpacePressPath: []
   animator: {fileID: 0}
   dataId: 20000
   entityId: 0
@@ -7009,11 +7056,6 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-    CharacterData:
-      JumpHeight: 0
-      speed: 0
-      Gravity: 0
-      signId: -1
   rb: {fileID: 2102822022}
   text: {fileID: 1922059278}
   col: {fileID: 2102822021}
