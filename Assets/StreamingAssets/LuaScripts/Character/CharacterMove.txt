@@ -2,19 +2,22 @@ local GC = CS.GameController
 
 function CharacterMove(entity)
     if entity.rb == nil then return end
-
+	local data = entity.dataTable
     local rb = entity.rb
     local x = GC:MoveX()
     local speed = entity.dataTable.characterSpeed or 10
 
     local targetSpeed = x * speed
 
-    local accelRate = (math.abs(targetSpeed) > 0.01) and (entity.dataTable.runAccelAmount or 10) 
-                                                or (entity.dataTable.runDeccelAmount or 10)
+    local accelRate = (math.abs(targetSpeed) > 0.01) and (data.runAccelAmount or 10) 
+                                                or (data.runDeccelAmount or 10)
 
     local speedDif = targetSpeed - rb.velocity.x
 
     local movement = speedDif * accelRate
-
-    rb:AddForce(CS.UnityEngine.Vector2(movement, 0), CS.UnityEngine.ForceMode2D.Force)
+	local camera = CS.UnityEngine.Camera.main
+	local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+	local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+	
+    rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)
 end

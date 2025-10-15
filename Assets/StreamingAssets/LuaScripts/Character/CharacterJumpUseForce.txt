@@ -1,49 +1,45 @@
 local GC = CS.GameController
 local DM = CS.DetectionManager
+
 function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
-	local currentHeight = data.currentHeight
-	
-	
-	local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
-	local groundCheck = DM.Raycast2D(origin,CS.UnityEngine.Vector2(0,-1),data.rayLen,"Ground")
-	
-	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
-	dt = dt*data.jumpRate
+    local camera = CS.UnityEngine.Camera.main
+	local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+	local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
+    local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
+
+    dt = dt * data.jumpRate
+    local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
+
     -- 起跳
     if inputJump and groundCheck and not data.isJumping then
         data.isJumping = true
         data.isJumpFalling = false
         data.jumpCut = false
         data.startY = entity.transform.position.y
-        Jump(entity)
+        Jump(entity, scaleFactor)
     end
 
     -- 长按空格延长跳跃
     if data.isJumping and inputJump then
         currentHeight = entity.transform.position.y - data.startY
         if currentHeight < data.maxJumpHeight then
-            local addSpeed = data.gravity * dt
+            local addSpeed = data.gravity * dt * scaleFactor
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y + addSpeed)
         end
     end
 
-    -- 跳跃上升阶段自然衰减（只对未长按叠加的速度生效）
+    -- 跳跃上升阶段自然衰减
     if data.isJumping then
         if currentHeight >= data.maxJumpHeight or data.jumpCut then
-			CS.UnityEngine.Debug.Log("In")
-            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt)
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt * scaleFactor)
         else
-            -- 如果还未达到 maxJumpHeight，则不减速度（长按叠加）
-            currentHeight = entity.transform.position.y - data.startY
-            if currentHeight >= data.maxJumpHeight then
-                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * dt)
-            end
-
             if math.abs(rb.velocity.y) < data.jumpHangTimeThreshold then
-                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * 0.5 * dt)
+                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * 0.5 * dt * scaleFactor)
             end
         end
 
@@ -55,9 +51,8 @@ function CharacterJumpUseForce(entity, dt)
 
     -- 下落阶段
     if data.isJumpFalling then
-        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt)
+        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt * scaleFactor)
         if groundCheck then
-			currentHeight = 0
             data.isJumpFalling = false
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
             data.jumpCut = false
@@ -66,10 +61,10 @@ function CharacterJumpUseForce(entity, dt)
 end
 
 -- 初次跳跃施加力
-function Jump(entity)
+function Jump(entity, scaleFactor)
     local data = entity.dataTable
     local rb = entity.rb
-    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce)
+    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor) -- 乘上 scaleFactor
 end
 
 -- 短按跳跃判断

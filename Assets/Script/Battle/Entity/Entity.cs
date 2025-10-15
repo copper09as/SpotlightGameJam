@@ -25,10 +25,11 @@ namespace Game.Battle.Entity
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-        private void Start()
+        private void Awake()
         {
             Init(dataId);
         }
+
         #region 脚本方法
         public void Init(int id)//,EntityManager entityManager)
         {

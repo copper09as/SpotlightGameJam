@@ -38,7 +38,7 @@
 	},
 	{
 		"id": 10004,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollBgm"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
@@ -47,7 +47,7 @@
 	},
 	{
 		"id": 10005,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollSfx"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
@@ -74,7 +74,7 @@
 	},
 	{
 		"id": 10008,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollCameraSize"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],

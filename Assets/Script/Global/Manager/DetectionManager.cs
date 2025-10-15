@@ -24,6 +24,20 @@ public static class DetectionManager
         }
         return col.GetComponent<Entity>();
     }
+    public static Entity OverlapBoxByTag(Vector2 center, Vector2 size, string tag)
+    {
+        // 检测指定矩形区域内的碰撞体
+        Collider2D col = Physics2D.OverlapBox(center, size, 0f, LayerMask.GetMask(tag));
+
+        if (col == null)
+            return null;
+
+        // 如果使用 tag 字符串判断而不是 Layer
+        if (col.tag != tag)
+            return null;
+
+        return col.GetComponent<Entity>();
+    }
     // 2D射线检测（带命中信息）
     public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
