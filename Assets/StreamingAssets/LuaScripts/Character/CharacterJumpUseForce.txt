@@ -6,8 +6,9 @@ function CharacterJumpUseForce(entity, dt)
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
     local camera = CS.UnityEngine.Camera.main
-	local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
-	local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+    local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+    local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+
     local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
@@ -15,12 +16,20 @@ function CharacterJumpUseForce(entity, dt)
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
 
+    -- 更新土狼时间计数
+    if groundCheck then
+        data.coyoteTimeCounter = data.coyoteTime
+    else
+        data.coyoteTimeCounter = math.max(0, (data.coyoteTimeCounter or 0) - dt)
+    end
+
     -- 起跳
-    if inputJump and groundCheck and not data.isJumping then
+    if inputJump and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
         data.isJumping = true
         data.isJumpFalling = false
         data.jumpCut = false
         data.startY = entity.transform.position.y
+        data.coyoteTimeCounter = 0 -- 使用后重置
         Jump(entity, scaleFactor)
     end
 
@@ -64,7 +73,7 @@ end
 function Jump(entity, scaleFactor)
     local data = entity.dataTable
     local rb = entity.rb
-    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor) -- 乘上 scaleFactor
+    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor)
 end
 
 -- 短按跳跃判断

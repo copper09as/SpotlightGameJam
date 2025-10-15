@@ -13,8 +13,9 @@ namespace Game.Battle.Entity
     public class Entity : MonoBehaviour,IObjectByCreate
     {
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
-        [SerializeField]private Animator animator;
+        [SerializeField]public Animator animator;
         [SerializeField] private int dataId;//用于读取数据
+        [SerializeField] public SpriteRenderer sr;
         public int entityId;//存在实体表里面
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
@@ -33,10 +34,11 @@ namespace Game.Battle.Entity
         #region 脚本方法
         public void Init(int id)//,EntityManager entityManager)
         {
+
             if(rb == null) rb = GetComponent<Rigidbody2D>();
             if(col==null) col = GetComponent<Collider2D>();
+            if(sr==null)sr = GetComponent<SpriteRenderer>();
             dataTable = LuaManager.Instance._luaEnv.NewTable();
-
             CommonEntityData = 
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
             scriptData = 
@@ -133,37 +135,6 @@ namespace Game.Battle.Entity
         }
 
         #endregion
-        #region 向lua公开的方法
-        /// <summary>
-        /// 若有动画则设置动画
-        /// </summary>
-        /// <param name="aniName"></param>
-        public void SetAnimation(string aniName)
-        {
-            if (animator == null)
-                return;
-
-            bool hasTrigger = false;
-            foreach (var param in animator.parameters)
-            {
-                if (param.type == AnimatorControllerParameterType.Trigger && param.name == aniName)
-                {
-                    hasTrigger = true;
-                    break;
-                }
-            }
-            if (!hasTrigger)
-                return;
-
-            animator.SetTrigger(aniName);
-        }
-        //[SerializeField]private bool isGrounded = false;
-       // public bool GroundCheck()
-        //{
-           // return isGrounded;
-        //}
-        #endregion
-
 
     }
 }

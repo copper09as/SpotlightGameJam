@@ -317,6 +317,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20005
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -1140,6 +1141,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20003
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -1585,6 +1587,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20001
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -1859,6 +1862,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20002
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -2066,6 +2070,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20008
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -2391,6 +2396,7 @@ MonoBehaviour:
     DeadPath: []
   animator: {fileID: 0}
   dataId: 20004
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -2537,6 +2543,7 @@ GameObject:
   - component: {fileID: 2102822022}
   - component: {fileID: 2102822025}
   - component: {fileID: 2102822026}
+  - component: {fileID: 2102822027}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Player
@@ -2612,7 +2619,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfd48fd0813c0dc4b88bcafca2d970b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2633,8 +2640,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -549, y: -128, z: -9720}
-  m_LocalScale: {x: 62.64, y: 62.64, z: 62.64}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1922059277}
   m_Father: {fileID: 1027292107}
@@ -2659,8 +2666,9 @@ MonoBehaviour:
     OnCollisionPath: []
     OnDragPath: []
     DeadPath: []
-  animator: {fileID: 0}
+  animator: {fileID: 2102822027}
   dataId: 20000
+  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
@@ -2702,9 +2710,30 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.11874189, y: -0.5941235}
+  m_Size: {x: 3.7219326, y: 6.841851}
   m_Direction: 0
+--- !u!95 &2102822027
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102822020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3eeff61b26952e841a3f6c65e67a8398, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

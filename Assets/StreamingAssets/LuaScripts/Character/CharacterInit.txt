@@ -17,7 +17,9 @@ function CharacterInit(entity)
     data.startY = 0                             -- 记录起跳位置
     data.currentHeight = 0                      -- lua 用
     data.jumpRate = 2                            -- 跳跃倍率
-    data.rayLen = 0.1                           -- 检测射线长度
+    data.rayLen = 0.2                           -- 检测射线长度
+	data.coyoteTime = 0.2          -- 土狼时间持续秒数
+	data.coyoteTimeCounter = 0     -- 当前计数
     data.defaultCamSize = 5.19                  -- 设计时摄像机 size
 	
 	--v = sqrt(2 * g * h) 

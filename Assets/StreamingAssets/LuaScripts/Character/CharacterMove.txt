@@ -2,22 +2,42 @@ local GC = CS.GameController
 
 function CharacterMove(entity)
     if entity.rb == nil then return end
-	local data = entity.dataTable
+
+    local data = entity.dataTable
     local rb = entity.rb
-    local x = GC:MoveX()
-    local speed = entity.dataTable.characterSpeed or 10
+    local x = GC:MoveX() -- 玩家输入方向
+    local speed = data.characterSpeed or 10
 
+    -- 计算目标速度
     local targetSpeed = x * speed
-
     local accelRate = (math.abs(targetSpeed) > 0.01) and (data.runAccelAmount or 10) 
                                                 or (data.runDeccelAmount or 10)
-
     local speedDif = targetSpeed - rb.velocity.x
-
     local movement = speedDif * accelRate
-	local camera = CS.UnityEngine.Camera.main
-	local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
-	local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
-	
+
+    -- 缩放系数
+    local camera = CS.UnityEngine.Camera.main
+    local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+    local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+
     rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)
+	
+    -- ====== 动画控制 ======
+    if entity.animator ~= nil then
+        local threshold = 0.1
+
+        -- 翻转方向，根据 MoveX
+        if x > threshold then
+            entity.sr.flipX = false  -- 右移
+        elseif x < -threshold then
+            entity.sr.flipX = true   -- 左移
+        end
+		CS.UnityEngine.Debug.Log(x)
+        -- 动画切换，根据速度播放 Walk 或 Idle
+        if math.abs(rb.velocity.x) > threshold then
+            entity.animator:Play("Walk")
+        else
+            entity.animator:Play("Idle")
+        end
+    end
 end
