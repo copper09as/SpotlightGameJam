@@ -53,7 +53,7 @@ function CharacterJumpUseForce(entity, dt)
 	-- 撞墙动能削减
 	if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
 		rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
-end
+	end
     -- 跳跃上升阶段自然衰减
     if data.isJumping then
         if currentHeight >= data.maxJumpHeight or data.jumpCut then

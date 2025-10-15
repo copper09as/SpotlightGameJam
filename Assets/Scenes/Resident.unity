@@ -813,6 +813,7 @@ MonoBehaviour:
   hotspot: {x: 0, y: 0}
   defaultCursor: {fileID: 2800000, guid: f7d290f47f72dc44e8b0b164675862ca, type: 3}
   transCursor: {fileID: 2800000, guid: d96bdf24a2519cb47be3cc4cc5ed1ff4, type: 3}
+  particlePrefab: {fileID: 1974319073004612, guid: 4fad053d6ff9ef742ae1f144a674382a, type: 3}
 --- !u!4 &995870660
 Transform:
   m_ObjectHideFlags: 0
