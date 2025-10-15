@@ -1,27 +1,24 @@
-local DM = CS.DetectionManager--射线管理器
+local DM = CS.DetectionManager--检测管理器
 
-function EnemyMove(character)
+function EnemyMove(entity)
 
-	local characterData = character.CommonEntityData.CharacterData
-    if character.rb == nil then
+    if entity.rb == nil then
         return
     end
 
-    local rb = character.rb
-    local speed = characterData.speed
+    local rb = entity.rb
+    local EnemySpeed = entity.dataTable.speed or 10
 
     local velocity = rb.velocity
 
     a = DM.MultiRayGroundCheck(--检测左边缘
-            character.transform,
-            CS.Tool.GetColliderWidth(character.col),
+            entity.col ,
             1,
             CS.LayerMask.GetMask("Ground")
-    ).isRightEdge
+    ).isLeftEdge
 
     b = DM.MultiRayGroundCheck(--检测右边缘
-            character.transform,
-            CS.Tool.GetColliderWidth(character.col),
+            entity.col,
             1,
             CS.LayerMask.GetMask("Ground")
     ).isRightEdge
@@ -29,11 +26,11 @@ function EnemyMove(character)
     velocity.x = 0
 
     if a then
-        velocity.x = velocity.x + speed;
+        velocity.x = velocity.x + EnemySpeed;
     end
 
     if b then
-        velocity.x = velocity.x - speed;
+        velocity.x = velocity.x - EnemySpeed;
     end
 
 

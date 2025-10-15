@@ -6,29 +6,33 @@ public static class DetectionManager
 {
 
     // 2D射线检测
-    public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask)
+    public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask)
     {
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance,LayerMask.GetMask(layerMask));
         return hit.collider != null;
     }
 
     // 2D射线检测（带命中信息）
-    public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, LayerMask layerMask, out RaycastHit2D hitInfo)
+    public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
-        hitInfo = Physics2D.Raycast(origin, direction, distance, layerMask);
+        hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
         return hitInfo.collider != null;
     }
 
     // 多射线地面检测
     public static GroundCheckResult MultiRayGroundCheck
         (
-        Vector2 position,//检测的中心位置
-        float width, //检测的宽度范围（敌人的脚底宽度）
+        //Vector2 position,//检测的中心位置
+        //float width, //检测的宽度范围（敌人的脚底宽度）
+        Collider2D collider,//碰撞体（规则碰撞体，矩形，椭圆形，胶囊）
         int rayCount, //射线数量
         float distance, //射线长度
-        LayerMask groundLayer//地面层级
+        string groundLayer//地面层级
         )
     {
+        Vector2 position = collider.transform.position;//检测的中心位置
+        float width = Tool.GetColliderWidth( collider );//检测的宽度范围（碰撞箱的脚底宽度）
+
         var result = new GroundCheckResult();
         int groundHits = 0;
 
@@ -38,7 +42,7 @@ public static class DetectionManager
             float x = Mathf.Lerp(-width / 2, width / 2, t);//线性插值函数
             Vector2 rayOrigin = position + new Vector2(x, 0);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, distance, groundLayer);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, distance, LayerMask.GetMask(groundLayer));
 
             if (hit.collider != null)
             {
