@@ -23,7 +23,7 @@ function CharacterInit(entity)
     data.defaultCamSize = 5.19                  -- 设计时摄像机 size
 	data.wallRayLen = 0.1
 	data.wallHitDampen = 0.2
-	data.wallSlideDecay = 20
+	data.wallSlideDecay = 7       --动能损失
 	--v = sqrt(2 * g * h) 
 	data.jumpForce = math.sqrt(2 * data.gravity * data.baseJumpHeight)
 end
