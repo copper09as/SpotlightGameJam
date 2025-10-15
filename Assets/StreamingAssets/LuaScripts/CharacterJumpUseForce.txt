@@ -1,5 +1,5 @@
 local GC = CS.GameController
-local Ray = CS.RayManager
+local DM = CS.DetectionManager
 function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
@@ -8,7 +8,7 @@ function CharacterJumpUseForce(entity, dt)
 	
 	
 	local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
-	local groundCheck = Ray.RayHit2D(origin,CS.UnityEngine.Vector2(0,-1),data.rayLen,"Ground")
+	local groundCheck = DM.Raycast2D(origin,CS.UnityEngine.Vector2(0,-1),data.rayLen,"Ground")
 	
 	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 	dt = dt*data.jumpRate

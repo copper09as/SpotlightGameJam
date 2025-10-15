@@ -1,10 +1,11 @@
-local Ray = CS.RayManager
+local DM = CS.DetectionManager--检测管理器
+
 function FasterFall(entity, deltaTime)
 	local data = entity.dataTable
     local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y)
     local direction = CS.UnityEngine.Vector2(0, -1)
 
-    local groundCheck = Ray.RayHit2D(origin, direction, data.rayLen,"Ground")
+    local groundCheck =DM.Raycast2D(origin, direction, data.rayLen,"Ground")
 
     if not groundCheck then
         local rb = entity.rb

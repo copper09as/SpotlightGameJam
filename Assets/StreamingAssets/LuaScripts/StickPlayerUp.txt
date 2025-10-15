@@ -1,4 +1,4 @@
-local Ray = CS.RayManager
+local DM = CS.DetectionManager
 function StickPlayerUp(entity, otherEntity, collisionNormal)
 	local playerCheck = otherEntity.transform.tag == "Player";
 	if playerCheck then
