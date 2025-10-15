@@ -44,7 +44,10 @@ public static class DetectionManager
         hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
         return hitInfo.collider != null;
     }
-
+    public static bool Raycast2DNoLayer(Vector2 origin, Vector2 direction, float distance)
+    {
+        return Physics2D.Raycast(origin, direction, distance);
+    }
     // 多射线地面检测
     public static GroundCheckResult MultiRayGroundCheck
         (

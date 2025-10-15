@@ -41,7 +41,19 @@ function CharacterJumpUseForce(entity, dt)
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y + addSpeed)
         end
     end
+	local leftOrigin = CS.UnityEngine.Vector2(entity.transform.position.x - entity.col.bounds.extents.x - 0.01, entity.transform.position.y)
+	local rightOrigin = CS.UnityEngine.Vector2(entity.transform.position.x + entity.col.bounds.extents.x + 0.01, entity.transform.position.y)
+	local wallCheckLeft = DM.Raycast2D(leftOrigin, CS.UnityEngine.Vector2(-1, 0), data.wallRayLen or 0.1, "Ground")
+	local wallCheckRight = DM.Raycast2D(rightOrigin, CS.UnityEngine.Vector2(1, 0), data.wallRayLen or 0.1, "Ground")
 
+	-- 调试射线
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(leftOrigin.x, leftOrigin.y, 0), CS.UnityEngine.Vector3(-data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(rightOrigin.x, rightOrigin.y, 0), CS.UnityEngine.Vector3(data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+
+	-- 撞墙动能削减
+	if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
+		rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
+end
     -- 跳跃上升阶段自然衰减
     if data.isJumping then
         if currentHeight >= data.maxJumpHeight or data.jumpCut then

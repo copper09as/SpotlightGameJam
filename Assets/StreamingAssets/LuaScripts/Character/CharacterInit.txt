@@ -5,8 +5,8 @@ function CharacterInit(entity)
     -- 基础属性
     data.characterSpeed = 10                    -- 水平移动速度
     data.gravity = 10                           -- 重力加速度
-    data.baseJumpHeight = 2                     -- 基础跳跃高度（初次跳跃力来源）
-    data.maxJumpHeight = 5                      -- 长按空格能达到的最大高度
+    data.baseJumpHeight = 1                     -- 基础跳跃高度（初次跳跃力来源）
+    data.maxJumpHeight = 2                     -- 长按空格能达到的最大高度
     data.jumpForce = 0                          -- 初始施加的跳跃力
     data.isJumping = false                      -- 是否处于跳跃上升阶段
     data.isJumpFalling = false                  -- 是否处于下落阶段
@@ -21,7 +21,9 @@ function CharacterInit(entity)
 	data.coyoteTime = 0.2          -- 土狼时间持续秒数
 	data.coyoteTimeCounter = 0     -- 当前计数
     data.defaultCamSize = 5.19                  -- 设计时摄像机 size
-	
+	data.wallRayLen = 0.1
+	data.wallHitDampen = 0.2
+	data.wallSlideDecay = 20
 	--v = sqrt(2 * g * h) 
 	data.jumpForce = math.sqrt(2 * data.gravity * data.baseJumpHeight)
 end
