@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class Tool
@@ -27,4 +28,8 @@ public static class Tool
         }
     }
 
+    public static string GetLuaName(string path)
+    {
+        return Path.GetFileName(path);
+    }
 }

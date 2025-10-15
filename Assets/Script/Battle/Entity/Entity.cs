@@ -44,7 +44,7 @@ namespace Game.Battle.Entity
             
             foreach (var i in scriptData.InitPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
             }
         }
 
