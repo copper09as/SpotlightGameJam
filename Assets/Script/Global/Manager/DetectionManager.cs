@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Battle.Entity;
 using UnityEngine;
 
 public static class DetectionManager
@@ -11,7 +12,18 @@ public static class DetectionManager
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance,LayerMask.GetMask(layerMask));
         return hit.collider != null;
     }
-
+    public static Entity Raycast2DByTag(Vector2 origin, Vector2 direction, float distance,string tag)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance);
+        var col = hit.collider;
+        if (col == null)
+            return null;
+        if (col.transform.tag != tag)
+        {
+            return null;
+        }
+        return col.GetComponent<Entity>();
+    }
     // 2D射线检测（带命中信息）
     public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {

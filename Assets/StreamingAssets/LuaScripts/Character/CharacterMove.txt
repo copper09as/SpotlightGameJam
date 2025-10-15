@@ -1,0 +1,20 @@
+local GC = CS.GameController
+
+function CharacterMove(entity)
+    if entity.rb == nil then return end
+
+    local rb = entity.rb
+    local x = GC:MoveX()
+    local speed = entity.dataTable.characterSpeed or 10
+
+    local targetSpeed = x * speed
+
+    local accelRate = (math.abs(targetSpeed) > 0.01) and (entity.dataTable.runAccelAmount or 10) 
+                                                or (entity.dataTable.runDeccelAmount or 10)
+
+    local speedDif = targetSpeed - rb.velocity.x
+
+    local movement = speedDif * accelRate
+
+    rb:AddForce(CS.UnityEngine.Vector2(movement, 0), CS.UnityEngine.ForceMode2D.Force)
+end

@@ -1,0 +1,15 @@
+local DM = CS.DetectionManager
+function StickPlayerUp(entity)
+	local tag = "Player"
+	local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y + entity.col.bounds.extents.y + 0.01)
+	local character = DM.Raycast2DByTag(origin,CS.UnityEngine.Vector2(0,1),0.1,tag)
+	
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, 1, 0), CS.UnityEngine.Color.red)
+	if character then
+	    character.transform.position = CS.UnityEngine.Vector3(
+        entity.transform.position.x,
+       character.transform.position.y,
+        character.transform.position.z
+    )
+	end
+end

@@ -1,0 +1,37 @@
+local DM = CS.DetectionManager--检测管理器
+
+function EnemyMove(entity)
+
+    if entity.rb == nil then
+        return
+    end
+
+    local rb = entity.rb
+    local EnemySpeed = 10
+
+    local velocity = rb.velocity
+
+    local a = DM.MultiRayGroundCheck(--检测左边缘
+            entity.col ,
+            1,"Ground"
+    ).isLeftEdge
+
+    local b = DM.MultiRayGroundCheck(--检测右边缘
+            entity.col,
+            1,"Ground"
+    ).isRightEdge
+
+    velocity.x = 0
+
+    if a then
+        velocity.x = velocity.x + EnemySpeed;
+    end
+
+    if b then
+        velocity.x = velocity.x - EnemySpeed;
+    end
+
+
+    rb.velocity = velocity
+
+end

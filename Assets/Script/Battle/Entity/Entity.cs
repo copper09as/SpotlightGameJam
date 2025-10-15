@@ -32,13 +32,12 @@ namespace Game.Battle.Entity
         #region 脚本方法
         public void Init(int id)//,EntityManager entityManager)
         {
+            if(rb == null) rb = GetComponent<Rigidbody2D>();
+            if(col==null) col = GetComponent<Collider2D>();
             dataTable = LuaManager.Instance._luaEnv.NewTable();
 
-            //this.entityManager = entityManager;
-            GameController.Controller.Main.Space.started += OnSpace;
             CommonEntityData = 
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
-            Debug.Log(CommonEntityData.EffectId);
             scriptData = 
                 GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == CommonEntityData.EffectId);
             
@@ -48,38 +47,20 @@ namespace Game.Battle.Entity
             }
         }
 
-        private void OnSpacePress()
-        {
-            foreach (var i in scriptData.OnSpacePressPath)
-            {
-                LuaManager.Instance.CallFunction(i, i, this);
-            }
-        }
 
         void Update()
         {
-            if (GameController.isSpacePressed)
-            {
-                OnSpacePress();
-            }
             foreach (var i in scriptData.UpdatePath)
             {
-                LuaManager.Instance.CallFunction(i, i, this,Time.deltaTime);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
             }
 
-        }
-        private void OnSpace(InputAction.CallbackContext context)
-        {
-            foreach (var i in scriptData.OnSpacePath)
-            {
-                LuaManager.Instance.CallFunction(i, i, this);
-            }
         }
         public void OnClick()
         {
             foreach (var i in scriptData.OnMouseDownPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
             }
         }
         private void OnDestroy()
@@ -89,7 +70,6 @@ namespace Game.Battle.Entity
                 dataTable.Dispose();
                 dataTable = null;
             }
-            GameController.Controller.Main.Space.started -= OnSpace;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -110,15 +90,15 @@ namespace Game.Battle.Entity
 
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x,contactNormal.y);
             }
         }
 
-        public void Dead()
+        public void Dead(Entity entity)
         {
             foreach (var i in scriptData.DeadPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,entity);
             }
         }
         private void OnCollisionStay2D(Collision2D collision)
@@ -139,20 +119,15 @@ namespace Game.Battle.Entity
 
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this, otherEntity, contactNormal.y);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.y);
             }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-
         }
 
         public void OnDrag()
         {
             foreach (var i in scriptData.OnDragPath)
             {
-                LuaManager.Instance.CallFunction(i, i, this,Time.deltaTime);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
             }
         }
 
