@@ -37,38 +37,17 @@ function StickPlayerUp(entity)
     -- 📌 检测到角色
     if hitCharacter then
         data.hitCharacter = hitCharacter
-        local rb = hitCharacter:GetComponent(typeof(CS.UnityEngine.Rigidbody2D))
 
-        if rb then
-            -- 🚀 不改 gravityScale，只直接下拉 Y 速度
-            -- （避免影响全局重力，行为更可控）
-            if rb.velocity.y > -10 then   -- 下落上限
-                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, -10)
-            end
-        end
-
-        -- ✨ X 方向吸附
-        if not data.hitLocalPosition then
-            data.hitLocalPosition = hitEntityTrans:InverseTransformPoint(hitCharacter.transform.position)
-        end
-
-        local currentLocalPos = hitEntityTrans:InverseTransformPoint(hitCharacter.transform.position)
-        local targetX = data.hitLocalPosition.x
-        local targetWorldX = hitEntityTrans:TransformPoint(
-            CS.UnityEngine.Vector3(targetX, currentLocalPos.y, 0)
-        ).x
-        local currentY = hitCharacter.transform.position.y
-
-        hitCharacter.transform.position = CS.UnityEngine.Vector3.Lerp(
-            hitCharacter.transform.position,
-            CS.UnityEngine.Vector3(targetWorldX, currentY, hitCharacter.transform.position.z),
-            0.25
-        )
+        -- 🔗 设置玩家为平台子物体
+        hitCharacter.transform:SetParent(hitEntityTrans, true) -- true 保持世界坐标
 
         return
     end
 
-    -- ❌ 离开滑块时，清空记录
+    -- ❌ 离开滑块时，清空记录并取消父对象
+    if data.hitCharacter then
+        data.hitCharacter.transform:SetParent(nil, true) -- 保持世界坐标
+    end
     data.hitCharacter = nil
     data.hitLocalPosition = nil
 end
