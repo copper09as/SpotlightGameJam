@@ -16,8 +16,9 @@ function CharacterMove(entity)
     local movement = speedDif * accelRate
 
     -- 缩放系数
-    local camera = CS.UnityEngine.Camera.main
-    local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+    --local camera = CS.UnityEngine.Camera.main
+    --local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+	local rawFactor = entity.transform.localScale.x/0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
     rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)

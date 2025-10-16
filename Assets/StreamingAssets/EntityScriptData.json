@@ -78,7 +78,7 @@
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath":["Mouse/FollowMouseY","Scroll/ScrollCameraSize","Position/StickPlayerUp"],
+		"OnDragPath":["Scroll/ScrollCameraSize","Position/StickPlayerUp"],
 		"DeadPath":[]
 	}]
 }

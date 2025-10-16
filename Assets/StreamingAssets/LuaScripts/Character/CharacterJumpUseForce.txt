@@ -9,7 +9,10 @@ function CharacterJumpUseForce(entity, dt)
     local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
-    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
+	local origin = CS.UnityEngine.Vector2(
+		entity.transform.position.x,
+		entity.col.bounds.min.y
+	)
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 
