@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// 控制UI激活或失活的流程
-/// </summary>
-
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// 控制 UI 激活或失活的流程（三级菜单版本）
+/// </summary>
 public class EntityUIManager : MonoBehaviour
 {
     public static EntityUIManager Instance;
-    [SerializeField] private GameObject menu1;
-    [SerializeField] private GameObject menu2;
 
-    private bool isMenu1Active = false;
-    private bool isMenu2Active = false;
+    [Header("菜单对象")]
+    [SerializeField] private GameObject settingMenu;
+    [SerializeField] private GameObject audioMenu;
+    [SerializeField] private GameObject cameraMenu;
+
+    private bool isSettingMenuActive = false;
+    private bool isAudioMenuActive = false;
+    private bool isCameraMenuActive = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -25,14 +29,15 @@ public class EntityUIManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-        
     }
+
     private void Start()
     {
-
         GameController.Controller.Main.Esc.started += OnEscPressed;
-        menu1.gameObject.SetActive(false);
-        menu2.gameObject.SetActive(false);
+
+        settingMenu.SetActive(false);
+        audioMenu.SetActive(false);
+        cameraMenu.SetActive(false);
     }
 
     private void OnDestroy()
@@ -40,50 +45,95 @@ public class EntityUIManager : MonoBehaviour
         Instance = null;
         GameController.Controller.Main.Esc.started -= OnEscPressed;
     }
+
+    /// <summary>
+    /// ESC键菜单切换逻辑：
+    ///  - 没有菜单 → 打开 SettingMenu
+    ///  - AudioMenu 打开 → 返回 SettingMenu
+    ///  - CameraMenu 打开 → 返回 SettingMenu
+    ///  - SettingMenu 打开 → 关闭所有菜单
+    /// </summary>
     private void OnEscPressed(InputAction.CallbackContext ctx)
     {
-        if (!isMenu1Active && !isMenu2Active)
+        if (!isSettingMenuActive && !isAudioMenuActive && !isCameraMenuActive)
         {
-            ShowMenu1();
+            ShowSettingMenu();
         }
-        else if (isMenu1Active)
+        else if (isAudioMenuActive || isCameraMenuActive)
         {
-            HideMenu1();
+            HideAudioMenu();
+            HideCameraMenu();
+            ShowSettingMenu();
         }
-        else if (isMenu2Active)
+        else if (isSettingMenuActive)
         {
-            HideMenu2();
-            ShowMenu1();
+            HideAllMenus();
         }
-    }
-    //切换菜单2
-    public void SwitchToMenu2()
-    {
-        HideMenu1();
-        ShowMenu2();
-    }
-    
-    private void ShowMenu1()
-    {
-        menu1.SetActive(true);
-        isMenu1Active = true;
     }
 
-    private void HideMenu1()
+    // ---------------- 公开接口 ----------------
+
+    public void SwitchToAudioMenu()
     {
-        menu1.SetActive(false);
-        isMenu1Active = false;
+        HideSettingMenu();
+        ShowAudioMenu();
     }
 
-    private void ShowMenu2()
+    public void SwitchToCameraMenu()
     {
-        menu2.SetActive(true);
-        isMenu2Active = true;
+        HideSettingMenu();
+        ShowCameraMenu();
     }
 
-    private void HideMenu2()
+    public void BackToSettingMenu()
     {
-        menu2.SetActive(false);
-        isMenu2Active = false;
+        HideAudioMenu();
+        HideCameraMenu();
+        ShowSettingMenu();
+    }
+
+    // ---------------- 显示隐藏逻辑 ----------------
+
+    private void ShowSettingMenu()
+    {
+        settingMenu.SetActive(true);
+        isSettingMenuActive = true;
+    }
+
+    private void HideSettingMenu()
+    {
+        settingMenu.SetActive(false);
+        isSettingMenuActive = false;
+    }
+
+    private void ShowAudioMenu()
+    {
+        audioMenu.SetActive(true);
+        isAudioMenuActive = true;
+    }
+
+    private void HideAudioMenu()
+    {
+        audioMenu.SetActive(false);
+        isAudioMenuActive = false;
+    }
+
+    private void ShowCameraMenu()
+    {
+        cameraMenu.SetActive(true);
+        isCameraMenuActive = true;
+    }
+
+    private void HideCameraMenu()
+    {
+        cameraMenu.SetActive(false);
+        isCameraMenuActive = false;
+    }
+
+    private void HideAllMenus()
+    {
+        HideSettingMenu();
+        HideAudioMenu();
+        HideCameraMenu();
     }
 }

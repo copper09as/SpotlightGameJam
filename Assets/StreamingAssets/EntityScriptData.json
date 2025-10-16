@@ -31,28 +31,31 @@
 		"id": 10003,
 		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
-		"OnMouseDownPath": ["Ui/OpenMenu2"],
+		"OnMouseDownPath": ["Ui/OpenAudio"],
 		"OnCollisionPath": [],
 		"OnDragPath":[],
-		"DeadPath":[]
+		"DeadPath":[],
+		"OnDisablePath":["Ui/CancleStick"]
 	},
 	{
 		"id": 10004,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollBgm"],
-		"UpdatePath": [],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath":["Mouse/FollowMouseX","Scroll/ScrollBgm","Position/StickPlayerUp"],
-		"DeadPath":[]
+		"OnDragPath":["Mouse/FollowMouseX","Position/StickPlayerUp"],
+		"DeadPath":[],
+		"OnDisablePath":["Ui/CancleStick"]
 	},
 	{
 		"id": 10005,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollSfx"],
-		"UpdatePath": [],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath":["Mouse/FollowMouseX","Scroll/ScrollSfx","Position/StickPlayerUp"],
-		"DeadPath":[]
+		"OnDragPath":["Mouse/FollowMouseX","Position/StickPlayerUp"],
+		"DeadPath":[],
+		"OnDisablePath":["Ui/CancleStick"]
 	},
 	{
 		"id": 10006,
@@ -75,10 +78,21 @@
 	{
 		"id": 10008,
 		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollCameraSize"],
-		"UpdatePath": [],
+		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath":["Scroll/ScrollCameraSize","Position/StickPlayerUp"],
-		"DeadPath":[]
+		"OnDragPath":["Scroll/ScrollCameraSize"],
+		"DeadPath":[],
+		"OnDisablePath":["Ui/CancleStick"]
+	},
+	{
+		"id": 10009,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": ["Ui/OpenCamera"],
+		"OnCollisionPath": [],
+		"OnDragPath":[],
+		"DeadPath":[],
+		"OnDisablePath":["Ui/CancleStick"]
 	}]
 }

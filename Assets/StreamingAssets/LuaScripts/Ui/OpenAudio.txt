@@ -1,0 +1,3 @@
+function OpenAudio()
+	CS.EntityUIManager.Instance:SwitchToAudioMenu()
+end

@@ -1,0 +1,13 @@
+function CancleStick(entity)
+    local data = entity.dataTable
+	local EM = CS.EntityManager.Instance
+    if data.hitCharacter then
+
+        EM:CallNextFrame(function()
+            if data.hitCharacter then
+                data.hitCharacter.transform:SetParent(nil, true)
+                data.hitCharacter.gameObject:SetActive(true)
+            end
+        end)
+    end
+end

@@ -1,43 +1,46 @@
-local GC = CS.GameController
+local GC = CS.GameController 
 local DM = CS.DetectionManager
-
 function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
-    --local camera = CS.UnityEngine.Camera.main
-    --local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
 	local rawFactor = entity.transform.localScale.x/0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
-	local origin = CS.UnityEngine.Vector2(
-		entity.transform.position.x,
-		entity.col.bounds.min.y
-	)
+    local origin = CS.UnityEngine.Vector2(
+        entity.transform.position.x,
+        entity.col.bounds.min.y
+    )
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
 
-    -- 更新土狼时间计数
+    -- ✅ 只有松开后才能再次跳
+    if inputJump and not data.jumpUsed and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
+        data.isJumping = true
+        data.isJumpFalling = false
+        data.jumpCut = false
+        data.startY = entity.transform.position.y
+        data.coyoteTimeCounter = 0
+        data.jumpUsed = true         -- ✅ 跳跃已使用，不能再次触发
+        Jump(entity, scaleFactor)
+    end
+
+    -- 🛑 检测空格是否松开，如果松开，重置 jumpUsed
+    if not inputJump then
+        data.jumpUsed = false
+    end
+
+    -- 土狼时间
     if groundCheck then
         data.coyoteTimeCounter = data.coyoteTime
     else
         data.coyoteTimeCounter = math.max(0, (data.coyoteTimeCounter or 0) - dt)
     end
 
-    -- 起跳
-    if inputJump and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
-        data.isJumping = true
-        data.isJumpFalling = false
-        data.jumpCut = false
-        data.startY = entity.transform.position.y
-        data.coyoteTimeCounter = 0 -- 使用后重置
-        Jump(entity, scaleFactor)
-    end
-
-    -- 长按空格延长跳跃
+    -- 延长跳跃
     if data.isJumping and inputJump then
         currentHeight = entity.transform.position.y - data.startY
         if currentHeight < data.maxJumpHeight then

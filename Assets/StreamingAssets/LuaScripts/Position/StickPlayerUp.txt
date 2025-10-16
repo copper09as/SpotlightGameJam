@@ -3,23 +3,28 @@ local DM = CS.DetectionManager
 function StickPlayerUp(entity)
     local tag = "Player"
     local data = entity.dataTable
-    local hitEntityPos = entity.transform.position
-    local halfWidth = entity.col.bounds.extents.x
-    local halfHeight = entity.col.bounds.extents.y
-    local raysCount = 10
+    local hitEntityTrans = entity.transform
+    local hitEntityPos = hitEntityTrans.position
+    local colBounds = entity.col.bounds
+    local halfWidth = colBounds.extents.x
+    local halfHeight = colBounds.extents.y
+    local raysCount = 12
     local step = (halfWidth * 2) / (raysCount - 1)
-    local hitCharacter
+    local hitCharacter = nil
 
     -- 🌿 射线检测玩家（上方向）
     for i = 0, raysCount - 1 do
         local offsetX = -halfWidth + i * step
-        local origin = CS.UnityEngine.Vector2(hitEntityPos.x + offsetX, hitEntityPos.y + halfHeight + 0.01)
+        local origin = CS.UnityEngine.Vector2(
+            hitEntityPos.x + offsetX,
+            hitEntityPos.y + halfHeight + 0.02
+        )
 
-        local character = DM.Raycast2DByTag(origin, CS.UnityEngine.Vector2(0, 1), 0.2, tag)
+        local character = DM.Raycast2DByTag(origin, CS.UnityEngine.Vector2(0, 1), 0.3, tag)
 
         CS.UnityEngine.Debug.DrawRay(
             CS.UnityEngine.Vector3(origin.x, origin.y, 0),
-            CS.UnityEngine.Vector3(0, 0.1, 0),
+            CS.UnityEngine.Vector3(0, 0.2, 0),
             CS.UnityEngine.Color.green
         )
 
@@ -29,34 +34,20 @@ function StickPlayerUp(entity)
         end
     end
 
-    -- 📌 有检测到角色
+    -- 📌 检测到角色
     if hitCharacter then
-        local currentOffset = hitCharacter.transform.position - entity.transform.position
-
-        -- 第一次记录偏移
-        if not data.hitPosition then
-            data.hitPosition = currentOffset
-        else
-            -- 偏移太大就重置（防止卡顿误差）
-            local maxDistance = 0.1 
-            if (currentOffset - data.hitPosition).magnitude > maxDistance then
-                data.hitPosition = currentOffset
-            end
-        end
-
-        -- 保持相对位置 X + Y 一致
-        local targetPos = entity.transform.position + data.hitPosition
-        hitCharacter.transform.position = CS.UnityEngine.Vector3(
-            targetPos.x,
-            targetPos.y,
-            hitCharacter.transform.position.z
-        )
-
         data.hitCharacter = hitCharacter
+
+        -- 🔗 设置玩家为平台子物体
+        hitCharacter.transform:SetParent(hitEntityTrans, true) -- true 保持世界坐标
+
         return
     end
 
-    -- ❌ 没有检测到角色，清空
+    -- ❌ 离开滑块时，清空记录并取消父对象
+    if data.hitCharacter then
+        data.hitCharacter.transform:SetParent(nil, true) -- 保持世界坐标
+    end
     data.hitCharacter = nil
-    data.hitPosition = nil
+    data.hitLocalPosition = nil
 end

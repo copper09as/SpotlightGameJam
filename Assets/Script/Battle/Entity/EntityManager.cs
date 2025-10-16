@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Battle.Entity;
@@ -38,7 +39,7 @@ public class EntityManager:MonoBehaviour
     public Entity CreateEntity(string path,Transform parent)
     {
         GameObject ui = ResManager.LoadDataByAsset<GameObject>(path);
-        var obj = Object.Instantiate(ui,parent);
+        var obj =Instantiate(ui,parent);
         var entity = obj.GetComponent<Entity>();
         Register(entity);
         return entity;
@@ -48,7 +49,7 @@ public class EntityManager:MonoBehaviour
     {
         var entity = entityMap[id];
         Unregister(entity);
-        Object.Destroy(entity);
+        Destroy(entity);
     }
     //зЂВс
     private void Register(Entity entity)
@@ -68,5 +69,15 @@ public class EntityManager:MonoBehaviour
     public IEnumerable<Entity> GetBuildingValues()
     {
         return entityMap.Values;
+    }
+    public void CallNextFrame(Action action)
+    {
+        StartCoroutine(CallNextFrameCoroutine(action));
+    }
+
+    private IEnumerator CallNextFrameCoroutine(Action action)
+    {
+        yield return null;
+        action?.Invoke();
     }
 }

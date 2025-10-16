@@ -133,6 +133,14 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
             }
         }
+        private void OnDisable()
+        {
+            foreach (var i in scriptData.OnDisablePath)
+            {
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
+            }
+        }
+
 
         #endregion
 
