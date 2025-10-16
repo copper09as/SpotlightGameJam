@@ -37,14 +37,6 @@ function StickPlayerUp(entity)
     -- 📌 检测到角色
     if hitCharacter then
         data.hitCharacter = hitCharacter
-        local rb = hitCharacter:GetComponent(typeof(CS.UnityEngine.Rigidbody2D))
-
-        if rb then
-            -- 🚀 下拉 Y 速度，模拟重力
-            if rb.velocity.y > -10 then
-                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, -10)
-            end
-        end
 
         -- 🔗 设置玩家为平台子物体
         hitCharacter.transform:SetParent(hitEntityTrans, true) -- true 保持世界坐标
