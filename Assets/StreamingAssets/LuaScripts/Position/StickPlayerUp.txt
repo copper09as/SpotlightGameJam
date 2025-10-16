@@ -41,6 +41,8 @@ function StickPlayerUp(entity)
 		local targetPos = entity.transform.position + data.hitPosition
 		hitCharacter.transform.position = CS.UnityEngine.Vector3(targetPos.x,hitCharacter.transform.position.y,hitCharacter.transform.position.z)
 		data.hitCharacter = hitCharacter
+		return
 	end
+	data.hitCharacter = nil
 
 end
