@@ -1,0 +1,5 @@
+
+function PedalInit(entity)--Door初始化
+    --写怎么样触发开门
+
+end

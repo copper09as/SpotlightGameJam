@@ -1,0 +1,10 @@
+local CE = CS.EventCenter
+
+function DoorInit(entity)--Door初始化
+    CE.Instance:AddAction("OpenTheDoor",
+    function()
+        --写开门逻辑
+    end
+    )
+end
+
