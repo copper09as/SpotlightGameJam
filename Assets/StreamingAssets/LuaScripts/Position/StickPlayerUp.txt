@@ -37,31 +37,26 @@ function StickPlayerUp(entity)
     -- 📌 检测到角色
     if hitCharacter then
         data.hitCharacter = hitCharacter
-
-        -- 获取刚体组件
         local rb = hitCharacter:GetComponent(typeof(CS.UnityEngine.Rigidbody2D))
+
         if rb then
-            -- 如果是首次接触，则增加重力
-            if not data.originalGravity then
-                data.originalGravity = rb.gravityScale
-                rb.gravityScale = data.originalGravity * 20  -- ✨ 增大重力
+            -- 🚀 不改 gravityScale，只直接下拉 Y 速度
+            -- （避免影响全局重力，行为更可控）
+            if rb.velocity.y > -10 then   -- 下落上限
+                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, -10)
             end
         end
 
-        -- X 方向吸附
+        -- ✨ X 方向吸附
         if not data.hitLocalPosition then
             data.hitLocalPosition = hitEntityTrans:InverseTransformPoint(hitCharacter.transform.position)
         end
 
         local currentLocalPos = hitEntityTrans:InverseTransformPoint(hitCharacter.transform.position)
         local targetX = data.hitLocalPosition.x
-
-        -- 把 X 位置锁在 stick 点上
         local targetWorldX = hitEntityTrans:TransformPoint(
             CS.UnityEngine.Vector3(targetX, currentLocalPos.y, 0)
         ).x
-
-        -- 保持 Y 不动
         local currentY = hitCharacter.transform.position.y
 
         hitCharacter.transform.position = CS.UnityEngine.Vector3.Lerp(
@@ -73,15 +68,7 @@ function StickPlayerUp(entity)
         return
     end
 
-    -- ❌ 离开滑块时，重置重力
-    if data.hitCharacter and data.originalGravity then
-        local rb = data.hitCharacter:GetComponent(typeof(CS.UnityEngine.Rigidbody2D))
-        if rb then
-            rb.gravityScale = data.originalGravity
-        end
-    end
-
+    -- ❌ 离开滑块时，清空记录
     data.hitCharacter = nil
     data.hitLocalPosition = nil
-    data.originalGravity = nil
 end
