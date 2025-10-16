@@ -1,8 +1,10 @@
 local maxSize = 5.34
 local minSize = 3
+local characterMinSize = 0.1
+local characterMaxSize = 0.3
 
 function ScrollCameraSize(entity)
-	local camera = CS.UnityEngine.Camera.main
+    local camera = CS.UnityEngine.Camera.main
     local data = entity.dataTable
     local t = data.scrollProgress
 
@@ -10,8 +12,18 @@ function ScrollCameraSize(entity)
     if t < 0 then t = 0 end
     if t > 1 then t = 1 end
 
-    -- 线性插值计算 size
+    -- 📸 缩放摄像机
     local size = maxSize - (maxSize - minSize) * t
     camera.orthographicSize = size
 
+    -- 🧍 如果有目标角色，缩放角色
+    if data.hitCharacter ~= nil then
+        local target = data.hitCharacter.transform
+
+        -- 计算缩放比例（线性插值）
+        local scaleValue = characterMinSize + (characterMaxSize - characterMinSize) * t
+
+        -- 应用缩放
+        target.localScale = CS.UnityEngine.Vector3(scaleValue, scaleValue, 1)
+    end
 end

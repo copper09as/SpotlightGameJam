@@ -5,8 +5,23 @@ using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class EntityManager
+public class EntityManager:MonoBehaviour
 {
+    public static EntityManager Instance;
+    [SerializeField] private Transform canva;
+    public void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+        CreateEntity("Assets/Prefab/Battle/Character/Capsule.prefab", canva);
+    }
+    private void OnDestroy()
+    {
+        if(Instance = this)
+        Instance = null;
+    }
     private readonly Dictionary<int, Entity> entityMap = new Dictionary<int, Entity>();
     private int nextId = 0;
     //获取
@@ -20,7 +35,7 @@ public class EntityManager
         return null;
     }
     //建造
-    public Entity CreateEntity(string path,int id,Transform parent)
+    public Entity CreateEntity(string path,Transform parent)
     {
         GameObject ui = ResManager.LoadDataByAsset<GameObject>(path);
         var obj = Object.Instantiate(ui,parent);

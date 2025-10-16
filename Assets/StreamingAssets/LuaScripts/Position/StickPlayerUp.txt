@@ -8,7 +8,7 @@ function StickPlayerUp(entity)
 	local halfHeight = entity.col.bounds.extents.y
     local raysCount = 6
     local step = (halfWidth * 2) / (raysCount - 1)
-	local hitCharacter
+	local hitCharacter = data.hitCharacter
     for i = 0, raysCount - 1 do
         local offsetX = -halfWidth + i * step
         local origin = CS.UnityEngine.Vector2(hitEntityPos.x + offsetX, hitEntityPos.y + halfHeight + 0.01)

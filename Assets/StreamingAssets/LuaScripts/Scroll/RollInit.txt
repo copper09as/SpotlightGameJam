@@ -11,5 +11,6 @@ function RollInit(entity)
     data.scrollProgress = 0      -- 当前X方向滑动比例（0~1）
     data.scrollSpeed = 2         -- 滑动速度（可调）
     data.scrollProgress = 0
+	data.hitCharacter = nil
 
 end
