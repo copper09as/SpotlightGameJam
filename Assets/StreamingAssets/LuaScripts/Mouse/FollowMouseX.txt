@@ -1,0 +1,31 @@
+local GC = CS.GameController
+
+function FollowMouseX(entity, dt)
+    local data = entity.dataTable
+    local mousePos = GC.GetScreenPos()  --获取屏幕空间坐标
+	
+    -- 限制在屏幕范围内
+    mousePos.x = CS.UnityEngine.Mathf.Clamp(mousePos.x, data.limitXMin, data.limitXMax)
+
+    -- 把屏幕坐标转换成世界坐标
+    local cam = CS.UnityEngine.Camera.main
+    local worldPos = cam:ScreenToWorldPoint(mousePos)
+
+    -- 平滑移动位置
+    local pos = entity.transform.position
+    local targetX = worldPos.x
+    local followSpeed = data.scrollSpeed
+    pos.x = CS.UnityEngine.Mathf.Lerp(pos.x, targetX, followSpeed * dt)
+
+    -- 限制最终位置
+    local clampedScreenX = CS.UnityEngine.Mathf.Clamp(cam:WorldToScreenPoint(pos).x, data.limitXMin, data.limitXMax)
+    local finalWorldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(clampedScreenX, mousePos.y, mousePos.z))
+    pos.x = finalWorldPos.x
+    entity.transform.position = pos
+
+    -- 平滑 scrollProgress
+    local rangeX = data.limitXMax - data.limitXMin
+    local targetProgress = (mousePos.x - data.limitXMin) / rangeX
+    local smoothFactor = data.scrollSmooth or 5
+    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress, targetProgress, smoothFactor * dt)
+end

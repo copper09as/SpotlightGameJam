@@ -8,6 +8,6 @@ namespace Game.Battle
 {
     public class BattleBlackboard
     {
-
+    
     }
 }

@@ -1,0 +1,97 @@
+local GC = CS.GameController
+local DM = CS.DetectionManager
+
+function CharacterJumpUseForce(entity, dt)
+    local data = entity.dataTable
+    local rb = entity.rb
+    local inputJump = GC.isSpacePressed
+    local camera = CS.UnityEngine.Camera.main
+    local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+    local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+
+    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.transform.position.y - entity.col.bounds.extents.y - 0.01)
+    local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
+
+    dt = dt * data.jumpRate
+    local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
+
+    -- 更新土狼时间计数
+    if groundCheck then
+        data.coyoteTimeCounter = data.coyoteTime
+    else
+        data.coyoteTimeCounter = math.max(0, (data.coyoteTimeCounter or 0) - dt)
+    end
+
+    -- 起跳
+    if inputJump and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
+        data.isJumping = true
+        data.isJumpFalling = false
+        data.jumpCut = false
+        data.startY = entity.transform.position.y
+        data.coyoteTimeCounter = 0 -- 使用后重置
+        Jump(entity, scaleFactor)
+    end
+
+    -- 长按空格延长跳跃
+    if data.isJumping and inputJump then
+        currentHeight = entity.transform.position.y - data.startY
+        if currentHeight < data.maxJumpHeight then
+            local addSpeed = data.gravity * dt * scaleFactor
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y + addSpeed)
+        end
+    end
+	local leftOrigin = CS.UnityEngine.Vector2(entity.transform.position.x - entity.col.bounds.extents.x - 0.01, entity.transform.position.y)
+	local rightOrigin = CS.UnityEngine.Vector2(entity.transform.position.x + entity.col.bounds.extents.x + 0.01, entity.transform.position.y)
+	local wallCheckLeft = DM.Raycast2D(leftOrigin, CS.UnityEngine.Vector2(-1, 0), data.wallRayLen or 0.1, "Ground")
+	local wallCheckRight = DM.Raycast2D(rightOrigin, CS.UnityEngine.Vector2(1, 0), data.wallRayLen or 0.1, "Ground")
+
+	-- 调试射线
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(leftOrigin.x, leftOrigin.y, 0), CS.UnityEngine.Vector3(-data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(rightOrigin.x, rightOrigin.y, 0), CS.UnityEngine.Vector3(data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+
+	-- 撞墙动能削减
+	if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
+		rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
+	end
+    -- 跳跃上升阶段自然衰减
+    if data.isJumping then
+        if currentHeight >= data.maxJumpHeight or data.jumpCut then
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt * scaleFactor)
+        else
+            if math.abs(rb.velocity.y) < data.jumpHangTimeThreshold then
+                rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * 0.5 * dt * scaleFactor)
+            end
+        end
+
+        if rb.velocity.y <= 0 then
+            data.isJumping = false
+            data.isJumpFalling = true
+        end
+    end
+
+    -- 下落阶段
+    if data.isJumpFalling then
+        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt * scaleFactor)
+        if groundCheck then
+            data.isJumpFalling = false
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
+            data.jumpCut = false
+        end
+    end
+end
+
+-- 初次跳跃施加力
+function Jump(entity, scaleFactor)
+    local data = entity.dataTable
+    local rb = entity.rb
+    rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor)
+end
+
+-- 短按跳跃判断
+function AddJumpHeight(entity, jumpReleased)
+    local data = entity.dataTable
+    if jumpReleased and data.isJumping and entity.rb.velocity.y > 0 then
+        data.jumpCut = true
+    end
+end

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Battle.Entity;
 using UnityEngine;
 
 public static class DetectionManager
@@ -11,14 +12,42 @@ public static class DetectionManager
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance,LayerMask.GetMask(layerMask));
         return hit.collider != null;
     }
+    public static Entity Raycast2DByTag(Vector2 origin, Vector2 direction, float distance,string tag)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance);
+        var col = hit.collider;
+        if (col == null)
+            return null;
+        if (col.transform.tag != tag)
+        {
+            return null;
+        }
+        return col.GetComponent<Entity>();
+    }
+    public static Entity OverlapBoxByTag(Vector2 center, Vector2 size, string tag)
+    {
+        // 检测指定矩形区域内的碰撞体
+        Collider2D col = Physics2D.OverlapBox(center, size, 0f, LayerMask.GetMask(tag));
 
+        if (col == null)
+            return null;
+
+        // 如果使用 tag 字符串判断而不是 Layer
+        if (col.tag != tag)
+            return null;
+
+        return col.GetComponent<Entity>();
+    }
     // 2D射线检测（带命中信息）
     public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
         return hitInfo.collider != null;
     }
-
+    public static bool Raycast2DNoLayer(Vector2 origin, Vector2 direction, float distance)
+    {
+        return Physics2D.Raycast(origin, direction, distance);
+    }
     // 多射线地面检测
     public static GroundCheckResult MultiRayGroundCheck
         (

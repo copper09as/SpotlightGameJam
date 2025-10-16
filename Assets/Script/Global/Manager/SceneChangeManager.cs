@@ -4,11 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
 {
+    [SerializeField] private string testScene;
 
     private void Start()
     {
         //LoadScene("Battle");
-        LoadScene("Enemy");
+        LoadScene(testScene);
     }
     /// <summary>
     /// 异步加载新场景并卸载旧场景（无进度UI）

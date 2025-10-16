@@ -11,6 +11,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D transCursor;
     private bool isHold = false;
     private Entity currentEntity;
+    [SerializeField]private GameObject particlePrefab;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -44,7 +45,18 @@ public class CursorManager : MonoBehaviour
     {
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 10f; // 视你的摄像机决定
 
+        // 实例化粒子
+        GameObject go = Instantiate(particlePrefab, GameController.GetWorldMousePos(), Quaternion.identity);
+
+        // 播放粒子系统
+        var ps = go.GetComponent<ParticleSystem>();
+        ps.Play();
+
+        // 自动销毁（等粒子播完）
+        Destroy(go, 0.5f);
         if (hit.collider != null)
         {
             var entity = hit.collider.GetComponent<Entity>();

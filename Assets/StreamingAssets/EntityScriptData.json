@@ -1,64 +1,84 @@
 {
 	"entityScriptList": [{
 		"id": 10000,
-		"InitPath": ["SetDynamic","CharacterInit"],
-		"UpdatePath": ["CharacterMove","FasterFall","CharacterJumpUseForce"],
+		"InitPath": ["Physics/SetDynamic","Character/CharacterInit"],
+		"UpdatePath": ["Character/CharacterMove","Physics/FasterFall","Character/CharacterJumpUseForce"],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": ["DamageEntityOnHead"],
-		"OnSpacePath": [],
-		"OnDragPath":["FollowMouse"],
-		"DeadPath":["GameOver"]
+		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
+		"OnDragPath":["Mouse/FollowMouse"],
+		"DeadPath":["BattleStreaming/GameOver"]
 		
 	},
 	{
 		"id": 10001,
-		"InitPath": ["SetKinematic"],
+		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": ["DamageEntity"],
-		"OnSpacePath": [],
+		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],
 		"OnDragPath":[],
 		"DeadPath":[]
 	},
 	{
 		"id": 10002,
-		"InitPath": ["SetKinematic"],
+		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnSpacePath": [],
 		"OnDragPath":[],
 		"DeadPath":[]
 	},
 	{
 		"id": 10003,
-		"InitPath": ["SetKinematic"],
+		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
-		"OnMouseDownPath": ["OpenMenu2"],
+		"OnMouseDownPath": ["Ui/OpenMenu2"],
 		"OnCollisionPath": [],
-		"OnSpacePath": [],
 		"OnDragPath":[],
-		"DeadPath":[],
-		"OnSpacePressPath":[]
+		"DeadPath":[]
 	},
 	{
 		"id": 10004,
-		"InitPath": ["SetStatic","RollInit"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollBgm"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": ["StickPlayerUp"],
-		"OnSpacePath": [],
-		"OnDragPath":["FollowMouseX","ScrollBgm"],
+		"OnCollisionPath": [],
+		"OnDragPath":["Mouse/FollowMouseX","Scroll/ScrollBgm","Position/StickPlayerUp"],
 		"DeadPath":[]
 	},
 	{
 		"id": 10005,
-		"InitPath": ["SetStatic","RollInit"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollSfx"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": ["StickPlayerUp"],
-		"OnSpacePath": [],
-		"OnDragPath":["FollowMouseX","ScrollSfx"],
+		"OnCollisionPath": [],
+		"OnDragPath":["Mouse/FollowMouseX","Scroll/ScrollSfx","Position/StickPlayerUp"],
+		"DeadPath":[]
+	},
+	{
+		"id": 10006,
+		"InitPath": ["Physics/SetDynamic"],
+		"UpdatePath": ["Enemy/EnemyMove"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],
+		"OnDragPath":["Mouse/FollowMouse"],
+		"DeadPath":[]
+	},
+	{
+		"id": 10007,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntity"],
+		"OnDragPath":[],
+		"DeadPath":[]
+	},
+	{
+		"id": 10008,
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollCameraSize"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath":["Mouse/FollowMouseX","Scroll/ScrollCameraSize","Position/StickPlayerUp"],
 		"DeadPath":[]
 	}]
 }

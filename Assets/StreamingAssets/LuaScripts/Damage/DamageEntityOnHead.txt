@@ -1,0 +1,15 @@
+local GC = CS.GameController
+
+function DamageEntityOnHead(entity, otherEntity,x,y)
+    if y~=nil and y > 0.5 then
+        if otherEntity ~= nil then
+            local entityId = otherEntity.entityId
+			local entityManager = entity.entityManager
+        end
+        --[[if entity.rb ~= nil then
+            local velocity = entity.rb.velocity
+            velocity.y = 7
+            entity.rb.velocity = velocity
+        end]]
+    end
+end

@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 142645653}
   - component: {fileID: 142645652}
   - component: {fileID: 142645651}
+  - component: {fileID: 142645655}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -176,10 +177,8 @@ MonoBehaviour:
     UpdatePath: []
     OnMouseDownPath: []
     OnCollisionPath: []
-    OnSpacePath: []
     OnDragPath: []
     DeadPath: []
-    OnSpacePressPath: []
   animator: {fileID: 142645651}
   dataId: 0
   entityId: 0
@@ -336,6 +335,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &142645655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142645648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnDragPath: []
+    DeadPath: []
+  animator: {fileID: 0}
+  dataId: 20006
+  entityId: 0
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
+  rb: {fileID: 142645652}
+  text: {fileID: 0}
+  col: {fileID: 142645653}
 --- !u!1 &767645907
 GameObject:
   m_ObjectHideFlags: 0
