@@ -1,28 +1,65 @@
+local GC = CS.GameController
+
+-- 缩放速率设置
+local scaleDelta = 0.05
+local minCharacterScale = 0.1
+local maxCharacterScale = 1.0
+
+-- 摄像机缩放范围
 local maxSize = 5.34
 local minSize = 3
-local characterMinSize = 0.1
-local characterMaxSize = 0.3
 
 function ScrollCameraSize(entity)
-    local camera = CS.UnityEngine.Camera.main
+    local dt = CS.UnityEngine.Time.deltaTime
     local data = entity.dataTable
-    local t = data.scrollProgress
+    local mousePos = GC.GetScreenPos()
 
-    -- Clamp 防止超出范围
+    -- 限制鼠标 Y 坐标
+    mousePos.y = CS.UnityEngine.Mathf.Clamp(mousePos.y, data.limitYMin, data.limitYMax)
+
+    -- 转换成世界坐标
+    local cam = CS.UnityEngine.Camera.main
+    local worldPos = cam:ScreenToWorldPoint(mousePos)
+
+    -- 平滑移动 Y 位置
+    local pos = entity.transform.position
+    local targetY = worldPos.y
+    local followSpeed = data.scrollSpeed
+    pos.y = CS.UnityEngine.Mathf.Lerp(pos.y, targetY, followSpeed * dt)
+
+    -- 最终 Clamp 防止超限
+    local clampedScreenY = CS.UnityEngine.Mathf.Clamp(cam:WorldToScreenPoint(pos).y, data.limitYMin, data.limitYMax)
+    local finalWorldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(mousePos.x, clampedScreenY, mousePos.z))
+    pos.y = finalWorldPos.y
+    entity.transform.position = pos
+
+    -- 计算滚动比例
+    local rangeY = data.limitYMax - data.limitYMin
+    local targetProgress = (mousePos.y - data.limitYMin) / rangeY
+    local smoothFactor = data.scrollSmooth or 5
+    local oldProgress = data.scrollProgress or 0
+    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(oldProgress, targetProgress, smoothFactor * dt)
+
+    local t = data.scrollProgress
     if t < 0 then t = 0 end
     if t > 1 then t = 1 end
 
-    -- 📸 缩放摄像机
-    local size = maxSize - (maxSize - minSize) * t
-    camera.orthographicSize = size
+    -- 摄像机缩放
+    cam.orthographicSize = maxSize - (maxSize - minSize) * t
 
-    -- 🧍 如果有目标角色，缩放角色
-    if data.hitCharacter ~= nil then
-        local target = data.hitCharacter.transform
-		
-        local scaleValue = characterMinSize + (characterMaxSize - characterMinSize) * t
-		
-        target.localScale = CS.UnityEngine.Vector3(scaleValue, scaleValue, scaleValue)
-		CS.UnityEngine.Debug.Log(target.localScale)
-    end
+    -- 角色缩放持续叠加
+-- 角色缩放持续叠加
+	if data.hitCharacter ~= nil then
+		local target = data.hitCharacter.transform
+		local curScale = target.localScale.x
+
+		-- 翻转缩放方向
+		local deltaProgress = oldProgress - data.scrollProgress
+		local newScale = curScale + deltaProgress * scaleDelta * 10
+
+		-- 限制范围
+		newScale = CS.UnityEngine.Mathf.Clamp(newScale, minCharacterScale, maxCharacterScale)
+		target.localScale = CS.UnityEngine.Vector3(newScale, newScale, newScale)
+	end
+
 end
