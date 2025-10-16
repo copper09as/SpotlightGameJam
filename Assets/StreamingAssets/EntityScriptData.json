@@ -2,7 +2,7 @@
 	"entityScriptList": [{
 		"id": 10000,
 		"InitPath": ["Physics/SetDynamic","Character/CharacterInit"],
-		"UpdatePath": ["Character/CharacterMove","Physics/FasterFall","Character/CharacterJumpUseForce"],
+		"UpdatePath": ["Character/CharacterMove","Physics/FasterFall","Character/CharacterJumpUseForce","Character/CharacterCrossMap"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
 		"OnDragPath":["Mouse/FollowMouse"],
@@ -56,7 +56,7 @@
 	},
 	{
 		"id": 10006,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Enemy/EnemyInit"],
 		"UpdatePath": ["Enemy/EnemyMove"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],

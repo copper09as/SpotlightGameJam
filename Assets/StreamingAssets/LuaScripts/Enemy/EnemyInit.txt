@@ -12,5 +12,6 @@ function EnemyInit(entity)
 
     local velocity = entity.rb.velocity
     velocity.x = data.EnemySpeed
+    entity.rb.velocity = velocity --设置初始速度
 
 end

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1136093373474079397}
   - component: {fileID: 7046616427956781066}
   - component: {fileID: 3321033066687172279}
-  - component: {fileID: 3903172216275048236}
   - component: {fileID: 8349003749152552150}
+  - component: {fileID: -8090796960683152918}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Player
@@ -147,9 +147,30 @@ MonoBehaviour:
   rb: {fileID: 7046616427956781066}
   text: {fileID: 0}
   entityManager: {fileID: 0}
-  col: {fileID: 3903172216275048236}
---- !u!70 &3903172216275048236
-CapsuleCollider2D:
+  col: {fileID: -8090796960683152918}
+--- !u!95 &8349003749152552150
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084489110151680552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3eeff61b26952e841a3f6c65e67a8398, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &-8090796960683152918
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,7 +178,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3084489110151680552}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -180,27 +201,16 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11874189, y: -0.5941235}
-  m_Size: {x: 3.7219326, y: 6.841851}
-  m_Direction: 0
---- !u!95 &8349003749152552150
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3084489110151680552}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3eeff61b26952e841a3f6c65e67a8398, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Offset: {x: 0.0789662, y: -0.53096676}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.04, y: 11.73}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6595383, y: 7.269882}
+  m_EdgeRadius: 0

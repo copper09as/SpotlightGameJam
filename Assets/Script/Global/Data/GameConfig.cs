@@ -21,6 +21,7 @@ namespace Global.Data
             Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
+            Debug.Log("查看" + EntitySDC.entityScriptList.Count);
         }
 
         private void LoadAllConfig()
