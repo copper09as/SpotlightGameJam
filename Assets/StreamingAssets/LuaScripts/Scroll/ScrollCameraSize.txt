@@ -1,8 +1,8 @@
 local GC = CS.GameController
 
 -- 缩放速率设置
-local scaleDelta = 0.5
-local minCharacterScale = 0.04
+local scaleDelta = 0.05
+local minCharacterScale = 0.1
 local maxCharacterScale = 1.0
 
 -- 摄像机缩放范围

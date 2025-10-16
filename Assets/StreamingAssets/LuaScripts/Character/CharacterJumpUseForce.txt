@@ -5,8 +5,9 @@ function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
-    local camera = CS.UnityEngine.Camera.main
-    local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+    --local camera = CS.UnityEngine.Camera.main
+    --local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
+	local rawFactor = entity.transform.localScale.x/0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
 	local origin = CS.UnityEngine.Vector2(
