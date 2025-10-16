@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,7 +48,7 @@ public static class GameController
     {
         isSpacePressed = false;
     }
-
+    
     //获取当前按住空格的持续时间
     public static float GetJumpChargeTime()
     {
