@@ -1,7 +1,7 @@
 local GC = CS.GameController
 
 -- 缩放速率设置
-local scaleDelta = 0.07
+local scaleDelta = 0.05
 local minCharacterScale = 0.06
 local maxCharacterScale = 1.0
 
