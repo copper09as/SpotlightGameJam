@@ -64,7 +64,7 @@
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],
 		"OnDragPath":["Mouse/FollowMouse"],
-		"DeadPath":[]
+		"DeadPath": [ "Enemy/EnemyDestroyed" ]
 	},
 	{
 		"id": 10007,

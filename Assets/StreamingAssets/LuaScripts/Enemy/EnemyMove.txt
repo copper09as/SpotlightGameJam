@@ -1,6 +1,5 @@
 local DM = CS.DetectionManager--检测管理器
 
-
 function EnemyMove(entity)
     local data = entity.dataTable
     if entity.rb == nil then

@@ -1,0 +1,4 @@
+function EnemyDestroyed(entity)
+    CS.UnityEngine.GameObject.Destroy(entity.gameObject)
+    print(entity)
+end

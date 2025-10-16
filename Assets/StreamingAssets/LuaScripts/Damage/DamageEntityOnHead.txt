@@ -5,6 +5,7 @@ function DamageEntityOnHead(entity, otherEntity,x,y)
         if otherEntity ~= nil then
             local entityId = otherEntity.entityId
 			local entityManager = entity.entityManager
+            otherEntity:Dead(entity)
         end
         --[[if entity.rb ~= nil then
             local velocity = entity.rb.velocity

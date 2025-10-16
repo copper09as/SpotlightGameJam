@@ -1,7 +1,8 @@
+using Game.Battle.Entity;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Battle.Entity;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public static class DetectionManager
 {
@@ -52,9 +53,9 @@ public static class DetectionManager
     public static GroundCheckResult MultiRayGroundCheck
         (
         //Vector2 position,//检测的中心位置
-        //float width, //检测的宽度范围（敌人的脚底宽度）
+        //float width, //检测的宽度范围（敌人的宽度）
         Collider2D collider,//碰撞体（规则碰撞体，矩形，椭圆形，胶囊）
-        int rayCount, //射线数量
+        int rayCount, //脚底射线数量
         float distance, //射线长度
         string groundLayer//地面层级
         )
@@ -87,9 +88,16 @@ public static class DetectionManager
             }
         }
 
+        Draw(Raycast2D(position, Vector2.left, (width / 2) + 0.1f, groundLayer,out RaycastHit2D hitleft),
+            position, Vector2.left, (width / 2) + 0.1f);//检测两边
+        Draw(Raycast2D(position, Vector2.right, (width / 2) + 0.1f, groundLayer, out RaycastHit2D hitright),
+            position, Vector2.right, (width / 2) + 0.1f); ;
+
+
+
         result.isGrounded = groundHits > 0;
-        result.isLeftEdge = !result.isLeftGrounded;
-        result.isRightEdge = !result.isRightGrounded;
+        result.isLeftEdge = !result.isLeftGrounded || hitleft.collider!=null;
+        result.isRightEdge = !result.isRightGrounded || hitright.collider != null;
 
         return result;
     }
