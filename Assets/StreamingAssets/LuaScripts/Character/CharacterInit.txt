@@ -3,9 +3,9 @@ function CharacterInit(entity)
     local data = entity.dataTable or {}
 
     -- 基础属性
-    data.characterSpeed = 10                    -- 水平移动速度
+    data.characterSpeed = 5                    -- 水平移动速度
     data.gravity = 10                           -- 重力加速度
-    data.baseJumpHeight = 1                     -- 基础跳跃高度（初次跳跃力来源）
+    data.baseJumpHeight = 2                     -- 基础跳跃高度（初次跳跃力来源）
     data.maxJumpHeight = 2                     -- 长按空格能达到的最大高度
     data.jumpForce = 0                          -- 初始施加的跳跃力
     data.isJumping = false                      -- 是否处于跳跃上升阶段
