@@ -94,5 +94,14 @@
 		"OnDragPath":[],
 		"DeadPath":[],
 		"OnDisablePath":["Ui/CancleStick"]
+	},
+	{
+		"id": 10010,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntity"],
+		"OnDragPath":[],
+		"DeadPath":[]
 	}]
 }
