@@ -48,16 +48,18 @@ function ScrollCameraSize(entity)
     cam.orthographicSize = maxSize - (maxSize - minSize) * t
 
     -- 角色缩放持续叠加
-    if data.hitCharacter ~= nil then
-        local target = data.hitCharacter.transform
-        local curScale = target.localScale.x
+-- 角色缩放持续叠加
+	if data.hitCharacter ~= nil then
+		local target = data.hitCharacter.transform
+		local curScale = target.localScale.x
 
-        -- 根据 progress 的变化决定缩放方向
-        local deltaProgress = data.scrollProgress - oldProgress
-        local newScale = curScale + deltaProgress * scaleDelta * 10  -- 放大缩放效果
+		-- 翻转缩放方向
+		local deltaProgress = oldProgress - data.scrollProgress
+		local newScale = curScale + deltaProgress * scaleDelta * 10
 
-        -- 限制角色缩放范围
-        newScale = CS.UnityEngine.Mathf.Clamp(newScale, minCharacterScale, maxCharacterScale)
-        target.localScale = CS.UnityEngine.Vector3(newScale, newScale, newScale)
-    end
+		-- 限制范围
+		newScale = CS.UnityEngine.Mathf.Clamp(newScale, minCharacterScale, maxCharacterScale)
+		target.localScale = CS.UnityEngine.Vector3(newScale, newScale, newScale)
+	end
+
 end
