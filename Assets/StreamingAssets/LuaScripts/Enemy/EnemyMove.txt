@@ -1,39 +1,64 @@
 local DM = CS.DetectionManager--检测管理器
 
-function EnemyMove(entity)
 
+function EnemyMove(entity)
+    local data = entity.dataTable
     if entity.rb == nil then
         return
     end
 
     local rb = entity.rb
-    local EnemySpeed = 10
+    local EnemySpeed = data.EnemySpeed
+
+    -- 初始化必要的数据
+    if data.moveDirection == nil then
+        data.moveDirection = 1 -- 1表示向右，-1表示向左
+    end
+    if data.pauseDuration == nil then
+        data.pauseDuration = 0.3 -- 默认停顿1秒
+    end
+    if data.pauseTimer == nil then
+        data.pauseTimer = 0
+    end
+    if data.isPausing == nil then
+        data.isPausing = false
+    end
 
     local velocity = rb.velocity
 
-    local x = DM.MultiRayGroundCheck(--检测左边缘
-            entity.col ,
-            3,1,"Ground"
-    )
+    -- 边缘检测
+    local x = DM.MultiRayGroundCheck(entity.col, 3, 1, "Ground")
+    local a = x.isLeftEdge -- 是否在左边缘
+    local b = x.isRightEdge -- 是否在右边缘
 
-    local a = x.isLeftEdge
-    local b = x.isRightEdge
-
-
-    print(velocity)
-    if a or b then
-    velocity.x = 0
+    -- 停顿处理
+    if data.isPausing then
+        data.pauseTimer = data.pauseTimer + CS.UnityEngine.Time.deltaTime
+        velocity.x = 0
+        rb.velocity = velocity
+        if data.pauseTimer >= data.pauseDuration then
+            data.isPausing = false
+            data.pauseTimer = 0
+            -- 改变方向
+            data.moveDirection = -data.moveDirection
+        end
+        return
     end
 
-    if a then
-        velocity.x = velocity.x + EnemySpeed;
+
+    -- 检测到边缘时开始停顿
+    if (a and data.moveDirection == -1) or (b and data.moveDirection == 1) then
+        velocity.x = 0
+        rb.velocity = velocity
+        data.isPausing = true
+        return
     end
 
-    if b then
-        velocity.x = velocity.x - EnemySpeed;
-    end
-
+    -- 正常移动
+    velocity.x = data.moveDirection * EnemySpeed
     rb.velocity = velocity
-
-
 end
+
+
+
+
