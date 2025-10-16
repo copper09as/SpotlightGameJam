@@ -19,11 +19,10 @@ function ScrollCameraSize(entity)
     -- 🧍 如果有目标角色，缩放角色
     if data.hitCharacter ~= nil then
         local target = data.hitCharacter.transform
-
-        -- 计算缩放比例（线性插值）
+		
         local scaleValue = characterMinSize + (characterMaxSize - characterMinSize) * t
-
-        -- 应用缩放
-        target.localScale = CS.UnityEngine.Vector3(scaleValue, scaleValue, 1)
+		
+        target.localScale = CS.UnityEngine.Vector3(scaleValue, scaleValue, scaleValue)
+		CS.UnityEngine.Debug.Log(target.localScale)
     end
 end
