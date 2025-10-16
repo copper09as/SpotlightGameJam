@@ -56,7 +56,7 @@
 	},
 	{
 		"id": 10006,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Enemy/EnemyInit"],
 		"UpdatePath": ["Enemy/EnemyMove"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],

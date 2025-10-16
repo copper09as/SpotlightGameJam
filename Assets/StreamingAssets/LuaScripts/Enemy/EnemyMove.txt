@@ -11,17 +11,19 @@ function EnemyMove(entity)
 
     local velocity = rb.velocity
 
-    local a = DM.MultiRayGroundCheck(--检测左边缘
+    local x = DM.MultiRayGroundCheck(--检测左边缘
             entity.col ,
-            1,"Ground"
-    ).isLeftEdge
+            3,1,"Ground"
+    )
 
-    local b = DM.MultiRayGroundCheck(--检测右边缘
-            entity.col,
-            1,"Ground"
-    ).isRightEdge
+    local a = x.isLeftEdge
+    local b = x.isRightEdge
 
+
+    print(velocity)
+    if a or b then
     velocity.x = 0
+    end
 
     if a then
         velocity.x = velocity.x + EnemySpeed;
@@ -31,7 +33,7 @@ function EnemyMove(entity)
         velocity.x = velocity.x - EnemySpeed;
     end
 
-
     rb.velocity = velocity
+
 
 end

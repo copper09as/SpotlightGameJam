@@ -65,6 +65,7 @@ public static class DetectionManager
         var result = new GroundCheckResult();
         int groundHits = 0;
 
+        //Debug.Log("调用边缘检测函数");
         for (int i = 0; i < rayCount; i++)
         {
             float t = rayCount > 1 ? (float)i / (rayCount - 1) : 0.5f;
@@ -72,6 +73,8 @@ public static class DetectionManager
             Vector2 rayOrigin = position + new Vector2(x, 0);
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, distance, LayerMask.GetMask(groundLayer));
+
+            Draw(hit.collider != null, rayOrigin, Vector2.down , distance);
 
             if (hit.collider != null)
             {
@@ -107,6 +110,24 @@ public static class DetectionManager
     //    RaycastHit2D hit = Physics2D.Raycast(from, direction.normalized, distance, obstacleLayer);
     //    return hit.collider == null; // 没有障碍物返回true
     //}
+
+
+    private static void Draw(bool ishit,Vector2 position, Vector2 direction, float rayLength)
+    {
+       
+        //射线绘制方便调试
+        if (ishit)
+        {
+            
+            Debug.DrawRay(position, direction * rayLength, Color.green); 
+        }
+        else
+        {
+            Debug.DrawRay(position, direction * rayLength, Color.red);
+        }
+    }
+   
+
 }
 
 // 地面检测结果结构
