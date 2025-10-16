@@ -1,4 +1,8 @@
-function EnemyDestroyed(entity)
+function EnemyDestroyed(entity,otherEntity)
     CS.UnityEngine.GameObject.Destroy(entity.gameObject)
-    print(entity)
+    if otherEntity.rb ~= nil then
+		local velocity = otherEntity.rb.velocity
+        velocity.y = 20
+        otherEntity.rb.velocity = velocity
+    end
 end
