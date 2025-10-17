@@ -21,11 +21,12 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(EventCenter);
-			Utils.BeginObjectRegister(type, L, translator, 0, 3, 1, 1);
+			Utils.BeginObjectRegister(type, L, translator, 0, 4, 1, 1);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddAction", _m_AddAction);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "RemoveAction", _m_RemoveAction);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ClearActions", _m_ClearActions);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SafeTrigger", _m_SafeTrigger);
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "Actions", _g_get_Actions);
@@ -116,7 +117,20 @@ namespace XLua.CSObjectWrap
                 EventCenter gen_to_be_invoked = (EventCenter)translator.FastGetCSObj(L, 1);
             
             
-                
+			    int gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(gen_param_count == 3&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)&& translator.Assignable<System.Action>(L, 3)) 
+                {
+                    string _name = LuaAPI.lua_tostring(L, 2);
+                    System.Action _action = translator.GetDelegate<System.Action>(L, 3);
+                    
+                    gen_to_be_invoked.RemoveAction( _name, _action );
+                    
+                    
+                    
+                    return 0;
+                }
+                if(gen_param_count == 2&& (LuaAPI.lua_isnil(L, 2) || LuaAPI.lua_type(L, 2) == LuaTypes.LUA_TSTRING)) 
                 {
                     string _name = LuaAPI.lua_tostring(L, 2);
                     
@@ -130,6 +144,8 @@ namespace XLua.CSObjectWrap
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to EventCenter.RemoveAction!");
             
         }
         
@@ -148,6 +164,34 @@ namespace XLua.CSObjectWrap
                 {
                     
                     gen_to_be_invoked.ClearActions(  );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_SafeTrigger(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                EventCenter gen_to_be_invoked = (EventCenter)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    string _eventName = LuaAPI.lua_tostring(L, 2);
+                    
+                    gen_to_be_invoked.SafeTrigger( _eventName );
                     
                     
                     
