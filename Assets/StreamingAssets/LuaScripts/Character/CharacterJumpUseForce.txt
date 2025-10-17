@@ -1,10 +1,11 @@
 local GC = CS.GameController 
 local DM = CS.DetectionManager
+
 function CharacterJumpUseForce(entity, dt)
     local data = entity.dataTable
     local rb = entity.rb
     local inputJump = GC.isSpacePressed
-	local rawFactor = entity.transform.localScale.x/0.3
+    local rawFactor = entity.transform.localScale.x / 0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
     local origin = CS.UnityEngine.Vector2(
@@ -17,18 +18,18 @@ function CharacterJumpUseForce(entity, dt)
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
 
-    -- ✅ 只有松开后才能再次跳
+    -- ✅ 起跳
     if inputJump and not data.jumpUsed and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
         data.isJumping = true
         data.isJumpFalling = false
         data.jumpCut = false
         data.startY = entity.transform.position.y
         data.coyoteTimeCounter = 0
-        data.jumpUsed = true         -- ✅ 跳跃已使用，不能再次触发
-        Jump(entity, scaleFactor)
+        data.jumpUsed = true
+        Jump(entity, scaleFactor)  -- 🆕 起跳时播放 Jump 动画
     end
 
-    -- 🛑 检测空格是否松开，如果松开，重置 jumpUsed
+    -- 松开空格
     if not inputJump then
         data.jumpUsed = false
     end
@@ -48,20 +49,20 @@ function CharacterJumpUseForce(entity, dt)
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y + addSpeed)
         end
     end
-	local leftOrigin = CS.UnityEngine.Vector2(entity.transform.position.x - entity.col.bounds.extents.x - 0.01, entity.transform.position.y)
-	local rightOrigin = CS.UnityEngine.Vector2(entity.transform.position.x + entity.col.bounds.extents.x + 0.01, entity.transform.position.y)
-	local wallCheckLeft = DM.Raycast2D(leftOrigin, CS.UnityEngine.Vector2(-1, 0), data.wallRayLen or 0.1, "Ground")
-	local wallCheckRight = DM.Raycast2D(rightOrigin, CS.UnityEngine.Vector2(1, 0), data.wallRayLen or 0.1, "Ground")
 
-	-- 调试射线
-	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(leftOrigin.x, leftOrigin.y, 0), CS.UnityEngine.Vector3(-data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
-	CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(rightOrigin.x, rightOrigin.y, 0), CS.UnityEngine.Vector3(data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+    -- 撞墙动能削减
+    local leftOrigin = CS.UnityEngine.Vector2(entity.transform.position.x - entity.col.bounds.extents.x - 0.01, entity.transform.position.y)
+    local rightOrigin = CS.UnityEngine.Vector2(entity.transform.position.x + entity.col.bounds.extents.x + 0.01, entity.transform.position.y)
+    local wallCheckLeft = DM.Raycast2D(leftOrigin, CS.UnityEngine.Vector2(-1, 0), data.wallRayLen or 0.1, "Ground")
+    local wallCheckRight = DM.Raycast2D(rightOrigin, CS.UnityEngine.Vector2(1, 0), data.wallRayLen or 0.1, "Ground")
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(leftOrigin.x, leftOrigin.y, 0), CS.UnityEngine.Vector3(-data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(rightOrigin.x, rightOrigin.y, 0), CS.UnityEngine.Vector3(data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
 
-	-- 撞墙动能削减
-	if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
-		rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
-	end
-    -- 跳跃上升阶段自然衰减
+    if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
+        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
+    end
+
+    -- 🪂 上升阶段
     if data.isJumping then
         if currentHeight >= data.maxJumpHeight or data.jumpCut then
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt * scaleFactor)
@@ -71,28 +72,47 @@ function CharacterJumpUseForce(entity, dt)
             end
         end
 
+        -- ✨ 在这里检测“起跳动画”结束，上升进入“跳跃停留”
         if rb.velocity.y <= 0 then
             data.isJumping = false
             data.isJumpFalling = true
+            -- 🆕 起跳动画结束 ➝ 空中循环 JumpStay
+            
+			--if entity.animator then
+                --entity.animator:CrossFade("JumpStay", 0.1)
+            --end
         end
     end
 
-    -- 下落阶段
+    -- ⬇️ 下落阶段
     if data.isJumpFalling then
         rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt * scaleFactor)
         if groundCheck then
             data.isJumpFalling = false
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
             data.jumpCut = false
+            -- 🆕 落地回 Idle
+            if entity.animator then
+                entity.animator:CrossFade("Idle", 0.15)
+            end
         end
     end
 end
 
--- 初次跳跃施加力
+-- 🆕 初次跳跃施加力 + 播放 Jump 动画
 function Jump(entity, scaleFactor)
     local data = entity.dataTable
     local rb = entity.rb
+    local origin = CS.UnityEngine.Vector2(
+        entity.transform.position.x,
+        entity.col.bounds.min.y
+    )
+    local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
     rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor)
+    if entity.animator then
+        entity.animator:Play("Jump")
+    end
 end
 
 -- 短按跳跃判断
