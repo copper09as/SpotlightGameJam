@@ -77,9 +77,10 @@ function CharacterJumpUseForce(entity, dt)
             data.isJumping = false
             data.isJumpFalling = true
             -- 🆕 起跳动画结束 ➝ 空中循环 JumpStay
-            if entity.animator then
-                entity.animator:CrossFade("JumpStay", 0.1)
-            end
+            
+			--if entity.animator then
+                --entity.animator:CrossFade("JumpStay", 0.1)
+            --end
         end
     end
 
@@ -104,7 +105,7 @@ function Jump(entity, scaleFactor)
     local rb = entity.rb
     rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor)
     if entity.animator then
-        entity.animator:CrossFade("Jump", 0.05) -- 过渡短一点，手感好
+        entity.animator:Play("Jump")
     end
 end
 
