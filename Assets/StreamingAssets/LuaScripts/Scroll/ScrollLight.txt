@@ -1,0 +1,5 @@
+local light = CS.LM.Instance
+function ScrollLight(entity)
+    local data = entity.dataTable
+    light:SetGlobalLight(data.scrollProgress)
+end
