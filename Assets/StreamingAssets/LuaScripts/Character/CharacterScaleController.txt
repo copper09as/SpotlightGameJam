@@ -2,11 +2,17 @@ function CharacterScaleController(entity)
     local data = entity.dataTable
     local minScale = data.minScale
 
-    -- 读取实际世界缩放
+    -- 实际世界缩放
     local worldScale = entity.transform.lossyScale
     local localScale = entity.transform.localScale
 
-    if worldScale.x < minScale or worldScale.y < minScale or worldScale.z < minScale then
+    -- 容差（防止浮点误差造成抖动）
+    local tolerance = 0.001
+
+    if worldScale.x + tolerance < minScale 
+        or worldScale.y + tolerance < minScale 
+        or worldScale.z + tolerance < minScale then
+
         local parent = entity.transform.parent
         local parentScale = CS.UnityEngine.Vector3(1, 1, 1)
 
@@ -14,11 +20,13 @@ function CharacterScaleController(entity)
             parentScale = parent.lossyScale
         end
 
-        -- ⚡ 这里我们只设置 localScale，不碰 lossyScale
-        entity.transform.localScale = CS.UnityEngine.Vector3(
-            minScale / parentScale.x,
-            minScale / parentScale.y,
-            minScale / parentScale.z
+        -- 计算新的 localScale（注意：不要无限放大，取 max）
+        local newLocalScale = CS.UnityEngine.Vector3(
+            math.max(localScale.x, minScale / parentScale.x),
+            math.max(localScale.y, minScale / parentScale.y),
+            math.max(localScale.z, minScale / parentScale.z)
         )
+
+        entity.transform.localScale = newLocalScale
     end
 end
