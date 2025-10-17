@@ -5,7 +5,7 @@ function RollInit(entity)
     data.limitXMin = posX+606.6313       -- X轴最小位置,X轴偏移-919.7109,-944.4883   -240.54  -157.8237
     data.limitXMax =  1000           -- X轴最大位置
     data.limitYMin =  0         -- Y轴最小位置
-    data.limitYMax =  1000         -- Y轴最大位置
+    data.limitYMax =  600         -- Y轴最大位置
 
     -- 滑动控制
     data.scrollProgress = 0      -- 当前X方向滑动比例（0~1）
