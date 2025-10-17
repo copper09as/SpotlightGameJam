@@ -77,7 +77,7 @@
 	},
 	{
 		"id": 10008,
-		"InitPath": ["Physics/SetStatic","Scroll/RollInit","Scroll/ScrollCameraSize"],
+		"InitPath": ["Physics/SetStatic","Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],

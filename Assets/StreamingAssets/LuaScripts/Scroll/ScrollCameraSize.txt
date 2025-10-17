@@ -50,7 +50,7 @@ function ScrollCameraSize(entity)
 
     -- 角色缩放持续叠加
 -- 角色缩放持续叠加
-	if data.hitCharacter ~= nil then
+	--[[if data.hitCharacter ~= nil then
 		local target = data.hitCharacter.transform
 		local curScale = target.localScale.x
 
@@ -61,6 +61,6 @@ function ScrollCameraSize(entity)
 		-- 限制范围
 		newScale = CS.UnityEngine.Mathf.Clamp(newScale, minCharacterScale, maxCharacterScale)
 		target.localScale = CS.UnityEngine.Vector3(newScale, newScale, newScale)
-	end
+	end]]
 
 end
