@@ -1,68 +1,82 @@
 {
-	"CommonEntityList": [{
-		"id": 20000,
-		"EffectId": 10000,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20001,
-		"EffectId": 10001,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20002,
-		"EffectId": 10002,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20003,
-		"EffectId": 10003,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20004,
-		"EffectId": 10004,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20005,
-		"EffectId": 10005,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20006,
-		"EffectId": 10006,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20007,
-		"EffectId": 10007,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20008,
-		"EffectId": 10008,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20009,
-		"EffectId": 10009,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	},
-	{
-		"id": 20010,
-		"EffectId": 10010,
-		"ScaleX": 1.0,
-		"ScaleY": 1.0
-	}]
+	"CommonEntityList": [
+		{
+			"id": 20000,
+			"EffectId": 10000,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20001,
+			"EffectId": 10001,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20002,
+			"EffectId": 10002,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20003,
+			"EffectId": 10003,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20004,
+			"EffectId": 10004,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20005,
+			"EffectId": 10005,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20006,
+			"EffectId": 10006,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20007,
+			"EffectId": 10007,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20008,
+			"EffectId": 10008,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20009,
+			"EffectId": 10009,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20010,
+			"EffectId": 10010,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20011,
+			"EffectId": 10011,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20012,
+			"EffectId": 10012,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		}
+	]
 }

@@ -1,0 +1,15 @@
+local CE  =  CS.EventCenter
+function PedalDown(entity)--踏板被踩下
+    local data = entity.CommonEntityData --实体通用数据
+    local a = 1 --体型判定值
+    local b = "OpenTheDoor"
+    if a<=  data.ScaleX*data.ScaleY then
+        if CE.Instance.Actions[b] ~=nil then
+            CE.Instance.Actions[b]:Invoke()
+        else
+            print(b.."事件未注册")
+        end
+    end
+    --写怎么样触发开门
+
+end

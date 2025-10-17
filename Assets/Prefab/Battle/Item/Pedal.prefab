@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8873750195579375764}
+  - component: {fileID: 8843649156875219467}
   - component: {fileID: 3542374802162811258}
   - component: {fileID: 1468778320567918449}
+  - component: {fileID: 2728264111990999131}
   m_Layer: 0
   m_Name: Pedal
   m_TagString: Untagged
@@ -33,6 +35,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8843649156875219467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717313287972780451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnDragPath: []
+    DeadPath: []
+    OnDisablePath: []
+  animator: {fileID: 0}
+  dataId: 20011
+  sr: {fileID: 0}
+  entityId: 10011
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
+  rb: {fileID: 0}
+  text: {fileID: 0}
+  entityManager: {fileID: 0}
+  col: {fileID: 0}
 --- !u!61 &3542374802162811258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,3 +166,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &2728264111990999131
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717313287972780451}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
