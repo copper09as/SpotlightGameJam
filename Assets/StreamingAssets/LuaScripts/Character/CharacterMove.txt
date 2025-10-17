@@ -1,5 +1,5 @@
 local GC = CS.GameController
-
+local DM = CS.DetectionManager
 function CharacterMove(entity)
     if entity.rb == nil then return end
 
@@ -22,9 +22,16 @@ function CharacterMove(entity)
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
     rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)
+    local origin = CS.UnityEngine.Vector2(
+        entity.transform.position.x,
+        entity.col.bounds.min.y
+    )
+    local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 	
     -- ====== 动画控制 ======
-    if entity.animator ~= nil then
+    if entity.animator ~= nil and groundCheck then
+	
         local threshold = 0.1
 
         -- 翻转方向，根据 MoveX
