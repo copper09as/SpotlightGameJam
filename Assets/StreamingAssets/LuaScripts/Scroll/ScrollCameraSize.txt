@@ -3,7 +3,7 @@ local GC = CS.GameController
 -- 摄像机缩放范围
 local maxSize = 4.71
 local minSize = 1
-
+local sizeRate = 1
 
 function ScrollCameraSize(entity)
     local dt = CS.UnityEngine.Time.deltaTime
@@ -14,6 +14,6 @@ function ScrollCameraSize(entity)
     if t > 1 then t = 1 end
 
     -- 摄像机缩放
-    cam.orthographicSize = maxSize - (maxSize - minSize) * t
+    cam.orthographicSize = maxSize - (maxSize - minSize) * t * sizeRate
 
 end
