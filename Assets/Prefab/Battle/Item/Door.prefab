@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1281600538483314090}
   - component: {fileID: 2218698009432096205}
   - component: {fileID: 8130108135291351341}
+  - component: {fileID: 2209429990997431828}
   m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
@@ -66,10 +67,10 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-  rb: {fileID: 0}
+  rb: {fileID: 8130108135291351341}
   text: {fileID: 0}
   entityManager: {fileID: 0}
-  col: {fileID: 0}
+  col: {fileID: 1281600538483314090}
 --- !u!212 &5951562055551582817
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2960ecf7046ae4d9dc233f6eccb1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pedal: {fileID: 0}
 --- !u!50 &8130108135291351341
 Rigidbody2D:
   serializedVersion: 4
@@ -206,3 +208,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2209429990997431828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7985589997605290897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2960ecf7046ae4d9dc233f6eccb1c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pedal: {fileID: 0}

@@ -2,7 +2,7 @@ local CE  =  CS.EventCenter.Instance
 function PedalDown(entity)--踏板被踩下
     local data = entity.CommonEntityData --实体通用数据
     local a = 1 --体型判定值
-    local b = "OpenTheDoor"
+    local b = entity.name.."OpenTheDoor"
     if a<=  data.ScaleX*data.ScaleY then
             CE:SafeTrigger(b)
     end

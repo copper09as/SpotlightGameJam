@@ -1,13 +1,11 @@
 local CE = CS.EventCenter.Instance
-
 function DoorInit(entity)--Door初始化
-
-    CE:AddAction("OpenTheDoor",
-            OpenTheDoorHandler
+    local door = entity:GetComponent("Door")
+    door:AddOpenTheDoor(
+            function()
+                CS.UnityEngine.Debug.Log(entity.name.."开门成功")
+            end
     )
 
 end
 
-function OpenTheDoorHandler()
-    CS.UnityEngine.Debug.Log("开门成功")
-end
