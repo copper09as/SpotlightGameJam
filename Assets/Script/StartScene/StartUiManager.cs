@@ -14,7 +14,6 @@ public class StartUiManager : MonoBehaviour
 
     void Awake()
     {
-     
         // 给按钮绑定方法
         if (startButton != null)
             startButton.onClick.AddListener(OnStartButtonClicked);
