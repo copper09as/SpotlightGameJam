@@ -151,23 +151,13 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
+            
             var otherEntity = collision.gameObject.GetComponent<Entity>();
             if (otherEntity == null) return;
 
-            Vector2 contactNormal = Vector2.zero;
-
-            if (collision.contacts.Length > 0)
-            {
-                contactNormal = collision.contacts[0].normal;
-            }
-            else
-            {
-                return;
-            }
-
             foreach (var i in scriptData.OnEntityExitPath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity);
             }
         }
 

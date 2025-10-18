@@ -16,6 +16,7 @@ function PedalDown(entity)--踏板被踩下
     --写怎么样触发开门
 
 end
+
 function OpenTheDoor(entity)
-	print(entity.gameObject.name)
+    entity.animator:SetBool("IsOpen",true)
 end
