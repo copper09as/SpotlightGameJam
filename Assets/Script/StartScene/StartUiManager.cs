@@ -21,9 +21,11 @@ public class StartUiManager : MonoBehaviour
 
         if (websiteButton != null)
             websiteButton.onClick.AddListener(OnWebsiteButtonClicked);
+    }
+    private void Start()
+    {
         AudioManager.Instance.PlayBGM(StringResource.StartBgmPath);
     }
-
     private void OnStartButtonClicked()
     {
         SceneChangeManager.Instance.LoadScene("Map");

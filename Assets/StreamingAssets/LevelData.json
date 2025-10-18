@@ -22,5 +22,17 @@
 		"SceneName":"白垩的俄罗斯人偶",
 		"SpritePath": "",
 		"ScenePath": ""
+	},
+	{
+		"Id": 30004,
+		"SceneName":"荣华之梦",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30005,
+		"SceneName":"月面波纹",
+		"SpritePath": "",
+		"ScenePath": ""
 	}]
 }

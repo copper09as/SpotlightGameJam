@@ -40,7 +40,6 @@ function CharacterMove(entity)
         elseif x < -threshold then
             entity.sr.flipX = true   -- 左移
         end
-		CS.UnityEngine.Debug.Log(x)
         -- 动画切换，根据速度播放 Walk 或 Idle
         if math.abs(rb.velocity.x) > threshold then
             entity.animator:Play("Walk")

@@ -620,7 +620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2960ecf7046ae4d9dc233f6eccb1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pedal: {fileID: 1236178874}
+  pedal:
+  - {fileID: 0}
 --- !u!1001 &1556559862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -695,7 +696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1658193677}
   - component: {fileID: 1658193676}
-  - component: {fileID: 1658193675}
   - component: {fileID: 1658193678}
   m_Layer: 0
   m_Name: Main Camera
@@ -704,14 +704,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1658193675
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658193674}
-  m_Enabled: 1
 --- !u!20 &1658193676
 Camera:
   m_ObjectHideFlags: 0
@@ -839,7 +831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2960ecf7046ae4d9dc233f6eccb1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pedal: {fileID: 533719630}
+  pedal:
+  - {fileID: 0}
 --- !u!1001 &4982050031866874
 PrefabInstance:
   m_ObjectHideFlags: 0
