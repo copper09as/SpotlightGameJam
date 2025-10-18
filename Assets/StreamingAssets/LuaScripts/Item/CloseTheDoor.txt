@@ -1,5 +1,5 @@
-function CloseTheDoor(entity)--Door初始化
-    entity.animator:SetFloat("IsOpen",false)
+function CloseTheDoor(entity,_, a, b)--Door初始化
+    entity.animator:SetBool("IsOpen",false)
 end
 
 

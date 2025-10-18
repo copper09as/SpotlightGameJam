@@ -1,5 +1,5 @@
 function OpenTheDoor(entity)--Door初始化
-    entity.animator:SetFloat("IsOpen",true)
+    entity.animator:SetBool("IsOpen",true)
 end
 
 

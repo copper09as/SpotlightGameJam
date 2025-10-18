@@ -7,7 +7,7 @@ function PedalInit(entity)--踏板效果注册
     --    --
     --    for i, entityStringPair in ipairs(entity.entityPairs) do
     --        if entityStringPair.key == key then
-    --            for j, otherEntity in entityStringPair.entitys do
+    --            for j, otherEntity in ipairs(entityStringPair.entities) do
     --
     --            end
     --        end

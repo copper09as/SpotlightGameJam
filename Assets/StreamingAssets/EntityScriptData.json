@@ -104,15 +104,16 @@
 		"OnDragPath": [],
 		"DeadPath": []
 	},
-	{
-		"id": 10011,
-		"InitPath": [ "Physics/SetKinematic" ],
-		"UpdatePath": [],
-		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
-		"OnDragPath": [],
-		"DeadPath": ["Item/PedalDown"]
-	},
+		{
+			"id": 10011,
+			"InitPath": [ "Physics/SetKinematic" ],
+			"UpdatePath": [],
+			"OnMouseDownPath": [],
+			"OnCollisionPath": [],
+			"OnDragPath": [],
+			"DeadPath": [ "Item/PedalDown" ],
+			"OnEntityExitPath": ["Item/CloseTheDoor"]
+		},
 	{
 		"id": 10012,
 		"InitPath": [ "Physics/SetKinematic"],
