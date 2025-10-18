@@ -1,7 +1,7 @@
 function CancleStick(entity)
     local data = entity.dataTable
-	local EM = CS.EntityUiManager.Instance
-    if data.hitCharacter then
+	local EM = CS.EntityUIManager.Instance
+    if data.hitCharacter and EM then
 
         EM:CallNextFrame(function()
             if data.hitCharacter then
