@@ -44,7 +44,7 @@
 		"id": 10004,
 		"InitPath": ["Physics/SetStatic",
 		"Scroll/RollInit"],
-		"UpdatePath": ["Position/StickPlayerUp"],
+		"UpdatePath": ["Position/StickPlayerUp","Scroll/ScrollBgm"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": ["Mouse/FollowMouseX",
