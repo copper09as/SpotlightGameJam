@@ -95,12 +95,12 @@ public class BattleStreaming : MonoBehaviour
             }
         }
         // º”‘ÿÕÍ≥…
-        if (loadingPanel != null)
-            StartCoroutine(FadeOutLoadingPanel(1f));
+
         foreach (var entity in entityManager.GetAllEntities())
         {
             entity.Init(entityManager);
         }
+       StartCoroutine(FadeOutLoadingPanel(1f));
         isLoading = false;
         Debug.Log("Battle loaded!");
     }
