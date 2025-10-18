@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Battle.Entity;
+using Global.Data;
+using Global.Data.BattleConfig;
 using UnityEngine;
 
 public class BattleStreaming : MonoBehaviour
@@ -19,7 +21,7 @@ public class BattleStreaming : MonoBehaviour
     [SerializeField] private Transform worldTransform;
     [Header("场景装饰")]
     [SerializeField] private List<GameObject> decorations;
-
+    
     //[SerializeField] private EntityUIManager entityUIManager;
     private EntityManager entityManager;
 
@@ -29,7 +31,7 @@ public class BattleStreaming : MonoBehaviour
     void Start()
     {
         entityManager = new EntityManager();
-        StartCoroutine(LoadBattle());
+        StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
     }
 
 
@@ -37,13 +39,21 @@ public class BattleStreaming : MonoBehaviour
     /// <summary>
     /// 异步加载战斗场景
     /// </summary>
-    public IEnumerator LoadBattle()
+    public IEnumerator LoadBattle(int levelId)
     {
         if (isLoading) yield break;
         isLoading = true;
 
         if (loadingPanel != null)
+        {
             loadingPanel.SetActive(true);
+            var text = loadingPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).SceneName;
+            }
+        }
+           
 
         yield return new WaitForSeconds(0.2f);
         //加载tileMap
@@ -111,6 +121,7 @@ public class BattleStreaming : MonoBehaviour
         }
 
         canvasGroup.alpha = 0f;
+
         loadingPanel.SetActive(false); // 淡出完成后再隐藏
     }
 }

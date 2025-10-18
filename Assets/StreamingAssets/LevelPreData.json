@@ -1,0 +1,36 @@
+{
+  "levelDataList": [
+    {
+      "Id": 30000,
+      "DecoratePath": [
+        "Path/To/Decorate1",
+        "Path/To/Decorate2"
+      ],
+      "CanvaEntitiesPath": [
+        "Path/To/CanvasEntity1",
+        "Path/To/CanvasEntity2"
+      ],
+      "WorldEntitiesPath": [
+        "Path/To/WorldEntity1",
+        "Path/To/WorldEntity2"
+      ],
+      "TileMapPath": "Path/To/TileMap1"
+    },
+    {
+      "Id": 30001,
+      "DecoratePath": [
+        "Path/To/DecorateA",
+        "Path/To/DecorateB"
+      ],
+      "CanvaEntitiesPath": [
+        "Path/To/CanvasEntityA",
+        "Path/To/CanvasEntityB"
+      ],
+      "WorldEntitiesPath": [
+        "Path/To/WorldEntityA",
+        "Path/To/WorldEntityB"
+      ],
+      "TileMapPath": "Path/To/TileMap2"
+    }
+  ]
+}

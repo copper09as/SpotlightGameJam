@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Global.Data;
+using Global.Data.BattleConfig;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,9 +23,9 @@ public class MapBtnGroup : MonoBehaviour
         var levelDataList = GameConfig.Instance.LevtlDC.levelDataList;
         for (int i = 0; i < levelDataList.Count; i++)
         {
-            var levelData = levelDataList [i];
+            var levelData = levelDataList[i];
 
-            var btn = CreateButton(i, levelData.SpritePath);
+            var btn = CreateButton(levelData.Id, levelData.SpritePath);
 
             btn.interactable = false;
 
@@ -47,7 +48,7 @@ public class MapBtnGroup : MonoBehaviour
         }
     }
 
-    private Button CreateButton(int index, string spritePath)
+    private Button CreateButton(int id, string spritePath)
     {
         var btnPrefab = buttonPrefab;
         var btnInstance = Instantiate(btnPrefab, transform);
@@ -57,16 +58,17 @@ public class MapBtnGroup : MonoBehaviour
             var image = btn.GetComponent<Image>();
             image.sprite = ResManager.LoadSprite(StringResource.GetImagePath(spritePath));
         }
-        int capturedIndex = index;
-        btn.onClick.AddListener(() => EnterByIndex(capturedIndex));
+        int captureId = id;
+        btn.onClick.AddListener(() => EnterByIndex(captureId));
 
         mapSelectButtonGroup.Add(btn);
         return btn;
     }
 
-    private void EnterByIndex(int index)
+    private void EnterByIndex(int id)
     {
+        BattleConfig.Instance.levelId = id; 
         //GlobalConfig.Instance.bossIndex = index;
-        //SceneChangeManager.Instance.LoadScene("Story");
+        SceneChangeManager.Instance.LoadScene("BattleTest");
     }
 }
