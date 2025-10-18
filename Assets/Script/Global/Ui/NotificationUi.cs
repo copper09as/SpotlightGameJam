@@ -12,7 +12,7 @@ public class Notification : MonoBehaviour
     [SerializeField] private Button restartBtn;
     [SerializeField] private Button urlBtn; 
 
-  private string openUrl = "https://space.bilibili.com/80632239/dynamic?spm_id_from=333.1365.list.card_avatar.click";
+  private string openUrl = "https://space.bilibili.com/80632239";
 
     public static int count;
 
@@ -20,11 +20,9 @@ public class Notification : MonoBehaviour
     {
         notificationText.text = note;
         titleText.text = title;
-
         closeBtn.onClick.AddListener(DestroySelf);
         restartBtn.onClick.AddListener(ForceRestart);
         urlBtn.onClick.AddListener(OpenUrl);
-
         count++;
     }
 

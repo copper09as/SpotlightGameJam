@@ -10,7 +10,7 @@ public class StartUiManager : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button websiteButton;
 
-    private string websiteUrl = "https://space.bilibili.com/80632239/dynamic?spm_id_from=333.1365.list.card_avatar.click";
+    private string websiteUrl = "https://space.bilibili.com/80632239";
 
     void Awake()
     {

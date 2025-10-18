@@ -70,6 +70,6 @@ public class MapBtnGroup : MonoBehaviour
     {
         BattleConfig.Instance.levelId = id; 
         //GlobalConfig.Instance.bossIndex = index;
-        SceneChangeManager.Instance.LoadScene("BattleTest");
+        SceneChangeManager.Instance.LoadScene("Battle");
     }
 }
