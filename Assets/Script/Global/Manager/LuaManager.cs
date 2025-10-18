@@ -115,6 +115,7 @@ public class LuaManager : MonoBehaviour
         {
             SceneChangeManager.Instance.LoadScene("StartScene");
             NotificationManager.Instance.ShowNotification(ex.Message, "Lua脚本错误信息");
+            Debug.LogError(ex.Message);
             return null;
         }
         
