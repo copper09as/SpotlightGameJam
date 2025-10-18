@@ -107,8 +107,17 @@ public class LuaManager : MonoBehaviour
             LogError($"函数未找到: {functionName} in {scriptName}");
             return null;
         }
-
-        return function.Call(args);
+        try
+        {
+         return function.Call(args);
+        }
+        catch (Exception ex)
+        {
+            SceneChangeManager.Instance.LoadScene("StartScene");
+            NotificationManager.Instance.ShowNotification(ex.ToString(), "Lua脚本错误信息");
+            return null;
+        }
+        
     }
 
     /// 卸载 Lua 脚本
@@ -162,7 +171,11 @@ public class LuaManager : MonoBehaviour
     }
     private void LogError(string msg)
     {
-        if (enableLog) Debug.LogError($"[LuaManager] {msg}");
+        if (enableLog)
+        {
+            Debug.LogError($"[LuaManager] {msg}");
+        }
+          
     }
     #endregion
 }

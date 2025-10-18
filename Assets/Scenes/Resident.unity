@@ -1688,7 +1688,7 @@ GameObject:
   - component: {fileID: 1108921706}
   - component: {fileID: 1108921705}
   m_Layer: 5
-  m_Name: SettingUi
+  m_Name: Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2087,12 +2087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497914171791152408c2a03c2fbb2bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0
-  notificationParent: {fileID: 0}
-  notificationPrefab: {fileID: 0}
-  displayTime: 3
-  fadeDuration: 0.5
-  verticalSpacing: 30
+  notificationParent: {fileID: 1108921709}
+  notificationPrefab: {fileID: 1595218378695389543, guid: d2af1a49936ae1b4ca17c0121e1d38bd, type: 3}
 --- !u!1 &1796647722
 GameObject:
   m_ObjectHideFlags: 0
