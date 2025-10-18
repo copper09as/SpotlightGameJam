@@ -14,7 +14,7 @@ public class EntityUIManager : MonoBehaviour
     [SerializeField]private GameObject settingMenu;
     [SerializeField]private GameObject audioMenu;
     [SerializeField]private GameObject cameraMenu;
-
+    [SerializeField] private bool autoInit;
     private bool isSettingMenuActive = false;
     private bool isAudioMenuActive = false;
     private bool isCameraMenuActive = false;
@@ -29,8 +29,16 @@ public class EntityUIManager : MonoBehaviour
         {
             Destroy(Instance);
         }
+        if(autoInit)
+        {
+            Init();
+        }
     }
-   
+    public void Init()
+    {
+        SetAllMenuActive(false);
+        GameController.Controller.Main.Esc.started += OnEscPressed;
+    }
     public void Init(GameObject setting, GameObject audio, GameObject camera)
     {
         settingMenu = setting;

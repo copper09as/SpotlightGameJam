@@ -13,9 +13,12 @@ public class BattleStreaming : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject loadingPanel;
+    [Header("父物体")]
+    [SerializeField] private Transform decorationTransform;
     [SerializeField] private Transform canvaTransform;
     [SerializeField] private Transform worldTransform;
-
+    [Header("场景装饰")]
+    [SerializeField] private List<GameObject> decorations;
 
     //[SerializeField] private EntityUIManager entityUIManager;
     private EntityManager entityManager;
@@ -42,10 +45,10 @@ public class BattleStreaming : MonoBehaviour
         if (loadingPanel != null)
             loadingPanel.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         //加载tileMap
         currentTileMap = Instantiate(tileMapPre);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         GameObject settingMenu = null;
         GameObject audioMenu = null;
         GameObject cameraMenu = null;
@@ -66,7 +69,12 @@ public class BattleStreaming : MonoBehaviour
             }
         }
         EntityUIManager.Instance.Init(settingMenu, audioMenu, cameraMenu);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        foreach (var decorate in decorations)
+        {
+            Instantiate(decorate, decorationTransform);
+        }
+        yield return new WaitForSeconds(0.2f);
         //加载在世界空间中的entity
         foreach (var entityPrefab in entitiesInWorld)
         {
