@@ -1,5 +1,12 @@
 function CloseTheDoor(entity,_, a, b)--Door初始化
-    entity.animator:SetBool("IsOpen",false)
+    print("关门")
+    local entities = entity:GetEntities("OpenTheDoor")
+    local entitiesCount = entities.Count
+    for j = 0, entitiesCount - 1 do
+        local otherEntity = entities[j]
+
+        otherEntity.animator:SetBool("IsOpen",false)
+    end
 end
 
 
