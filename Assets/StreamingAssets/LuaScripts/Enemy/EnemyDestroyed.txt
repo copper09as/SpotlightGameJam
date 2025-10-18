@@ -5,7 +5,7 @@ function EnemyDestroyed(entity,otherEntity)
 	end
     if otherEntity.rb ~= nil then
 		local velocity = otherEntity.rb.velocity
-        velocity.y = 20
+        velocity.y = 10
         otherEntity.rb.velocity = velocity
     end
 end
