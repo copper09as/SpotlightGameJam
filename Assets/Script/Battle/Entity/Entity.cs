@@ -169,10 +169,6 @@ namespace Game.Battle.Entity
             {
                 contactNormal = collision.contacts[0].normal;
             }
-            else
-            {
-                return;
-            }
 
             foreach (var i in scriptData.OnEntityExitPath)
             {
