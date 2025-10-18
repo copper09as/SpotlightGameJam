@@ -56,19 +56,16 @@ MonoBehaviour:
     OnDragPath: []
     DeadPath: []
     OnDisablePath: []
+    OnEntityExitPath: []
   animator: {fileID: 0}
   dataId: 20011
-  sr: {fileID: 0}
   entityId: 10011
   CommonEntityData:
     id: 0
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-  rb: {fileID: 2728264111990999131}
-  text: {fileID: 0}
-  entityManager: {fileID: 0}
-  col: {fileID: 3542374802162811258}
+  entityPairs: []
 --- !u!61 &3542374802162811258
 BoxCollider2D:
   m_ObjectHideFlags: 0
