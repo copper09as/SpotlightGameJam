@@ -42,9 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Character
+  - name: EntityWall
+    uniqueID: 2541419933
+    locked: 0
+  - name: EntityWorld
     uniqueID: 471786967
     locked: 0
-  - name: Ui
+  - name: EntityUi
     uniqueID: 3217864147
     locked: 0

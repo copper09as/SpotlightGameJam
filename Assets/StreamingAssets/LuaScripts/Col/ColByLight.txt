@@ -1,15 +1,22 @@
-function ColByLight(entity)
+function ColByLight(entity, deltaTime)
     local col = entity.col
+    local sr = entity.sr
     local light = CS.LightManager.Instance
     local value = light:GetGlobalLight()
-	local hideValue = 0.1
-    if value < hideValue then
-        if col ~= nil then
-            col.enabled = false
-        end
-    else
-        if col ~= nil then
-            col.enabled = true
-        end
+    local hideValue = 0.1
+    local fadeSpeed = 5 -- 透明度变化速度
+
+    -- 控制碰撞
+    if col ~= nil then
+        col.enabled = value >= hideValue
+    end
+
+    -- 控制透明度
+    if sr ~= nil then
+        local color = sr.color
+        local targetAlpha = value < hideValue and 0 or 1
+        -- Lerp
+        color.a = color.a + (targetAlpha - color.a) * math.min(deltaTime * fadeSpeed, 1)
+        sr.color = color
     end
 end
