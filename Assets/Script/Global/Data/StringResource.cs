@@ -12,6 +12,8 @@ namespace Global.Data
         public const string TimeoutTimerName = "TimeoutTimer";
         public const string LeftClickSfxPath = @"Assets/Audio/Sfx/LeftClick.ogg";
         public const string BattleBgmPath = @"Assets/Audio/Bgm/Battle.ogg";
+        public const string StartBgmPath = @"Assets/Audio/Bgm/StartScene.ogg";
+        public const string MapBgmPath = @"Assets/Audio/Bgm/Map.ogg";
         public static Func<string, string> GetImagePath = (ori) => @"Image/" + ori;
     }
 }

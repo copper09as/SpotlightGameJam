@@ -22,6 +22,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 558756055374e564f95a5d5f070cd390
+    m_Address: Assets/Audio/Bgm/Map.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb3fe8b556bb5c9488c19c1cff468d6f
+    m_Address: Assets/Audio/Bgm/StartScene.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ff711988d18b0ff4b81ea2654b75ca12, type: 2}
   m_SchemaSet:

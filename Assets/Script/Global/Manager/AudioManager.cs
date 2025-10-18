@@ -31,7 +31,6 @@ using UnityEngine.Audio;
             Instance = this;
             DontDestroyOnLoad(gameObject);
             bgmSource.loop = true;
-            PlayBGM(StringResource.BattleBgmPath);
         }
 
         #region “Ù¡øπ‹¿Ì
