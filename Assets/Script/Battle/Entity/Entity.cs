@@ -24,13 +24,13 @@ namespace Game.Battle.Entity
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
         [SerializeField]public Animator animator;
         [SerializeField] private int dataId;//用于读取数据
-        [SerializeField] public SpriteRenderer sr;
+
         public int entityId;//存在实体表里面
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
-        [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
         [SerializeField]public List<EntityStringPair> entityPairs;
+        [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
+        [NonSerialized] public SpriteRenderer sr;
         [NonSerialized] public Rigidbody2D rb;
-        public TextMeshProUGUI text;
         [NonSerialized] public EntityManager entityManager;
         [NonSerialized] public Collider2D col;
         string IObjectByCreate.Name 
