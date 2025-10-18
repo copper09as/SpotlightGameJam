@@ -5,7 +5,6 @@ function PedalDown(entity)--踏板被踩下
 
     print(entity.entityPairs.Count)
     if a<=  data.ScaleX*data.ScaleY then
-		local pairsCount = entity.entityPairs.Count
 		local entities = entity:GetEntities(key)
 		local entitiesCount = entities.Count
 		for j = 0, entitiesCount - 1 do
