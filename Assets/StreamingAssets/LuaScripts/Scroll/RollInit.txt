@@ -2,8 +2,8 @@ function RollInit(entity)
     local data = entity.dataTable or {}
 	local posX = entity.transform.position.x
     -- 限定滚动区域
-    data.limitXMin = posX+606.6313       -- X轴最小位置,X轴偏移-919.7109,-944.4883   -240.54  -157.8237
-    data.limitXMax =  1000           -- X轴最大位置
+    data.limitXMin = 300       -- X轴最小位置,X轴偏移-919.7109,-944.4883   -240.54  -157.8237
+    data.limitXMax =  1700           -- X轴最大位置
     data.limitYMin =  100         -- Y轴最小位置
     data.limitYMax =  800         -- Y轴最大位置
 
