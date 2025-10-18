@@ -1,0 +1,19 @@
+
+function PedalInit(entity)--踏板效果注册
+    local data = entity.CommonEntityData --实体通用数据
+    local a = 1 --体型判定值
+    local key = "OpenTheDoor"
+    --if a<=  data.ScaleX*data.ScaleY then
+    --    --
+    --    for i, entityStringPair in ipairs(entity.entityPairs) do
+    --        if entityStringPair.key == key then
+    --            for j, otherEntity in entityStringPair.entitys do
+    --
+    --            end
+    --        end
+    --    end
+    --
+    --end
+    ----写怎么样触发开门
+
+end

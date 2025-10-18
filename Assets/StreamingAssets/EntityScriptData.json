@@ -115,7 +115,7 @@
 	},
 	{
 		"id": 10012,
-		"InitPath": [ "Physics/SetKinematic", "Item/DoorInit" ],
+		"InitPath": [ "Physics/SetKinematic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],

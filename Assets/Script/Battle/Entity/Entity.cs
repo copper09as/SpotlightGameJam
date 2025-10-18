@@ -16,7 +16,6 @@ namespace Game.Battle.Entity
     {
         [SerializeField] public string key;
         [SerializeField] public List<Entity> entities; // MonoBehaviour
-        
     }
 
 
