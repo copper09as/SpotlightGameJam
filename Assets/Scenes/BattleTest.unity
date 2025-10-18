@@ -509,9 +509,12 @@ MonoBehaviour:
   entitiesInWorld:
   - {fileID: 3082719097192691979, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
   - {fileID: 3084489110151680552, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
+  - {fileID: 2319755858185257764, guid: a41602781b3761a45b27012cb0aa7c57, type: 3}
   loadingPanel: {fileID: 1477780047}
+  decorationTransform: {fileID: 0}
   canvaTransform: {fileID: 1027292107}
   worldTransform: {fileID: 755570640}
+  decorations: []
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0
@@ -871,6 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7a6751b2fc84f4591ac58f68aad570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoInit: 0
 --- !u!1 &1158408660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingMenu: {fileID: 0}
+  audioMenu: {fileID: 0}
+  cameraMenu: {fileID: 0}
+  autoInit: 0
 --- !u!1 &2055242829
 GameObject:
   m_ObjectHideFlags: 0

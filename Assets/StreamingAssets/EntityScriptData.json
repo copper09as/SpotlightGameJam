@@ -131,6 +131,16 @@
 		"OnDragPath":["Mouse/FollowMouseY","Scroll/ScrollLight"],
 		"DeadPath":[],
 		"OnDisablePath":["Ui/CancleStick"]
+	},
+	{
+		"id": 10014,
+		"InitPath": ["Physics/SetStatic"],
+		"UpdatePath": ["Col/ColByLight"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath":[],
+		"DeadPath":[],
+		"OnDisablePath":[]
 	}
 	]
 }

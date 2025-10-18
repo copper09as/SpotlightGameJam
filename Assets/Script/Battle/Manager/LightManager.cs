@@ -14,6 +14,10 @@ public class LightManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    public float GetGlobalLight()
+    {
+        return gloalLight.intensity;
+    }
     private void OnDestroy()
     {
         if(Instance == this)

@@ -1,0 +1,15 @@
+function ColByLight(entity)
+    local col = entity.col
+    local light = CS.LightManager.Instance
+    local value = light:GetGlobalLight()
+	local hideValue = 0.1
+    if value < hideValue then
+        if col ~= nil then
+            col.enabled = false
+        end
+    else
+        if col ~= nil then
+            col.enabled = true
+        end
+    end
+end
