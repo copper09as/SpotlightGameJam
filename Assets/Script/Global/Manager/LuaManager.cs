@@ -114,7 +114,7 @@ public class LuaManager : MonoBehaviour
         catch (Exception ex)
         {
             SceneChangeManager.Instance.LoadScene("StartScene");
-            NotificationManager.Instance.ShowNotification(ex.ToString(), "Lua脚本错误信息");
+            NotificationManager.Instance.ShowNotification(ex.Message, "Lua脚本错误信息");
             return null;
         }
         
