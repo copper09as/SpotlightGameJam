@@ -59,7 +59,7 @@ public class BattleStreaming : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         //加载tileMap
-        currentTileMap = Instantiate(tileMapPre);
+       
         yield return new WaitForSeconds(0.2f);
         GameObject settingMenu = null;
         GameObject audioMenu = null;
@@ -95,12 +95,14 @@ public class BattleStreaming : MonoBehaviour
                 var entity = entityManager.InstantiateEnityty(entityPrefab, worldTransform);
             }
         }
+        currentTileMap = Instantiate(tileMapPre);
         // 加载完成
 
         foreach (var entity in entityManager.GetAllEntities())
         {
             entity.Init(entityManager);
         }
+
        StartCoroutine(FadeOutLoadingPanel(1f));
         isLoading = false;
         Debug.Log("Battle loaded!");

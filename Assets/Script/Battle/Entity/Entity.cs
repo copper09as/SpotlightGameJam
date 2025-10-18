@@ -178,5 +178,6 @@ namespace Game.Battle.Entity
 
         #endregion
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
+    
     }
 }

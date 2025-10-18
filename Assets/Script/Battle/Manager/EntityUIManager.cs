@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,16 @@ public class EntityUIManager : MonoBehaviour
         {
             Init();
         }
+    }
+    public void CallNextFrame(Action action)
+    {
+        StartCoroutine(CallNextFrameCoroutine(action));
+    }
+
+    private IEnumerator CallNextFrameCoroutine(Action action)
+    {
+        yield return null;
+        action?.Invoke();
     }
     public void Init()
     {
