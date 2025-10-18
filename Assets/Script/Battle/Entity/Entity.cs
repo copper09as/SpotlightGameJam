@@ -57,7 +57,7 @@ namespace Game.Battle.Entity
             }
             catch (Exception ex)
             {
-                NotificationManager.Instance.ShowNotification(ex.Message, "实体名字为：" + name + " 当前数据Id为：" + dataId.ToString());
+                NotificationManager.Instance.ShowNotification(ex.Message, "实体名字为：" + name + "Id为：" + dataId.ToString());
                 SceneChangeManager.Instance.LoadScene("StartScene");
                 throw ex;
             }
