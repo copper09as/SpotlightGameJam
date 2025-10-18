@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using Global.Data.Level;
 namespace Global.Data
 {
     public class GameConfig : MonoBehaviour
@@ -11,6 +12,7 @@ namespace Global.Data
         public static GameConfig Instance { get; private set; }
         public CommonEntityDataCollection CommonEDC;
         public EntityScriptDataCollection EntitySDC;
+        public LevelDataCollection LevtlDC;
         private void Awake()
         {
             if (Instance != null)
@@ -42,6 +44,7 @@ namespace Global.Data
             JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "CommonEntityData.json"),CommonEDC);*/
             CommonEDC = LoadConfigData<CommonEntityDataCollection>("CommonEntityData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
+            LevtlDC = LoadConfigData<LevelDataCollection>("LevelData.json");
         }
         private static T LoadConfigData<T>(string relativePath)
         {

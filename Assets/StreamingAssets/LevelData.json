@@ -1,0 +1,26 @@
+{
+	"levelDataList": [{
+		"Id": 30000,
+		"SceneName":"世界的起点",
+		"SpritePath": "",
+		"ScenePath": "Battle"
+	},
+	{
+		"Id": 30001,
+		"SceneName":"永恒的温柔",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30002,
+		"SceneName":"刻着过去的钟表",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30003,
+		"SceneName":"白垩的俄罗斯人偶",
+		"SpritePath": "",
+		"ScenePath": ""
+	}]
+}

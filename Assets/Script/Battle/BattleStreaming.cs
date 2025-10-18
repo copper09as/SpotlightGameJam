@@ -1,16 +1,108 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Battle.Entity;
 using UnityEngine;
 
 public class BattleStreaming : MonoBehaviour
 {
+    [Header("Prefab References")]
+    [SerializeField] private GameObject tileMapPre;
+    [Header("Entities")]
+    [SerializeField] private List<GameObject> entitiesInCanvas = new List<GameObject>();
+    [SerializeField] private List<GameObject> entitiesInWorld = new List<GameObject>();
+
+    [Header("UI")]
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private Transform canvaTransform;
+    [SerializeField] private Transform worldTransform;
+
+
+    //[SerializeField] private EntityUIManager entityUIManager;
+    private EntityManager entityManager;
+
+    private GameObject currentTileMap;
+    private bool isLoading = false;
+
     void Start()
     {
-        
+        entityManager = new EntityManager();
+        StartCoroutine(LoadBattle());
     }
 
-    void Update()
+
+
+    /// <summary>
+    /// 异步加载战斗场景
+    /// </summary>
+    public IEnumerator LoadBattle()
     {
-        
+        if (isLoading) yield break;
+        isLoading = true;
+
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        //加载tileMap
+        currentTileMap = Instantiate(tileMapPre);
+        yield return new WaitForSeconds(0.5f);
+        GameObject settingMenu = null;
+        GameObject audioMenu = null;
+        GameObject cameraMenu = null;
+        foreach (var entityPrefabParents in entitiesInCanvas)
+        {
+            var parentObj = Instantiate(entityPrefabParents, canvaTransform);
+            var objName = parentObj.name;
+
+            if (objName.Contains("SettingMenu"))
+                settingMenu = parentObj;
+            else if (objName.Contains("AudioMenu"))
+                audioMenu = parentObj;
+            else if (objName.Contains("CameraMenu"))
+                cameraMenu = parentObj;
+            foreach (var entity in parentObj.GetComponentsInChildren<Entity>())
+            {
+                entityManager.Register(entity);
+            }
+        }
+        EntityUIManager.Instance.Init(settingMenu, audioMenu, cameraMenu);
+        yield return new WaitForSeconds(0.5f);
+        //加载在世界空间中的entity
+        foreach (var entityPrefab in entitiesInWorld)
+        {
+            if (entityPrefab != null)
+            {
+                var entity = entityManager.InstantiateEnityty(entityPrefab, worldTransform);
+            }
+        }
+        // 加载完成
+        if (loadingPanel != null)
+            StartCoroutine(FadeOutLoadingPanel(1f));
+        foreach (var entity in entityManager.GetAllEntities())
+        {
+            entity.Init(entityManager);
+        }
+        isLoading = false;
+        Debug.Log("Battle loaded!");
+    }
+    private IEnumerator FadeOutLoadingPanel(float duration = 1f)
+    {
+        if (loadingPanel == null) yield break;
+
+        var canvasGroup = loadingPanel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null) yield break;
+
+        float startAlpha = canvasGroup.alpha;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, time / duration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0f;
+        loadingPanel.SetActive(false); // 淡出完成后再隐藏
     }
 }

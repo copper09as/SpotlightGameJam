@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8349003749152552150}
   - component: {fileID: 9024345754349921077}
   m_Layer: 7
-  m_Name: Capsule
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3084489110151680552}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

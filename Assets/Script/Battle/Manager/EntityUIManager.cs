@@ -11,9 +11,9 @@ public class EntityUIManager : MonoBehaviour
     public static EntityUIManager Instance;
 
     [Header("≤Àµ•∂‘œÛ")]
-    [SerializeField] private GameObject settingMenu;
-    [SerializeField] private GameObject audioMenu;
-    [SerializeField] private GameObject cameraMenu;
+    [SerializeField]private GameObject settingMenu;
+    [SerializeField]private GameObject audioMenu;
+    [SerializeField]private GameObject cameraMenu;
 
     private bool isSettingMenuActive = false;
     private bool isAudioMenuActive = false;
@@ -30,16 +30,23 @@ public class EntityUIManager : MonoBehaviour
             Destroy(Instance);
         }
     }
-
-    private void Start()
+   
+    public void Init(GameObject setting, GameObject audio, GameObject camera)
     {
+        settingMenu = setting;
+        audioMenu = audio;
+        cameraMenu = camera;
+        SetAllMenuActive(false);
         GameController.Controller.Main.Esc.started += OnEscPressed;
 
-        settingMenu.SetActive(false);
-        audioMenu.SetActive(false);
-        cameraMenu.SetActive(false);
     }
 
+    private void SetAllMenuActive(bool active)
+    {
+        if (settingMenu != null) settingMenu.SetActive(active);
+        if (audioMenu != null) audioMenu.SetActive(active);
+        if (cameraMenu != null) cameraMenu.SetActive(active);
+    }
     private void OnDestroy()
     {
         Instance = null;

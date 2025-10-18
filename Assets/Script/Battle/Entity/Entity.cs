@@ -26,15 +26,16 @@ namespace Game.Battle.Entity
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-        private void Awake()
+        /*private void Awake()
         {
             Init(dataId);
-        }
+        }*/
 
         #region 脚本方法
-        public void Init(int id)//,EntityManager entityManager)
+        public void Init(EntityManager entityManager)//,EntityManager entityManager)
         {
-
+            int id = dataId;
+            this.entityManager = entityManager;
             if(rb == null) rb = GetComponent<Rigidbody2D>();
             if(col==null) col = GetComponent<Collider2D>();
             if(sr==null)sr = GetComponent<SpriteRenderer>();
