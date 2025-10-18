@@ -1,5 +1,36 @@
-local autio = CS.AudioManager.Instance
+local audio = CS.AudioManager.Instance
+local minGravity = 1
+local maxGravity = 19
+local normalGravity = 10  
+
+local minTimeScale = 1.5
+local maxTimeScale = 0.5 
+local normalTimeScale = 1
+
+local lerpSpeed = 5
+
 function ScrollBgm(entity)
-	local data = entity.dataTable
-	autio:SetBGMVolume(data.scrollProgress)
+
+    local data = entity.dataTable
+    local progress = data.scrollProgress
+	if progress == nil then
+		return
+	end
+    audio:SetBGMVolume(progress)
+
+    if data.hitCharacter then
+        local newGravity = minGravity + (maxGravity - minGravity) * progress
+        data.hitCharacter.dataTable.gravity = newGravity
+		print(data.hitCharacter.dataTable.gravity)
+    end
+
+    local targetTimeScale = maxTimeScale - (maxTimeScale - minTimeScale) * progress
+    local currentTimeScale = CS.UnityEngine.Time.timeScale
+
+    local smoothTimeScale = CS.UnityEngine.Mathf.Lerp(
+        currentTimeScale,
+        targetTimeScale,
+        lerpSpeed * CS.UnityEngine.Time.unscaledDeltaTime
+    )
+    CS.UnityEngine.Time.timeScale = smoothTimeScale
 end

@@ -32,6 +32,7 @@ public class BattleStreaming : MonoBehaviour
     {
         entityManager = new EntityManager();
         AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
+        Time.timeScale = 1f;
         StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
     }
 
