@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Global.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +14,14 @@ public class StartUiManager : MonoBehaviour
 
     void Awake()
     {
+     
         // 给按钮绑定方法
         if (startButton != null)
             startButton.onClick.AddListener(OnStartButtonClicked);
 
         if (websiteButton != null)
             websiteButton.onClick.AddListener(OnWebsiteButtonClicked);
+        AudioManager.Instance.PlayBGM(StringResource.StartBgmPath);
     }
 
     private void OnStartButtonClicked()
