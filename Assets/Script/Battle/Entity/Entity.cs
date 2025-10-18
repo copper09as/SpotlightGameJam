@@ -15,11 +15,8 @@ namespace Game.Battle.Entity
     public class EntityStringPair
     {
         [SerializeField] public string key;
-        [SerializeField] public List<Entity> entities; // MonoBehaviour
-        
+        [SerializeField] public List<Entity> entities;
     }
-
-
     public class Entity : MonoBehaviour,IObjectByCreate
     {
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
