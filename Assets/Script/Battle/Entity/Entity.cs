@@ -8,8 +8,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using XLua;
+
 namespace Game.Battle.Entity
 {
+    [Serializable]
+    public class EntityStringPair
+    {
+        [SerializeField] public string key;
+        [SerializeField] public List<Entity> entities; // MonoBehaviour
+        
+    }
+
+
     public class Entity : MonoBehaviour,IObjectByCreate
     {
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
@@ -19,17 +29,14 @@ namespace Game.Battle.Entity
         public int entityId;//存在实体表里面
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
-        public Rigidbody2D rb;
+        [SerializeField]public List<EntityStringPair> entityPairs;
+        [NonSerialized] public Rigidbody2D rb;
         public TextMeshProUGUI text;
-        public EntityManager entityManager;
-        public Collider2D col;
+        [NonSerialized] public EntityManager entityManager;
+        [NonSerialized] public Collider2D col;
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-        /*private void Awake()
-        {
-            Init(dataId);
-        }*/
 
         #region 脚本方法
         public void Init(EntityManager entityManager)//,EntityManager entityManager)
@@ -39,6 +46,8 @@ namespace Game.Battle.Entity
             if(rb == null) rb = GetComponent<Rigidbody2D>();
             if(col==null) col = GetComponent<Collider2D>();
             if(sr==null)sr = GetComponent<SpriteRenderer>();
+
+             
             dataTable = LuaManager.Instance._luaEnv.NewTable();
             CommonEntityData = 
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
