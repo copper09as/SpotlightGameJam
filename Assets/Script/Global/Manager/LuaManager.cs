@@ -62,7 +62,7 @@ public class LuaManager : MonoBehaviour
             return textAsset.bytes;
         }
 
-        Debug.LogError($"Lua 文件在 StreamingAssets 和 Resources 中都不存在: {filePath}");
+        //Debug.LogError($"Lua 文件在 StreamingAssets 和 Resources 中都不存在: {filePath}");
         return null;
     }
 

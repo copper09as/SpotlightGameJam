@@ -15,8 +15,10 @@ namespace Game.Battle.Entity
     public class EntityStringPair
     {
         [SerializeField] public string key;
-        [SerializeField] public List<Entity> entities;
+        [SerializeField] public List<Entity> entities; // MonoBehaviour
     }
+
+
     public class Entity : MonoBehaviour,IObjectByCreate
     {
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
@@ -129,31 +131,10 @@ namespace Game.Battle.Entity
 
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.y);
             }
         }
-        private void OnCollisionExit(Collision collision)
-        {
-            var otherEntity = collision.gameObject.GetComponent<Entity>();
-            if (otherEntity == null) return;
 
-            Vector2 contactNormal = Vector2.zero;
-
-            if (collision.contacts.Length > 0)
-            {
-                contactNormal = collision.contacts[0].normal;
-            }
-            else
-            {
-                return;
-            }
-
-
-            foreach (var i in scriptData.OnEntityExitPath)
-            {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
-            }
-        }
         public void OnDrag()
         {
             foreach (var i in scriptData.OnDragPath)

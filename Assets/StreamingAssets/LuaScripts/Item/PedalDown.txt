@@ -1,10 +1,18 @@
-local CE  =  CS.EventCenter.Instance
+
 function PedalDown(entity)--踏板被踩下
     local data = entity.CommonEntityData --实体通用数据
     local a = 1 --体型判定值
-    local b = entity.name.."OpenTheDoor"
+    --local b = "OpenTheDoor"
     if a<=  data.ScaleX*data.ScaleY then
-            CE:SafeTrigger(b)
+        --对此列表的所有对象进行对应效果触发
+        for i, entityStringPair in ipairs(entity.entityPairs) do
+            if entityStringPair.key == key then
+                for j, otherEntity in entityStringPair.entitys do
+                    OpenTheDoor(otherEntity)
+                end
+            end
+        end
+
     end
     --写怎么样触发开门
 
