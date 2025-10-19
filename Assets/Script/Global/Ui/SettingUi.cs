@@ -28,7 +28,7 @@ public class SettingUi : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
+        EventBus.Subscribe<Global.Events.OpenSettingUi>(OpenUiEve);
         // 初始化面板状态
         settingUi.transform.localPosition = hiddenPos;
         if (panelCanvasGroup != null)
@@ -37,7 +37,6 @@ public class SettingUi : MonoBehaviour
             panelCanvasGroup.interactable = false;
             panelCanvasGroup.blocksRaycasts = false;
         }
-
         // 绑定按钮事件
         bgmSlider.onValueChanged.AddListener(BgmSoundChange);
         seSlider.onValueChanged.AddListener(SeSoundChange);
@@ -47,7 +46,19 @@ public class SettingUi : MonoBehaviour
         toStartSceneBtn.onClick.AddListener(ToStartScene);
         mapBtn.onClick.AddListener(ToMapScene);
     }
-
+    private void OpenUiEve(Global.Events.OpenSettingUi eve)
+    {
+        ShowSettingUi();
+    }
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Battle")
+        {
+            openSettingUi.gameObject.SetActive(false);
+        }
+        else
+            openSettingUi.gameObject.SetActive(true);
+    }
     private void ToMapScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -90,9 +101,8 @@ public class SettingUi : MonoBehaviour
         slideCoroutine = StartCoroutine(SlideAndFade(settingUi.transform, hiddenPos, shownPos, 0f, 1f, slideDuration));
         Time.timeScale = 0f;
 
-        EventBus.Publish(new Global.Events.OpenSettingUi());
+        EventBus.Publish(new Global.Events.OnOpenSettingUi());
     }
-
     private void CloseSettingPanel()
     {
         if (slideCoroutine != null)
@@ -101,7 +111,7 @@ public class SettingUi : MonoBehaviour
         slideCoroutine = StartCoroutine(SlideAndFade(settingUi.transform, shownPos, hiddenPos, 1f, 0f, slideDuration, true));
         Time.timeScale = currentScale;
 
-        EventBus.Publish(new Global.Events.CloseSettingUi());
+        EventBus.Publish(new Global.Events.OnCloseSettingUi());
     }
 
     private IEnumerator SlideAndFade(Transform panel, Vector3 startPos, Vector3 endPos, float startAlpha, float endAlpha, float duration, bool disableAfter = false)

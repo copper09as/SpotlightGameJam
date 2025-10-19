@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// 控制 UI 激活或失活的流程（三级菜单版本）
@@ -15,7 +16,9 @@ public class EntityUIManager : MonoBehaviour
     [SerializeField]private GameObject settingMenu;
     [SerializeField]private GameObject audioMenu;
     [SerializeField]private GameObject cameraMenu;
+    [SerializeField] private Button reallSettingUi;
     [SerializeField] private bool autoInit;
+    [SerializeField] private Button openMenuBtn;
     private bool isSettingMenuActive = false;
     private bool isAudioMenuActive = false;
     private bool isCameraMenuActive = false;
@@ -25,6 +28,7 @@ public class EntityUIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            
         }
         else
         {
@@ -37,6 +41,7 @@ public class EntityUIManager : MonoBehaviour
     }
     public void CallNextFrame(Action action)
     {
+       
         StartCoroutine(CallNextFrameCoroutine(action));
     }
 
@@ -49,6 +54,8 @@ public class EntityUIManager : MonoBehaviour
     {
         SetAllMenuActive(false);
         GameController.Controller.Main.Esc.started += OnEscPressed;
+        openMenuBtn.onClick.AddListener(ShowSettingMenu);
+        reallSettingUi.onClick.AddListener(OpenReallyUi);
     }
     public void Init(GameObject setting, GameObject audio, GameObject camera)
     {
@@ -56,10 +63,12 @@ public class EntityUIManager : MonoBehaviour
         audioMenu = audio;
         cameraMenu = camera;
         SetAllMenuActive(false);
-        GameController.Controller.Main.Esc.started += OnEscPressed;
-
+        Init();
     }
-
+    private void OpenReallyUi()
+    {
+        EventBus.Publish(new Global.Events.OpenSettingUi());
+    }
     private void SetAllMenuActive(bool active)
     {
         if (settingMenu != null) settingMenu.SetActive(active);
@@ -83,6 +92,7 @@ public class EntityUIManager : MonoBehaviour
     {
         if (!isSettingMenuActive && !isAudioMenuActive && !isCameraMenuActive)
         {
+
             ShowSettingMenu();
         }
         else if (isAudioMenuActive || isCameraMenuActive)
@@ -93,6 +103,7 @@ public class EntityUIManager : MonoBehaviour
         }
         else if (isSettingMenuActive)
         {
+            reallSettingUi.gameObject.SetActive(false);
             HideAllMenus();
         }
     }
@@ -122,6 +133,9 @@ public class EntityUIManager : MonoBehaviour
 
     private void ShowSettingMenu()
     {
+
+        reallSettingUi.gameObject.SetActive(true);
+        openMenuBtn.gameObject.SetActive(false);
         settingMenu.SetActive(true);
         isSettingMenuActive = true;
     }
@@ -161,5 +175,6 @@ public class EntityUIManager : MonoBehaviour
         HideSettingMenu();
         HideAudioMenu();
         HideCameraMenu();
+        openMenuBtn.gameObject.SetActive(true);
     }
 }

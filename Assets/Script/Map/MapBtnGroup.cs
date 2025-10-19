@@ -22,9 +22,6 @@ public class MapBtnGroup : MonoBehaviour
     private void Awake()
     {
         AudioManager.Instance.PlayBGM(StringResource.MapBgmPath);
-
-
-
         StartCoroutine(LoadMapButtonsCoroutine());
     }
 
