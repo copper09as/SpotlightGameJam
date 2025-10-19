@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3542374802162811258}
   - component: {fileID: 1468778320567918449}
   - component: {fileID: 2728264111990999131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pedal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,12 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-  entityPairs: []
+  entityPairs:
+  - key: OpenTheDoor
+    entities:
+    - {fileID: 0}
+  sr: {fileID: 0}
+  entityStop: 0
 --- !u!61 &3542374802162811258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98,18 +103,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.048603773, y: -0.40966332}
+  m_Offset: {x: -0.002086997, y: -0.015360475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.77, y: 4.19}
-    newSize: {x: 2.71, y: 1.52}
+    oldSize: {x: 3.34, y: 0.49}
+    newSize: {x: 3.34, y: 0.49}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1246943, y: 1.2916248}
+  m_Size: {x: 3.217728, y: 0.47677988}
   m_EdgeRadius: 0
 --- !u!212 &1468778320567918449
 SpriteRenderer:
@@ -152,12 +157,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3da262a3d9065ac4e988639f46554793, type: 3}
+  m_Sprite: {fileID: -1484435737, guid: d92def3ca88d9ff45b3a6695f13f5579, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.71, y: 1.52}
+  m_Size: {x: 3.34, y: 0.49}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
