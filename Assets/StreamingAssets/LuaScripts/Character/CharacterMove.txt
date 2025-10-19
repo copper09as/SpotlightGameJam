@@ -28,22 +28,22 @@ function CharacterMove(entity)
     )
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
-	
+        -- 翻转方向，根据 MoveX
+    if x > 0.1 then
+        entity.sr.flipX = false  -- 右移
+    elseif x < -0.1 then
+        entity.sr.flipX = true   -- 左移
+	end
     -- ====== 动画控制 ======
     if entity.animator ~= nil and groundCheck then
 	
         local threshold = 0.1
 
-        -- 翻转方向，根据 MoveX
-        if x > threshold then
-            entity.sr.flipX = false  -- 右移
-        elseif x < -threshold then
-            entity.sr.flipX = true   -- 左移
-        end
+
         -- 动画切换，根据速度播放 Walk 或 Idle
-	if math.abs(rb.velocity.x) > threshold and not data.jumpUsed then
+	if math.abs(rb.velocity.x) > threshold and not data.jumpUsed and groundCheck then
 		entity.animator:Play("Walk")
-	elseif math.abs(rb.velocity.x) <= threshold then
+	elseif math.abs(rb.velocity.x) <= threshold and not data.jumpUsed and groundCheck then
 		entity.animator:Play("Idle")
 	end
 

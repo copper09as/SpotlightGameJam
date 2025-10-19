@@ -9,6 +9,7 @@ public class StartUiManager : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button startButton;
     [SerializeField] private Button websiteButton;
+    [SerializeField] private Button OpenMenusButton;
 
     private string websiteUrl = "https://space.bilibili.com/80632239";
 
@@ -23,6 +24,11 @@ public class StartUiManager : MonoBehaviour
 
         if (websiteButton != null)
             websiteButton.onClick.AddListener(OnWebsiteButtonClicked);
+        OpenMenusButton.onClick.AddListener(OpenMenu);
+    }
+    private void OpenMenu()
+    {
+        EventBus.Publish(new Global.Events.OpenSettingUi());
     }
     private void Start()
     {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Global.Events
 {
+    public struct OnOpenSettingUi { }
+    public struct OnCloseSettingUi { }
     public struct OpenSettingUi { }
-    public struct CloseSettingUi { }
 }

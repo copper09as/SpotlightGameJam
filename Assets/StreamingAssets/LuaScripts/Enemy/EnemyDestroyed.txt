@@ -1,9 +1,27 @@
 function EnemyDestroyed(entity,otherEntity)
-    CS.UnityEngine.GameObject.Destroy(entity.gameObject)
-	if otherEntity == nil then
-		return
-	end
-    if otherEntity.rb ~= nil then
+    
+    entity.entityStop = true
+
+    if entity.rb then
+        entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
+        entity.rb.angularVelocity = 0
+    end
+
+    if entity.animator then
+        entity.animator:Play("Dead")
+    end
+
+    if entity.sr then
+        local color = entity.sr.color
+        color.a = 0.5  
+        entity.sr.color = color
+    end
+
+    if entity.col then
+        entity.col.enabled = false
+    end
+	CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
+    if otherEntity ~= nil and otherEntity.rb ~= nil then
 		local velocity = otherEntity.rb.velocity
         velocity.y = 10
         otherEntity.rb.velocity = velocity

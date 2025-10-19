@@ -228,7 +228,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c9e51f7-f4b1-4d88-a45a-67bd71196521"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

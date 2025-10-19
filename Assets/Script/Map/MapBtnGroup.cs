@@ -15,6 +15,7 @@ public class MapBtnGroup : MonoBehaviour
     [SerializeField] private float sideScale = 1.0f;   // 旁边按钮缩小倍数
     [SerializeField] private float moveDuration = 0.25f; // 滑动动画时间
     [SerializeField] private CanvasGroup panelCanvasGroup;
+    [SerializeField] private Button returnStartBtn;
     int unlockedIndex = 3;
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
     private int currentIndex = 0;
@@ -22,12 +23,13 @@ public class MapBtnGroup : MonoBehaviour
     private void Awake()
     {
         AudioManager.Instance.PlayBGM(StringResource.MapBgmPath);
-
-
-
         StartCoroutine(LoadMapButtonsCoroutine());
+        returnStartBtn.onClick.AddListener(ReturnStartScene);
     }
-
+    private void ReturnStartScene()
+    {
+        SceneChangeManager.Instance.LoadScene("StartScene");
+    }
     private IEnumerator LoadMapButtonsCoroutine()
     {
        

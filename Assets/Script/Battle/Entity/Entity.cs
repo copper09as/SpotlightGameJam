@@ -40,8 +40,8 @@ namespace Game.Battle.Entity
             set => value = "Entity"; }
         private void Start()
         {
-            EventBus.Subscribe<Global.Events.OpenSettingUi>(Stop);
-            EventBus.Subscribe<Global.Events.CloseSettingUi>(CancelStop);
+            EventBus.Subscribe<Global.Events.OnOpenSettingUi>(Stop);
+            EventBus.Subscribe<Global.Events.OnCloseSettingUi>(CancelStop);
         }
         #region 脚本方法
         public void Init(EntityManager entityManager)//,EntityManager entityManager)
@@ -110,8 +110,8 @@ namespace Game.Battle.Entity
                 dataTable.Dispose();
                 dataTable = null;
             }
-            EventBus.Unsubscribe<Global.Events.OpenSettingUi>(Stop);
-            EventBus.Unsubscribe<Global.Events.CloseSettingUi>(CancelStop);
+            EventBus.Unsubscribe<Global.Events.OnOpenSettingUi>(Stop);
+            EventBus.Unsubscribe<Global.Events.OnCloseSettingUi>(CancelStop);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -223,7 +223,7 @@ namespace Game.Battle.Entity
 
         #endregion
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
-        private void Stop(Global.Events.OpenSettingUi eve)=>isStop = true;
-        private void CancelStop(Global.Events.CloseSettingUi eve) =>isStop=false;
+        private void Stop(Global.Events.OnOpenSettingUi eve)=>isStop = true;
+        private void CancelStop(Global.Events.OnCloseSettingUi eve) =>isStop=false;
     }
 }
