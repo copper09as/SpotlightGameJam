@@ -43,6 +43,8 @@ public class CursorManager : MonoBehaviour
     }
     private void TryClick(Vector2 screenPos)
     {
+        if (Camera.main == null)
+            return;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
         Vector3 mousePos = Input.mousePosition;

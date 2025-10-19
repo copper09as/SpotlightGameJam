@@ -19,6 +19,7 @@ public class EntityUIManager : MonoBehaviour
     [SerializeField] private Button reallSettingUi;
     [SerializeField] private bool autoInit;
     [SerializeField] private Button openMenuBtn;
+
     private bool isSettingMenuActive = false;
     private bool isAudioMenuActive = false;
     private bool isCameraMenuActive = false;

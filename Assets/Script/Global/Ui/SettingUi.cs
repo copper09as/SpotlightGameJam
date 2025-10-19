@@ -12,9 +12,9 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Button closePanelBtn;
     [SerializeField] private Button exitGameBtn;
     [SerializeField] private GameObject settingUi;
-    [SerializeField] private CanvasGroup panelCanvasGroup; // 用于淡入淡出
+    [SerializeField] private CanvasGroup panelCanvasGroup;
     [SerializeField] private Button toStartSceneBtn;
-    [SerializeField] private Button openSettingUi;
+    //[SerializeField] private Button openSettingUi;
     [SerializeField] private Button mapBtn;
 
     [Header("Animation Settings")]
@@ -40,7 +40,7 @@ public class SettingUi : MonoBehaviour
         // 绑定按钮事件
         bgmSlider.onValueChanged.AddListener(BgmSoundChange);
         seSlider.onValueChanged.AddListener(SeSoundChange);
-        openSettingUi.onClick.AddListener(ShowSettingUi);
+       // openSettingUi.onClick.AddListener(ShowSettingUi);
         closePanelBtn.onClick.AddListener(CloseSettingPanel);
         exitGameBtn.onClick.AddListener(ExitGame);
         toStartSceneBtn.onClick.AddListener(ToStartScene);
@@ -50,15 +50,7 @@ public class SettingUi : MonoBehaviour
     {
         ShowSettingUi();
     }
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name == "Battle")
-        {
-            openSettingUi.gameObject.SetActive(false);
-        }
-        else
-            openSettingUi.gameObject.SetActive(true);
-    }
+
     private void ToMapScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
