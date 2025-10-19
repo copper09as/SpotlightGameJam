@@ -8,4 +8,6 @@ function KeyInit(entity)
     data.lastPosition = nil --存放角色上一帧的位置
     data.canFollow = false
     data.detectionRange = 1 --检测门位置的半径
+    data.followDuration = 0.8
+    data.tweener = nil
 end

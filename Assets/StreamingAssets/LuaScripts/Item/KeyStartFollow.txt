@@ -1,5 +1,5 @@
 --碰撞到角色时候触发钥匙跟随角色,当角色与钥匙发生碰撞的时候就进行环绕
-local Vector3 = CS.UnityEngine.Vector3
+--local Vector3 = CS.UnityEngine.Vector3
 function KeyStartFollow(entity,character)
     print(character.entityId)
     if character.entityId ~= 10000 then
@@ -11,8 +11,8 @@ function KeyStartFollow(entity,character)
     data.player = character--存放要跟随的角色实体
     data.lastPosition = character.transform.position --存放角色上一帧的位置
 
-    
     data.canFollow = true
     entity.col.enabled = false
-
+    data.tweener = entity.transform:DOMove(character.transform.position,
+            data.followDuration):SetAutoKill(false)
 end

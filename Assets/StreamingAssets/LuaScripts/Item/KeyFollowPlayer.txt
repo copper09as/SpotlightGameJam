@@ -8,12 +8,17 @@ function KeyFollowPlayer(entity)
     end
 
     --local key = "OpenTheDoor"
-    local changeVector = data.player.transform.position - data.lastPosition
+    --local changeVector = data.player.transform.position - data.lastPosition
+    --
+    --entity.transform.position = entity.transform.position + changeVector
+    --
 
-    entity.transform.position = entity.transform.position + changeVector
 
+    if data.player.transform.position ~= data.lastPosition then
+        data.tweener:ChangeEndValue(data.player.transform.position,true):Restart()
+
+    end
     data.lastPosition = data.player.transform.position
-
     local a = Vector2(entity.transform.position.x, entity.transform.position.y)
     local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
     if success then
