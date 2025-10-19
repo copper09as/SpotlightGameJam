@@ -4,6 +4,7 @@ using Game.Battle.Entity;
 using Global.Data;
 using Global.Data.BattleConfig;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleStreaming : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class BattleStreaming : MonoBehaviour
         if (loadingPanel != null)
         {
             loadingPanel.SetActive(true);
-            var text = loadingPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            var text = loadingPanel.GetComponentInChildren<Text>();
             if (text != null)
             {
                 text.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).SceneName;

@@ -30,11 +30,13 @@ public class StartUiManager : MonoBehaviour
     }
     private void OnStartButtonClicked()
     {
+        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         SceneChangeManager.Instance.LoadScene("Map");
     }
 
     private void OnWebsiteButtonClicked()
     {
+        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         if (!string.IsNullOrEmpty(websiteUrl))
         {
             Application.OpenURL(websiteUrl);

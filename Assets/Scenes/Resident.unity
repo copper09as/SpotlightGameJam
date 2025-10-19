@@ -301,6 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207079904}
+  - component: {fileID: 207079905}
   m_Layer: 0
   m_Name: SettingUi
   m_TagString: Untagged
@@ -317,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 207079903}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -233.07289, y: 105.08105, z: -4.225957}
+  m_LocalPosition: {x: -233.07289, y: 1454, z: 0}
   m_LocalScale: {x: 2.591093, y: 2.591093, z: 2.591093}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -331,6 +332,18 @@ Transform:
   - {fileID: 247202537}
   m_Father: {fileID: 1108921709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &207079905
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207079903}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &247202536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1908,10 +1921,13 @@ MonoBehaviour:
   closePanelBtn: {fileID: 247202538}
   exitGameBtn: {fileID: 1682428998}
   settingUi: {fileID: 207079903}
+  panelCanvasGroup: {fileID: 207079905}
   toStartSceneBtn: {fileID: 703321568}
   openSettingUi: {fileID: 688984081}
   mapBtn: {fileID: 633906829}
-  currentScale: 0
+  hiddenPos: {x: -233.0729, y: 1454, z: 0}
+  shownPos: {x: -233.0729, y: 105, z: 0}
+  slideDuration: 0.3
 --- !u!114 &1108921706
 MonoBehaviour:
   m_ObjectHideFlags: 0

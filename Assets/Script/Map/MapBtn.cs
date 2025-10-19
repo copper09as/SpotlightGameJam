@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Button btn;
-    [SerializeField] private TextMeshProUGUI nameTxt;
+    [SerializeField] private Text nameTxt;
     [SerializeField] private GameObject frame;
     public void Init(bool isLock,string sceneName,UnityAction action)
     {

@@ -228,6 +228,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3618759915288087748, guid: db4e8189e060bf24ba8bc8060e6c6e8a, type: 3}
   m_PrefabInstance: {fileID: 17154943}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &17154945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2435984876462384712, guid: db4e8189e060bf24ba8bc8060e6c6e8a, type: 3}
+  m_PrefabInstance: {fileID: 17154943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &42665633
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +461,11 @@ PrefabInstance:
 --- !u!224 &59891814 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+  m_PrefabInstance: {fileID: 59891813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &59891815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
   m_PrefabInstance: {fileID: 59891813}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &79841814
@@ -10413,9 +10423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 0}
-  audioMenu: {fileID: 0}
-  cameraMenu: {fileID: 0}
+  settingMenu: {fileID: 59891815}
+  audioMenu: {fileID: 2011406864}
+  cameraMenu: {fileID: 17154945}
   autoInit: 1
 --- !u!1001 &1848059039
 PrefabInstance:
@@ -10743,6 +10753,11 @@ PrefabInstance:
 --- !u!224 &2011406863 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
+  m_PrefabInstance: {fileID: 2011406862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2011406864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
   m_PrefabInstance: {fileID: 2011406862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055242829
