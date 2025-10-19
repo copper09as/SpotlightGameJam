@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private GameObject settingUi;
     [SerializeField] private Button toStartSceneBtn;
     [SerializeField] private Button openSettingUi;
-
+    [SerializeField] private Button mapBtn;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -24,7 +25,17 @@ public class SettingUi : MonoBehaviour
         closePanelBtn.onClick.AddListener(CloseSettingPanel);
         exitGameBtn.onClick.AddListener(ExitGame);
         toStartSceneBtn.onClick.AddListener(ToStartScene);
+        mapBtn.onClick.AddListener(ToMapScene);
         settingUi.SetActive(false); // ³õÊ¼Òþ²Ø
+    }
+
+    private void ToMapScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "Map")
+            return;
+        SceneChangeManager.Instance.LoadScene("Map");
+        CloseSettingPanel();
     }
 
     private void ShowSettingUi()

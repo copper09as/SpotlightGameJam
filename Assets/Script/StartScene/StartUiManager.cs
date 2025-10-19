@@ -14,6 +14,9 @@ public class StartUiManager : MonoBehaviour
 
     void Awake()
     {
+        // 输出显卡名称
+        Debug.Log("当前显卡: " + SystemInfo.graphicsDeviceName);
+
         // 给按钮绑定方法
         if (startButton != null)
             startButton.onClick.AddListener(OnStartButtonClicked);

@@ -94,7 +94,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""LeftClick"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""dbbf3d88-3ced-4c2f-b9af-68033af3cd6c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -136,6 +136,15 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""e1a73429-9d36-4f2a-9056-d77e9946e62f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -226,6 +235,17 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c4e3b88-86f8-44c1-a14f-c1d29636d087"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +259,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
         m_Main_Space = m_Main.FindAction("Space", throwIfNotFound: true);
         m_Main_Esc = m_Main.FindAction("Esc", throwIfNotFound: true);
+        m_Main_Scroll = m_Main.FindAction("Scroll", throwIfNotFound: true);
     }
 
     ~@OriginGame()
@@ -324,6 +345,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Move;
     private readonly InputAction m_Main_Space;
     private readonly InputAction m_Main_Esc;
+    private readonly InputAction m_Main_Scroll;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -355,6 +377,10 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Esc".
         /// </summary>
         public InputAction @Esc => m_Wrapper.m_Main_Esc;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/Scroll".
+        /// </summary>
+        public InputAction @Scroll => m_Wrapper.m_Main_Scroll;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -396,6 +422,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
         }
 
         /// <summary>
@@ -422,6 +451,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
         }
 
         /// <summary>
@@ -497,5 +529,12 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEsc(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

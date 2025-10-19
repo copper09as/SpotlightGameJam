@@ -19,6 +19,7 @@ public static class GameController
         Controller.Main.MousePos.Enable();
         Controller.Main.Space.Enable();
         Controller.Main.Esc.Enable();
+        Controller.Main.Scroll.Enable();
         // 注册输入事件
         Controller.Main.Space.performed += ctx => OnSpacePressed();
         Controller.Main.Space.canceled += ctx => OnSpaceReleased();
@@ -62,6 +63,12 @@ public static class GameController
             // 如果空格未按下，返回0或者上一次按压时间
             return 0f;
         }
+    }
+    public static float GetScrollDelta()
+    {
+        // 获取滚轮的 Vector2 值
+        Vector2 scroll = Controller.Main.Scroll.ReadValue<Vector2>();
+        return scroll.y;
     }
 
 }
