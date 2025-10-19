@@ -48,4 +48,14 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
             SceneManager.SetActiveScene(newLoadedScene);
         isLoading = false;
     }
+    public void LoadSceneWithDelay(string sceneName,float delay)
+    {
+        StartCoroutine(LoadSceneWithDelayCoroutine(delay, sceneName));
+    }
+
+    private IEnumerator LoadSceneWithDelayCoroutine(float delay, string sceneName)
+    {
+        yield return new WaitForSeconds(delay);
+        LoadScene(sceneName, LoadSceneMode.Single);
+    }
 }

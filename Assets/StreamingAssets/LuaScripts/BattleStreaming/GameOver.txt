@@ -1,3 +1,24 @@
-function GameOver(character)
-	CS.SceneChangeManager.Instance:ReloadCurrentScene()
+function GameOver(entity)
+    entity.entityStop = true
+
+    if entity.rb then
+        entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
+        entity.rb.angularVelocity = 0
+    end
+
+    if entity.animator then
+        entity.animator:Play("Dead")
+    end
+
+    if entity.sr then
+        local color = entity.sr.color
+        color.a = 0.5  
+        entity.sr.color = color
+    end
+
+    if entity.col then
+        entity.col.enabled = false
+    end
+
+    CS.SceneChangeManager.Instance:LoadSceneWithDelay("Battle",3)
 end
