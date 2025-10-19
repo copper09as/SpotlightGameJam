@@ -33,15 +33,21 @@ namespace Game.Battle.Entity
         [NonSerialized] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
         [NonSerialized] public Collider2D col;
+        private bool isStop = false;
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
-
+        private void Start()
+        {
+            EventBus.Subscribe<Global.Events.OpenSettingUi>(Stop);
+            EventBus.Subscribe<Global.Events.CloseSettingUi>(CancelStop);
+        }
         #region 脚本方法
         public void Init(EntityManager entityManager)//,EntityManager entityManager)
         {
             int id = dataId;
             this.entityManager = entityManager;
+
             if(rb == null) rb = GetComponent<Rigidbody2D>();
             if(col==null) col = GetComponent<Collider2D>();
             if(sr==null)sr = GetComponent<SpriteRenderer>();
@@ -71,6 +77,10 @@ namespace Game.Battle.Entity
 
         void Update()
         {
+            if(isStop)
+            {
+                return;
+            }
             foreach (var i in scriptData.UpdatePath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
@@ -79,6 +89,10 @@ namespace Game.Battle.Entity
         }
         public void OnClick()
         {
+            if (isStop)
+            {
+                return;
+            }
             foreach (var i in scriptData.OnMouseDownPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
@@ -86,15 +100,25 @@ namespace Game.Battle.Entity
         }
         private void OnDestroy()
         {
+            if (isStop)
+            {
+                return;
+            }
             if (dataTable != null)
             {
                 dataTable.Dispose();
                 dataTable = null;
             }
+            EventBus.Unsubscribe<Global.Events.OpenSettingUi>(Stop);
+            EventBus.Unsubscribe<Global.Events.CloseSettingUi>(CancelStop);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (isStop)
+            {
+                return;
+            }
             var otherEntity = collision.gameObject.GetComponent<Entity>();
             if (otherEntity == null) return;
 
@@ -117,6 +141,10 @@ namespace Game.Battle.Entity
 
         public void Dead(Entity entity)
         {
+            if (isStop)
+            {
+                return;
+            }
             foreach (var i in scriptData.DeadPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,entity);
@@ -124,6 +152,10 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionStay2D(Collision2D collision)
         {
+            if (isStop)
+            {
+                return;
+            }
             var otherEntity = collision.gameObject.GetComponent<Entity>();
             if (otherEntity == null) return;
 
@@ -146,6 +178,10 @@ namespace Game.Battle.Entity
 
         public void OnDrag()
         {
+            if (isStop)
+            {
+                return;
+            }
             foreach (var i in scriptData.OnDragPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
@@ -153,6 +189,10 @@ namespace Game.Battle.Entity
         }
         private void OnDisable()
         {
+            if (isStop)
+            {
+                return;
+            }
             foreach (var i in scriptData.OnDisablePath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
@@ -160,6 +200,10 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
+            if (isStop)
+            {
+                return;
+            }
             var otherEntity = collision.gameObject.GetComponent<Entity>();
             if (otherEntity == null) return;
 
@@ -178,6 +222,7 @@ namespace Game.Battle.Entity
 
         #endregion
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
-    
+        private void Stop(Global.Events.OpenSettingUi eve)=>isStop = true;
+        private void CancelStop(Global.Events.CloseSettingUi eve) =>isStop=false;
     }
 }

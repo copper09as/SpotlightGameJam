@@ -15,6 +15,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Button toStartSceneBtn;
     [SerializeField] private Button openSettingUi;
     [SerializeField] private Button mapBtn;
+    [SerializeField] private float currentScale;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -40,7 +41,10 @@ public class SettingUi : MonoBehaviour
 
     private void ShowSettingUi()
     {
+        currentScale =Time.timeScale;
         settingUi.SetActive(true);
+        Time.timeScale = 0f;
+        EventBus.Publish(new Global.Events.OpenSettingUi());
     }
     private void ToStartScene()
     {
@@ -49,6 +53,7 @@ public class SettingUi : MonoBehaviour
             return;
         SceneChangeManager.Instance.LoadScene("StartScene");
         CloseSettingPanel();
+
     }
     private void BgmSoundChange(float value)
     {
@@ -65,6 +70,8 @@ public class SettingUi : MonoBehaviour
     private void CloseSettingPanel()
     {
         settingUi.SetActive(false);
+        Time.timeScale = currentScale;
+        EventBus.Publish(new Global.Events.CloseSettingUi());
     }
 
     private void ExitGame()
