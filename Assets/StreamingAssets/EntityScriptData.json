@@ -157,7 +157,7 @@
 	},
 	{
 		"id": 10015,
-		"InitPath": [ "Physics/SetDynamic", "Item/KeyInit" ],
+		"InitPath": [ "Physics/SetKinematic", "Item/KeyInit" ],
 		"UpdatePath": [ "Item/KeyFollowPlayer" ],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Item/KeyStartFollow" ],

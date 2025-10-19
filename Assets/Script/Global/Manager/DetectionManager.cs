@@ -105,14 +105,14 @@ public static class DetectionManager
     }
 
     // Ô²ÐÎ·¶Î§¼ì²â
-    public static bool CircleCast(Vector2 center, float radius, LayerMask layerMask)
+    public static bool CircleCast(Vector2 center, float radius, string layerMask)
     {
-        Collider2D hit = Physics2D.OverlapCircle(center, radius, layerMask);
+        Collider2D hit = Physics2D.OverlapCircle(center, radius, LayerMask.GetMask(layerMask));
         return hit != null;
     }
-    public static bool CircleCast(Vector2 center, float radius, LayerMask layerMask,out Collider2D hit)
+    public static bool CircleCastOutHit(Vector2 center, float radius, string layerMask, out Collider2D hit)
     {
-        hit = Physics2D.OverlapCircle(center, radius, layerMask);
+        hit = Physics2D.OverlapCircle(center, radius, LayerMask.GetMask(layerMask));
         return hit != null;
     }
 
