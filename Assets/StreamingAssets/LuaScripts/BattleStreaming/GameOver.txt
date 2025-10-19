@@ -19,6 +19,6 @@ function GameOver(entity)
     if entity.col then
         entity.col.enabled = false
     end
-
-    CS.SceneChangeManager.Instance:LoadSceneWithDelay("Battle",3)
+	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/Dead.ogg")
+    CS.SceneChangeManager.Instance:LoadSceneWithDelay("Battle",2.5)
 end
