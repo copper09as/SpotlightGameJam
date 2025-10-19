@@ -2,8 +2,10 @@ using Game.Battle.Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XLua;
 using static UnityEngine.UI.Image;
 
+[LuaCallCSharp]
 public static class DetectionManager
 {
 
@@ -106,6 +108,11 @@ public static class DetectionManager
     public static bool CircleCast(Vector2 center, float radius, LayerMask layerMask)
     {
         Collider2D hit = Physics2D.OverlapCircle(center, radius, layerMask);
+        return hit != null;
+    }
+    public static bool CircleCast(Vector2 center, float radius, LayerMask layerMask,out Collider2D hit)
+    {
+        hit = Physics2D.OverlapCircle(center, radius, layerMask);
         return hit != null;
     }
 

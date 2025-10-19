@@ -10,13 +10,9 @@ function PedalDown(entity)--踏板被踩下
 		for j = 0, entitiesCount - 1 do
 			local otherEntity = entities[j]
 				
-			OpenTheDoor(otherEntity)
+			_G.OpenTheDoor(otherEntity)
 		end
     end
     --写怎么样触发开门
 
-end
-
-function OpenTheDoor(entity)
-    entity.animator:SetBool("IsOpen",true)
 end

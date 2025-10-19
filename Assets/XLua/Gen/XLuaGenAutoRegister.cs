@@ -28,6 +28,9 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(EventCenter), EventCenterWrap.__Register);
         
         
+            translator.DelayWrapLoader(typeof(DetectionManager), DetectionManagerWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(object), SystemObjectWrap.__Register);
         
         
