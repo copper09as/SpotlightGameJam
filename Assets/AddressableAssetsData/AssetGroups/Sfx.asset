@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97deceed2acf5a34db732f517e701f5f
+    m_Address: Assets/Audio/Sfx/Dead.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ff711988d18b0ff4b81ea2654b75ca12, type: 2}
   m_SchemaSet:
