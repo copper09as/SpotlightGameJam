@@ -10,6 +10,7 @@ namespace Global.Data.Level
         public string SceneName;
         public string SpritePath;
         public string ScenePath;
+        public string noteString;
     }
     [Serializable]
     public class LevelDataCollection
