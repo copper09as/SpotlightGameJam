@@ -34,5 +34,59 @@
 		"SceneName":"月面波纹",
 		"SpritePath": "",
 		"ScenePath": ""
+	},
+	{
+		"Id": 30006,
+		"SceneName":"明珠暗投",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30007,
+		"SceneName":"缺少参数",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30008,
+		"SceneName":"回归虚无",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30009,
+		"SceneName":"幽明的苦轮",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30010,
+		"SceneName":"成佛得脱斩",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30011,
+		"SceneName":"无寿之梦",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30012,
+		"SceneName":"诱灵的甘蜜",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30013,
+		"SceneName":"幻想视差",
+		"SpritePath": "",
+		"ScenePath": ""
+	},
+	{
+		"Id": 30014,
+		"SceneName":"悲惨的命运",
+		"SpritePath": "",
+		"ScenePath": ""
 	}]
 }

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 471786967
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfd48fd0813c0dc4b88bcafca2d970b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,19 +137,16 @@ MonoBehaviour:
     OnDragPath: []
     DeadPath: []
     OnDisablePath: []
+    OnEntityExitPath: []
   animator: {fileID: 8349003749152552150}
   dataId: 20000
-  sr: {fileID: 0}
   entityId: 0
   CommonEntityData:
     id: 0
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-  rb: {fileID: 7046616427956781066}
-  text: {fileID: 0}
-  entityManager: {fileID: 0}
-  col: {fileID: 9024345754349921077}
+  entityPairs: []
 --- !u!95 &8349003749152552150
 Animator:
   serializedVersion: 5

@@ -95,7 +95,7 @@ public class MapBtnGroup : MonoBehaviour
         {
             int offset = i - currentIndex;
 
-            if (!isInit) // 只有非初始化才使用循环排列
+            if (!isInit)
             {
                 if (offset > mapSelectButtonGroup.Count / 2) offset -= mapSelectButtonGroup.Count;
                 if (offset < -mapSelectButtonGroup.Count / 2) offset += mapSelectButtonGroup.Count;
@@ -113,7 +113,6 @@ public class MapBtnGroup : MonoBehaviour
         if (isMoving) return;
 
         float scroll = GameController.GetScrollDelta();
-
         if (scroll > 0f)
         {
             MoveToPrev();
