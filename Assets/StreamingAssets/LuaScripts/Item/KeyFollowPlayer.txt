@@ -1,14 +1,32 @@
 --钥匙跟随角色
-local Vector3 = CS.UnityEngine.Vector3
+local Vector2=CS.UnityEngine.Vector2
+local DM = CS.DetectionManager
 function KeyFollowPlayer(entity)
     local data  = entity.dataTable or {}
-    if ~data.canFollow then--如果不可以进行跟随那么就停止
+    if not data.canFollow then--如果不可以进行跟随那么就停止
         return
     end
 
+    --local key = "OpenTheDoor"
     local changeVector = data.player.transform.position - data.lastPosition
 
     entity.transform.position = entity.transform.position + changeVector
 
     data.lastPosition = data.player.transform.position
+
+    local a = Vector2(entity.transform.position.x, entity.transform.position.y)
+    local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
+    if success then
+        local otherEntity = hit:GetComponent("Entity")
+        if otherEntity == nil or otherEntity.entityId ~= 10016 then
+            return
+        end
+
+        OpenTheDoor(otherEntity)
+
+        end
+end
+
+function OpenTheDoor(entity)--Door初始化
+    entity.animator:SetBool("IsOpen",true)
 end

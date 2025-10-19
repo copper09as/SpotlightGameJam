@@ -140,7 +140,7 @@ MonoBehaviour:
     OnEntityExitPath: []
   animator: {fileID: 8349003749152552150}
   dataId: 20000
-  entityId: 0
+  entityId: 10000
   CommonEntityData:
     id: 0
     EffectId: 0
