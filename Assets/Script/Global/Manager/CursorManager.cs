@@ -12,6 +12,7 @@ public class CursorManager : MonoBehaviour
     private bool isHold = false;
     private Entity currentEntity;
     [SerializeField]private GameObject particlePrefab;
+    
     void Awake()
     {
         DontDestroyOnLoad(gameObject);

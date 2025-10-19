@@ -24,7 +24,7 @@ public class SettingUi : MonoBehaviour
 
     private float currentScale = 1f;
     private Coroutine slideCoroutine;
-
+    private bool isOpen = false;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -83,6 +83,9 @@ public class SettingUi : MonoBehaviour
 
     private void ShowSettingUi()
     {
+        if (isOpen)
+            return;
+        isOpen = true;
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         currentScale = Time.timeScale;
         settingUi.SetActive(true);
@@ -97,6 +100,7 @@ public class SettingUi : MonoBehaviour
     }
     private void CloseSettingPanel()
     {
+        isOpen = false;
         if (slideCoroutine != null)
             StopCoroutine(slideCoroutine);
 
