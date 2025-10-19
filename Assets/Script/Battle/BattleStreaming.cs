@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Game.Battle.Entity;
 using Global.Data;
 using Global.Data.BattleConfig;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleStreaming : MonoBehaviour
 {
@@ -49,10 +51,15 @@ public class BattleStreaming : MonoBehaviour
         if (loadingPanel != null)
         {
             loadingPanel.SetActive(true);
-            var text = loadingPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            var text = loadingPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            var note = loadingPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             if (text != null)
             {
                 text.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).SceneName;
+            }
+            if(note != null)
+            {
+                note.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).noteString;
             }
         }
            

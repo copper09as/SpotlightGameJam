@@ -26,7 +26,7 @@ public class CursorManager : MonoBehaviour
     void Hold(InputAction.CallbackContext context)
     {
         isHold = true;
-        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
+        //
         Cursor.SetCursor(transCursor, hotspot, CursorMode.Auto);
         Vector2 screenPos = GameController.Controller.Main.MousePos.ReadValue<Vector2>();
         TryClick(screenPos);
