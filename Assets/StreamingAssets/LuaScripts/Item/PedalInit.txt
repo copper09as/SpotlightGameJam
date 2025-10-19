@@ -14,6 +14,6 @@ function PedalInit(entity)--踏板效果注册
     --    end
     --
     --end
-    ----写怎么样触发开门
+
 
 end

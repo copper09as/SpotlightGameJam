@@ -1,0 +1,13 @@
+--碰撞到角色时候触发钥匙初始化，钥匙跟随角色,当角色与钥匙发生碰撞的时候就进行环绕
+local Vector3 = CS.UnityEngine.Vector3
+function KeyStartFollow(entity,character)
+    if character.entityId ~= 10000 then
+        return
+    end
+    local data  = entity.dataTable or {}
+    --存放在luaTable中的数据
+    data.player = character--存放要跟随的角色实体
+    data.lastPosition = character.transform.position --存放角色上一帧的位置
+    data.canFollow = true
+
+end
