@@ -74,7 +74,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump
-  m_Speed: 1
+  m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7920809555122116630}
@@ -102,7 +102,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walk
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 95497220981400230}
@@ -188,7 +188,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4d8de886a93eaf94b9b77ca3744d86b2, type: 2}
+  m_Motion: {fileID: 7400000, guid: b4c7b4756e86cca43ac8920218183064, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -255,7 +255,7 @@ AnimatorStateMachine:
     m_Position: {x: 200, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2711705653183164912}
-    m_Position: {x: 543.7571, y: 307.02924, z: 0}
+    m_Position: {x: 550, y: 310, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
