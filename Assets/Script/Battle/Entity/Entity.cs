@@ -29,11 +29,12 @@ namespace Game.Battle.Entity
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
         [SerializeField]public List<EntityStringPair> entityPairs;
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
-        [NonSerialized] public SpriteRenderer sr;
+        [SerializeField] public SpriteRenderer sr;
         [NonSerialized] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
         [NonSerialized] public Collider2D col;
         private bool isStop = false;
+        public bool entityStop = false;
         string IObjectByCreate.Name 
         { get => "Entity";
             set => value = "Entity"; }
@@ -77,7 +78,7 @@ namespace Game.Battle.Entity
 
         void Update()
         {
-            if(isStop)
+            if(isStop || entityStop)
             {
                 return;
             }
@@ -89,7 +90,7 @@ namespace Game.Battle.Entity
         }
         public void OnClick()
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -100,7 +101,7 @@ namespace Game.Battle.Entity
         }
         private void OnDestroy()
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -115,7 +116,7 @@ namespace Game.Battle.Entity
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -141,7 +142,7 @@ namespace Game.Battle.Entity
 
         public void Dead(Entity entity)
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -152,7 +153,7 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -178,7 +179,7 @@ namespace Game.Battle.Entity
 
         public void OnDrag()
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -189,7 +190,7 @@ namespace Game.Battle.Entity
         }
         private void OnDisable()
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
@@ -200,7 +201,7 @@ namespace Game.Battle.Entity
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (isStop)
+            if (isStop || entityStop)
             {
                 return;
             }
