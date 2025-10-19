@@ -89,6 +89,18 @@
 			"EffectId": 10014,
 			"ScaleX": 1.0,
 			"ScaleY": 1.0
+		},
+		{
+			"id": 20015,
+			"EffectId": 10015,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
+		},
+		{
+			"id": 20016,
+			"EffectId": 10016,
+			"ScaleX": 1.0,
+			"ScaleY": 1.0
 		}
 	]
 }

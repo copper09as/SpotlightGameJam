@@ -147,12 +147,33 @@
 	},
 	{
 		"id": 10014,
-		"InitPath": ["Physics/SetStatic"],
-		"UpdatePath": ["Col/ColByLight"],
+		"InitPath": [ "Physics/SetStatic" ],
+		"UpdatePath": [ "Col/ColByLight" ],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
-	}]
+	},
+	{
+		"id": 10015,
+		"InitPath": [ "Physics/SetDynamic", "Item/KeyInit" ],
+		"UpdatePath": [ "Item/KeyFollowPlayer" ],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Item/KeyStartFollow" ],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10016,
+		"InitPath": [ "Physics/SetKinematic" ],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	}
+	]
 }
