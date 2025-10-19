@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using XLua;
 
+[LuaCallCSharp]
 public static class Tool
 {
     public static float GetColliderWidth( Collider2D collider )//获取这个碰撞箱世界空间宽度
@@ -31,5 +33,15 @@ public static class Tool
     public static string GetLuaName(string path)
     {
         return Path.GetFileName(path);
+    }
+
+    public static Vector2 ToVector2( Vector3 vector )
+    {
+        return new Vector2(vector.x, vector.y);
+    }
+
+    public static Vector3 ToVector3(Vector2 vector)
+    {
+        return new Vector3(vector.x, vector.y,0);
     }
 }

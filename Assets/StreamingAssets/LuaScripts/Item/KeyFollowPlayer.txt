@@ -1,5 +1,5 @@
 --钥匙跟随角色
-local Vector2=CS.UnityEngine.Vector2
+local Tool=CS.Tool
 local DM = CS.DetectionManager
 function KeyFollowPlayer(entity)
     local data  = entity.dataTable or {}
@@ -15,11 +15,26 @@ function KeyFollowPlayer(entity)
 
 
     if data.player.transform.position ~= data.lastPosition then
-        data.tweener:ChangeEndValue(data.player.transform.position,true):Restart()
+
+        local origin = Tool.ToVector2(entity.transform.position)
+        local direction = Tool.ToVector2(data.player.transform.position-entity.transform.position)
+        local distance = direction.magnitude
+        direction = direction.normalized
+        local isHit,hit =DM.Raycast2DoutHit( origin ,
+                direction,
+                distance,
+                "Player"
+        )
+
+        if isHit then
+
+        data.tweener:ChangeEndValue(Tool.ToVector3(hit.point),true):Restart()
+            print(hit.collider.gameObject.name)
+        end
 
     end
     data.lastPosition = data.player.transform.position
-    local a = Vector2(entity.transform.position.x, entity.transform.position.y)
+    local a = CS.Tool.ToVector2(entity.transform.position)
     local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
     if success then
         local otherEntity = hit:GetComponent("Entity")

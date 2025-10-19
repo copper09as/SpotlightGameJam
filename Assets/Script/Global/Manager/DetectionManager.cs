@@ -2,6 +2,7 @@ using Game.Battle.Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using XLua;
 using static UnityEngine.UI.Image;
 
@@ -42,11 +43,13 @@ public static class DetectionManager
         return col.GetComponent<Entity>();
     }
     // 2D射线检测（带命中信息）
-    public static bool Raycast2D(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
+    public static bool Raycast2DoutHit(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
+        Draw(hitInfo.collider != null, origin, direction, distance);//检测两边
         return hitInfo.collider != null;
     }
+    
     public static bool Raycast2DNoLayer(Vector2 origin, Vector2 direction, float distance)
     {
         return Physics2D.Raycast(origin, direction, distance);
@@ -90,9 +93,9 @@ public static class DetectionManager
             }
         }
 
-        Draw(Raycast2D(position, Vector2.left, (width / 2) + 0.1f, groundLayer,out RaycastHit2D hitleft),
+        Draw(Raycast2DoutHit(position, Vector2.left, (width / 2) + 0.1f, groundLayer,out RaycastHit2D hitleft),
             position, Vector2.left, (width / 2) + 0.1f);//检测两边
-        Draw(Raycast2D(position, Vector2.right, (width / 2) + 0.1f, groundLayer, out RaycastHit2D hitright),
+        Draw(Raycast2DoutHit(position, Vector2.right, (width / 2) + 0.1f, groundLayer, out RaycastHit2D hitright),
             position, Vector2.right, (width / 2) + 0.1f); ;
 
 
