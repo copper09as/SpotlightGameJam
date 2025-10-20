@@ -1,5 +1,9 @@
 function EnemyDestroyed(entity,otherEntity)
-    
+
+    if otherEntity:CompareTag("Enemy") then
+        return
+    end
+
     entity.entityStop = true
 
     if entity.rb then
