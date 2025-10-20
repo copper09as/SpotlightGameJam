@@ -6,7 +6,7 @@ function DamageEntityHorizontal(entity, otherEntity,x,y)
 	end
     if x~=nil and math.abs(x) > 0.5 then
         if otherEntity ~= nil then
-			otherEntity:Dead()
+			otherEntity:Dead(entity)
             --local entityId = otherEntity.entityId
 			--local entityManager = entity.entityManager
         end
