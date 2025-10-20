@@ -16,7 +16,7 @@ public class MapBtnGroup : MonoBehaviour
     [SerializeField] private float moveDuration = 0.25f; // 滑动动画时间
     [SerializeField] private CanvasGroup panelCanvasGroup;
     [SerializeField] private Button returnStartBtn;
-    int unlockedIndex = 3;
+    int unlockedIndex = 20;
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
     private int currentIndex = 0;
     private bool isMoving = false;

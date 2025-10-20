@@ -6,7 +6,8 @@ function EnemyInit(entity)
     data.pauseDuration = 0.3                    -- 停顿时间
     data.isPausing = false                      -- 是否正在停顿
     data.pauseTimer =  0                        -- 停顿计时器
-    data.moveDirection  = not entity.sr.flipX  --向右为false
+    data.moveDirection  = not entity.sr.flipX   --向右为false
+    data.enemyNeedTurnRound = true              --怪物碰见需要回头
 
     data.gravity = 10                           -- 重力加速度
     data.fallGravityMult = 2.0                  -- 正常下落重力倍率

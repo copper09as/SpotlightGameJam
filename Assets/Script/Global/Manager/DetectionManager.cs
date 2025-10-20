@@ -43,7 +43,7 @@ public static class DetectionManager
         return col.GetComponent<Entity>();
     }
     // 2D射线检测（带命中信息）
-    public static bool Raycast2DoutHit(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
+    public static bool Raycast2DOutHit(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
         Draw(hitInfo.collider != null, origin, direction, distance);//检测两边
@@ -54,8 +54,22 @@ public static class DetectionManager
     {
         return Physics2D.Raycast(origin, direction, distance);
     }
+
+    public static bool Raycast2DNoLayerOutHit(Vector2 origin, Vector2 direction, float distance, out RaycastHit2D hitInfo)
+    {
+        hitInfo = Physics2D.Raycast(origin, direction, distance);
+        Draw(hitInfo.collider != null, origin, direction, distance);
+        if (hitInfo.collider != null)
+        {
+            // 确实碰撞到了物体
+            Debug.Log("碰撞到: " + hitInfo.collider.gameObject.name);
+        }
+
+
+        return hitInfo.collider != null;
+    }
     // 多射线地面检测
-    public static GroundCheckResult MultiRayGroundCheck
+    public static GroundCheckResult MultiRayGroundCheck//只检测脚底
         (
         //Vector2 position,//检测的中心位置
         //float width, //检测的宽度范围（敌人的宽度）
@@ -81,6 +95,7 @@ public static class DetectionManager
 
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, (height/2) + distance, LayerMask.GetMask(groundLayer));
 
+
             Draw(hit.collider != null, rayOrigin, Vector2.down , (height / 2) + distance);
 
             if (hit.collider != null)
@@ -94,17 +109,14 @@ public static class DetectionManager
             }
         }
 
-        Draw(Raycast2DoutHit(position, Vector2.left, (width / 2) + distance, groundLayer,out RaycastHit2D hitleft),
-            position, Vector2.left, (width / 2) + distance);//检测两边
-        Draw(Raycast2DoutHit(position, Vector2.right, (width / 2) + distance, groundLayer, out RaycastHit2D hitright),
-            position, Vector2.right, (width / 2) + distance); ;
-
-
+        //Draw(Raycast2DoutHit(position, Vector2.left, (width / 2) + distance, groundLayer,out RaycastHit2D hitleft),
+        //    position, Vector2.left, (width / 2) + distance);//检测两边
+        //Draw(Raycast2DoutHit(position, Vector2.right, (width / 2) + distance, groundLayer, out RaycastHit2D hitright),
+        //    position, Vector2.right, (width / 2) + distance); ;
 
         result.isGrounded = groundHits > 0;
-        result.isLeftEdge = !result.isLeftGrounded || hitleft.collider!=null;
-        result.isRightEdge = !result.isRightGrounded || hitright.collider != null;
-
+        result.isLeftEdge = !result.isLeftGrounded;
+        result.isRightEdge = !result.isRightGrounded;
         return result;
     }
 
@@ -131,7 +143,7 @@ public static class DetectionManager
     //}
 
 
-    private static void Draw(bool ishit,Vector2 position, Vector2 direction, float rayLength)
+    public static void Draw(bool ishit,Vector2 position, Vector2 direction, float rayLength)
     {
        
         //射线绘制方便调试
