@@ -2,7 +2,7 @@ local GC = CS.GameController
 
 local maxSize = 4.71
 local minSize = 1
-local zoomSpeed = 0.5
+local zoomSpeed = 0.8
 
 function ScrollCameraSize(entity)
     local dt = CS.UnityEngine.Time.deltaTime
