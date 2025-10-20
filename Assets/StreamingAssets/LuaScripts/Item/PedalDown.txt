@@ -5,6 +5,9 @@ function PedalDown(entity)--踏板被踩下
 
     print(entity.entityPairs.Count)
     if a<=  data.ScaleX*data.ScaleY then
+        --播放踩下动画
+        entity.animator:SetBool("IsDown",true)
+
 		local entities = entity:GetEntities(key)
 		local entitiesCount = entities.Count
 		for j = 0, entitiesCount - 1 do
