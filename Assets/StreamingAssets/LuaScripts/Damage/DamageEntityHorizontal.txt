@@ -4,7 +4,7 @@ function DamageEntityHorizontal(entity, otherEntity,x,y)
 	if y == nil or y > 0.5 then
 		return
 	end
-    if x~=nil and math.abs(x) > 0.5 then
+    if x~=nil and math.abs(x) > 0.5 or y < 0.5 then
         if otherEntity ~= nil then
 			otherEntity:Dead(entity)
             --local entityId = otherEntity.entityId
