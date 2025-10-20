@@ -230,7 +230,7 @@ namespace Game.Battle.Entity
             var otherEntity = collider.gameObject.GetComponent<Entity>();
             if (otherEntity == null) return;
 
-            foreach (var i in scriptData.OnEntityExitPath)
+            foreach (var i in scriptData.OnTriggerPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity);
             }
