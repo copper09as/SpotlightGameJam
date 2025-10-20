@@ -1,5 +1,8 @@
-function CloseTheDoor(entity,_, a, b)--Door初始化
+function CloseTheDoor(entity,_, a, b)--pedal关闭门
     print("关门")
+    --播放踏板上升动画
+    entity.animator:SetBool("IsDown",false)
+
     local entities = entity:GetEntities("OpenTheDoor")
     local entitiesCount = entities.Count
     for j = 0, entitiesCount - 1 do
