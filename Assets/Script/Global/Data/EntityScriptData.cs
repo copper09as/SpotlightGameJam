@@ -14,6 +14,7 @@ namespace Global.Data.Entity
         public List<string> UpdatePath = new List<string>();//Update脚本路径
         public List<string> OnMouseDownPath = new List<string>();//被点击脚本路径
         public List<string> OnCollisionPath = new List<string>();//在接触到时触发脚本路径
+        public List<string> OnTriggerPath = new List<string>();//在本身触发器被触发时触发脚本路径
         public List<string> OnDragPath = new List<string>();//拖拽时触发
         public List<string> DeadPath = new List<string>();//被其他脚本调用死亡效果
         public List<string> OnDisablePath = new List<string>();//消失时触发效果

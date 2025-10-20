@@ -221,6 +221,21 @@ namespace Game.Battle.Entity
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (isStop || entityStop)
+            {
+                return;
+            }
+            var otherEntity = collider.gameObject.GetComponent<Entity>();
+            if (otherEntity == null) return;
+
+            foreach (var i in scriptData.OnEntityExitPath)
+            {
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity);
+            }
+        }
+
         #endregion
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
         private void Stop(Global.Events.OnOpenSettingUi eve)=>isStop = true;
