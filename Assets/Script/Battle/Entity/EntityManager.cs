@@ -16,7 +16,7 @@ public class EntityManager:MonoBehaviour
     {
         if(autoInit)
         {
-            CreateEntity("Assets/Prefab/Battle/Character/Capsule.prefab",null);
+            /*CreateEntity("Assets/Prefab/Battle/Character/Capsule.prefab",null);*/
             foreach (var entity in FindObjectsOfType<Entity>(true))
             {
                 entity.Init(this);
