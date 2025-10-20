@@ -31,8 +31,10 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 4, 0, 0);
-			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 6, 0, 0);
+			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderWidthLua", _m_GetColliderWidthLua_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderHeightLua", _m_GetColliderHeightLua_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector2", _m_ToVector2_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector3", _m_ToVector3_xlua_st_);
             
@@ -56,6 +58,60 @@ namespace XLua.CSObjectWrap
         
         
         
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetColliderWidthLua_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Collider2D _collider = (UnityEngine.Collider2D)translator.GetObject(L, 1, typeof(UnityEngine.Collider2D));
+                    
+                        var gen_ret = Tool.GetColliderWidthLua( _collider );
+                        LuaAPI.lua_pushnumber(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetColliderHeightLua_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Collider2D _collider = (UnityEngine.Collider2D)translator.GetObject(L, 1, typeof(UnityEngine.Collider2D));
+                    
+                        var gen_ret = Tool.GetColliderHeightLua( _collider );
+                        LuaAPI.lua_pushnumber(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_GetLuaName_xlua_st_(RealStatePtr L)

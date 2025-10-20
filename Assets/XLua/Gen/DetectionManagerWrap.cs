@@ -31,15 +31,17 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 9, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 11, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2D", _m_Raycast2D_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DByTag", _m_Raycast2DByTag_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "OverlapBoxByTag", _m_OverlapBoxByTag_xlua_st_);
-            Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DoutHit", _m_Raycast2DoutHit_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DOutHit", _m_Raycast2DOutHit_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DNoLayer", _m_Raycast2DNoLayer_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DNoLayerOutHit", _m_Raycast2DNoLayerOutHit_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "MultiRayGroundCheck", _m_MultiRayGroundCheck_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "CircleCast", _m_CircleCast_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "CircleCastOutHit", _m_CircleCastOutHit_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Draw", _m_Draw_xlua_st_);
             
 			
             
@@ -152,7 +154,7 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_Raycast2DoutHit_xlua_st_(RealStatePtr L)
+        static int _m_Raycast2DOutHit_xlua_st_(RealStatePtr L)
         {
 		    try {
             
@@ -168,7 +170,7 @@ namespace XLua.CSObjectWrap
                     string _layerMask = LuaAPI.lua_tostring(L, 4);
                     UnityEngine.RaycastHit2D _hitInfo;
                     
-                        var gen_ret = DetectionManager.Raycast2DoutHit( _origin, _direction, _distance, _layerMask, out _hitInfo );
+                        var gen_ret = DetectionManager.Raycast2DOutHit( _origin, _direction, _distance, _layerMask, out _hitInfo );
                         LuaAPI.lua_pushboolean(L, gen_ret);
                     translator.Push(L, _hitInfo);
                         
@@ -205,6 +207,38 @@ namespace XLua.CSObjectWrap
                     
                     
                     return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Raycast2DNoLayerOutHit_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Vector2 _origin;translator.Get(L, 1, out _origin);
+                    UnityEngine.Vector2 _direction;translator.Get(L, 2, out _direction);
+                    float _distance = (float)LuaAPI.lua_tonumber(L, 3);
+                    UnityEngine.RaycastHit2D _hitInfo;
+                    
+                        var gen_ret = DetectionManager.Raycast2DNoLayerOutHit( _origin, _direction, _distance, out _hitInfo );
+                        LuaAPI.lua_pushboolean(L, gen_ret);
+                    translator.Push(L, _hitInfo);
+                        
+                    
+                    
+                    
+                    return 2;
                 }
                 
             } catch(System.Exception gen_e) {
@@ -296,6 +330,35 @@ namespace XLua.CSObjectWrap
                     
                     
                     return 2;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Draw_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    bool _ishit = LuaAPI.lua_toboolean(L, 1);
+                    UnityEngine.Vector2 _position;translator.Get(L, 2, out _position);
+                    UnityEngine.Vector2 _direction;translator.Get(L, 3, out _direction);
+                    float _rayLength = (float)LuaAPI.lua_tonumber(L, 4);
+                    
+                    DetectionManager.Draw( _ishit, _position, _direction, _rayLength );
+                    
+                    
+                    
+                    return 0;
                 }
                 
             } catch(System.Exception gen_e) {

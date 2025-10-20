@@ -1,4 +1,32 @@
 local DM = CS.DetectionManager--检测管理器
+local Vector2 = CS.UnityEngine.Vector2
+local Tool = CS.Tool
+
+local function EnemySeeLeftAndRight(enemyEntity,distance)
+    local origin = Tool.ToVector2(enemyEntity.transform.position)
+    local length = Tool.GetColliderWidthLua(enemyEntity.col)/2 + distance
+
+    local isLeftEdge,LeftHit= DM.Raycast2DNoLayerOutHit(origin-Vector2(Tool.GetColliderWidthLua(enemyEntity.col)/2+0.01,0),
+            Vector2(-1,0),length)
+    local isRightEdge,RightHit = DM.Raycast2DNoLayerOutHit(origin+Vector2(Tool.GetColliderWidthLua(enemyEntity.col)/2+0.01,0),
+            Vector2(1,0),length)
+
+    local answerA,answerB = false
+    if isLeftEdge then
+        local EntityA = LeftHit.collider:GetComponent("Entity")
+        if EntityA ~= nil then
+            answerA = EntityA.dataTable.enemyNeedTurnRound or false
+
+        end
+    end
+    if isRightEdge then
+        local EntityB = RightHit.collider:GetComponent("Entity")
+        if EntityB ~= nil then
+            answerB = EntityB.dataTable.enemyNeedTurnRound or false
+        end
+    end
+    return answerA,answerB
+end
 
 function EnemyMove(entity)
     local data = entity.dataTable
@@ -12,9 +40,10 @@ function EnemyMove(entity)
     local velocity = rb.velocity
 
     -- 边缘检测
-    local x = DM.MultiRayGroundCheck(entity.col, 3,0.3, "Ground")
-    local isLeftEdge = x.isLeftEdge -- 是否在左边缘
-    local isRightEdge = x.isRightEdge -- 是否在右边缘
+    local x = DM.MultiRayGroundCheck(entity.col, 3,0.1, "Ground")
+    local leftHit, rightHit  = EnemySeeLeftAndRight(entity,0.1)
+    local isLeftEdge = x.isLeftEdge or leftHit-- 是否在左边缘
+    local isRightEdge = x.isRightEdge or rightHit-- 是否在右边缘
 
     -- 停顿处理
     if data.isPausing then
@@ -50,7 +79,6 @@ function EnemyMove(entity)
     end
 
 end
-
 
 
 
