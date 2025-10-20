@@ -52,7 +52,10 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
     {
         StartCoroutine(LoadSceneWithDelayCoroutine(delay, sceneName));
     }
-
+    public void ReloadSceneWithDelay(float delay)
+    {
+        LoadSceneWithDelay(SceneManager.GetActiveScene().name, delay);
+    }
     private IEnumerator LoadSceneWithDelayCoroutine(float delay, string sceneName)
     {
         yield return new WaitForSeconds(delay);

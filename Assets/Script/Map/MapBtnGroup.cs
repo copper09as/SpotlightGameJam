@@ -86,7 +86,8 @@ public class MapBtnGroup : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         BattleConfig.Instance.levelId = id;
-        SceneChangeManager.Instance.LoadScene("Battle");
+        var scenePath = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == id).ScenePath;
+        SceneChangeManager.Instance.LoadScene(scenePath);
     }
 
     /// <summary>

@@ -112,7 +112,6 @@ function Jump(entity, scaleFactor)
     rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, data.jumpForce * scaleFactor)
     if entity.animator then
         entity.animator:Play("Jump")
-		print("跳跃")
     end
 end
 
