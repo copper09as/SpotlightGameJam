@@ -1,8 +1,8 @@
 function EnemyDestroyed(entity,otherEntity)
 
-    if otherEntity ~= nil and otherEntity:CompareTag("Enemy") then
-            print("史莱姆碰撞不死亡")
-            return
+    if otherEntity~= nil and otherEntity:CompareTag("Enemy") then
+        print("史莱姆碰撞不死亡")
+        return
     end
 
 
