@@ -37,17 +37,18 @@ function StickPlayerUp(entity)
     -- 📌 检测到角色
     if hitCharacter then
         data.hitCharacter = hitCharacter
-
+		data.hitCharacter.dataTable.canDeadInGround = true
         -- 🔗 设置玩家为平台子物体
         hitCharacter.transform:SetParent(hitEntityTrans, true) -- true 保持世界坐标
 
         return
     end
 
-    -- ❌ 离开滑块时，清空记录并取消父对象
     if data.hitCharacter then
-        data.hitCharacter.transform:SetParent(nil, true) -- 保持世界坐标
+        data.hitCharacter.transform:SetParent(nil, true)
+		data.hitCharacter.dataTable.canDeadInGround = nil
     end
+	
     data.hitCharacter = nil
     data.hitLocalPosition = nil
 end

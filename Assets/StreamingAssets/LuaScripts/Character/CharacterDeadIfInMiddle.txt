@@ -1,0 +1,5 @@
+function CharacterDeadIfInMiddle(entity,dt,inMiddle)
+	if inMiddle then
+		entity:Dead()
+	end
+end

@@ -78,13 +78,13 @@ namespace Game.Battle.Entity
 
         void Update()
         {
-            if(isStop || entityStop)
+            if (isStop || entityStop)
             {
                 return;
             }
             foreach (var i in scriptData.UpdatePath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime, IsStuckInWall());
             }
 
         }
@@ -176,7 +176,31 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.y);
             }
         }
+        private bool IsStuckInWall()
+        {
+            float checkDist = 0.05f;
+            LayerMask wallMask = LayerMask.GetMask("Ground");
 
+            Vector2[] dirs = {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+    };
+
+            int blocked = 0;
+            foreach (var dir in dirs)
+            {
+                var hit = Physics2D.Raycast(transform.position, dir, checkDist, wallMask);
+                if (hit.collider != null)
+                {
+                    blocked++;
+                }
+            }
+
+
+            return blocked >= 4;
+        }
         public void OnDrag()
         {
             if (isStop || entityStop)

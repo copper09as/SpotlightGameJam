@@ -6,7 +6,7 @@
 		"UpdatePath": ["Character/CharacterMove",
 		"Physics/FasterFall",
 		"Character/CharacterJumpUseForce",
-		"Character/CharacterScaleController"],
+		"Character/CharacterScaleController","Character/CharacterDeadIfInMiddle"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
 		"OnDragPath": ["Mouse/FollowMouse"],
