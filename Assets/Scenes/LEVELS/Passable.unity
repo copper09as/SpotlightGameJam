@@ -8916,7 +8916,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1863840520281013749, guid: e73c526338790984382bd668ea7d6591, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5829470469048273790, guid: e73c526338790984382bd668ea7d6591, type: 3}
       propertyPath: m_LocalScale.x
