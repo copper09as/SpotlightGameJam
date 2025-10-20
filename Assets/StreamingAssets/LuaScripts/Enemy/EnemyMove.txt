@@ -9,26 +9,12 @@ function EnemyMove(entity)
     local rb = entity.rb
     local EnemySpeed = data.EnemySpeed
 
-    -- 初始化必要的数据
-    if data.moveDirection == nil then
-        data.moveDirection = 1 -- 1表示向右，-1表示向左
-    end
-    if data.pauseDuration == nil then
-        data.pauseDuration = 0.3 -- 默认停顿1秒
-    end
-    if data.pauseTimer == nil then
-        data.pauseTimer = 0
-    end
-    if data.isPausing == nil then
-        data.isPausing = false
-    end
-
     local velocity = rb.velocity
 
     -- 边缘检测
-    local x = DM.MultiRayGroundCheck(entity.col, 3, 1, "Ground")
-    local a = x.isLeftEdge -- 是否在左边缘
-    local b = x.isRightEdge -- 是否在右边缘
+    local x = DM.MultiRayGroundCheck(entity.col, 3,0.3, "Ground")
+    local isLeftEdge = x.isLeftEdge -- 是否在左边缘
+    local isRightEdge = x.isRightEdge -- 是否在右边缘
 
     -- 停顿处理
     if data.isPausing then
@@ -39,14 +25,16 @@ function EnemyMove(entity)
             data.isPausing = false
             data.pauseTimer = 0
             -- 改变方向
-            data.moveDirection = -data.moveDirection
+            data.moveDirection = not data.moveDirection
+            entity.sr.flipX = not entity.sr.flipX
+
         end
         return
     end
 
 
     -- 检测到边缘时开始停顿
-    if (a and data.moveDirection == -1) or (b and data.moveDirection == 1) then
+    if (isLeftEdge and not data.moveDirection ) or (isRightEdge and data.moveDirection ) then
         velocity.x = 0
         rb.velocity = velocity
         data.isPausing = true
@@ -54,8 +42,13 @@ function EnemyMove(entity)
     end
 
     -- 正常移动
-    velocity.x = data.moveDirection * EnemySpeed
+    velocity.x = data.moveDirection and EnemySpeed or -EnemySpeed
     rb.velocity = velocity
+
+    if isLeftEdge then
+        print("在左边缘")
+    end
+
 end
 
 

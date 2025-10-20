@@ -61,12 +61,13 @@ public static class DetectionManager
         //float width, //检测的宽度范围（敌人的宽度）
         Collider2D collider,//碰撞体（规则碰撞体，矩形，椭圆形，胶囊）
         int rayCount, //脚底射线数量
-        float distance, //射线长度
+        float distance, //射线长度(超出碰撞体的部分)
         string groundLayer//地面层级
         )
     {
         Vector2 position = collider.transform.position;//检测的中心位置
-        float width = Tool.GetColliderWidth( collider );//检测的宽度范围（碰撞箱的脚底宽度）
+        float width = collider.GetColliderWidth();//检测的宽度范围（碰撞箱的宽度）
+        float height = collider.GetColliderHeight();//检测的宽度范围（碰撞箱的高度）
 
         var result = new GroundCheckResult();
         int groundHits = 0;
@@ -78,9 +79,9 @@ public static class DetectionManager
             float x = Mathf.Lerp(-width / 2, width / 2, t);//线性插值函数
             Vector2 rayOrigin = position + new Vector2(x, 0);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, distance, LayerMask.GetMask(groundLayer));
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, (height/2) + distance, LayerMask.GetMask(groundLayer));
 
-            Draw(hit.collider != null, rayOrigin, Vector2.down , distance);
+            Draw(hit.collider != null, rayOrigin, Vector2.down , (height / 2) + distance);
 
             if (hit.collider != null)
             {
@@ -93,10 +94,10 @@ public static class DetectionManager
             }
         }
 
-        Draw(Raycast2DoutHit(position, Vector2.left, (width / 2) + 0.1f, groundLayer,out RaycastHit2D hitleft),
-            position, Vector2.left, (width / 2) + 0.1f);//检测两边
-        Draw(Raycast2DoutHit(position, Vector2.right, (width / 2) + 0.1f, groundLayer, out RaycastHit2D hitright),
-            position, Vector2.right, (width / 2) + 0.1f); ;
+        Draw(Raycast2DoutHit(position, Vector2.left, (width / 2) + distance, groundLayer,out RaycastHit2D hitleft),
+            position, Vector2.left, (width / 2) + distance);//检测两边
+        Draw(Raycast2DoutHit(position, Vector2.right, (width / 2) + distance, groundLayer, out RaycastHit2D hitright),
+            position, Vector2.right, (width / 2) + distance); ;
 
 
 
