@@ -20,7 +20,7 @@ function KeyFollowPlayer(entity)
         local direction = Tool.ToVector2(data.player.transform.position-entity.transform.position)
         local distance = direction.magnitude
         direction = direction.normalized
-        local isHit,hit =DM.Raycast2DoutHit( origin ,
+        local isHit,hit =DM.Raycast2DOutHit( origin ,
                 direction,
                 distance,
                 "Player"
