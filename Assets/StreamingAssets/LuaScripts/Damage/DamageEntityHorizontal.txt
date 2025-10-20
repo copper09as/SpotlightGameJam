@@ -1,7 +1,7 @@
 local GC = CS.GameController
 
 function DamageEntityHorizontal(entity, otherEntity,x,y)
-	if y == nil or y < -0.5 then
+	if y == nil or y > 0.5 then
 		return
 	end
     if x~=nil and math.abs(x) > 0.5 then
