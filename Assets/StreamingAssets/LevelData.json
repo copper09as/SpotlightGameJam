@@ -18,7 +18,7 @@
       "Id": 30002,
       "SceneName": "刻着过去的钟表",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "ControllerTestScene",
       "noteString": "注意时间机关，谨慎操作"
     },
     {
@@ -103,7 +103,7 @@
       "SceneName": "悲惨的命运",
       "SpritePath": "",
       "ScenePath": "",
-      "noteString": "策划不会注意到这个配置文件"
+      "noteString": "策划注意到这个配置文件了"
     }
   ]
 }
