@@ -40,7 +40,7 @@ function EnemyMove(entity)
     local velocity = rb.velocity
 
     -- 边缘检测
-    local x = DM.MultiRayGroundCheck(entity.col, 3,0.1, "Ground")
+    local x = DM.MultiRayGroundCheck(entity.col, 3,0.2, "Ground")
     local leftHit, rightHit  = EnemySeeLeftAndRight(entity,0.1)
     local isLeftEdge = x.isLeftEdge or leftHit-- 是否在左边缘
     local isRightEdge = x.isRightEdge or rightHit-- 是否在右边缘
