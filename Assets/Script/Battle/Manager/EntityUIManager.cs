@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Global.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -29,6 +30,7 @@ public class EntityUIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
             
         }
         else
