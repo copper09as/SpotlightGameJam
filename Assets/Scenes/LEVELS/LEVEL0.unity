@@ -6729,7 +6729,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1668756166}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6882,18 +6882,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4828746960917442432, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.09
@@ -6934,22 +6922,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4828746960917442432, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700379590493061633, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0c156fd0064aac8438bd1a12efac5fd4, type: 3}
     - target: {fileID: 8841458622462829019, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7108720996929572065, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-    - {fileID: 5660226622231753433, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
@@ -7129,6 +7107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundTile
       objectReference: {fileID: 0}
+    - target: {fileID: 6004732662670643955, guid: 721884d111655134f8f37a25d757c7bd, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f6ed31e7c5707bc48b4d143674ba70eb, type: 2}
     - target: {fileID: 7799869175442394976, guid: 721884d111655134f8f37a25d757c7bd, type: 3}
       propertyPath: m_SortingOrder
       value: 0
