@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Global.Data.BattleConfig
 {
@@ -34,14 +36,18 @@ namespace Global.Data.BattleConfig
                 userData.unLockLevel = 0;
             }
         }
-        public void Win()
+        public void Win(float delay)
         {
+            StartCoroutine(WinWithDelayCoroutine(delay));
+        }
+        private IEnumerator WinWithDelayCoroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             if (levelId == userData.unLockLevel)
             {
                 userData.unLockLevel += 1;
                 JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
             }
-                
         }
     }
 }
