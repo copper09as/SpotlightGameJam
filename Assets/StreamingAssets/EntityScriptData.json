@@ -1,5 +1,5 @@
 {
-	<<<<<<<HEAD"entityScriptList": [{
+		"entityScriptList": [{
 		"id": 10000,
 		"InitPath": ["Physics/SetDynamic",
 		"Character/CharacterInit"],
