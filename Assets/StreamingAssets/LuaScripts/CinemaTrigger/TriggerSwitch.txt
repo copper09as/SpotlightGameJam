@@ -1,0 +1,5 @@
+function TriggerSwitch(entity)
+    local data = entity.dataTable or {}
+
+
+end

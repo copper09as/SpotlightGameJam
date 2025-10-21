@@ -1,0 +1,5 @@
+function CinemaTriggerInit(entity)
+local data = entity.dataTable or {}
+    data.key = "SwitchCamera"
+
+end
