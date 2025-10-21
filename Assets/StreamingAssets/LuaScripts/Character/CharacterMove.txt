@@ -28,6 +28,15 @@ function CharacterMove(entity)
     )
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
+	if entity.transform.childCount >= 3 then
+		local thirdChild = entity.transform:GetChild(2).gameObject
+
+		if groundCheck then
+			thirdChild:SetActive(true)   -- 落地时激活
+		else
+			thirdChild:SetActive(false)  -- 空中时隐藏
+		end
+	end
         -- 翻转方向，根据 MoveX
     if x > 0.1 then
         entity.sr.flipX = false  -- 右移
