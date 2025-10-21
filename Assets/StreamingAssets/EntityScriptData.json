@@ -175,6 +175,16 @@
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10017,
+		"InitPath": [ "Physics/SetKinematic" ],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}
 	]
 }
