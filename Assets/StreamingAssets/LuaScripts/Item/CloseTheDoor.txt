@@ -7,9 +7,11 @@ function CloseTheDoor(entity,_, a, b)--pedal关闭门
     local entitiesCount = entities.Count
     for j = 0, entitiesCount - 1 do
         local otherEntity = entities[j]
-
+        if otherEntity == nil then --如果门提前被销毁直接返回
+            return
+        end
         otherEntity.animator:SetBool("IsOpen",false)
-    end
+        end
 end
 
 
