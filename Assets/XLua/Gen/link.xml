@@ -7,6 +7,7 @@
 		<type fullname="EventCenter" preserve="all"/>
 		<type fullname="DetectionManager" preserve="all"/>
 		<type fullname="Tool" preserve="all"/>
+		<type fullname="XLuaCustomExport" preserve="all"/>
 		<type fullname="Tutorial.BaseClass" preserve="all"/>
 		<type fullname="Tutorial.TestEnum" preserve="all"/>
 		<type fullname="Tutorial.DerivedClass" preserve="all"/>
@@ -25,23 +26,6 @@
 		<type fullname="XLuaTest.Foo" preserve="all"/>
 		<type fullname="XLuaTest.FooExtension" preserve="all"/>
 		<type fullname="Tutorial.DerivedClass+TestEnumInner" preserve="all"/>
-		
-	</assembly>
-
-	<assembly fullname="DOTween">
-	    <type fullname="DG.Tweening.DOTween" preserve="all"/>
-		<type fullname="DG.Tweening.Tweener" preserve="all"/>
-		<type fullname="DG.Tweening.Sequence" preserve="all"/>
-		<type fullname="DG.Tweening.Tween" preserve="all"/>
-		<type fullname="DG.Tweening.TweenExtensions" preserve="all"/>
-		<type fullname="DG.Tweening.TweenSettingsExtensions" preserve="all"/>
-		<type fullname="DG.Tweening.ShortcutExtensions" preserve="all"/>
-		<type fullname="DG.Tweening.Ease" preserve="all"/>
-		<type fullname="DG.Tweening.LoopType" preserve="all"/>
-		<type fullname="DG.Tweening.PathType" preserve="all"/>
-		<type fullname="DG.Tweening.PathMode" preserve="all"/>
-		<type fullname="DG.Tweening.ScrambleMode" preserve="all"/>
-		<type fullname="DG.Tweening.LogBehaviour" preserve="all"/>
 		
 	</assembly>
 

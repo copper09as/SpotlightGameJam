@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Global.Data;
+﻿using Global.Data;
 using Global.Data.Entity;
 using Global.ObjectCreate;
-using TMPro;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using XLua;
@@ -86,7 +85,7 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime, IsStuckInWall());
             }
-
+            
         }
         public void OnClick()
         {
