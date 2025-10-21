@@ -15,5 +15,5 @@ function KeyStartFollow(entity,character)
     entity.col.enabled = false
     data.tweener = entity.transform:DOMove(character.transform.position,
             data.followDuration):SetAutoKill(false)
-    CS.UnityEngine.Debug.Log("碰到角色")
+    --CS.UnityEngine.Debug.Log("碰到角色")
 end

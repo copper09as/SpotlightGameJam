@@ -29,7 +29,7 @@ function KeyFollowPlayer(entity)
         if isHit then
 
         data.tweener:ChangeEndValue(Tool.ToVector3(hit.point),true):Restart()
-            print(hit.collider.gameObject.name)
+
         end
 
     end
@@ -38,7 +38,7 @@ function KeyFollowPlayer(entity)
     local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
     if success then
         local otherEntity = hit:GetComponent("Entity")
-        if otherEntity == nil or otherEntity.entityId ~= 10016 then
+        if otherEntity == nil or otherEntity.dataId ~= 20016 then
             return
         end
 
