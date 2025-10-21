@@ -185,6 +185,16 @@
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
-	}
+	},
+ {
+  "id": 10018,
+   "InitPath": [ "Physics/SetKinematic"],
+   "UpdatePath": ["Position/StickPlayerUp"],
+   "OnMouseDownPath": [],
+   "OnCollisionPath": [],
+   "OnDragPath": [],
+   "DeadPath": [],
+   "OnDisablePath": []
+ }
 	]
 }
