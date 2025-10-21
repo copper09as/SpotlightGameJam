@@ -193,6 +193,16 @@
    		"OnDragPath": ["Mouse/FollowMouse"],
    		"DeadPath": [],
    		"OnDisablePath": []
+ 	},
+ 	{
+  		"id": 10019,
+   		"InitPath": ["Boss/BossInit"],
+   		"UpdatePath": ["Boss/BossUpdate"],
+   		"OnMouseDownPath": [],
+   		"OnCollisionPath": [],
+   		"OnDragPath": ["Mouse/FollowMouse"],
+   		"DeadPath": [],
+   		"OnDisablePath": []
  	}
 	]
 }

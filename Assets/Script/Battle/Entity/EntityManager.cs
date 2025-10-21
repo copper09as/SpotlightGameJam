@@ -24,6 +24,7 @@ public class EntityManager:MonoBehaviour
         }
 
     }
+    
     //ªÒ»°
     public Entity GetEntity(int id)
     {
