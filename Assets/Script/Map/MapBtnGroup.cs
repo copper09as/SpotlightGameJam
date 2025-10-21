@@ -16,7 +16,7 @@ public class MapBtnGroup : MonoBehaviour
     [SerializeField] private float moveDuration = 0.25f; // 滑动动画时间
     [SerializeField] private CanvasGroup panelCanvasGroup;
     [SerializeField] private Button returnStartBtn;
-    int unlockedIndex = 20;
+    //int unlockedIndex = 20;
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
     private int currentIndex = 0;
     private bool isMoving = false;
@@ -38,7 +38,7 @@ public class MapBtnGroup : MonoBehaviour
         {
             var levelData = levelDataList[i];
             var sceneName = levelDataList[i].SceneName;
-            CreateButton(levelData.Id, levelData.SpritePath,sceneName, i <= unlockedIndex);
+            CreateButton(levelData.Id, levelData.SpritePath,sceneName, i <= BattleConfig.Instance.userData.unLockLevel);
             yield return null;
         }
 
