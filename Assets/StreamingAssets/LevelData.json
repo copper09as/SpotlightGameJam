@@ -1,105 +1,105 @@
 {
   "levelDataList": [
     {
-      "Id": 30000,
+      "Id": 0,
       "SceneName": "世界的起点",
       "SpritePath": "",
       "ScenePath": "Passable",
       "noteString": "有问题请点击游戏主界面标题联系策划"
     },
     {
-      "Id": 30001,
+      "Id": 1,
       "SceneName": "永恒的温柔",
       "SpritePath": "",
       "ScenePath": "Battle",
       "noteString": "触发bug后要及时联系策划"
     },
     {
-      "Id": 30002,
+      "Id": 2,
       "SceneName": "刻着过去的钟表",
       "SpritePath": "",
       "ScenePath": "ControllerTestScene",
       "noteString": "注意时间机关，谨慎操作"
     },
     {
-      "Id": 30003,
+      "Id": 3,
       "SceneName": "白垩的俄罗斯人偶",
       "SpritePath": "",
       "ScenePath": "LEVEL1",
       "noteString": "关卡机关复杂，建议多观察"
     },
     {
-      "Id": 30004,
+      "Id": 4,
       "SceneName": "荣华之梦",
       "SpritePath": "",
       "ScenePath": "LEVEL2",
       "noteString": "可尝试隐藏路径探索"
     },
     {
-      "Id": 30005,
+      "Id": 5,
       "SceneName": "月面波纹",
       "SpritePath": "",
       "ScenePath": "LEVEL3(Double)",
       "noteString": "注意波纹移动节奏"
     },
     {
-      "Id": 30006,
+      "Id": 6,
       "SceneName": "明珠暗投",
       "SpritePath": "",
       "ScenePath": "LEVEL0",
       "noteString": "机关陷阱频繁出现"
     },
     {
-      "Id": 30007,
+      "Id": 7,
       "SceneName": "缺少参数",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "注意道具收集顺序"
     },
     {
-      "Id": 30008,
+      "Id": 8,
       "SceneName": "回归虚无",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "迷宫较复杂，建议标记路线"
     },
     {
-      "Id": 30009,
+      "Id": 9,
       "SceneName": "幽明的苦轮",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "关卡节奏快，注意闪避"
     },
     {
-      "Id": 30010,
+      "Id": 10,
       "SceneName": "成佛得脱斩",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "Boss战需要耐心"
     },
     {
-      "Id": 30011,
+      "Id": 11,
       "SceneName": "无寿之梦",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "注意时间限制"
     },
     {
-      "Id": 30012,
+      "Id": 12,
       "SceneName": "诱灵的甘蜜",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "看不懂看不懂"
     },
     {
-      "Id": 30013,
+      "Id": 13,
       "SceneName": "幻想视差",
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "标题什么意思"
     },
     {
-      "Id": 30014,
+      "Id": 14,
       "SceneName": "悲惨的命运",
       "SpritePath": "",
       "ScenePath": "",
