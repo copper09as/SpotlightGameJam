@@ -1,12 +1,13 @@
 {
-	"entityScriptList": [{
+	<<<<<<<HEAD"entityScriptList": [{
 		"id": 10000,
 		"InitPath": ["Physics/SetDynamic",
 		"Character/CharacterInit"],
 		"UpdatePath": ["Character/CharacterMove",
 		"Physics/FasterFall",
 		"Character/CharacterJumpUseForce",
-		"Character/CharacterScaleController","Character/CharacterDeadIfInMiddle"],
+		"Character/CharacterScaleController",
+		"Character/CharacterDeadIfInMiddle"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
 		"OnDragPath": ["Mouse/FollowMouse"],
@@ -44,7 +45,8 @@
 		"id": 10004,
 		"InitPath": ["Physics/SetStatic",
 		"Scroll/RollInit"],
-		"UpdatePath": ["Position/StickPlayerUp","Scroll/ScrollBgm"],
+		"UpdatePath": ["Position/StickPlayerUp",
+		"Scroll/ScrollBgm"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": ["Mouse/FollowMouseX"],
@@ -145,8 +147,8 @@
 	},
 	{
 		"id": 10014,
-		"InitPath": [ "Physics/SetStatic" ],
-		"UpdatePath": [ "Col/ColByLight" ],
+		"InitPath": ["Physics/SetStatic"],
+		"UpdatePath": ["Col/ColByLight"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
@@ -155,18 +157,19 @@
 	},
 	{
 		"id": 10015,
-		"InitPath": [ "Physics/SetKinematic", "Item/KeyInit" ],
-		"UpdatePath": [ "Item/KeyFollowPlayer" ],
+		"InitPath": ["Physics/SetKinematic",
+		"Item/KeyInit"],
+		"UpdatePath": ["Item/KeyFollowPlayer"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnTriggerPath": [ "Item/KeyStartFollow" ],
+		"OnTriggerPath": ["Item/KeyStartFollow"],
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
 	{
 		"id": 10016,
-		"InitPath": [ "Physics/SetKinematic" ],
+		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
@@ -176,7 +179,8 @@
 	},
 	{
 		"id": 10017,
-		"InitPath": [ "Physics/SetKinematic", "Babble/BabbleInit" ],
+		"InitPath": ["Physics/SetKinematic",
+		"Babble/BabbleInit"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
@@ -184,25 +188,35 @@
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
- 	{
-  		"id": 10018,
-   		"InitPath": [ "Physics/SetDynamic"],
-   		"UpdatePath": ["Position/StickPlayerUp"],
-   		"OnMouseDownPath": [],
-   		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-   		"OnDragPath": ["Mouse/FollowMouse"],
-   		"DeadPath": [],
-   		"OnDisablePath": []
- 	},
- 	{
-  		"id": 10019,
-   		"InitPath": ["Boss/BossInit"],
-   		"UpdatePath": ["Boss/BossUpdate"],
-   		"OnMouseDownPath": [],
-   		"OnCollisionPath": [],
-   		"OnDragPath": ["Mouse/FollowMouse"],
-   		"DeadPath": [],
-   		"OnDisablePath": []
- 	}
-	]
+	{
+		"id": 10018,
+		"InitPath": ["Physics/SetDynamic"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10019,
+		"InitPath": ["Physics/SetStatic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnTriggerPath": ["Item/KeyStartFollow"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10020,
+		"InitPath": ["Boss/BossInit"],
+		"UpdatePath": ["Boss/BossUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": [],
+		"OnDisablePath": []
+	}]
 }
