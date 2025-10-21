@@ -246,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 188442526}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.76, y: -2.04, z: 0}
+  m_LocalPosition: {x: 17.76, y: -2.01, z: 0}
   m_LocalScale: {x: 17.697346, y: 1.221, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -810,12 +810,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1784054147645576967, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Name
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107518056528987057, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
       propertyPath: m_Name
       value: CinemaGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450662747124098885, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.35
       objectReference: {fileID: 0}
     - target: {fileID: 3720704858191999029, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
       propertyPath: m_LocalPosition.x
@@ -857,17 +861,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5621086435876018587, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
-      propertyPath: dataId
-      value: 20019
+    - target: {fileID: 5789720403912076419, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.3
       objectReference: {fileID: 0}
-    - target: {fileID: 5621086435876018587, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
-      propertyPath: entityPairs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5621086435876018587, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
-      propertyPath: entityPairs.Array.data[0].key
-      value: SwitchCamera
+    - target: {fileID: 7455767181418683585, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
+      propertyPath: m_Name
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
