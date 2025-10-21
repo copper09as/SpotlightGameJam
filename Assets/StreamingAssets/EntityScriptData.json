@@ -85,7 +85,7 @@
 	},
 	{
 		"id": 10008,
-		"InitPath": ["Physics/SetStatic",
+		"InitPath": ["Physics/SetKinematic",
 		"Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
@@ -185,6 +185,16 @@
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
-	}
+	},
+ 	{
+  		"id": 10018,
+   		"InitPath": [ "Physics/SetDynamic"],
+   		"UpdatePath": ["Position/StickPlayerUp"],
+   		"OnMouseDownPath": [],
+   		"OnCollisionPath": [],
+   		"OnDragPath": [],
+   		"DeadPath": [],
+   		"OnDisablePath": []
+ 	}
 	]
 }

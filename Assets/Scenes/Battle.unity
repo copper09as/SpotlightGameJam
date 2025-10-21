@@ -632,13 +632,12 @@ MonoBehaviour:
   tileMapPre: {fileID: 4048944563348114577, guid: 02ba0d22d61ed7743aa2dce510727c04, type: 3}
   entitiesInCanvas:
   - {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
-  - {fileID: 2435984876462384712, guid: db4e8189e060bf24ba8bc8060e6c6e8a, type: 3}
   - {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+  - {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
   entitiesInWorld:
   - {fileID: 2319755858185257764, guid: a41602781b3761a45b27012cb0aa7c57, type: 3}
-  - {fileID: 3084489110151680552, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
-  - {fileID: 6245647477456712934, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
   - {fileID: 8032353788050845218, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
+  - {fileID: 3084489110151680552, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
   loadingPanel: {fileID: 1477780047}
   decorationTransform: {fileID: 1552566119}
   canvaTransform: {fileID: 1027292107}
