@@ -4,7 +4,10 @@ function EnemyDestroyed(entity,otherEntity)
         print("史莱姆碰撞不死亡")
         return
     end
-
+    if entity.transform.childCount > 0 then
+        local firstChild = entity.transform:GetChild(0).gameObject
+        CS.UnityEngine.GameObject.Destroy(firstChild)
+    end
 
     entity.entityStop = true
 

@@ -7,6 +7,9 @@ public class LightManager : MonoBehaviour
 {
     public static LightManager Instance;
     [SerializeField] private Light2D gloalLight;
+    [SerializeField] private GameObject damageOnHeadObj;
+    [SerializeField] private GameObject walkSmogObj;
+
     public void Awake()
     {
         if (Instance == null)
@@ -27,4 +30,5 @@ public class LightManager : MonoBehaviour
     {
         gloalLight.intensity = value;
     }
+    
 }

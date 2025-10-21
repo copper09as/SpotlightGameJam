@@ -138,9 +138,9 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2047128776930001940}
   - {fileID: 9136163315907017549}
   - {fileID: 7146733208335389005}
-  - {fileID: 2047128776930001940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4772707875188089891
@@ -168,7 +168,6 @@ MonoBehaviour:
     OnEntityExitPath: []
   animator: {fileID: 8900818346184876325}
   dataId: 20006
-  entityId: 0
   CommonEntityData:
     id: 0
     EffectId: 0
