@@ -42,12 +42,17 @@ function KeyFollowPlayer(entity)
             return
         end
 
-        OpenTheDoor(otherEntity)
+        OpenTheDoor(otherEntity,data.player)
 
         end
 end
 
-function OpenTheDoor(entity)--Door初始化
-    entity.animator:SetBool("IsOpen",true)
-    CS.BattleConfig.Instance:Win(1)
+function OpenTheDoor(entity,character)
+    entity.animator:SetBool("IsOpen",true)--开门动画
+    character.entityStop = true --角色lua脚本失活
+    if character.rb then --刚体速度置空
+        character.rb.velocity=cs.UnityEngine.Vector2(0,0)
+        character.rb.angularVelocity=0
+    end
+    CS.BattleConfig.Instance:Win(1)--一秒后胜利
 end
