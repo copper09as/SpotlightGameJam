@@ -217,6 +217,6 @@
 		"OnCollisionPath": [],
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": [],
-		"OnDisablePath": []
+		"OnDisablePath": ["Enemy/EnemyDestroyed"]
 	}]
 }

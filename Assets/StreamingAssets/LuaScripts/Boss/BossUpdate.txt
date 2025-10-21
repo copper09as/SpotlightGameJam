@@ -1,6 +1,4 @@
--- =============================
--- Boss 每帧更新（全局跟随）
--- =============================
+
 function BossUpdate(entity, dt)
     local data = entity.dataTable
     local target = data.target
@@ -25,16 +23,12 @@ function BossUpdate(entity, dt)
     end
 end
 
--- =============================
--- 空闲状态（直接切 move）
--- =============================
+
 function BossIdle(entity, dt)
     entity.dataTable.state = "move"
 end
 
--- =============================
--- 移动追踪玩家（全局跟随，无视墙壁）
--- =============================
+
 function BossMove(entity, dt)
     local data = entity.dataTable
     local target = data.target
@@ -60,9 +54,7 @@ function BossMove(entity, dt)
     end
 end
 
--- =============================
--- 攻击行为
--- =============================
+
 function BossAttack(entity, dt)
     local data = entity.dataTable
     if entity.animator then
@@ -73,9 +65,7 @@ function BossAttack(entity, dt)
     data.state = "move"
 end
 
--- =============================
--- 飞行行为
--- =============================
+
 function BossFly(entity, dt)
     local data = entity.dataTable
     local pos = entity.transform.position
@@ -90,9 +80,7 @@ function BossFly(entity, dt)
     end
 end
 
--- =============================
--- 冲刺行为（全局瞬移式冲刺）
--- =============================
+
 function BossSprint(entity, dt)
     local data = entity.dataTable
     local target = data.target
