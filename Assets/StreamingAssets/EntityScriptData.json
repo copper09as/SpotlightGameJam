@@ -85,7 +85,7 @@
 	},
 	{
 		"id": 10008,
-		"InitPath": ["Physics/SetStatic",
+		"InitPath": ["Physics/SetKinematic",
 		"Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
