@@ -176,7 +176,7 @@
 	},
 	{
 		"id": 10017,
-		"InitPath": [ "Physics/SetKinematic" ],
+		"InitPath": [ "Physics/SetKinematic", "Babble/BabbleInit" ],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],

@@ -171,7 +171,7 @@ public class EntityUIManager : MonoBehaviour
         isCameraMenuActive = false;
     }
 
-    private void HideAllMenus()
+    public void HideAllMenus()
     {
         HideSettingMenu();
         HideAudioMenu();

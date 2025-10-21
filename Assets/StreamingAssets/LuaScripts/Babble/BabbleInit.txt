@@ -1,0 +1,10 @@
+local CE = CS.XLuaCustomExport
+function BabbleInit(entity)
+    local data = entity.dataTable or {}
+    data.TMP = CE.GetTMPText(entity)
+    data.words = "策划，你是不是没活了"
+
+
+    CE.TypeWriter(data.TMP,data.words,2)
+
+end
