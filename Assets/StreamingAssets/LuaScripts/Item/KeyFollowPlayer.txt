@@ -49,4 +49,5 @@ end
 
 function OpenTheDoor(entity)--Door初始化
     entity.animator:SetBool("IsOpen",true)
+    CS.BattleConfig.Instance:Win(1)
 end
