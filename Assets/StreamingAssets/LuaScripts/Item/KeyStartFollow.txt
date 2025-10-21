@@ -1,11 +1,11 @@
 --碰撞到角色时候触发钥匙跟随角色,当角色与钥匙发生碰撞的时候就进行环绕
---local Vector3 = CS.UnityEngine.Vector3
+
 function KeyStartFollow(entity,character)
-    print(character.entityId)
-    if character.entityId ~= 10000 then
+    CS.UnityEngine.Debug.Log(character.dataId)
+    if character.dataId ~= 20000 then
         return
     end
-    print("碰到角色")
+
     local data  = entity.dataTable or {}
     --存放在luaTable中的数据
     data.player = character--存放要跟随的角色实体
@@ -15,4 +15,5 @@ function KeyStartFollow(entity,character)
     entity.col.enabled = false
     data.tweener = entity.transform:DOMove(character.transform.position,
             data.followDuration):SetAutoKill(false)
+    CS.UnityEngine.Debug.Log("碰到角色")
 end
