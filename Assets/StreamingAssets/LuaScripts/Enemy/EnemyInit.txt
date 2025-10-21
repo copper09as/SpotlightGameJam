@@ -15,7 +15,7 @@ function EnemyInit(entity)
     data.currentHeight = 0                      -- lua 用
     data.jumpRate = 2                           -- 跳跃倍率
     data.rayLen = 0.3                           -- 检测射线长度
-
+	data.isEnemy = true
     local velocity = entity.rb.velocity
     velocity.x = data.EnemySpeed
     entity.rb.velocity = velocity --设置初始速度
