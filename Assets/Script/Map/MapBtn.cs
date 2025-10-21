@@ -18,6 +18,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         nameTxt.text = sceneName;
         btn.onClick.AddListener(action);
         frame.SetActive(false);
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

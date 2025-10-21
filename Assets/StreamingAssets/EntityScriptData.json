@@ -47,8 +47,7 @@
 		"UpdatePath": ["Position/StickPlayerUp","Scroll/ScrollBgm"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath": ["Mouse/FollowMouseX",
-		"Position/StickPlayerUp"],
+		"OnDragPath": ["Mouse/FollowMouseX"],
 		"DeadPath": [],
 		"OnDisablePath": ["Ui/CancleStick"]
 	},
@@ -59,8 +58,7 @@
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath": ["Mouse/FollowMouseX",
-		"Position/StickPlayerUp"],
+		"OnDragPath": ["Mouse/FollowMouseX"],
 		"DeadPath": [],
 		"OnDisablePath": ["Ui/CancleStick"]
 	},
@@ -191,8 +189,8 @@
    		"InitPath": [ "Physics/SetDynamic"],
    		"UpdatePath": ["Position/StickPlayerUp"],
    		"OnMouseDownPath": [],
-   		"OnCollisionPath": [],
-   		"OnDragPath": [],
+   		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+   		"OnDragPath": ["Mouse/FollowMouse"],
    		"DeadPath": [],
    		"OnDisablePath": []
  	}

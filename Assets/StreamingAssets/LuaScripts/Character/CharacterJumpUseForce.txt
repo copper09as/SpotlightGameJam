@@ -71,16 +71,9 @@ function CharacterJumpUseForce(entity, dt)
                 rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * 0.5 * dt * scaleFactor)
             end
         end
-
-        -- ✨ 在这里检测“起跳动画”结束，上升进入“跳跃停留”
         if rb.velocity.y <= 0 then
             data.isJumping = false
             data.isJumpFalling = true
-            -- 🆕 起跳动画结束 ➝ 空中循环 JumpStay
-            
-			--if entity.animator then
-                --entity.animator:CrossFade("JumpStay", 0.1)
-            --end
         end
     end
 
