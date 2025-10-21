@@ -1,6 +1,9 @@
 function GameOver(entity)
     entity.entityStop = true
-
+	if entity.transform.childCount >= 3 then
+		local thirdChild = entity.transform:GetChild(2).gameObject
+		thirdChild:SetActive(false)
+	end
     if entity.rb then
         entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
         entity.rb.angularVelocity = 0
