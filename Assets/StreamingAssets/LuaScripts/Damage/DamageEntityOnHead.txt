@@ -1,9 +1,13 @@
 local GC = CS.GameController
 
-function DamageEntityOnHead(entity, otherEntity,x,y)
-    if y~=nil and y > 0.5 then
+
+function DamageEntityOnHead(entity, otherEntity, x, y)
+    if y ~= nil and y > 0.5 then
         if otherEntity ~= nil then
             otherEntity:Dead(entity)
         end
+		if otherEntity.dataTable.isEnemy then
+			entity:PlayDamageObj()
+		end
     end
 end

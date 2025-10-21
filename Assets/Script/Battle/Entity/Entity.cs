@@ -29,6 +29,7 @@ namespace Game.Battle.Entity
         [SerializeField]public List<EntityStringPair> entityPairs;
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
         [SerializeField] public SpriteRenderer sr;
+        [SerializeField] private GameObject headDamageEffectPrefab; // 修改名字
         [NonSerialized] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
         [NonSerialized] public Collider2D col;
@@ -263,5 +264,27 @@ namespace Game.Battle.Entity
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
         private void Stop(Global.Events.OnOpenSettingUi eve)=>isStop = true;
         private void CancelStop(Global.Events.OnCloseSettingUi eve) =>isStop=false;
+        public void PlayDamageObj()
+        {
+            if (headDamageEffectPrefab == null) return;
+            if (this.GetComponent<Collider2D>() == null) return;
+
+            Collider2D col = this.GetComponent<Collider2D>();
+
+            Vector3 spawnPos = new Vector3(
+                col.bounds.center.x,
+                col.bounds.min.y,
+                this.transform.position.z
+            );
+
+            GameObject particleObj = Instantiate(headDamageEffectPrefab, spawnPos, Quaternion.identity);
+
+            ParticleSystem ps = particleObj.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+                Destroy(particleObj, 1.4f);
+            }
+        }
     }
 }
