@@ -22,7 +22,7 @@ namespace Game.Battle.Entity
     {
         [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
         [SerializeField]public Animator animator;
-        [SerializeField] private int dataId;//用于读取数据
+        [SerializeField] public int dataId;//用于读取数据
 
         [NonSerialized]public int entityId;//存在实体表里面
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
