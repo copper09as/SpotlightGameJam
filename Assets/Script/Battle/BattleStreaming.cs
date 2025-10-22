@@ -12,7 +12,7 @@ public class BattleStreaming : MonoBehaviour
     private TextMeshProUGUI sceneNameText;
     private bool isLoading = false;
 
-    [SerializeField] private float fadeDuration = 0.5f; // ✅ 淡出时间
+    [SerializeField] private float fadeDuration = 2f; // ✅ 淡出时间
 
     private void Awake()
     {
@@ -24,8 +24,6 @@ public class BattleStreaming : MonoBehaviour
             var child2 = panel.transform.GetChild(0);
             sceneNameText = child2.GetComponent<TextMeshProUGUI>();
         }
-
-        SetPanelVisible(false, instant: true);
     }
 
     private void Start()
