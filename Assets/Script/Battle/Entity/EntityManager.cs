@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Battle.Entity;
 using Unity.VisualScripting;
 using UnityEditor.Build.Pipeline.Utilities;
@@ -22,6 +23,11 @@ public class EntityManager
         }
         return null;
     }
+    public List<Entity> GetEntitiesByDataId(int dataId)
+    {
+        return GetAllEntities().Where(i => i.dataId == dataId).ToList();
+    }
+
     /*public Entity InstantiateEnityty(GameObject prefab,Transform parent)
     {
         var obj = Instantiate(prefab, parent);
