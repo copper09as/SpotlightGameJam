@@ -243,7 +243,16 @@
 			"OnDragPath": [ "Mouse/FollowMouse" ],
 			"DeadPath": [],
 			"OnDisablePath": [ "Enemy/EnemyDestroyed" ]
+		},
+		{
+			"id": 10021,
+			"InitPath": [ "Boss/BossInit" ],
+			"UpdatePath": [ "Boss/BossUpdate" ],
+			"OnMouseDownPath": [],
+			"OnCollisionPath": [],
+			"OnDragPath": [ "Mouse/FollowMouse" ],
+			"DeadPath": [],
+			"OnDisablePath": [ "Enemy/EnemyDestroyed" ]
 		}
-		
 	]
 }
