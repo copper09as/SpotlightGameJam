@@ -1,6 +1,4 @@
-
 function DamageEntityIfNotPlayer(entity, otherEntity)
-	
     if otherEntity ~= nil and otherEntity.gameObject.tag ~= "Player" then
         otherEntity:Dead()
     end

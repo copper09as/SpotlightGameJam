@@ -8,40 +8,64 @@ function CharacterJumpUseForce(entity, dt)
     local rawFactor = entity.transform.localScale.x / 0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
-    local origin = CS.UnityEngine.Vector2(
-        entity.transform.position.x,
-        entity.col.bounds.min.y
-    )
+    -- 检测是否在地面
+    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.col.bounds.min.y)
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
     CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
 
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
 
-    -- ✅ 起跳
-    if inputJump and not data.jumpUsed and (groundCheck or (data.coyoteTimeCounter > 0)) and not data.isJumping then
+
+    if inputJump and not data.jumpUsed and (groundCheck or data.coyoteTimeCounter > 0) and not data.isJumping then
         data.isJumping = true
         data.isJumpFalling = false
         data.jumpCut = false
         data.startY = entity.transform.position.y
         data.coyoteTimeCounter = 0
         data.jumpUsed = true
-        Jump(entity, scaleFactor)  -- 🆕 起跳时播放 Jump 动画
+
+        -- 🪂 计算连跳加速
+        local now = CS.UnityEngine.Time.time
+        local vx = rb.velocity.x
+
+        -- 跳跃方向（取决于当前输入或已有速度方向）
+        local inputDir = 0
+        if GC.isLeftPressed then inputDir = -1 end
+        if GC.isRightPressed then inputDir = 1 end
+
+        if now - (data.lastLandingTime or 0) <= (data.bhopTimeWindow or 0.15) and math.abs(vx) > 0.1 then
+            -- 🧮 计算加速
+            local boost = data.bhopSpeedBoost * (vx >= 0 and 1 or -1)
+            local newSpeed = vx + boost
+
+            -- 限制最大连跳速度
+            if newSpeed > data.maxBhopSpeed then newSpeed = data.maxBhopSpeed end
+            if newSpeed < -data.maxBhopSpeed then newSpeed = -data.maxBhopSpeed end
+
+            vx = newSpeed
+        elseif inputDir ~= 0 then
+            -- 起跳时没有连跳加速就继承基础移动方向
+            vx = inputDir * data.characterSpeed
+        end
+
+        rb.velocity = CS.UnityEngine.Vector2(vx, rb.velocity.y)
+
+        -- 真正施加跳跃力
+        Jump(entity, scaleFactor)
     end
 
-    -- 松开空格
     if not inputJump then
         data.jumpUsed = false
     end
 
-    -- 土狼时间
     if groundCheck then
         data.coyoteTimeCounter = data.coyoteTime
     else
         data.coyoteTimeCounter = math.max(0, (data.coyoteTimeCounter or 0) - dt)
     end
 
-    -- 延长跳跃
+
     if data.isJumping and inputJump then
         currentHeight = entity.transform.position.y - data.startY
         if currentHeight < data.maxJumpHeight then
@@ -50,19 +74,16 @@ function CharacterJumpUseForce(entity, dt)
         end
     end
 
-    -- 撞墙动能削减
     local leftOrigin = CS.UnityEngine.Vector2(entity.transform.position.x - entity.col.bounds.extents.x - 0.01, entity.transform.position.y)
     local rightOrigin = CS.UnityEngine.Vector2(entity.transform.position.x + entity.col.bounds.extents.x + 0.01, entity.transform.position.y)
     local wallCheckLeft = DM.Raycast2D(leftOrigin, CS.UnityEngine.Vector2(-1, 0), data.wallRayLen or 0.1, "Ground")
     local wallCheckRight = DM.Raycast2D(rightOrigin, CS.UnityEngine.Vector2(1, 0), data.wallRayLen or 0.1, "Ground")
-    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(leftOrigin.x, leftOrigin.y, 0), CS.UnityEngine.Vector3(-data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
-    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(rightOrigin.x, rightOrigin.y, 0), CS.UnityEngine.Vector3(data.wallRayLen, 0, 0), CS.UnityEngine.Color.green)
 
     if (wallCheckLeft or wallCheckRight) and rb.velocity.y > 0 then
         rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, math.max(0, rb.velocity.y - data.wallSlideDecay * dt))
     end
 
-    -- 🪂 上升阶段
+
     if data.isJumping then
         if currentHeight >= data.maxJumpHeight or data.jumpCut then
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.jumpCutGravityMult * dt * scaleFactor)
@@ -77,22 +98,35 @@ function CharacterJumpUseForce(entity, dt)
         end
     end
 
-    -- ⬇️ 下落阶段
+
     if data.isJumpFalling then
         rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - data.gravity * data.fallGravityMult * dt * scaleFactor)
         if groundCheck then
             data.isJumpFalling = false
             rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, 0)
             data.jumpCut = false
-            -- 🆕 落地回 Idle
+
+            -- ✅ 记录落地时间
+            data.lastLandingTime = CS.UnityEngine.Time.time
+
             if entity.animator then
                 entity.animator:CrossFade("Idle", 0.15)
             end
         end
     end
+
+
+    if not groundCheck then
+        -- 限制空中转向的力度
+        if GC.isLeftPressed then
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x - data.characterSpeed * 0.05, rb.velocity.y)
+        elseif GC.isRightPressed then
+            rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x + data.characterSpeed * 0.05, rb.velocity.y)
+        end
+    end
 end
 
--- 🆕 初次跳跃施加力 + 播放 Jump 动画
+
 function Jump(entity, scaleFactor)
     local data = entity.dataTable
     local rb = entity.rb
@@ -108,7 +142,7 @@ function Jump(entity, scaleFactor)
     end
 end
 
--- 短按跳跃判断
+
 function AddJumpHeight(entity, jumpReleased)
     local data = entity.dataTable
     if jumpReleased and data.isJumping and entity.rb.velocity.y > 0 then
