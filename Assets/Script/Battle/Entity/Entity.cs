@@ -20,7 +20,7 @@ namespace Game.Battle.Entity
 
     public class Entity : MonoBehaviour,IObjectByCreate
     {
-        [SerializeField]private EntityScriptData scriptData;//储存与随时修改脚本数据
+        public EntityScriptData scriptData;//储存与随时修改脚本数据
         [SerializeField]public Animator animator;
         [SerializeField] public int dataId;//用于读取数据
 

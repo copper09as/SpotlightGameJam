@@ -1,0 +1,21 @@
+function LockCross(entity)
+    local path = "Character/CharacterCrossMap"
+    local list = entity.scriptData.UpdatePath
+    local index = -1
+
+    -- 查找是否存在该路径
+    for i = 0, list.Count - 1 do
+        if list[i] == path then
+            index = i
+            break
+        end
+    end
+
+    -- 如果存在就移除
+    if index ~= -1 then
+        list:RemoveAt(index)
+    else
+        -- 不存在就添加
+        list:Add(path)
+    end
+end

@@ -252,5 +252,15 @@
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10024,
+		"InitPath": ["Physics/SetDynamic"],
+		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
+		"OnMouseDownPath": ["Position/LockCross"],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}]
 }

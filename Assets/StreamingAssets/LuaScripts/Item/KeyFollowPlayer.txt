@@ -48,6 +48,9 @@ function KeyFollowPlayer(entity)
 end
 
 function OpenTheDoor(entity,character)
+	if not character then
+		return
+	end
     entity.animator:SetBool("IsOpen",true)--开门动画
     character.entityStop = true --角色lua脚本失活
     if character.rb then --刚体速度置空

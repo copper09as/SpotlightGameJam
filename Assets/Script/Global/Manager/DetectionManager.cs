@@ -59,11 +59,11 @@ public static class DetectionManager
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance);
         Draw(hitInfo.collider != null, origin, direction, distance);
-        if (hitInfo.collider != null)
+        /*if (hitInfo.collider != null)
         {
             // 确实碰撞到了物体
             Debug.Log("碰撞到: " + hitInfo.collider.gameObject.name);
-        }
+        }*/
 
 
         return hitInfo.collider != null;
