@@ -189,9 +189,20 @@ namespace Game.Battle.Entity
             foreach (var dir in dirs)
             {
                 var hit = Physics2D.Raycast(transform.position, dir, checkDist, wallMask);
-                if (hit.collider != null && (hit.transform.GetComponent<Entity>() == null))
+                if (hit.collider != null)
                 {
-                    blocked++;
+                    var entity = hit.transform.GetComponent<Entity>();
+                    if (entity == null)
+                    {
+                        blocked++;
+                        continue;
+                    }
+                    object canBlockObj = entity.dataTable.Get<object>("canBlock");
+                    if (canBlockObj != null && (bool)canBlockObj)
+                    {
+                        blocked++;
+                    }
+                  
                 }
             }
             return blocked >= 3;
