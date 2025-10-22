@@ -60,7 +60,7 @@
       "Id": 8,
       "SceneName": "回归虚无",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "LEVEL4(Passable)",
       "noteString": "迷宫较复杂，建议标记路线"
     },
     {
