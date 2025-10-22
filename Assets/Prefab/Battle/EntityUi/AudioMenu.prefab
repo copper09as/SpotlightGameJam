@@ -303,7 +303,6 @@ MonoBehaviour:
     OnEntityExitPath: []
   animator: {fileID: 0}
   dataId: 20004
-  entityId: 0
   CommonEntityData:
     id: 0
     EffectId: 0
@@ -311,6 +310,7 @@ MonoBehaviour:
     ScaleY: 0
   entityPairs: []
   sr: {fileID: 0}
+  headDamageEffectPrefab: {fileID: 0}
   entityStop: 0
 --- !u!61 &6068985564287849660
 BoxCollider2D:
@@ -468,7 +468,7 @@ SpriteRenderer:
   m_SortingLayerID: -1077103149
   m_SortingLayer: 3
   m_SortingOrder: 3
-  m_Sprite: {fileID: -1934394878, guid: eef982ca5c8bba6489629d57fe425eb4, type: 3}
+  m_Sprite: {fileID: -1868429596, guid: 985a6e5f12ebeee44bd2e5c0eb0bef4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
