@@ -174,6 +174,7 @@ public class LuaManager : MonoBehaviour
     {
         if (enableLog)
         {
+
             Debug.LogError($"[LuaManager] {msg}");
         }
           
