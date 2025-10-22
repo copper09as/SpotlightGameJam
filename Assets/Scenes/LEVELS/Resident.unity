@@ -2122,7 +2122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId: 0
   userData:
-    unLockLevel: 0
+    unLockLevel: 20
 --- !u!4 &1694435562
 Transform:
   m_ObjectHideFlags: 0

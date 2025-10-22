@@ -4,7 +4,7 @@
       "Id": 0,
       "SceneName": "世界的起点",
       "SpritePath": "",
-      "ScenePath": "Passable",
+      "ScenePath": "LEVEL4(Passable)",
       "noteString": "有问题请点击游戏主界面标题联系策划"
     },
     {
@@ -53,7 +53,7 @@
       "Id": 7,
       "SceneName": "缺少参数",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "LEVEL5(CantMove)",
       "noteString": "注意道具收集顺序"
     },
     {

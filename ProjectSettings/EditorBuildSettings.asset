@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map.unity
     guid: 686fbdcc3b5f4f846b9eb4691d44bd39
   - enabled: 1
-    path: Assets/Scenes/LEVELS/Passable.unity
+    path: Assets/Scenes/LEVELS/LEVEL4(Passable).unity
     guid: ed8a107969042e549bfc8a5e2de6b0b9
   - enabled: 1
     path: Assets/Scenes/LEVELS/CantMove.unity
