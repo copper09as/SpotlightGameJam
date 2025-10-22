@@ -23,6 +23,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/MouseFlow (2).wav");
         if(btn.interactable && frame!=null)
         {
             frame.SetActive(true);
