@@ -28,11 +28,11 @@ namespace Game.Battle.Entity
         [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
         [SerializeField]public List<EntityStringPair> entityPairs;
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
-        [SerializeField] public SpriteRenderer sr;
-        [SerializeField] private GameObject headDamageEffectPrefab; // 修改名字
-        [NonSerialized] public Rigidbody2D rb;
-        [NonSerialized] public EntityManager entityManager;
-        [NonSerialized] public Collider2D col;
+        [SerializeField]public SpriteRenderer sr;
+        [SerializeField]private GameObject headDamageEffectPrefab; // 修改名字
+        [NonSerialized]public Rigidbody2D rb;
+        [NonSerialized]public EntityManager entityManager;
+        [NonSerialized]public Collider2D col;
 
 
         private bool isStop = false;
