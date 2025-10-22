@@ -2,7 +2,7 @@
 
 function KeyStartFollow(entity,character)
     CS.UnityEngine.Debug.Log(character.dataId)
-    if character.dataId ~= 20000 then
+    if character.dataId ~= 20000 or character.dataId ~= 20022then
         return
     end
 

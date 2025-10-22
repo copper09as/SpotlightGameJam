@@ -9,6 +9,7 @@ function DragonInit(entity)
     data.isFalling = false
     data.attackCooldown = 2           -- 攻击冷却时间
     data.attackTimer = 0
+    data.attackPosition = nil         --攻击前往的位置
     --data.sprintCooldown = 5           -- 冲刺冷却
     --data.sprintTimer = 0
     data.sprintSpeed = 10             -- 冲刺速度

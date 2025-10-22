@@ -10,11 +10,11 @@ function DragonUpdate(entity, dt)
     data.flyTime = math.max(0, data.flyTime - dt)
 
     -- 根据状态执行行为
-    --if data.state == "idle" then
-    --    DragonIdle(entity, dt)
+    if data.state == "idle" then --待机不执行动作
+        DragonIdle(entity, dt)
     --elseif data.state == "move" then
     --    BossMove(entity, dt)
-    if data.state == "attack" then
+    elseif data.state == "attack" then
         DragonAttack(entity, dt)
     elseif data.state == "fly" then
         DragonFly(entity, dt)
@@ -24,9 +24,9 @@ function DragonUpdate(entity, dt)
 end
 
 
---function DragonIdle(entity, dt)
---    entity.dataTable.state = "move"
---end
+function DragonIdle(entity, dt)
+    entity.dataTable.state = "move"
+end
 --
 --
 --function DragonMove(entity, dt)
@@ -53,16 +53,29 @@ end
 --        data.flyTime = data.flyDuration
 --    end
 --end
+function DragonAttackBefore(entity, dt)
+    local data = entity.dataTable
+    if entity.animator then
+        entity.animator:SetBool("CanAttack",true)
+    end
+    -- 攻击逻辑
+    data.attackPosition = data.target.transform.position -- 记录将要攻击的位置
 
+    entity.transform:LookAT(data.attackPosition);--巨龙朝向
+
+
+
+end
 
 function DragonAttack(entity, dt)
     local data = entity.dataTable
     if entity.animator then
-        entity.animator:Play("Attack")
+        entity.animator:SetTrigger("Attack")
     end
-    -- 攻击逻辑由外部处理
-    data.attackTimer = data.attackCooldown
-    data.state = "move"
+    -- 攻击逻辑
+
+
+
 end
 
 

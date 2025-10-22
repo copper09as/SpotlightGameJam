@@ -122,6 +122,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &98885677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 98885679}
+  - component: {fileID: 98885678}
+  m_Layer: 0
+  m_Name: BattleStreaming
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &98885678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98885677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d6a59633e1a1d41b8299252ec2e60d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 0}
+  fadeDuration: 0.5
+--- !u!4 &98885679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98885677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6058517, y: -0.07486511, z: -19.985422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188442526
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 491556541064496165, guid: 652a57fc41fee7f428370032e1d29465, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1748683403228858072, guid: 652a57fc41fee7f428370032e1d29465, type: 3}
       propertyPath: m_Controller
@@ -844,6 +890,10 @@ PrefabInstance:
     - target: {fileID: 2420932657036874980, guid: 652a57fc41fee7f428370032e1d29465, type: 3}
       propertyPath: m_Offset.y
       value: -0.09024662
+      objectReference: {fileID: 0}
+    - target: {fileID: 2420932657036874980, guid: 652a57fc41fee7f428370032e1d29465, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 3231243846805890215, guid: 652a57fc41fee7f428370032e1d29465, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1052,3 +1102,4 @@ SceneRoots:
   - {fileID: 7730636204454176341}
   - {fileID: 893462097}
   - {fileID: 7639214723594072799}
+  - {fileID: 98885679}
