@@ -45,13 +45,11 @@ function CharacterJumpUseForce(entity, dt)
 
             vx = newSpeed
         elseif inputDir ~= 0 then
-            -- 起跳时没有连跳加速就继承基础移动方向
             vx = inputDir * data.characterSpeed
         end
 
         rb.velocity = CS.UnityEngine.Vector2(vx, rb.velocity.y)
 
-        -- 真正施加跳跃力
         Jump(entity, scaleFactor)
     end
 

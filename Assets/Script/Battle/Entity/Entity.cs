@@ -1,11 +1,9 @@
-﻿using Global.Data;
+﻿using System;
+using System.Collections.Generic;
+using Global.Data;
 using Global.Data.Entity;
 using Global.ObjectCreate;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using XLua;
 
 namespace Game.Battle.Entity
@@ -18,28 +16,30 @@ namespace Game.Battle.Entity
     }
 
 
-    public class Entity : MonoBehaviour,IObjectByCreate
+    public class Entity : MonoBehaviour, IObjectByCreate
     {
         public EntityScriptData scriptData;//储存与随时修改脚本数据
-        [SerializeField]public Animator animator;
+        [SerializeField] public Animator animator;
         [SerializeField] public int dataId;//用于读取数据
 
-        [NonSerialized]public int entityId;//存在实体表里面
-        [SerializeField]public CommonEntityData CommonEntityData;//实体通用数据
-        [SerializeField]public List<EntityStringPair> entityPairs;
+        [NonSerialized] public int entityId;//存在实体表里面
+        [SerializeField] public CommonEntityData CommonEntityData;//实体通用数据
+        [SerializeField] public List<EntityStringPair> entityPairs;
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
-        [SerializeField]public SpriteRenderer sr;
-        [SerializeField]private GameObject headDamageEffectPrefab; // 修改名字
-        [NonSerialized]public Rigidbody2D rb;
-        [NonSerialized]public EntityManager entityManager;
-        [NonSerialized]public Collider2D col;
+        [SerializeField] public SpriteRenderer sr;
+        [SerializeField] private GameObject headDamageEffectPrefab; // 修改名字
+        [NonSerialized] public Rigidbody2D rb;
+        [NonSerialized] public EntityManager entityManager;
+        [NonSerialized] public Collider2D col;
 
 
         private bool isStop = false;
         public bool entityStop = false;
-        string IObjectByCreate.Name 
-        { get => "Entity";
-            set => value = "Entity"; }
+        string IObjectByCreate.Name
+        {
+            get => "Entity";
+            set => value = "Entity";
+        }
         private void Start()
         {
             EventBus.Subscribe<Global.Events.OnOpenSettingUi>(Stop);
@@ -51,13 +51,13 @@ namespace Game.Battle.Entity
             int id = dataId;
             this.entityManager = entityManager;
 
-            if(rb == null) rb = GetComponent<Rigidbody2D>();
-            if(col==null) col = GetComponent<Collider2D>();
-            if(sr==null)sr = GetComponent<SpriteRenderer>();
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (col == null) col = GetComponent<Collider2D>();
+            if (sr == null) sr = GetComponent<SpriteRenderer>();
 
-             
+
             dataTable = LuaManager.Instance._luaEnv.NewTable();
-            CommonEntityData = 
+            CommonEntityData =
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
             try
             {
@@ -70,7 +70,7 @@ namespace Game.Battle.Entity
                 SceneChangeManager.Instance.LoadScene("StartScene");
                 throw ex;
             }
-            
+
             foreach (var i in scriptData.InitPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
@@ -84,7 +84,7 @@ namespace Game.Battle.Entity
             }
             foreach (var i in scriptData.UpdatePath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime, IsStuckInWall());
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, Time.deltaTime, IsStuckInWall());
             }
         }
         public void OnClick()
@@ -135,7 +135,7 @@ namespace Game.Battle.Entity
 
             foreach (var i in scriptData.OnCollisionPath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x,contactNormal.y);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
             }
         }
 
@@ -147,7 +147,7 @@ namespace Game.Battle.Entity
             }
             foreach (var i in scriptData.DeadPath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,entity);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, entity);
             }
         }
         private void OnCollisionStay2D(Collision2D collision)
@@ -169,7 +169,6 @@ namespace Game.Battle.Entity
             {
                 return;
             }
-
             foreach (var i in scriptData.OnCollisionPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.y);
@@ -186,19 +185,16 @@ namespace Game.Battle.Entity
         Vector2.left,
         Vector2.right
     };
-
             int blocked = 0;
             foreach (var dir in dirs)
             {
                 var hit = Physics2D.Raycast(transform.position, dir, checkDist, wallMask);
-                if (hit.collider != null)
+                if (hit.collider != null && (hit.transform.GetComponent<Entity>() == null))
                 {
                     blocked++;
                 }
             }
-
-
-            return blocked >= 4;
+            return blocked >= 3;
         }
         public void OnDrag()
         {
@@ -208,7 +204,7 @@ namespace Game.Battle.Entity
             }
             foreach (var i in scriptData.OnDragPath)
             {
-                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime);
+                LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, Time.deltaTime);
             }
         }
         private void OnDisable()
@@ -261,8 +257,8 @@ namespace Game.Battle.Entity
 
         #endregion
         public List<Entity> GetEntities(string key) => entityPairs.Find(i => i.key == key).entities;
-        private void Stop(Global.Events.OnOpenSettingUi eve)=>isStop = true;
-        private void CancelStop(Global.Events.OnCloseSettingUi eve) =>isStop=false;
+        private void Stop(Global.Events.OnOpenSettingUi eve) => isStop = true;
+        private void CancelStop(Global.Events.OnCloseSettingUi eve) => isStop = false;
         public void PlayDamageObj()
         {
             if (headDamageEffectPrefab == null) return;
