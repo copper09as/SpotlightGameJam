@@ -11,7 +11,8 @@ public class StartUiManager : MonoBehaviour
     [SerializeField] private Button websiteButton;
     [SerializeField] private Button OpenMenusButton;
 
-    private string websiteUrl = "https://space.bilibili.com/80632239";
+    private string websiteUrl = 
+        "https://message.bilibili.com/?spm_id_from=333.1387.0.0#/whisper/mid80632239";
 
     void Awake()
     {

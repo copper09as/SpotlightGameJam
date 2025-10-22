@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class MapBtnGroup : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class MapBtnGroup : MonoBehaviour
         LayoutButtons(true); // 初始布局
         if (panelCanvasGroup != null)
         {
-            StartCoroutine(FadeOutPanel());
+            StartCoroutine(FadeOutPanel(1f));
         }
     }
     private IEnumerator FadeOutPanel(float duration = 0.3f)
@@ -175,13 +176,21 @@ public class MapBtnGroup : MonoBehaviour
         {
             t += Time.deltaTime / moveDuration;
             float lerpT = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(t));
-
-            for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+            try
             {
-                mapSelectButtonGroup[i].transform.localPosition =
-                    Vector3.Lerp(startPos[i], targetPos[i], lerpT);
-                mapSelectButtonGroup[i].transform.localScale =
-                    Vector3.Lerp(startScale[i], targetScale[i], lerpT);
+                for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+                {
+                    mapSelectButtonGroup[i].transform.localPosition =
+                        Vector3.Lerp(startPos[i], targetPos[i], lerpT);
+                    mapSelectButtonGroup[i].transform.localScale =
+                        Vector3.Lerp(startScale[i], targetScale[i], lerpT);
+                }
+            }
+            catch(Exception ex)
+            {
+                NotificationManager.Instance.ShowNotification(ex.Message, "加载关卡选择出现错误！请重新加载");
+                SceneChangeManager.Instance.LoadScene("StartScene");
+                throw ex;
             }
 
             yield return null;
