@@ -1,4 +1,5 @@
 local Mathf = CS.UnityEngine.Mathf
+local Vector3 = CS.UnityEngine.Vector3
 function DragonUpdate(entity, dt)
     local data = entity.dataTable
     local target = data.target
@@ -6,26 +7,28 @@ function DragonUpdate(entity, dt)
 
     -- 更新冷却计时
     data.attackTimer = math.max(0, data.attackTimer - dt)
-    data.sprintTimer = math.max(0, data.sprintTimer - dt)
-    data.flyTime = math.max(0, data.flyTime - dt)
 
     -- 根据状态执行行为
     if data.state == "idle" then --待机不执行动作
         DragonIdle(entity, dt)
     elseif data.state == "attackBefore" then
         DragonAttackBefore(entity, dt)
-    elseif data.state == "attack" then
-        DragonAttack(entity, dt)
-    elseif data.state == "fly" then
-        DragonFly(entity, dt)
-    --elseif data.state == "sprint" then
-    --    BossSprint(entity, dt)
+    elseif data.state == "attackAfter" then
+        DragonAttackAfter(entity, dt,3)
     end
+
+    CS.UnityEngine.Debug.Log(data.state)
 end
 
 
 function DragonIdle(entity, dt) --什么都不做
+    local data = entity.dataTable
+    if data.attackTimer == 0 then
+        data.state = "attackBefore" --进入攻击前摇阶段
+    end
+
     return
+
 end
 
 
@@ -40,40 +43,55 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     local normalizedDirection = data.attackPosition.normalized
     local distance =  data.attackPosition.magnitude
     local angle =
-    Mathf.Atan2(normalizedDirection.y,normalizedDirection.x) * Mathf.Rad2Deg + 90;--巨龙朝向
+    Mathf.Atan2(normalizedDirection.y,normalizedDirection.x) * Mathf.Rad2Deg + 180;--巨龙朝向
 
-    entity.transform.rotation = CS.UnityEngine.Euler(0,0,angle)
+    entity.sr.gameObject.transform:DORotate(Vector3(0, 0, angle),0.3):SetAutoKill(false)--0.3秒将显示层转到相应角度
 
 
     data.beforeTimer = math.max(0, data.beforeTimer - dt)--更新时间计时器
     if data.beforeTimer == 0 then --前摇结束开始攻击
-        entity.animator:SetTrigger("Attack")
-        data.state = "attack" --进行状态设置
+    entity.animator:SetTrigger("Attack")
+    data.state = "attack" --进行状态设置
+    DragonAttack(entity, dt)
     end
-
 end
 
 function DragonAttack(entity, dt)
 
     local data = entity.dataTable
     -- 攻击逻辑
-    entity.transform:DOMove(data.attackPosition,3):SetEase(CS.Ease.OutCubic):
+    entity.transform:DOMove(data.attackPosition,1):SetEase(CS.DG.Tweening.Ease.OutCubic):
     OnComplete(function ()
-    entity.animator:SetTrigger("Attack")
-    data.state = "attack" --进行状态设置
+        DragonAttackBack()
     end)
-
-
-    data.attackTimer = math.max(0, data.attackTimer - dt)
     function DragonAttackBack()   --攻击结束回调函数
         entity.animator:SetTrigger("StopAttack")
-        data.state = "" --进行状态设置
+        data.state = "attackAfter" --进行状态设置
+        CS.UnityEngine.Debug.Log("攻击后摇")
+    end
+end
+
+
+
+function DragonAttackAfter(entity, dt,flyTime)--攻击后摇期间
+    local data = entity.dataTable
+    data.afterTimer = math.max(0, data.afterTimer - dt)--更新时间计时器
+    if data.afterTimer == 0 then
+        data.afterTimer = data.afterTime--重置后摇计时器
+        data.attackTimer = flyTime + 10
+        DragonFly(entity, dt,flyTime)
     end
 
 end
 
 
-function DragonFly(entity, dt)
-
+function DragonFly(entity, dt,flyTime)--飞回原来的位置
+    local data = entity.dataTable
+    entity.transform:DOMove( data.originPosition,flyTime):SetEase(CS.Ease.InOutCubic):
+    OnComplete(function ()
+    data.state = "idle"
+    data.attackTimer = data.attackCooldown --重置攻击冷却时间计时器
+    end)
 end
+
 

@@ -221,8 +221,8 @@
 	},
 	{
 		"id": 10021,
-		"InitPath": ["Boss/BossInit"],
-		"UpdatePath": ["Boss/BossUpdate"],
+		"InitPath": [ "Boss/DragonInit", "Physics/SetKinematic" ],
+		"UpdatePath": [ "Boss/DragonUpdate" ],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": ["Mouse/FollowMouse"],
