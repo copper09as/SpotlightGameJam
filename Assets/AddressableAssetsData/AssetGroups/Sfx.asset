@@ -17,8 +17,33 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9d1eeeeddb1d88046a11b8920025f588
   m_SerializeEntries:
+  - m_GUID: 15cded3c75ee5034f91adc87f8aa60df
+    m_Address: Assets/Audio/Sfx/PlayerWalk (6).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24a566496b4ce0049bbdc75c614abc8c
     m_Address: Assets/Audio/Sfx/LeftClick.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 532e4950919d1e849b47f23616e52f81
+    m_Address: Assets/Audio/Sfx/PlayerWalk (3).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b459f5d31bdd754f80a4bd557d8a0f8
+    m_Address: Assets/Audio/Sfx/PlayerWalk (4).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 691b07ebde21aac488c1fbf70b947aa8
+    m_Address: Assets/Audio/Sfx/PlayerWalk (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7281545a158df62448937deb6778fbc0
+    m_Address: Assets/Audio/Sfx/Jump.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -29,6 +54,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 97deceed2acf5a34db732f517e701f5f
     m_Address: Assets/Audio/Sfx/Dead.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5e2fd95b9c722c478d6dd53513d4639
+    m_Address: Assets/Audio/Sfx/PlayerDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0b40a646b36dd24b929b7f191dbcdc2
+    m_Address: Assets/Audio/Sfx/PlayerWalk (5).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d324762150f356d4fbe14264536e3aec
+    m_Address: Assets/Audio/Sfx/ShimeDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ad5452766f76a4fa683bd118097df1
+    m_Address: Assets/Audio/Sfx/PlayerWalk (1).wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

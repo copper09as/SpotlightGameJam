@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Global.Data;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class SettingUi : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(settingUi.gameObject);
         EventBus.Subscribe<Global.Events.OpenSettingUi>(OpenUiEve);
         // 初始化面板状态
         settingUi.transform.localPosition = hiddenPos;
@@ -88,7 +90,16 @@ public class SettingUi : MonoBehaviour
         isOpen = true;
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         currentScale = Time.timeScale;
-        settingUi.SetActive(true);
+        try
+        {
+            settingUi.SetActive(true);
+        }
+        catch(Exception ex)
+        {
+            NotificationManager.Instance.ShowNotification(ex.Message, "设置界面打开错误！");
+            SceneChangeManager.Instance.LoadScene("StartScene");
+            throw ex;
+        }
 
         if (slideCoroutine != null)
             StopCoroutine(slideCoroutine);

@@ -1,56 +1,81 @@
 local GC = CS.GameController
 local DM = CS.DetectionManager
+local AM = CS.AudioManager.Instance
+
+-- 脚步声列表
+local walkAudios = {
+    "Assets/Audio/Sfx/PlayerWalk (1).wav",
+    "Assets/Audio/Sfx/PlayerWalk (2).wav",
+    "Assets/Audio/Sfx/PlayerWalk (3).wav",
+    "Assets/Audio/Sfx/PlayerWalk (4).wav",
+    "Assets/Audio/Sfx/PlayerWalk (5).wav",
+    "Assets/Audio/Sfx/PlayerWalk (6).wav"
+}
+
 function CharacterMove(entity)
     if entity.rb == nil then return end
 
     local data = entity.dataTable
     local rb = entity.rb
-    local x = GC:MoveX() -- 玩家输入方向
+    local x = GC:MoveX()
     local speed = data.characterSpeed or 10
 
     -- 计算目标速度
     local targetSpeed = x * speed
-    local accelRate = (math.abs(targetSpeed) > 0.01) and (data.runAccelAmount or 10) 
-                                                or (data.runDeccelAmount or 10)
+    local accelRate = (math.abs(targetSpeed) > 0.01) and (data.runAccelAmount or 10) or (data.runDeccelAmount or 10)
     local speedDif = targetSpeed - rb.velocity.x
     local movement = speedDif * accelRate
 
-    -- 缩放系数
-    --local camera = CS.UnityEngine.Camera.main
-    --local rawFactor = camera.orthographicSize / (data.defaultCamSize or 5.19)
-	local rawFactor = entity.transform.localScale.x/0.3
+    local rawFactor = entity.transform.localScale.x / 0.3
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
     rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)
-    local origin = CS.UnityEngine.Vector2(
-        entity.transform.position.x,
-        entity.col.bounds.min.y
-    )
+
+    -- 检测地面
+    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.col.bounds.min.y)
     local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
-    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
-	if entity.transform.childCount >= 3 then
-		local thirdChild = entity.transform:GetChild(2).gameObject
-		if groundCheck then
-			thirdChild:SetActive(true)   -- 落地时激活
-		else
-			thirdChild:SetActive(false)  -- 空中时隐藏
-		end
-	end
-        -- 翻转方向，根据 MoveX
+    CS.UnityEngine.Debug.DrawRay(
+        CS.UnityEngine.Vector3(origin.x, origin.y, 0),
+        CS.UnityEngine.Vector3(0, -data.rayLen, 0),
+        CS.UnityEngine.Color.red
+    )
+
+    -- 落地效果
+    if entity.transform.childCount >= 3 then
+        local thirdChild = entity.transform:GetChild(2).gameObject
+        thirdChild:SetActive(groundCheck)
+    end
+
+    -- 翻转
     if x > 0.1 then
-        entity.sr.flipX = false  -- 右移
+        entity.sr.flipX = false
     elseif x < -0.1 then
-        entity.sr.flipX = true   -- 左移
-	end
+        entity.sr.flipX = true
+    end
+
     -- ====== 动画控制 ======
     if entity.animator ~= nil and groundCheck then
-	
         local threshold = 0.1
-		if math.abs(rb.velocity.x) > threshold and not data.jumpUsed then
-			entity.animator:Play("Walk")
-		elseif math.abs(rb.velocity.x) <= threshold and not data.jumpUsed then
-			entity.animator:Play("Idle")
-		end
-	
+        if math.abs(rb.velocity.x) > threshold and not data.jumpUsed then
+            entity.animator:Play("Walk")
+        elseif math.abs(rb.velocity.x) <= threshold and not data.jumpUsed then
+            entity.animator:Play("Idle")
+        end
+    end
+
+    -- ====== 脚步声播放 ======
+    -- 只有接地 + 有水平速度时播放
+    if groundCheck and math.abs(rb.velocity.x) > 0.1 then
+        local now = CS.UnityEngine.Time.time
+        if data.lastStepTime == nil then
+            data.lastStepTime = 0
+        end
+        local stepInterval = 0.35 -- 每隔多少秒播一次脚步声
+
+        if now - data.lastStepTime >= stepInterval then
+            local index = math.random(1, #walkAudios)
+            AM:PlaySFX(walkAudios[index])
+            data.lastStepTime = now
+        end
     end
 end

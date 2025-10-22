@@ -138,6 +138,7 @@ function Jump(entity, scaleFactor)
     if entity.animator then
         entity.animator:Play("Jump")
     end
+	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/Jump.wav")
 end
 
 
