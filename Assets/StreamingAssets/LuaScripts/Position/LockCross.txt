@@ -11,11 +11,15 @@ function LockCross(entity)
         end
     end
 
-    -- 如果存在就移除
     if index ~= -1 then
         list:RemoveAt(index)
+        if entity.sr ~= nil then
+            entity.sr.color = CS.UnityEngine.Color.white
+        end
     else
-        -- 不存在就添加
         list:Add(path)
+        if entity.sr ~= nil then
+            entity.sr.color = CS.UnityEngine.Color.red
+        end
     end
 end
