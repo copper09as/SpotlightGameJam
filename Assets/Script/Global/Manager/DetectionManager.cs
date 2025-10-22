@@ -46,7 +46,6 @@ public static class DetectionManager
     public static bool Raycast2DOutHit(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerMask));
-        Draw(hitInfo.collider != null, origin, direction, distance);//检测两边
         return hitInfo.collider != null;
     }
     
@@ -58,7 +57,7 @@ public static class DetectionManager
     public static bool Raycast2DNoLayerOutHit(Vector2 origin, Vector2 direction, float distance, out RaycastHit2D hitInfo)
     {
         hitInfo = Physics2D.Raycast(origin, direction, distance);
-        Draw(hitInfo.collider != null, origin, direction, distance);
+        //Draw(hitInfo.collider != null, origin, direction, distance);
         /*if (hitInfo.collider != null)
         {
             // 确实碰撞到了物体
