@@ -40,6 +40,11 @@ namespace Global.Data.BattleConfig
         {
             StartCoroutine(WinWithDelayCoroutine(delay));
         }
+        public void UnLockLevel()
+        {
+            userData.unLockLevel = 7600;
+            JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
+        }
         private IEnumerator WinWithDelayCoroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
