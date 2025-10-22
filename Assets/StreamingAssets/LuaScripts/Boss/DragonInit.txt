@@ -9,11 +9,11 @@ function DragonInit(entity)
     data.isFalling = false
     data.attackCooldown = 2           -- 攻击冷却时间
     data.attackTimer = 0
-    data.sprintCooldown = 5           -- 冲刺冷却
-    data.sprintTimer = 0
+    --data.sprintCooldown = 5           -- 冲刺冷却
+    --data.sprintTimer = 0
     data.sprintSpeed = 10             -- 冲刺速度
     data.flyHeight = 4                -- 飞行高度
-    data.state = "idle"               -- Boss 状态 idle/move/attack/fly/sprint
+    data.state = "idle"               -- Boss 状态 idle（fly）/attack（sprint）
     data.target = CS.UnityEngine.GameObject.Find("Character")       -- 追踪目标
     data.canAttack = true
     data.canSprint = true
