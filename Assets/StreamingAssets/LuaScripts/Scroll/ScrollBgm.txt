@@ -7,7 +7,7 @@ local minTimeScale = 0.5
 local maxTimeScale = 1.3 
 local normalTimeScale = 1
 
-local lerpSpeed = 5
+local lerpSpeed = 8
 
 function ScrollBgm(entity)
 
