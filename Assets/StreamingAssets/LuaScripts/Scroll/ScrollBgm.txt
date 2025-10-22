@@ -3,8 +3,8 @@ local minGravity = 1
 local maxGravity = 19
 local normalGravity = 10  
 
-local minTimeScale = 1.5
-local maxTimeScale = 0.5 
+local minTimeScale = 0.5
+local maxTimeScale = 1.3 
 local normalTimeScale = 1
 
 local lerpSpeed = 5
