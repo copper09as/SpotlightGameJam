@@ -14,12 +14,12 @@ function LockCross(entity)
     if index ~= -1 then
         list:RemoveAt(index)
         if entity.sr ~= nil then
-            entity.sr.color = CS.UnityEngine.Color.white
+            entity.sr.color = CS.UnityEngine.Color.red
         end
     else
         list:Add(path)
         if entity.sr ~= nil then
-            entity.sr.color = CS.UnityEngine.Color.red
+            entity.sr.color = CS.UnityEngine.Color.white
         end
     end
 end
