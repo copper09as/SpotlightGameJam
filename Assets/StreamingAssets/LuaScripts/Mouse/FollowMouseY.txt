@@ -3,7 +3,7 @@ local GC = CS.GameController
 function FollowMouseY(entity, dt)
     local data = entity.dataTable
     local mousePos = GC.GetScreenPos()
-
+	dt = CS.UnityEngine.Time.unscaledDeltaTime
     -- 限制鼠标 Y 坐标在屏幕区域
     mousePos.y = CS.UnityEngine.Mathf.Clamp(mousePos.y, data.limitYMin, data.limitYMax)
 

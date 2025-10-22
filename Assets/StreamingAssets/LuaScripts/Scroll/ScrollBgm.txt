@@ -16,13 +16,13 @@ function ScrollBgm(entity)
 	if progress == nil then
 		return
 	end
-    audio:SetBGMVolume(progress)
+    --[[audio:SetBGMVolume(progress)
 
     if data.hitCharacter then
         local newGravity = minGravity + (maxGravity - minGravity) * progress
         data.hitCharacter.dataTable.gravity = newGravity
 		print(data.hitCharacter.dataTable.gravity)
-    end
+    end]]
 
     local targetTimeScale = maxTimeScale - (maxTimeScale - minTimeScale) * progress
     local currentTimeScale = CS.UnityEngine.Time.timeScale

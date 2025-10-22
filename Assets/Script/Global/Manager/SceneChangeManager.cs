@@ -27,7 +27,7 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
             Debug.LogWarning($"Scene {newScene} is already loading, skip duplicate request.");
             return;
         }
-        Time.timeScale = 1.0f;
+       
         isLoading = true;
         StartCoroutine(LoadSceneCoroutine(newScene, mode));
     }
@@ -47,6 +47,7 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         if (newLoadedScene.IsValid())
             SceneManager.SetActiveScene(newLoadedScene);
         isLoading = false;
+        Time.timeScale = 1.0f;
     }
     public void LoadSceneWithDelay(string sceneName,float delay)
     {
