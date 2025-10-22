@@ -1,138 +1,77 @@
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System.Collections;
 using Game.Battle.Entity;
 using Global.Data;
 using Global.Data.BattleConfig;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BattleStreaming : MonoBehaviour
 {
-    [Header("Prefab References")]
-    [SerializeField] private GameObject tileMapPre;
-    [Header("Entities")]
-    [SerializeField] private List<GameObject> entitiesInCanvas = new List<GameObject>();
-    [SerializeField] private List<GameObject> entitiesInWorld = new List<GameObject>();
-
-    [Header("UI")]
-    [SerializeField] private GameObject loadingPanel;
-    [Header("¸¸ÎïÌå")]
-    [SerializeField] private Transform decorationTransform;
-    [SerializeField] private Transform canvaTransform;
-    [SerializeField] private Transform worldTransform;
-    [Header("³¡¾°×°ÊÎ")]
-    [SerializeField] private List<GameObject> decorations;
-    
-    //[SerializeField] private EntityUIManager entityUIManager;
-    private EntityManager entityManager;
-
-    private GameObject currentTileMap;
+    [SerializeField] private CanvasGroup panel;  // åŠ è½½ç•Œé¢
+    private TextMeshProUGUI tipText;
+    private TextMeshProUGUI sceneNameText;
     private bool isLoading = false;
 
-    void Start()
+    private void Awake()
     {
-        entityManager = new EntityManager();
-        //
-        Time.timeScale = 1f;
+        // è·å–æç¤ºæ–‡å­—ç»„ä»¶ï¼ˆpanel çš„ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹ï¼‰
+        if (panel != null && panel.transform.childCount > 0)
+        {
+            var child = panel.transform.GetChild(1);
+            tipText = child.GetComponent<TextMeshProUGUI>();
+            var child2 = panel.transform.GetChild(0);
+            sceneNameText = child2.GetComponent<TextMeshProUGUI>();
+        }
+
+        // é»˜è®¤éšè—åŠ è½½ç•Œé¢
+        SetPanelVisible(false);
+    }
+
+    private void Start()
+    {
         StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
     }
 
-
-
     /// <summary>
-    /// Òì²½¼ÓÔØÕ½¶·³¡¾°
+    /// æˆ˜æ–—åŠ è½½é€»è¾‘ï¼ˆåªæ§åˆ¶åŠ è½½é¢æ¿ä¸åˆå§‹åŒ–ï¼‰
     /// </summary>
-    public IEnumerator LoadBattle(int levelId)
+    private IEnumerator LoadBattle(int levelId)
     {
         if (isLoading) yield break;
         isLoading = true;
 
-        if (loadingPanel != null)
-        {
-            loadingPanel.SetActive(true);
-            var text = loadingPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            var note = loadingPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            if (text != null)
-            {
-                text.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).SceneName;
-            }
-            if(note != null)
-            {
-                note.text = GameConfig.Instance.LevtlDC.levelDataList.Find(i=>i.Id == levelId).noteString;
-            }
-        }
-           
+        SetPanelVisible(true);
 
-        yield return new WaitForSeconds(0.2f);
-        //¼ÓÔØtileMap
-       
-        yield return new WaitForSeconds(0.2f);
-        GameObject settingMenu = null;
-        GameObject audioMenu = null;
-        GameObject cameraMenu = null;
-        foreach (var entityPrefabParents in entitiesInCanvas)
+        var levelData = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == levelId);
+        if (tipText != null && levelData != null)
         {
-            var parentObj = Instantiate(entityPrefabParents, canvaTransform);
-            var objName = parentObj.name;
+            tipText.text = levelData.noteString;
+        }
+        if (sceneNameText != null && levelData != null)
+        {
+            sceneNameText.text = levelData.SceneName;
+        }
+        var entityManager = new EntityManager();
+        foreach (var entity in FindObjectsOfType<Entity>(true))
+        {
+            entityManager.Register(entity);
+            //entity.Init(entityManager);
+        }
+        yield return new WaitForSeconds(1f);
 
-            if (objName.Contains("SettingMenu"))
-                settingMenu = parentObj;
-            else if (objName.Contains("AudioMenu"))
-                audioMenu = parentObj;
-            else if (objName.Contains("CameraMenu"))
-                cameraMenu = parentObj;
-            foreach (var entity in parentObj.GetComponentsInChildren<Entity>())
-            {
-                entityManager.Register(entity);
-            }
-        }
-        EntityUIManager.Instance.Init(settingMenu, audioMenu, cameraMenu);
-        yield return new WaitForSeconds(0.2f);
-        foreach (var decorate in decorations)
-        {
-            Instantiate(decorate, decorationTransform);
-        }
-        yield return new WaitForSeconds(0.2f);
-        //¼ÓÔØÔÚÊÀ½ç¿Õ¼äÖĞµÄentity
-        foreach (var entityPrefab in entitiesInWorld)
-        {
-            if (entityPrefab != null)
-            {
-                var entity = entityManager.InstantiateEnityty(entityPrefab, worldTransform);
-            }
-        }
-        currentTileMap = Instantiate(tileMapPre);
-        // ¼ÓÔØÍê³É
-
-        foreach (var entity in entityManager.GetAllEntities())
-        {
-            entity.Init(entityManager);
-        }
-
-       StartCoroutine(FadeOutLoadingPanel(1f));
+        SetPanelVisible(false);
         isLoading = false;
-        Debug.Log("Battle loaded!");
     }
-    private IEnumerator FadeOutLoadingPanel(float duration = 1f)
+
+    /// <summary>
+    /// æ§åˆ¶åŠ è½½ç•Œé¢æ˜¾ç¤ºä¸éšè—
+    /// </summary>
+    private void SetPanelVisible(bool visible)
     {
-        if (loadingPanel == null) yield break;
+        if (panel == null) return;
 
-        var canvasGroup = loadingPanel.GetComponent<CanvasGroup>();
-        if (canvasGroup == null) yield break;
-
-        float startAlpha = canvasGroup.alpha;
-        float time = 0f;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, time / duration);
-            yield return null;
-        }
-
-        canvasGroup.alpha = 0f;
-
-        loadingPanel.SetActive(false); // µ­³öÍê³ÉºóÔÙÒş²Ø
+        panel.alpha = visible ? 1 : 0;
+        panel.interactable = visible;
+        panel.blocksRaycasts = visible;
     }
 }

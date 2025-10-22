@@ -181,4 +181,5 @@ public class EntityUIManager : MonoBehaviour
         HideCameraMenu();
         openMenuBtn.gameObject.SetActive(true);
     }
+
 }

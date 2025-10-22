@@ -629,23 +629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d6a59633e1a1d41b8299252ec2e60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMapPre: {fileID: 4048944563348114577, guid: 02ba0d22d61ed7743aa2dce510727c04, type: 3}
-  entitiesInCanvas:
-  - {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
-  - {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-  - {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
-  entitiesInWorld:
-  - {fileID: 2319755858185257764, guid: a41602781b3761a45b27012cb0aa7c57, type: 3}
-  - {fileID: 8032353788050845218, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
-  - {fileID: 3084489110151680552, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
-  loadingPanel: {fileID: 1477780047}
-  decorationTransform: {fileID: 1552566119}
-  canvaTransform: {fileID: 1027292107}
-  worldTransform: {fileID: 472879497}
-  decorations:
-  - {fileID: 6693855749447373797, guid: 8ee865a9382033d4badbace73805bab0, type: 3}
-  - {fileID: 7656878343331361186, guid: 64582f5516b54ac4491a1690c69f241c, type: 3}
-  - {fileID: 4112604443161396111, guid: 2dd16bc8e8320924a8ef8633b0b3a9a6, type: 3}
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0
@@ -1444,6 +1427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gloalLight: {fileID: 1158408661}
+  damageOnHeadObj: {fileID: 0}
+  walkSmogObj: {fileID: 0}
 --- !u!4 &2055242831
 Transform:
   m_ObjectHideFlags: 0

@@ -7,24 +7,11 @@ using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class EntityManager:MonoBehaviour
+public class EntityManager
 {
     private readonly Dictionary<int, Entity> entityMap = new Dictionary<int, Entity>();
     private int nextId = 0;
     [SerializeField] private bool autoInit;
-    private void Start()
-    {
-        if(autoInit)
-        {
-            /*CreateEntity("Assets/Prefab/Battle/Character/Capsule.prefab",null);*/
-            foreach (var entity in FindObjectsOfType<Entity>(true))
-            {
-                entity.Init(this);
-            }
-        }
-
-    }
-    
     //»ñÈ¡
     public Entity GetEntity(int id)
     {
@@ -35,7 +22,7 @@ public class EntityManager:MonoBehaviour
         }
         return null;
     }
-    public Entity InstantiateEnityty(GameObject prefab,Transform parent)
+    /*public Entity InstantiateEnityty(GameObject prefab,Transform parent)
     {
         var obj = Instantiate(prefab, parent);
         var entity = obj.GetComponent<Entity>();
@@ -47,14 +34,14 @@ public class EntityManager:MonoBehaviour
     {
         GameObject ui = ResManager.LoadDataByAsset<GameObject>(path);
         return InstantiateEnityty(ui, parent);
-    }
+    }*/
     //´Ý»Ù
-    public void DestroyEntity(int id) 
+    /*public void DestroyEntity(int id) 
     {
         var entity = entityMap[id];
         Unregister(entity);
         Destroy(entity);
-    }
+    }*/
     //×¢²á
     public void Register(Entity entity)
     {
@@ -63,6 +50,7 @@ public class EntityManager:MonoBehaviour
             entity.entityId = nextId++;
         }
         entityMap[entity.entityId] = entity;
+        entity.Init(this);
     }
     // ×¢Ïú
     private void Unregister(Entity entity)
@@ -74,14 +62,5 @@ public class EntityManager:MonoBehaviour
     {
         return new List<Entity>(entityMap.Values);
     }
-    public void CallNextFrame(Action action)
-    {
-        StartCoroutine(CallNextFrameCoroutine(action));
-    }
 
-    private IEnumerator CallNextFrameCoroutine(Action action)
-    {
-        yield return null;
-        action?.Invoke();
-    }
 }
