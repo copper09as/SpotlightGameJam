@@ -13,7 +13,6 @@ function LockCross(entity)
     local rb = entity.rb
 
     if index ~= -1 then
-
         list:RemoveAt(index)
 
         if entity.sr ~= nil then
@@ -21,7 +20,9 @@ function LockCross(entity)
         end
 
         if rb ~= nil then
-            rb.bodyType = CS.UnityEngine.RigidbodyType2D.Static
+            rb.mass = 10000
+            rb.velocity = CS.UnityEngine.Vector2(0, 0)
+            rb.angularVelocity = 0
         end
     else
         list:Add(path)
@@ -31,7 +32,7 @@ function LockCross(entity)
         end
 
         if rb ~= nil then
-            rb.bodyType = CS.UnityEngine.RigidbodyType2D.Dynamic
+            rb.mass = 1
         end
     end
 end
