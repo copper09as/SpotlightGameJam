@@ -3,7 +3,6 @@ function LockCross(entity)
     local list = entity.scriptData.UpdatePath
     local index = -1
 
-    -- 查找是否存在该路径
     for i = 0, list.Count - 1 do
         if list[i] == path then
             index = i
@@ -11,15 +10,28 @@ function LockCross(entity)
         end
     end
 
+    local rb = entity.rb
+
     if index ~= -1 then
+
         list:RemoveAt(index)
+
         if entity.sr ~= nil then
             entity.sr.color = CS.UnityEngine.Color.red
         end
+
+        if rb ~= nil then
+            rb.bodyType = CS.UnityEngine.RigidbodyType2D.Static
+        end
     else
         list:Add(path)
+
         if entity.sr ~= nil then
             entity.sr.color = CS.UnityEngine.Color.white
+        end
+
+        if rb ~= nil then
+            rb.bodyType = CS.UnityEngine.RigidbodyType2D.Dynamic
         end
     end
 end

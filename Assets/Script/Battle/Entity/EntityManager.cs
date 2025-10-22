@@ -1,26 +1,24 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Battle.Entity;
-using Unity.VisualScripting;
-using UnityEditor.Build.Pipeline.Utilities;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 public class EntityManager
 {
     private readonly Dictionary<int, Entity> entityMap = new Dictionary<int, Entity>();
     private int nextId = 0;
-    [SerializeField] private bool autoInit;
     //»ñÈ¡
     public Entity GetEntity(int id)
     {
         Entity entity;
-        if(entityMap.TryGetValue(id,out entity))
+        if (entityMap.TryGetValue(id, out entity))
         {
             return entity;
         }
         return null;
+    }
+    public List<Entity> GetEntitiesByDataId(int dataId)
+    {
+        return GetAllEntities().Where(i => i.dataId == dataId).ToList();
     }
     /*public Entity InstantiateEnityty(GameObject prefab,Transform parent)
     {
@@ -53,7 +51,7 @@ public class EntityManager
         entity.Init(this);
     }
     // ×¢Ïú
-    private void Unregister(Entity entity)
+    public void Unregister(Entity entity)
     {
         entityMap.Remove(entity.entityId);
     }
