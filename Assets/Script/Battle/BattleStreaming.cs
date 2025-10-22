@@ -12,19 +12,20 @@ public class BattleStreaming : MonoBehaviour
     private TextMeshProUGUI sceneNameText;
     private bool isLoading = false;
 
+    [SerializeField] private float fadeDuration = 0.5f; // ✅ 淡出时间
+
     private void Awake()
     {
-        // 获取提示文字组件（panel 的第一个子节点）
         if (panel != null && panel.transform.childCount > 0)
         {
-            var child = panel.transform.GetChild(1);
-            tipText = child.GetComponent<TextMeshProUGUI>();
+            var child1 = panel.transform.GetChild(1);
+            tipText = child1.GetComponent<TextMeshProUGUI>();
+
             var child2 = panel.transform.GetChild(0);
             sceneNameText = child2.GetComponent<TextMeshProUGUI>();
         }
 
-        // 默认隐藏加载界面
-        SetPanelVisible(false);
+        SetPanelVisible(false, instant: true);
     }
 
     private void Start()
@@ -33,7 +34,7 @@ public class BattleStreaming : MonoBehaviour
     }
 
     /// <summary>
-    /// 战斗加载逻辑（只控制加载面板与初始化）
+    /// 战斗加载逻辑
     /// </summary>
     private IEnumerator LoadBattle(int levelId)
     {
@@ -43,35 +44,59 @@ public class BattleStreaming : MonoBehaviour
         SetPanelVisible(true);
 
         var levelData = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == levelId);
-        if (tipText != null && levelData != null)
+        if (levelData != null)
         {
-            tipText.text = levelData.noteString;
+            if (tipText != null) tipText.text = levelData.noteString;
+            if (sceneNameText != null) sceneNameText.text = levelData.SceneName;
         }
-        if (sceneNameText != null && levelData != null)
-        {
-            sceneNameText.text = levelData.SceneName;
-        }
+
         var entityManager = new EntityManager();
         foreach (var entity in FindObjectsOfType<Entity>(true))
         {
             entityManager.Register(entity);
-            //entity.Init(entityManager);
         }
-        yield return new WaitForSeconds(1f);
 
-        SetPanelVisible(false);
+        yield return new WaitForSecondsRealtime(1f);
+
+        yield return StartCoroutine(FadeOutPanel());
         isLoading = false;
     }
 
     /// <summary>
     /// 控制加载界面显示与隐藏
     /// </summary>
-    private void SetPanelVisible(bool visible)
+    private void SetPanelVisible(bool visible, bool instant = false)
     {
         if (panel == null) return;
 
-        panel.alpha = visible ? 1 : 0;
+        if (instant)
+        {
+            panel.alpha = visible ? 1 : 0;
+        }
+
         panel.interactable = visible;
         panel.blocksRaycasts = visible;
+    }
+
+    /// <summary>
+    /// 淡出加载界面
+    /// </summary>
+    private IEnumerator FadeOutPanel()
+    {
+        if (panel == null) yield break;
+
+        float startAlpha = panel.alpha;
+        float time = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.unscaledDeltaTime;
+            panel.alpha = Mathf.Lerp(startAlpha, 0f, time / fadeDuration);
+            yield return null;
+        }
+
+        panel.alpha = 0f;
+        panel.interactable = false;
+        panel.blocksRaycasts = false;
     }
 }
