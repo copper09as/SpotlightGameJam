@@ -33,6 +33,8 @@ namespace Game.Battle.Entity
         [NonSerialized] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
         [NonSerialized] public Collider2D col;
+
+
         private bool isStop = false;
         public bool entityStop = false;
         string IObjectByCreate.Name 
@@ -44,7 +46,7 @@ namespace Game.Battle.Entity
             EventBus.Subscribe<Global.Events.OnCloseSettingUi>(CancelStop);
         }
         #region 脚本方法
-        public void Init(EntityManager entityManager)//,EntityManager entityManager)
+        public void Init(EntityManager entityManager)
         {
             int id = dataId;
             this.entityManager = entityManager;
@@ -74,8 +76,6 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
             }
         }
-
-
         void Update()
         {
             if (isStop || entityStop)
@@ -86,7 +86,6 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this,Time.deltaTime, IsStuckInWall());
             }
-            
         }
         public void OnClick()
         {
