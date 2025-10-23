@@ -47,7 +47,17 @@ public class CursorManager : MonoBehaviour
         if (Camera.main == null)
             return;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
+        foreach (var hit in hits)
+        {
+            var entity = hit.collider.GetComponent<Entity>();
+            if (entity != null)
+            {
+                currentEntity = entity;
+                entity.OnClick();
+                break; // 找到第一个可交互物体就退出
+            }
+        }
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; // 视你的摄像机决定
 
@@ -60,20 +70,7 @@ public class CursorManager : MonoBehaviour
 
         // 自动销毁（等粒子播完）
         Destroy(go, 0.5f);
-        if (hit.collider != null)
-        {
-            var entity = hit.collider.GetComponent<Entity>();
-            Debug.Log($"点击到：{hit.collider.name}");
-            if (entity != null)
-            {
-                currentEntity = entity;
-                entity.OnClick();
-            }
-        }
-        else
-        {
-            currentEntity = null;
-        }
+
     }
     void Update()
     {

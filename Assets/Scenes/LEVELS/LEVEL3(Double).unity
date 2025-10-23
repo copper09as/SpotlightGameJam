@@ -7171,7 +7171,7 @@ TilemapCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -7423,6 +7423,10 @@ PrefabInstance:
     - target: {fileID: 4945966367215211271, guid: 721884d111655134f8f37a25d757c7bd, type: 3}
       propertyPath: m_Name
       value: GroundTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004732662670643955, guid: 721884d111655134f8f37a25d757c7bd, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7799869175442394976, guid: 721884d111655134f8f37a25d757c7bd, type: 3}
       propertyPath: m_SortingOrder
