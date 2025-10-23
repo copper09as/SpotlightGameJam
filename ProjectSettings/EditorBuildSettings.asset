@@ -44,5 +44,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/newEnemy.unity
     guid: 2b872a1b7ff03f9429e7243727ec01b4
+  - enabled: 1
+    path: Assets/Scenes/LEVELS/Course0.unity
+    guid: 5482f02139c173f4eac1a84e4cc86cee
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 69b2723e2b2c5474b9e8dcaa38ab1b69, type: 2}
