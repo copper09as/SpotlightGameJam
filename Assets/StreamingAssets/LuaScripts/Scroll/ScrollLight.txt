@@ -1,6 +1,6 @@
 
 local minLight = 0
-local maxLight = 2.0  
+local maxLight = 1.5  
 function ScrollLight(entity, deltaTime)
     local light = CS.LightManager.Instance
     local data = entity.dataTable
