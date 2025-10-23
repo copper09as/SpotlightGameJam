@@ -3,7 +3,7 @@ function ColByLight(entity, deltaTime)
     local sr = entity.sr
     local light = CS.LightManager.Instance
     local value = light:GetGlobalLight()
-    local hideValue = 0.1
+    local hideValue = 0.5
     local fadeSpeed = 5 -- 透明度变化速度
 
     -- 控制碰撞

@@ -5,7 +5,7 @@ function ScrollLight(entity, deltaTime)
     local light = CS.LightManager.Instance
     local data = entity.dataTable
     local targetProgress = data.scrollProgress 
-    local speed = 2.0
+    local speed = 3.0
     local current = light:GetGlobalLight()
 
 
