@@ -22,7 +22,7 @@ function DragonUpdate(entity, dt)
 end
 
 
-function DragonIdle(entity, dt) --什么都不做
+function DragonIdle(entity) --什么都不做
     local data = entity.dataTable
     if data.attackTimer == 0 then
         data.state = "attackBefore" --进入攻击前摇阶段
@@ -59,7 +59,7 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     end
 end
 
-function DragonAttack(entity,dt)
+function DragonAttack(entity)
 
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable

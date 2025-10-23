@@ -102,7 +102,7 @@
       "Id": 14,
       "SceneName": "悲惨的命运",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "newEnemy",
       "noteString": "策划注意到这个配置文件了"
     }
   ]
