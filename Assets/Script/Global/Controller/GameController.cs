@@ -20,6 +20,7 @@ public static class GameController
         Controller.Main.Space.Enable();
         Controller.Main.Esc.Enable();
         Controller.Main.Scroll.Enable();
+        Controller.Main.Reset.Enable();
         // 注册输入事件
         Controller.Main.Space.performed += ctx => OnSpacePressed();
         Controller.Main.Space.canceled += ctx => OnSpaceReleased();

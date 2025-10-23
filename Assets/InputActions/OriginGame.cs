@@ -145,6 +145,15 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab032fb3-3a2d-413d-8491-0cda86c2a487"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -246,6 +255,17 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e79a44a-7c34-4631-97c1-9d1a0664db5c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +280,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         m_Main_Space = m_Main.FindAction("Space", throwIfNotFound: true);
         m_Main_Esc = m_Main.FindAction("Esc", throwIfNotFound: true);
         m_Main_Scroll = m_Main.FindAction("Scroll", throwIfNotFound: true);
+        m_Main_Reset = m_Main.FindAction("Reset", throwIfNotFound: true);
     }
 
     ~@OriginGame()
@@ -346,6 +367,7 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Space;
     private readonly InputAction m_Main_Esc;
     private readonly InputAction m_Main_Scroll;
+    private readonly InputAction m_Main_Reset;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -381,6 +403,10 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Scroll".
         /// </summary>
         public InputAction @Scroll => m_Wrapper.m_Main_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/Reset".
+        /// </summary>
+        public InputAction @Reset => m_Wrapper.m_Main_Reset;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -425,6 +451,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         /// <summary>
@@ -454,6 +483,9 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         /// <summary>
@@ -536,5 +568,12 @@ public partial class @OriginGame: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Reset" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReset(InputAction.CallbackContext context);
     }
 }

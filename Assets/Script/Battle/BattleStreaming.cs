@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Game.Battle.Entity;
 using Global.Data;
 using Global.Data.BattleConfig;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BattleStreaming : MonoBehaviour
 {
@@ -28,7 +30,13 @@ public class BattleStreaming : MonoBehaviour
 
     private void Start()
     {
+        GameController.Controller.Main.Reset.started += ResetBattle;
         StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
+    }
+
+    private void ResetBattle(InputAction.CallbackContext context)
+    {
+        SceneChangeManager.Instance.ReloadCurrentScene();
     }
 
     /// <summary>
@@ -96,5 +104,9 @@ public class BattleStreaming : MonoBehaviour
         panel.alpha = 0f;
         panel.interactable = false;
         panel.blocksRaycasts = false;
+    }
+    private void OnDestroy()
+    {
+        GameController.Controller.Main.Reset.started -= ResetBattle;
     }
 }
