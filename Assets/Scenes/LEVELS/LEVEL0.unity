@@ -258,6 +258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1027292107}
     m_Modifications:
+    - target: {fileID: 1269485080664648382, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_Name
       value: SettingMenu
@@ -341,6 +345,10 @@ PrefabInstance:
     - target: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535354346364309523, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13645,6 +13653,10 @@ PrefabInstance:
     - target: {fileID: 5162956147755855163, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_SortingOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427946819230628423, guid: c9418e994ab69074db41d42477e43118, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6929386362844665335, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_SortingOrder

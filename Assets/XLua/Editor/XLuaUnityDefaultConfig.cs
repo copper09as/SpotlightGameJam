@@ -49,5 +49,28 @@ static class XLuaUnityDefaultConfig
     [BlackList]
     public static Func<MemberInfo, bool> SpanMembersFilter = IsSpanMember;
 
+    [BlackList]
+    public static List<List<string>> BlackList = new List<List<string>>() {
+    // Material API 屏蔽
+    new List<string>(){"UnityEngine.Material", "ApplyPropertyOverride"},
+    new List<string>(){"UnityEngine.Material", "RevertPropertyOverride"},
+    new List<string>(){"UnityEngine.Material", "RevertAllPropertyOverrides"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyOverriden"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyLocked"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyLockedByAncestor"},
+    new List<string>(){"UnityEngine.Material", "SetPropertyLock"},
+    new List<string>(){"UnityEngine.Material", "IsChildOf"},
+    new List<string>(){"UnityEngine.Material", "parent"},
+    new List<string>(){"UnityEngine.Material", "isVariant"},
+
+    // Light API 屏蔽
+    new List<string>(){"UnityEngine.Light", "SetLightDirty"},
+    new List<string>(){"UnityEngine.Light", "shadowRadius"},
+    new List<string>(){"UnityEngine.Light", "shadowAngle"},
+
+    // UI API 屏蔽
+    new List<string>(){"UnityEngine.UI.Graphic", "OnRebuildRequested"},
+    new List<string>(){"UnityEngine.UI.Text", "OnRebuildRequested"},
+};
 #endif
 }
