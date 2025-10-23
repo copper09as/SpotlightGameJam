@@ -2,8 +2,9 @@ local GC = CS.GameController
 
 function FollowMouseX(entity)
     local data = entity.dataTable
-    local mousePos = GC.GetScreenPos()  --获取屏幕空间坐标
-	dt = CS.UnityEngine.Time.unscaledDeltaTime
+    local mousePos = GC.GetScreenPos()  -- 获取屏幕空间坐标
+    local dt = CS.UnityEngine.Time.unscaledDeltaTime
+
     -- 限制在屏幕范围内
     mousePos.x = CS.UnityEngine.Mathf.Clamp(mousePos.x, data.limitXMin, data.limitXMax)
 
@@ -23,9 +24,7 @@ function FollowMouseX(entity)
     pos.x = finalWorldPos.x
     entity.transform.position = pos
 
-    -- 平滑 scrollProgress
+    -- 直接计算 scrollProgress（无需 Lerp）
     local rangeX = data.limitXMax - data.limitXMin
-    local targetProgress = (mousePos.x - data.limitXMin) / rangeX
-    local smoothFactor = data.scrollSmooth or 5
-    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress, targetProgress, smoothFactor * dt)
+    data.scrollProgress = (mousePos.x - data.limitXMin) / rangeX
 end
