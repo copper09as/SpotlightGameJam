@@ -88,6 +88,7 @@ function DragonAttackAfter(entity, dt)--攻击后摇期间
         data.afterTimer = data.afterTime--重置后摇计时器
         data.state = "flyBack"
         entity.animator:SetBool("CanAttack",false)
+        entity.animator:SetTrigger("Fly")
         DragonFly(entity)
     end
 
