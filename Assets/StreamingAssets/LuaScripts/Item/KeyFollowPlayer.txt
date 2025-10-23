@@ -1,6 +1,21 @@
 --钥匙跟随角色
 local Tool=CS.Tool
 local DM = CS.DetectionManager
+local  function OpenTheDoor(entity,character) --这里的entity是门
+    if character:Equals(nil) then
+        return false
+    end
+    entity.animator:SetBool("IsOpen",true)--开门动画
+    character.entityStop = true --角色lua脚本失活
+    if character.rb then --刚体速度置空
+        character.rb.velocity=CS.UnityEngine.Vector2(0,0)
+        character.rb.angularVelocity=0
+    end
+    CS.UnityEngine.Debug.Log("开门成功")
+    CS.Global.Data.BattleConfig.BattleConfig.Instance:Win(1)--一秒后胜利
+    return true
+end
+
 function KeyFollowPlayer(entity)
     local data  = entity.dataTable or {}
     if not data.canFollow then--如果不可以进行跟随那么就停止
@@ -42,20 +57,9 @@ function KeyFollowPlayer(entity)
             return
         end
 
-        OpenTheDoor(otherEntity,data.player)
+        if OpenTheDoor(otherEntity,data.player) then
+            CS.UnityEngine.GameObject.Destroy(entity.gameObject)
+        end
 
         end
-end
-
-function OpenTheDoor(entity,character)
-	if not character then
-		return
-	end
-    entity.animator:SetBool("IsOpen",true)--开门动画
-    character.entityStop = true --角色lua脚本失活
-    if character.rb then --刚体速度置空
-        character.rb.velocity=cs.UnityEngine.Vector2(0,0)
-        character.rb.angularVelocity=0
-    end
-    CS.BattleConfig.Instance:Win(1)--一秒后胜利
 end
