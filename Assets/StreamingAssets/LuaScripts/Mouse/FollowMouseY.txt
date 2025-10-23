@@ -1,6 +1,5 @@
 local GC = CS.GameController
 
-
 function FollowMouseY(entity, dt)
     if entity == nil or entity.transform == nil then return end
 	local UICamera = CS.UnityEngine.Camera.main  -- 使用主摄像机做屏幕坐标换算
@@ -26,10 +25,7 @@ function FollowMouseY(entity, dt)
     local worldPos = UICamera:ScreenToWorldPoint(CS.UnityEngine.Vector3(screenPos.x, screenPos.y, screenPos.z))
     entity.transform.position = CS.UnityEngine.Vector3(worldPos.x, worldPos.y, entity.transform.position.z)
 
-    -- ====== 5️⃣ 更新滚动进度（0~1） ======
+    -- ====== 5️⃣ 直接计算滚动进度（不使用 Lerp） ======
     local rangeY = data.limitYMax - data.limitYMin
-    local targetProgress = (screenPos.y - data.limitYMin) / rangeY
-    local smoothFactor = data.scrollSmooth or 5
-    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress or 0, targetProgress, smoothFactor * dt)
-
+    data.scrollProgress = (screenPos.y - data.limitYMin) / rangeY
 end
