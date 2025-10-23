@@ -5,8 +5,13 @@ function BabbleInit(entity)
     data.TMP = CE.GetTMPText(entity)
     data.sprite = entity.sr
     data.words = "策划，你是不是没活了"
-    data.Timer =  data.PrintTime --计时器
-    data.PrintTime = 5 --5秒停止不动开始打印
-    --CE.TypeWriter(data.TMP,data.words,2)
+    data.printTimer =  5--气泡输出计时器
+    data.extinctionTimer = 2 --气泡消失计时器
+    data.printTime = 5 --5秒停止不动开始打印
+    data.extinctionTime = 2 --输入按键2秒后气泡消失
+    data.canPrint = true
 
+    --调整气泡位置
+    entity.transform.parent = data.player.transform
+    entity.transform.localPosition = CS.UnityEngine.Vector3(0,0,0)
 end

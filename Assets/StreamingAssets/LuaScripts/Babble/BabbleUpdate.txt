@@ -1,10 +1,28 @@
 local CE = CS.XLuaCustomExport
 function BabbleUpdate(entity,dt)
     local data = entity.dataTable or {}
-    data.Timer = math.max(0,data.Timer-dt)--计时
+    if CS.UnityEngine.Input.anyKey == false then
+        data.printTimer = math.max(0,data.printTimer-dt) --如果不输入按键则计时
+        CS.UnityEngine.Debug.Log("气泡开始计时")
+    else
+        data.printTimer = data.printTime
+        --输入按键则气泡消失开始计时
+        data.extinctionTimer = math.max(0,data.extinctionTimer-dt)
 
-    data.TMP.gameObject:SetActive(true)
-    data.sprite.gameObject:SetActive(true)
-    CE.TypeWriter(data.TMP,data.words,2)
+    end
 
+
+    if data.printTimer == 0 and data.canPrint then
+            data.TMP.gameObject:SetActive(true)
+            data.sprite.gameObject:SetActive(true)
+            CE.TypeWriter(data.TMP,data.words,2)
+            data.canPrint = false
+            data.extinctionTimer = data.extinctionTime--重置消失时间
+    end
+    if data.extinctionTimer == 0 and not data.canPrint then
+        data.TMP.gameObject:SetActive(false)
+        data.sprite.gameObject:SetActive(false)
+        data.canPrint = true --气泡可以重新出现
+        data.printTimer =  data.printTime --重置气泡出现时间
+    end
 end
