@@ -224,10 +224,10 @@
 		"InitPath": [ "Boss/DragonInit", "Physics/SetKinematic" ],
 		"UpdatePath": [ "Boss/DragonUpdate" ],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
 		"OnDragPath": ["Mouse/FollowMouse"],
-		"DeadPath": [],
-		"OnDisablePath": ["Enemy/EnemyDestroyed"]
+		"DeadPath": [ "Boss/DragonBeAttacked" ],
+		"OnDisablePath": []
 	},
 	{
 		"id": 10022,
