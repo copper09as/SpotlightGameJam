@@ -2,22 +2,17 @@ local GC = CS.GameController
 
 local maxSize = 4.71
 local minSize = 1
-local zoomSpeed = 0.8
 
 function ScrollCameraSize(entity)
-    local dt = CS.UnityEngine.Time.deltaTime
     local data = entity.dataTable
     local cam = CS.UnityEngine.Camera.main
     local t = data.scrollProgress
 
-    -- 保证 t 在 [0,1] 范围内
     t = math.clamp(t, 0, 1)
 
-    -- 目标缩放
-    local targetSize = CS.UnityEngine.Mathf.Lerp(maxSize, minSize, t)
+    local targetSize = maxSize + (minSize - maxSize) * t
 
-    -- 平滑缩放
-    cam.orthographicSize = CS.UnityEngine.Mathf.Lerp(cam.orthographicSize, targetSize, zoomSpeed * dt)
+    cam.orthographicSize = targetSize
 end
 
 function math.clamp(val, min, max)
