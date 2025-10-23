@@ -86,13 +86,13 @@ MonoBehaviour:
     UpdatePath: []
     OnMouseDownPath: []
     OnCollisionPath: []
+    OnTriggerPath: []
     OnDragPath: []
     DeadPath: []
     OnDisablePath: []
     OnEntityExitPath: []
   animator: {fileID: 2886310799385829095}
   dataId: 20011
-  entityId: 10011
   CommonEntityData:
     id: 0
     EffectId: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
     entities:
     - {fileID: 0}
   sr: {fileID: 0}
+  headDamageEffectPrefab: {fileID: 0}
   entityStop: 0
 --- !u!61 &8375754775731826801
 BoxCollider2D:
@@ -227,7 +228,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!95 &2886310799385829095
 Animator:
   serializedVersion: 5
