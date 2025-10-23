@@ -1463,7 +1463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &754719759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5484,7 +5484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6718013425095989453, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.65
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6718013425095989453, guid: c8c8e7def2448a34f9862c53d4ea72db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5581,7 +5581,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 96057f10c7225614193185b2ed9d5d6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bbd8950d74fdd1419c4c139af0ef873, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5762,7 +5762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!223 &1027292106
 Canvas:
   m_ObjectHideFlags: 0
@@ -5926,7 +5926,7 @@ GameObject:
   - component: {fileID: 1170480657}
   - component: {fileID: 1170480656}
   - component: {fileID: 1170480659}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShadowTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7850,7 +7850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788394441}
   - component: {fileID: 1788394440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShadowGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
