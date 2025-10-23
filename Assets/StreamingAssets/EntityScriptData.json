@@ -43,14 +43,12 @@
 	},
 	{
 		"id": 10004,
-		"InitPath": ["Physics/SetStatic",
+		"InitPath": ["Physics/SetKinematic",
 		"Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp",
 		"Scroll/ScrollBgm"],
-		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
 		"OnDragPath": ["Mouse/FollowMouseX"],
-		"DeadPath": [],
 		"OnDisablePath": ["Ui/CancleStick"]
 	},
 	{
@@ -89,7 +87,7 @@
 		"Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
 		"OnDragPath": ["Mouse/FollowMouseY",
 		"Scroll/ScrollCameraSize"],
 		"DeadPath": [],
@@ -116,7 +114,7 @@
 	},
 	{
 		"id": 10011,
-		"InitPath": ["Physics/SetKinematic"],
+		"InitPath": ["Physics/SetDynamic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
@@ -135,11 +133,11 @@
 	},
 	{
 		"id": 10013,
-		"InitPath": ["Physics/SetStatic",
+		"InitPath": ["Physics/SetKinematic",
 		"Scroll/RollInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
 		"OnDragPath": ["Mouse/FollowMouseY",
 		"Scroll/ScrollLight"],
 		"DeadPath": [],

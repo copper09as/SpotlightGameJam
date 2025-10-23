@@ -6640,6 +6640,10 @@ PrefabInstance:
       propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
       value: 
       objectReference: {fileID: 379609045}
+    - target: {fileID: 7472658336681531093, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

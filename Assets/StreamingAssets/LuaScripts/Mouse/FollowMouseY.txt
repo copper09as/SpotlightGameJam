@@ -1,31 +1,35 @@
 local GC = CS.GameController
 
+
 function FollowMouseY(entity, dt)
+    if entity == nil or entity.transform == nil then return end
+	local UICamera = CS.UnityEngine.Camera.main  -- 使用主摄像机做屏幕坐标换算
     local data = entity.dataTable
     local mousePos = GC.GetScreenPos()
-	dt = CS.UnityEngine.Time.unscaledDeltaTime
-    -- 限制鼠标 Y 坐标在屏幕区域
+    dt = CS.UnityEngine.Time.unscaledDeltaTime
+
+    -- ====== 1️⃣ 限制鼠标在屏幕Y范围内 ======
     mousePos.y = CS.UnityEngine.Mathf.Clamp(mousePos.y, data.limitYMin, data.limitYMax)
 
-    -- 转换成世界坐标
-    local cam = CS.UnityEngine.Camera.main
-    local worldPos = cam:ScreenToWorldPoint(mousePos)
+    -- ====== 2️⃣ 获取当前滑块的屏幕坐标 ======
+    local screenPos = UICamera:WorldToScreenPoint(entity.transform.position)
 
-    -- 平滑插值移动
-    local pos = entity.transform.position
-    local targetY = worldPos.y
-    local followSpeed = data.scrollSpeed
-    pos.y = CS.UnityEngine.Mathf.Lerp(pos.y, targetY, followSpeed * dt)
+    -- ====== 3️⃣ 计算Y轴差值并更新位置 ======
+    local diffY = mousePos.y - screenPos.y
+    local followSpeed = data.scrollSpeed or 15  -- 调节移动灵敏度
+    screenPos.y = screenPos.y + diffY * followSpeed * dt
 
-    -- 再做一次最终 Clamp（防止插值后超限）
-    local clampedScreenY = CS.UnityEngine.Mathf.Clamp(cam:WorldToScreenPoint(pos).y, data.limitYMin, data.limitYMax)
-    local finalWorldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(mousePos.x, clampedScreenY, mousePos.z))
-    pos.y = finalWorldPos.y
+    -- 再Clamp，防止出界
+    screenPos.y = CS.UnityEngine.Mathf.Clamp(screenPos.y, data.limitYMin, data.limitYMax)
 
-    entity.transform.position = pos
+    -- ====== 4️⃣ 转换回世界坐标并应用 ======
+    local worldPos = UICamera:ScreenToWorldPoint(CS.UnityEngine.Vector3(screenPos.x, screenPos.y, screenPos.z))
+    entity.transform.position = CS.UnityEngine.Vector3(worldPos.x, worldPos.y, entity.transform.position.z)
 
+    -- ====== 5️⃣ 更新滚动进度（0~1） ======
     local rangeY = data.limitYMax - data.limitYMin
-    local targetProgress = (mousePos.y - data.limitYMin) / rangeY
+    local targetProgress = (screenPos.y - data.limitYMin) / rangeY
     local smoothFactor = data.scrollSmooth or 5
-    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress, targetProgress, smoothFactor * dt)
+    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress or 0, targetProgress, smoothFactor * dt)
+
 end
