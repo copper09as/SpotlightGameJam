@@ -1192,14 +1192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d6a59633e1a1d41b8299252ec2e60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMapPre: {fileID: 0}
-  entitiesInCanvas: []
-  entitiesInWorld: []
-  loadingPanel: {fileID: 0}
-  decorationTransform: {fileID: 0}
-  canvaTransform: {fileID: 0}
-  worldTransform: {fileID: 0}
-  decorations: []
+  panel: {fileID: 0}
+  fadeDuration: 2
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,14 +1299,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4828746960917442432, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.49
@@ -7152,14 +7138,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 839568358796946847, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4828746960917442432, guid: a5d4328935a995d4994feb65ce362c0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.17
