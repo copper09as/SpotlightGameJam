@@ -43,14 +43,18 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     end
     -- 攻击逻辑
     data.attackPosition = data.target.transform.position -- 记录将要攻击的位置
-    local normalizedDirection = data.attackPosition.normalized
+    local Direction = data.attackPosition - entity.transform.position
 
-    local angle =
-    Mathf.Atan2(normalizedDirection.y,normalizedDirection.x) * Mathf.Rad2Deg + 180 ;--巨龙朝向
-
-    entity.sr.gameObject.transform:DORotate(Vector3(0, 0, angle),0.3):SetAutoKill(false)--0.3秒将显示层转到相应角度
-
-
+    --local angle =
+    --Mathf.Atan2(normalizedDirection.y,normalizedDirection.x) * Mathf.Rad2Deg + 90 ;--巨龙朝向
+    --
+    --entity.gameObject.transform:DORotate(Vector3(0, 0, angle),0.3):SetAutoKill(false)--0.3秒将显示层转到相应角度
+    --
+    if Direction.x <=0 then
+        entity.sr.flipX = false
+    else
+        entity.sr.flipX = true
+    end
     data.beforeTimer = math.max(0, data.beforeTimer - dt)--更新时间计时器
     if data.beforeTimer == 0 then --前摇结束开始攻击
         data.state = "attack" --进行状态设置
@@ -64,7 +68,7 @@ function DragonAttack(entity)
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable
     -- 攻击逻辑
-    entity.transform:DOMove(data.attackPosition,1):SetEase(CS.DG.Tweening.Ease.OutCubic):
+    entity.transform:DOMove(data.attackPosition, data.attackTime):SetEase(CS.DG.Tweening.Ease.OutCubic):
     OnComplete(function ()
         DragonAttackBack()
     end)
@@ -96,9 +100,9 @@ end
 
 
 function DragonFly(entity)--飞回原来的位置
-    CS.UnityEngine.Debug.Log("恶龙飞回原来的位置")
+    CS.UnityEngine.Debug.Log("恶龙飞到随机的点位")--点位提前放置
     local data = entity.dataTable
-    entity.transform:DOMove( data.originPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+    entity.transform:DOMove( CS.BossStopPoint.Instance:GetPoint(),data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
     :OnComplete(function ()
     data.state = "idle"
         CS.UnityEngine.Debug.Log("飞回完成")
