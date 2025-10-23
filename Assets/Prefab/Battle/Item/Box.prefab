@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7221477202407149981}
   m_Layer: 6
   m_Name: Box
-  m_TagString: Ground
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
     ScaleY: 0
   entityPairs: []
   sr: {fileID: 0}
+  headDamageEffectPrefab: {fileID: 0}
   entityStop: 0
 --- !u!61 &7221477202407149981
 BoxCollider2D:

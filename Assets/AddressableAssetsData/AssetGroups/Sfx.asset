@@ -22,8 +22,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dd60976aa2689b46934156518e42910
+    m_Address: Assets/Audio/Sfx/MouseFlow (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24a566496b4ce0049bbdc75c614abc8c
     m_Address: Assets/Audio/Sfx/LeftClick.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3104aaf3281f01c4d9dc6d0ab6a1a921
+    m_Address: Assets/Audio/Sfx/MouseFlow (1).wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

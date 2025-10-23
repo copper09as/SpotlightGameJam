@@ -2,14 +2,14 @@ function RollInit(entity)
     local data = entity.dataTable or {}
 	local posX = entity.transform.position.x
     -- 限定滚动区域
-    data.limitXMin = 200-- X轴最小位置,X轴偏移-919.7109,-944.4883   -240.54  -157.8237
-    data.limitXMax =  900       -- X轴最大位置
-    data.limitYMin =  50        -- Y轴最小位置
-    data.limitYMax =  550        -- Y轴最大位置
+    data.limitXMin = 380-- X轴最小位置,X轴偏移-919.7109,-944.4883   -240.54  -157.8237
+    data.limitXMax =  1700      -- X轴最大位置
+    data.limitYMin =  150        -- Y轴最小位置
+    data.limitYMax =  1000        -- Y轴最大位置
 
     -- 滑动控制
     data.scrollProgress = 0      -- 当前X方向滑动比例（0~1）
-    data.scrollSpeed = 1       -- 滑动速度Y
+    data.scrollSpeed = 0.8       -- 滑动速度Y
 	data.scrollSpeedX = 1  --滑动速度X
     data.scrollProgress = nil
 	data.hitCharacter = nil
