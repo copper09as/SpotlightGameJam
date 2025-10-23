@@ -1,30 +1,41 @@
 local GC = CS.GameController
 
 function FollowMouseX(entity)
+    if entity == nil or entity.transform == nil then return end
+
+    local cam = CS.UnityEngine.Camera.main
     local data = entity.dataTable
-    local mousePos = GC.GetScreenPos()  -- 获取屏幕空间坐标
+    local mousePos = GC.GetScreenPos()
     local dt = CS.UnityEngine.Time.unscaledDeltaTime
 
-    -- 限制在屏幕范围内
+    -- 限制鼠标在屏幕X范围内
     mousePos.x = CS.UnityEngine.Mathf.Clamp(mousePos.x, data.limitXMin, data.limitXMax)
 
-    -- 把屏幕坐标转换成世界坐标
-    local cam = CS.UnityEngine.Camera.main
-    local worldPos = cam:ScreenToWorldPoint(mousePos)
+    -- 获取当前滑块的屏幕坐标
+    local screenPos = cam:WorldToScreenPoint(entity.transform.position)
 
-    -- 平滑移动位置
-    local pos = entity.transform.position
-    local targetX = worldPos.x
-    local followSpeed = data.scrollSpeedX
-    pos.x = CS.UnityEngine.Mathf.Lerp(pos.x, targetX, followSpeed * dt)
+    -- 匀速移动
+    local targetX = mousePos.x
+    local moveSpeed = data.scrollSpeedX or 1000  -- 每秒移动的像素速度
+    local diffX = targetX - screenPos.x
 
-    -- 限制最终位置
-    local clampedScreenX = CS.UnityEngine.Mathf.Clamp(cam:WorldToScreenPoint(pos).x, data.limitXMin, data.limitXMax)
-    local finalWorldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(clampedScreenX, mousePos.y, mousePos.z))
-    pos.x = finalWorldPos.x
-    entity.transform.position = pos
+    if math.abs(diffX) > 0.1 then
+        local moveStep = moveSpeed * dt
+        if math.abs(diffX) < moveStep then
+            screenPos.x = targetX
+        else
+            screenPos.x = screenPos.x + moveStep * (diffX > 0 and 1 or -1)
+        end
+    end
 
-    -- 直接计算 scrollProgress（无需 Lerp）
+    -- 限制最终屏幕位置
+    screenPos.x = CS.UnityEngine.Mathf.Clamp(screenPos.x, data.limitXMin, data.limitXMax)
+
+    -- 转回世界坐标并应用
+    local worldPos = cam:ScreenToWorldPoint(CS.UnityEngine.Vector3(screenPos.x, screenPos.y, screenPos.z))
+    entity.transform.position = CS.UnityEngine.Vector3(worldPos.x, entity.transform.position.y, entity.transform.position.z)
+
+    -- 直接计算 scrollProgress
     local rangeX = data.limitXMax - data.limitXMin
-    data.scrollProgress = (mousePos.x - data.limitXMin) / rangeX
+    data.scrollProgress = (screenPos.x - data.limitXMin) / rangeX
 end
