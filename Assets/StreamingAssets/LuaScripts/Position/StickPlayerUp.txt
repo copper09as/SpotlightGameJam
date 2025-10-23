@@ -24,7 +24,7 @@ function StickPlayerUp(entity)
 
         CS.UnityEngine.Debug.DrawRay(
             CS.UnityEngine.Vector3(origin.x, origin.y, 0),
-            CS.UnityEngine.Vector3(0, 0.2, 0),
+            CS.UnityEngine.Vector3(0, 0.3, 0),
             CS.UnityEngine.Color.green
         )
 
@@ -36,14 +36,12 @@ function StickPlayerUp(entity)
 
     if hitCharacter then
         data.hitCharacter = hitCharacter
-		data.hitCharacter.dataTable.canDeadInGround = true
-        hitCharacter.transform:SetParent(hitEntityTrans, true)
+        hitCharacter.transform:SetParent(hitEntityTrans)
         return
     end
 
     if data.hitCharacter then
-        data.hitCharacter.transform:SetParent(nil, true)
-		data.hitCharacter.dataTable.canDeadInGround = nil
+        data.hitCharacter.transform:SetParent(nil)
     end
 	
     data.hitCharacter = nil

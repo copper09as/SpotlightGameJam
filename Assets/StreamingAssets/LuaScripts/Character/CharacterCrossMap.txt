@@ -28,15 +28,6 @@ function CharacterCrossMap(entity)
         crossed = true
     end
 
-    -- ✅ 超出上下边界
-    if screenPos.y < 0 then
-        dirY = -1
-        crossed = true
-    elseif screenPos.y > screenHeight then
-        dirY = 1
-        crossed = true
-    end
-
     -- 处理水平穿越
     if dirX ~= 0 then
         if dirX == data.lastCrossDirection.x then
@@ -56,24 +47,6 @@ function CharacterCrossMap(entity)
         data.lastCrossDirection.x = 0
     end
 
-    -- 处理垂直穿越
-    if dirY ~= 0 then
-        if dirY == data.lastCrossDirection.y then
-            -- 重复穿越，轻微调整
-            local adjust = (dirY == -1) and 10 or -10
-            screenPos.y = screenPos.y + adjust
-        else
-            -- 正常穿越
-            if dirY == -1 then
-                screenPos.y = screenHeight - offset
-            else
-                screenPos.y = 0 + offset
-            end
-            data.lastCrossDirection.y = dirY
-        end
-    else
-        data.lastCrossDirection.y = 0
-    end
 
     -- 将屏幕坐标转换回世界坐标
     local worldPos = cam:ScreenToWorldPoint(screenPos)

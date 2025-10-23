@@ -1,17 +1,15 @@
-
 local minLight = 0
 local maxLight = 1.5  
+
 function ScrollLight(entity, deltaTime)
+
     local light = CS.LightManager.Instance
+	
     local data = entity.dataTable
-    local targetProgress = data.scrollProgress 
-    local speed = 3.0
-    local current = light:GetGlobalLight()
-
-
+	
+    local targetProgress = data.scrollProgress or 0
+	
     local targetValue = minLight + (maxLight - minLight) * targetProgress
 
-    local newValue = current + (targetValue - current) * math.min(deltaTime * speed, 1)
-
-    light:SetGlobalLight(newValue)
+    light:SetGlobalLight(targetValue)
 end

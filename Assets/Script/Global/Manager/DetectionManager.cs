@@ -16,17 +16,17 @@ public static class DetectionManager
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance,LayerMask.GetMask(layerMask));
         return hit.collider != null;
     }
-    public static Entity Raycast2DByTag(Vector2 origin, Vector2 direction, float distance,string tag)
+    public static Entity Raycast2DByTag(Vector2 origin, Vector2 direction, float distance, string tag)
     {
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance);
-        var col = hit.collider;
-        if (col == null)
-            return null;
-        if (col.transform.tag != tag)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
+        foreach (var hit in hits)
         {
-            return null;
+            if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                return hit.collider.GetComponent<Entity>();
+            }
         }
-        return col.GetComponent<Entity>();
+        return null;
     }
     public static Entity OverlapBoxByTag(Vector2 center, Vector2 size, string tag)
     {

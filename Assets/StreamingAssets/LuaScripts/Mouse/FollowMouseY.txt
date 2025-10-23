@@ -1,9 +1,9 @@
 local GC = CS.GameController
 
-
 function FollowMouseY(entity, dt)
     if entity == nil or entity.transform == nil then return end
-	local UICamera = CS.UnityEngine.Camera.main  -- 使用主摄像机做屏幕坐标换算
+
+    local UICamera = CS.UnityEngine.Camera.main  -- 使用主摄像机做屏幕坐标换算
     local data = entity.dataTable
     local mousePos = GC.GetScreenPos()
     dt = CS.UnityEngine.Time.unscaledDeltaTime
@@ -14,22 +14,29 @@ function FollowMouseY(entity, dt)
     -- ====== 2️⃣ 获取当前滑块的屏幕坐标 ======
     local screenPos = UICamera:WorldToScreenPoint(entity.transform.position)
 
-    -- ====== 3️⃣ 计算Y轴差值并更新位置 ======
-    local diffY = mousePos.y - screenPos.y
-    local followSpeed = data.scrollSpeed or 15  -- 调节移动灵敏度
-    screenPos.y = screenPos.y + diffY * followSpeed * dt
+    -- ====== 3️⃣ 匀速移动（不使用Lerp） ======
+    local targetY = mousePos.y
+    local moveSpeed = data.scrollSpeed or 1000  -- 每秒移动的像素速度
+    local diffY = targetY - screenPos.y
 
-    -- 再Clamp，防止出界
+    -- 根据方向和速度移动
+    if math.abs(diffY) > 0.1 then
+        local moveStep = moveSpeed * dt
+        if math.abs(diffY) < moveStep then
+            screenPos.y = targetY
+        else
+            screenPos.y = screenPos.y + moveStep * (diffY > 0 and 1 or -1)
+        end
+    end
+
+    -- Clamp 限制
     screenPos.y = CS.UnityEngine.Mathf.Clamp(screenPos.y, data.limitYMin, data.limitYMax)
 
     -- ====== 4️⃣ 转换回世界坐标并应用 ======
     local worldPos = UICamera:ScreenToWorldPoint(CS.UnityEngine.Vector3(screenPos.x, screenPos.y, screenPos.z))
     entity.transform.position = CS.UnityEngine.Vector3(worldPos.x, worldPos.y, entity.transform.position.z)
 
-    -- ====== 5️⃣ 更新滚动进度（0~1） ======
+    -- ====== 5️⃣ 直接计算滚动进度（不平滑） ======
     local rangeY = data.limitYMax - data.limitYMin
-    local targetProgress = (screenPos.y - data.limitYMin) / rangeY
-    local smoothFactor = data.scrollSmooth or 5
-    data.scrollProgress = CS.UnityEngine.Mathf.Lerp(data.scrollProgress or 0, targetProgress, smoothFactor * dt)
-
+    data.scrollProgress = (screenPos.y - data.limitYMin) / rangeY
 end
