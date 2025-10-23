@@ -65,38 +65,86 @@ public static class ExampleGenConfig
     //黑名单
     [BlackList]
     public static List<List<string>> BlackList = new List<List<string>>()  {
-                new List<string>(){"System.Xml.XmlNodeList", "ItemOf"},
-                new List<string>(){"UnityEngine.WWW", "movie"},
-    #if UNITY_WEBGL
-                new List<string>(){"UnityEngine.WWW", "threadPriority"},
-    #endif
-                new List<string>(){"UnityEngine.Texture2D", "alphaIsTransparency"},
-                new List<string>(){"UnityEngine.Security", "GetChainOfTrustValue"},
-                new List<string>(){"UnityEngine.CanvasRenderer", "onRequestRebuild"},
-                new List<string>(){"UnityEngine.Light", "areaSize"},
-                new List<string>(){"UnityEngine.Light", "lightmapBakeType"},
-    #if UNITY_ANDROID
-                new List<string>(){"UnityEngine.Light", "SetLightDirty"},
-                new List<string>(){"UnityEngine.Light", "shadowRadius"},
-                new List<string>(){"UnityEngine.Light", "shadowAngle"},
-    #endif
-                new List<string>(){"UnityEngine.WWW", "MovieTexture"},
-                new List<string>(){"UnityEngine.WWW", "GetMovieTexture"},
-                new List<string>(){"UnityEngine.AnimatorOverrideController", "PerformOverrideClipListCleanup"},
-    #if !UNITY_WEBPLAYER
-                new List<string>(){"UnityEngine.Application", "ExternalEval"},
-    #endif
-                new List<string>(){"UnityEngine.GameObject", "networkView"}, //4.6.2 not support
-                new List<string>(){"UnityEngine.Component", "networkView"},  //4.6.2 not support
-                new List<string>(){"System.IO.FileInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
-                new List<string>(){"System.IO.FileInfo", "SetAccessControl", "System.Security.AccessControl.FileSecurity"},
-                new List<string>(){"System.IO.DirectoryInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
-                new List<string>(){"System.IO.DirectoryInfo", "SetAccessControl", "System.Security.AccessControl.DirectorySecurity"},
-                new List<string>(){"System.IO.DirectoryInfo", "CreateSubdirectory", "System.String", "System.Security.AccessControl.DirectorySecurity"},
-                new List<string>(){"System.IO.DirectoryInfo", "Create", "System.Security.AccessControl.DirectorySecurity"},
-                new List<string>(){"UnityEngine.MonoBehaviour", "runInEditMode"},
-            };
-    
+    // ---------------- System ----------------
+    new List<string>(){"System.Xml.XmlNodeList", "ItemOf"},
+
+    // ---------------- Unity WWW ----------------
+    new List<string>(){"UnityEngine.WWW", "movie"},
+#if UNITY_WEBGL
+    new List<string>(){"UnityEngine.WWW", "threadPriority"},
+#endif
+    new List<string>(){"UnityEngine.WWW", "MovieTexture"},
+    new List<string>(){"UnityEngine.WWW", "GetMovieTexture"},
+
+    // ---------------- Unity Security ----------------
+    new List<string>(){"UnityEngine.Security", "GetChainOfTrustValue"},
+
+    // ---------------- Texture ----------------
+    new List<string>(){"UnityEngine.Texture2D", "alphaIsTransparency"},
+    new List<string>(){"UnityEngine.Texture", "imageContentsHash"},
+
+    // ---------------- CanvasRenderer ----------------
+    new List<string>(){"UnityEngine.CanvasRenderer", "onRequestRebuild"},
+
+    // ---------------- Light ----------------
+    new List<string>(){"UnityEngine.Light", "areaSize"},
+    new List<string>(){"UnityEngine.Light", "lightmapBakeType"},
+#if UNITY_ANDROID
+    new List<string>(){"UnityEngine.Light", "SetLightDirty"},
+    new List<string>(){"UnityEngine.Light", "shadowRadius"},
+    new List<string>(){"UnityEngine.Light", "shadowAngle"},
+#endif
+
+    // ---------------- GameObject / Component ----------------
+    new List<string>(){"UnityEngine.GameObject", "networkView"},
+    new List<string>(){"UnityEngine.Component", "networkView"},
+
+    // ---------------- IO 权限控制 ----------------
+    new List<string>(){"System.IO.FileInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
+    new List<string>(){"System.IO.FileInfo", "SetAccessControl", "System.Security.AccessControl.FileSecurity"},
+    new List<string>(){"System.IO.DirectoryInfo", "GetAccessControl", "System.Security.AccessControl.AccessControlSections"},
+    new List<string>(){"System.IO.DirectoryInfo", "SetAccessControl", "System.Security.AccessControl.DirectorySecurity"},
+    new List<string>(){"System.IO.DirectoryInfo", "CreateSubdirectory", "System.String", "System.Security.AccessControl.DirectorySecurity"},
+    new List<string>(){"System.IO.DirectoryInfo", "Create", "System.Security.AccessControl.DirectorySecurity"},
+
+#if !UNITY_WEBPLAYER
+    new List<string>(){"UnityEngine.Application", "ExternalEval"},
+#endif
+
+    // ---------------- MonoBehaviour ----------------
+    new List<string>(){"UnityEngine.MonoBehaviour", "runInEditMode"},
+
+    // ---------------- MeshRenderer ----------------
+    new List<string>(){"UnityEngine.MeshRenderer", "scaleInLightmap"},
+    new List<string>(){"UnityEngine.MeshRenderer", "receiveGI"},
+    new List<string>(){"UnityEngine.MeshRenderer", "stitchLightmapSeams"},
+
+    // ---------------- AudioSource ----------------
+    new List<string>(){"UnityEngine.AudioSource", "gamepadSpeakerOutputType"},
+    new List<string>(){"UnityEngine.AudioSource", "PlayOnGamepad","System.Int32"},
+    new List<string>(){"UnityEngine.AudioSource", "DisableGamepadOutput"},
+    new List<string>(){"UnityEngine.AudioSource", "SetGamepadSpeakerMixLevel","System.Int32","System.Int32"},
+    new List<string>(){"UnityEngine.AudioSource", "SetGamepadSpeakerMixLevelDefault","System.Int32"},
+    new List<string>(){"UnityEngine.AudioSource", "SetGamepadSpeakerRestrictedAudio","System.Int32","System.Boolean"},
+    new List<string>(){"UnityEngine.AudioSource", "GamepadSpeakerSupportsOutputType","UnityEngine.GamepadSpeakerOutputType"},
+
+    // ---------------- UI ----------------
+    new List<string>(){"UnityEngine.UI.Graphic", "OnRebuildRequested"},
+    new List<string>(){"UnityEngine.UI.Text", "OnRebuildRequested"},
+
+    // ---------------- Material（Unity 2023+ 内部 API 屏蔽） ----------------
+    new List<string>(){"UnityEngine.Material", "IsChildOf"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyOverriden"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyLocked"},
+    new List<string>(){"UnityEngine.Material", "IsPropertyLockedByAncestor"},
+    new List<string>(){"UnityEngine.Material", "SetPropertyLock"},
+    new List<string>(){"UnityEngine.Material", "ApplyPropertyOverride"},
+    new List<string>(){"UnityEngine.Material", "RevertPropertyOverride"},
+    new List<string>(){"UnityEngine.Material", "RevertAllPropertyOverrides"},
+    new List<string>(){"UnityEngine.Material", "parent"},
+    new List<string>(){"UnityEngine.Material", "isVariant"},
+};
+
     public static List<Type> BlackGenericTypeList = new List<Type>()
     {
         typeof(Span<>),

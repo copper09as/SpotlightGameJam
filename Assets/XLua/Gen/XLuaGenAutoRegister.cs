@@ -11,7 +11,7 @@ using LuaCSFunction = XLua.LuaDLL.lua_CSFunction;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
+using XLua;
 
 namespace XLua.CSObjectWrap
 {
@@ -97,7 +97,7 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(UnityEngine.Rigidbody2D), UnityEngineRigidbody2DWrap.__Register);
         
         
-            translator.DelayWrapLoader(typeof(UnityEngine.Material), UnityEngineMaterialWrap.__Register);
+           // translator.DelayWrapLoader(typeof(UnityEngine.Material), UnityEngineMaterialWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(UnityEngine.Camera), UnityEngineCameraWrap.__Register);
