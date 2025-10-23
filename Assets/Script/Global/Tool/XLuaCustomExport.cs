@@ -66,6 +66,7 @@ public static class XLuaCustomExport
     [LuaCallCSharp]
     public static void TypeWriter(TMP_Text _Text,string words,float time)
     {
+        Debug.Log("¿ªÊ¼´ò×Ö");
         DOTween.To(() => string.Empty,
             currentText => _Text.text = currentText,
              words,

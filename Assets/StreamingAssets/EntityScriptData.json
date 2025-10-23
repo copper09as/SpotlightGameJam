@@ -179,7 +179,7 @@
 		"id": 10017,
 		"InitPath": ["Physics/SetKinematic",
 		"Babble/BabbleInit"],
-		"UpdatePath": [],
+		"UpdatePath": [ "Babble/BabbleUpdate" ],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
