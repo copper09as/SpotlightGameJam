@@ -18,7 +18,7 @@
       "Id": 2,
       "SceneName": "刻着过去的钟表",
       "SpritePath": "",
-      "ScenePath": "ControllerTestScene",
+      "ScenePath": "LEVEL0",
       "noteString": "注意时间机关，谨慎操作"
     },
     {
@@ -46,7 +46,7 @@
       "Id": 6,
       "SceneName": "明珠暗投",
       "SpritePath": "",
-      "ScenePath": "LEVEL0",
+      "ScenePath": "",
       "noteString": "机关陷阱频繁出现"
     },
     {
