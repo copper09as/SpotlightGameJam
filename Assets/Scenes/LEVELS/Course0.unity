@@ -448,10 +448,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1027292107}
     m_Modifications:
-    - target: {fileID: 1269485080664648382, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_Name
       value: SettingMenu
@@ -535,10 +531,6 @@ PrefabInstance:
     - target: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5535354346364309523, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3313,7 +3305,7 @@ TilemapCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -16319,7 +16311,7 @@ TilemapCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -21283,10 +21275,6 @@ PrefabInstance:
     - target: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_Name
       value: AudioMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 5427946819230628423, guid: c9418e994ab69074db41d42477e43118, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_Pivot.x
