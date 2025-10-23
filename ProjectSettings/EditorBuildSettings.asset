@@ -14,18 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 0f7dc2b03488d0a41b92428e6df6426e
-  - enabled: 0
-    path: Assets/Scenes/Enemy.unity
-    guid: f24ba407725dcc24a9855cc00d1954ff
   - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 686fbdcc3b5f4f846b9eb4691d44bd39
   - enabled: 1
     path: Assets/Scenes/LEVELS/LEVEL4(Passable).unity
     guid: ed8a107969042e549bfc8a5e2de6b0b9
-  - enabled: 0
-    path: Assets/Scenes/LEVELS/CantMove.unity
-    guid: 5dc09f63f2c5cbc48a5b843361442733
   - enabled: 1
     path: Assets/Scenes/LEVELS/ControllerTestScene.unity
     guid: 4014ca92782873d47a6a8fa4c46efaed
