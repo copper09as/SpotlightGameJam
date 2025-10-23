@@ -1,10 +1,12 @@
 local CE = CS.XLuaCustomExport
 function BabbleInit(entity)
     local data = entity.dataTable or {}
+    data.player = CS.UnityEngine.GameObject.Find("Character"):GetComponent("Entity")
     data.TMP = CE.GetTMPText(entity)
+    data.sprite = entity.sr
     data.words = "策划，你是不是没活了"
-
-
-    CE.TypeWriter(data.TMP,data.words,2)
+    data.Timer =  data.PrintTime --计时器
+    data.PrintTime = 5 --5秒停止不动开始打印
+    --CE.TypeWriter(data.TMP,data.words,2)
 
 end
