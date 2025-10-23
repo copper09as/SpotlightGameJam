@@ -708,6 +708,18 @@ PrefabInstance:
       value: MechanismDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3646428622682380776, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646428622682380776, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646428622682380776, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646428622682380776, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -717,15 +729,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.28
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.64
+      value: 0.572
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.035
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14252,12 +14264,12 @@ SceneRoots:
   - {fileID: 977456297}
   - {fileID: 508760909}
   - {fileID: 1561054617}
+  - {fileID: 754719762}
+  - {fileID: 1027292107}
   - {fileID: 799254621}
   - {fileID: 900286646}
   - {fileID: 288283390}
   - {fileID: 1880197930}
-  - {fileID: 754719762}
-  - {fileID: 1027292107}
   - {fileID: 1158408662}
   - {fileID: 2055242831}
   - {fileID: 293019733}
