@@ -1,8 +1,9 @@
 function CloseTheDoor(entity,_, a, b)--pedal关闭门
     print("关门")
     --播放踏板上升动画
-    entity.animator:SetBool("IsDown",false)
-
+    if entity.animator == nil then
+        entity.animator:SetBool("IsDown",false)
+    end
     local entities = entity:GetEntities("OpenTheDoor")
     local entitiesCount = entities.Count
     for j = 0, entitiesCount - 1 do
@@ -11,7 +12,7 @@ function CloseTheDoor(entity,_, a, b)--pedal关闭门
             return
         end
         otherEntity.animator:SetBool("IsOpen",false)
-        end
+    end
 end
 
 
