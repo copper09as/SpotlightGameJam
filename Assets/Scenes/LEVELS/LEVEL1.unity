@@ -14067,14 +14067,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 5162956147755855163, guid: c9418e994ab69074db41d42477e43118, type: 3}
-      propertyPath: m_SortingOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6929386362844665335, guid: c9418e994ab69074db41d42477e43118, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
