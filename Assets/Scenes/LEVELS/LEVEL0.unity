@@ -6599,7 +6599,7 @@ MonoBehaviour:
     ScaleX: 0
     ScaleY: 0
   entityPairs: []
-  sr: {fileID: 967656204}
+  sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
   entityStop: 0
 --- !u!50 &1170480660
