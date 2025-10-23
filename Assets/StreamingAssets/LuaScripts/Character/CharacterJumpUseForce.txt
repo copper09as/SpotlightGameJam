@@ -25,21 +25,17 @@ function CharacterJumpUseForce(entity, dt)
         data.coyoteTimeCounter = 0
         data.jumpUsed = true
 
-        -- 🪂 计算连跳加速
         local now = CS.UnityEngine.Time.time
         local vx = rb.velocity.x
 
-        -- 跳跃方向（取决于当前输入或已有速度方向）
         local inputDir = 0
         if GC.isLeftPressed then inputDir = -1 end
         if GC.isRightPressed then inputDir = 1 end
 
         if now - (data.lastLandingTime or 0) <= (data.bhopTimeWindow or 0.15) and math.abs(vx) > 0.1 then
-            -- 🧮 计算加速
             local boost = data.bhopSpeedBoost * (vx >= 0 and 1 or -1)
             local newSpeed = vx + boost
 
-            -- 限制最大连跳速度
             if newSpeed > data.maxBhopSpeed then newSpeed = data.maxBhopSpeed end
             if newSpeed < -data.maxBhopSpeed then newSpeed = -data.maxBhopSpeed end
 
@@ -62,7 +58,6 @@ function CharacterJumpUseForce(entity, dt)
     else
         data.coyoteTimeCounter = math.max(0, (data.coyoteTimeCounter or 0) - dt)
     end
-
 
     if data.isJumping and inputJump then
         currentHeight = entity.transform.position.y - data.startY

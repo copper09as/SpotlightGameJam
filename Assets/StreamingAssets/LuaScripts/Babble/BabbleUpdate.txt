@@ -1,0 +1,10 @@
+local CE = CS.XLuaCustomExport
+function BabbleUpdate(entity,dt)
+    local data = entity.dataTable or {}
+    data.Timer = math.max(0,data.Timer-dt)--计时
+
+    data.TMP.gameObject:SetActive(true)
+    data.sprite.gameObject:SetActive(true)
+    CE.TypeWriter(data.TMP,data.words,2)
+
+end
