@@ -36,14 +36,12 @@ function StickPlayerUp(entity)
 
     if hitCharacter then
         data.hitCharacter = hitCharacter
-		data.hitCharacter.dataTable.inScroll = true
         hitCharacter.transform:SetParent(hitEntityTrans, true)
         return
     end
 
     if data.hitCharacter then
         data.hitCharacter.transform:SetParent(nil, true)
-		data.hitCharacter.dataTable.inScroll = nil
     end
 	
     data.hitCharacter = nil

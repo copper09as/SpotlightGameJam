@@ -16,12 +16,6 @@ function CharacterJumpUseForce(entity, dt)
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
 
-    -- 如果在滚动中且没跳跃，施加额外向下速度
-    if data.inScroll and not data.isJumping and not groundCheck then
-        local extraGravity = data.gravity * 3  -- 想要的加速度倍数
-        rb.velocity = CS.UnityEngine.Vector2(rb.velocity.x, rb.velocity.y - extraGravity * dt)
-    end
-
     -- 正常跳跃逻辑
     if inputJump and not data.jumpUsed and (groundCheck or data.coyoteTimeCounter > 0) and not data.isJumping then
         data.isJumping = true
