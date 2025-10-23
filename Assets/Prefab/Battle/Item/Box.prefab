@@ -223,7 +223,7 @@ MonoBehaviour:
     OnDisablePath: []
     OnEntityExitPath: []
   animator: {fileID: 0}
-  dataId: 20018
+  dataId: 20026
   CommonEntityData:
     id: 0
     EffectId: 0
