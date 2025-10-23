@@ -68,7 +68,7 @@
 		"Enemy/EnemyInit"],
 		"UpdatePath": ["Enemy/EnemyMove"],
 		"OnMouseDownPath": [],
-		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": ["Enemy/EnemyDestroyed"]
 	},
