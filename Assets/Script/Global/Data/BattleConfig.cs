@@ -36,7 +36,7 @@ namespace Global.Data.BattleConfig
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false; 
 #else
-        Application.Quit(); // 构建版本中退出
+        Application.Quit();
 #endif
                 return;
             }
