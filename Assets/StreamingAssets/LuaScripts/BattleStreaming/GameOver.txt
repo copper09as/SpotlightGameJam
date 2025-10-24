@@ -23,5 +23,6 @@ function GameOver(entity)
         entity.col.enabled = false
     end
 	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/PlayerDead.wav")
-    CS.SceneChangeManager.Instance:ReloadSceneWithDelay(2.5)
+	entity.entityManager:Lose(2)
+
 end
