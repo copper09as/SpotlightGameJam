@@ -166,9 +166,8 @@ public class BattleStreaming : MonoBehaviour
             entityManager.Register(entity);
             entity.entityStop = true;
         }
-
         yield return new WaitForSecondsRealtime(0.5f);
-        yield return StartCoroutine(FadeOutPanel());
+        StartCoroutine(FadeOutPanel());
         foreach (var entity in entityManager.GetAllEntities())
         {
             entity.entityStop =false;
