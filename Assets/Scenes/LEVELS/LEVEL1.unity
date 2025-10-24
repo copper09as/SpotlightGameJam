@@ -821,6 +821,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 578775674}
+  comicPanel: {fileID: 0}
+  comicImage: {fileID: 0}
+  comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
 Transform:
@@ -8054,6 +8057,7 @@ MonoBehaviour:
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
+  isLoading: 1
 --- !u!1001 &1562992579
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1384,6 +1384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagicDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 2563918704054678921, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3646428622682380776, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.36033693
