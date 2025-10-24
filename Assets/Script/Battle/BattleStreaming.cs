@@ -26,10 +26,12 @@ public class BattleStreaming : MonoBehaviour
             var child2 = panel.transform.GetChild(0);
             sceneNameText = child2.GetComponent<TextMeshProUGUI>();
         }
+
     }
 
     private void Start()
     {
+      
         GameController.Controller.Main.Reset.started += ResetBattle;
         StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
     }
@@ -57,6 +59,7 @@ public class BattleStreaming : MonoBehaviour
         }
 
         var entityManager = new EntityManager();
+        EntityUIManager.Instance.entityManager = entityManager;
         foreach (var entity in FindObjectsOfType<Entity>(true))
         {
             entityManager.Register(entity);

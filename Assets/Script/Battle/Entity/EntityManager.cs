@@ -28,6 +28,35 @@ public class EntityManager
         }
         SceneChangeManager.Instance.ReloadSceneWithDelay(delay);
     }
+    public List<Entity> FindEntityByDataTable(string key)
+    {
+        var result = new List<Entity>();
+
+        foreach (var entity in GetAllEntities())
+        {
+            if (entity == null || entity.dataTable == null)
+                continue;
+
+            bool value;
+            try
+            {
+                value = entity.dataTable.Get<bool>(key);
+            }
+            catch
+            {
+                continue;
+            }
+
+            if (value)
+            {
+                result.Add(entity);
+            }
+        }
+
+        return result;
+    }
+
+
     /*public Entity InstantiateEnityty(GameObject prefab,Transform parent)
     {
         var obj = Instantiate(prefab, parent);

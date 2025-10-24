@@ -54,9 +54,7 @@ namespace Global.Data.BattleConfig
             {
                 userData.unLockLevel += 1;
                 JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
-
             }
-
             if (levelId < GameConfig.Instance.LevtlDC.levelDataList.Count - 1)
             {
                 SceneChangeManager.Instance.LoadScene
