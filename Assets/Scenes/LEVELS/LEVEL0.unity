@@ -360,11 +360,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
   m_PrefabInstance: {fileID: 59891813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &59891815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-  m_PrefabInstance: {fileID: 59891813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &83547617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,7 +700,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00014877, y: -0.0081034}
-  m_SizeDelta: {x: 1920, y: 1080.1}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &284846416
 MonoBehaviour:
@@ -6718,9 +6713,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 59891815}
-  audioMenu: {fileID: 2011406864}
-  cameraMenu: {fileID: 1902339401}
+  settingMenu:
+  - {fileID: 0}
+  audioMenu:
+  - {fileID: 0}
+  cameraMenu:
+  - {fileID: 0}
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
@@ -7811,8 +7809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5319824, y: -0.000061035156}
-  m_SizeDelta: {x: 65.841, y: 0}
+  m_AnchoredPosition: {x: -2.5319214, y: 0.37854}
+  m_SizeDelta: {x: 65.841, y: 0.7572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1688853441
 CanvasGroup:
@@ -13515,11 +13513,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3618759915288087748, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
   m_PrefabInstance: {fileID: 1902339399}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1902339401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
-  m_PrefabInstance: {fileID: 1902339399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1920892945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13754,11 +13747,6 @@ PrefabInstance:
 --- !u!224 &2011406863 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
-  m_PrefabInstance: {fileID: 2011406862}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2011406864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
   m_PrefabInstance: {fileID: 2011406862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055242829

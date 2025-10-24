@@ -21,7 +21,6 @@ public class EventCenter : SingleCaseMono<EventCenter>
             Debug.Log($"×¢²á{name}ÊÂ¼þ");
         }
     }
-
     public void RemoveAction(string name, Action action = null)
     {
         if (Actions.ContainsKey(name))

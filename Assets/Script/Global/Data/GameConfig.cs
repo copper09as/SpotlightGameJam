@@ -1,10 +1,10 @@
 ﻿using System;
-using Global.Data.Entity;
-using UnityEditor;
-using UnityEngine;
-using System.Collections.Generic;
 using System.IO;
+using Assets.Script.Global.Data;
+using Global.Data.Entity;
 using Global.Data.Level;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace Global.Data
 {
     public class GameConfig : MonoBehaviour
@@ -13,6 +13,7 @@ namespace Global.Data
         public CommonEntityDataCollection CommonEDC;
         public EntityScriptDataCollection EntitySDC;
         public LevelDataCollection LevtlDC;
+        public UserConfigData UserCD;
         private void Awake()
         {
             if (Instance != null)
@@ -28,25 +29,55 @@ namespace Global.Data
 
         private void LoadAllConfig()
         {
-            /*CommonEDC = new CommonEntityDataCollection();
-            for(int i = 0;i<10;i++)
-            {
-                CommonEntityData commonEntityData = new CommonEntityData();
-                CharacterEntityData characterEntityData = new CharacterEntityData();
-                characterEntityData.signId = -1;
-                commonEntityData.id = 20000 + i;
-                commonEntityData.EffectId = 10000;
-                commonEntityData.ScaleX = 1.0f;
-                commonEntityData.ScaleY = 1.0f;
-                commonEntityData.CharacterData = characterEntityData.Copy();
-                CommonEDC.CommonEntityList.Add(commonEntityData);
-            }
-            JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "CommonEntityData.json"),CommonEDC);*/
             CommonEDC = LoadConfigData<CommonEntityDataCollection>("CommonEntityData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
             LevtlDC = LoadConfigData<LevelDataCollection>("LevelData.json");
+            UserCD = JsonTool.LoadByJson<UserConfigData>(Path.Combine(Application.persistentDataPath, "UserConfigData.json"));
+            if (UserCD == null)
+            {
+                UserCD = new UserConfigData();
+                SaveUserConfig(Screen.currentResolution.width, Screen.currentResolution.height, Screen.fullScreen);
+            }
+            Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
         }
-        private static T LoadConfigData<T>(string relativePath)
+        public void SaveUserConfig(int x,int y,bool fulls)
+        {
+            UserCD.ResolutionX =x ;
+            UserCD.ResolutionY = y;
+            UserCD.isFullScreen = fulls;
+            JsonTool.SaveByJson( Path.Combine(Application.persistentDataPath, "UserConfigData.json"), UserCD);
+        }
+        public void SetResolution()
+        {
+            Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
+        }
+        private void ApplyUserResolution()
+        {
+            // 确保分辨率应用
+            if (UserCD != null)
+            {
+                Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
+                Debug.Log($"已应用分辨率: {UserCD.ResolutionX}x{UserCD.ResolutionY}, 全屏:{UserCD.isFullScreen}");
+            }
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            ApplyUserResolution(); // 确保每次场景切换后都应用分辨率
+        }
+
+
+        private T LoadConfigData<T>(string relativePath)
         {
             string fullPath = Path.Combine(Application.streamingAssetsPath, relativePath);
             Debug.Log(fullPath);
