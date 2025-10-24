@@ -1,3 +1,14 @@
+local function DragonFly(entity)--飞回原来的位置
+    CS.UnityEngine.Debug.Log("恶龙飞到随机的点位")--点位提前放置
+    local data = entity.dataTable
+    entity.transform:DOMove( CS.BossStopPoint.Instance:GetPoint(),data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+          :OnComplete(function ()
+        data.state = "idle"
+        CS.UnityEngine.Debug.Log("飞回完成")
+        data.attackTimer = data.attackCooldown --重置攻击冷却时间计时器
+    end)
+end
+
 function DragonInit(entity)
     local data = entity.dataTable or {}
 
@@ -16,14 +27,11 @@ function DragonInit(entity)
     data.afterTimer = 2              --攻击后摇计时器
     data.attackCooldown = 2          -- 攻击冷却时间
     data.attackTimer = 0
-
     data.attackTime = 2               --龙攻击到角色的时间
     data.attackPosition = nil         --攻击前往的位置
-
     data.sprintSpeed = 10             -- 冲刺速度
     data.flyTiming = 4                -- 飞行时间
-    data.state = "idle"               -- Boss 状态
-                                      --idle（fly）/attackBefore/attack/attack/（sprint）
+
     data.target = CS.UnityEngine.GameObject.Find("Character")       -- 追踪目标
     data.originPosition = entity.transform.position   --龙在场景初始位置
     data.canAttack = true
@@ -34,5 +42,7 @@ function DragonInit(entity)
     data.flyDuration = 3              -- 飞行持续时间
 
     data.colliders = CS.Tool.GetCollider2Ds(entity.gameObject)
-	
+    data.state = "flyBack"               -- Boss 状态
+    --idle（fly）/attack/attackBefore/attackAfter/
+    DragonFly(entity)                 --boss从场外飞入场内随机一个点位
 end
