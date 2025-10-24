@@ -1,25 +1,38 @@
 local GC = CS.GameController
+local Screen = CS.UnityEngine.Screen
+local Mathf = CS.UnityEngine.Mathf
+local Vector3 = CS.UnityEngine.Vector3
+local Camera = CS.UnityEngine.Camera
+local Time = CS.UnityEngine.Time
 
-function FollowMouseY(entity, dt)
+
+function FollowMouseY(entity)
     if entity == nil or entity.transform == nil then return end
 
-    local UICamera = CS.UnityEngine.Camera.main  -- 使用主摄像机做屏幕坐标换算
+    local cam = Camera.main
     local data = entity.dataTable
     local mousePos = GC.GetScreenPos()
-    dt = CS.UnityEngine.Time.unscaledDeltaTime
+    local dt = Time.unscaledDeltaTime
 
-    -- ====== 1️⃣ 限制鼠标在屏幕Y范围内 ======
-    mousePos.y = CS.UnityEngine.Mathf.Clamp(mousePos.y, data.limitYMin, data.limitYMax)
+    -- 🧮 屏幕比例
+    local scaleX = Screen.width / 1920
+    local scaleY = Screen.height / 1080
 
-    -- ====== 2️⃣ 获取当前滑块的屏幕坐标 ======
-    local screenPos = UICamera:WorldToScreenPoint(entity.transform.position)
+    -- 🧭 根据当前屏幕重新计算边界
+    local limitYMin = (data.baseLimitYMin or 150) * scaleY
+    local limitYMax = (data.baseLimitYMax or 1000) * scaleY
 
-    -- ====== 3️⃣ 匀速移动（不使用Lerp） ======
+    -- 限制鼠标Y范围
+    mousePos.y = Mathf.Clamp(mousePos.y, limitYMin, limitYMax)
+
+    -- 获取当前屏幕坐标
+    local screenPos = cam:WorldToScreenPoint(entity.transform.position)
+
+    -- 匀速移动
     local targetY = mousePos.y
-    local moveSpeed = data.scrollSpeed or 1000  -- 每秒移动的像素速度
+    local moveSpeed = (data.scrollSpeed or 1000) * scaleY
     local diffY = targetY - screenPos.y
 
-    -- 根据方向和速度移动
     if math.abs(diffY) > 0.1 then
         local moveStep = moveSpeed * dt
         if math.abs(diffY) < moveStep then
@@ -29,14 +42,11 @@ function FollowMouseY(entity, dt)
         end
     end
 
-    -- Clamp 限制
-    screenPos.y = CS.UnityEngine.Mathf.Clamp(screenPos.y, data.limitYMin, data.limitYMax)
+    screenPos.y = Mathf.Clamp(screenPos.y, limitYMin, limitYMax)
 
-    -- ====== 4️⃣ 转换回世界坐标并应用 ======
-    local worldPos = UICamera:ScreenToWorldPoint(CS.UnityEngine.Vector3(screenPos.x, screenPos.y, screenPos.z))
-    entity.transform.position = CS.UnityEngine.Vector3(worldPos.x, worldPos.y, entity.transform.position.z)
+    local worldPos = cam:ScreenToWorldPoint(Vector3(screenPos.x, screenPos.y, screenPos.z))
+    entity.transform.position = Vector3(worldPos.x, worldPos.y, entity.transform.position.z)
 
-    -- ====== 5️⃣ 直接计算滚动进度（不平滑） ======
-    local rangeY = data.limitYMax - data.limitYMin
-    data.scrollProgress = (screenPos.y - data.limitYMin) / rangeY
+    local rangeY = limitYMax - limitYMin
+    data.scrollProgress = (screenPos.y - limitYMin) / rangeY
 end

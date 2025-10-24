@@ -152,55 +152,46 @@ public class MapBtnGroup : MonoBehaviour
         isMoving = true;
         float t = 0f;
 
-        // 保存当前位置和缩放
+        // 🔒 在动画期间复制当前按钮快照，防止动态改变
+        var buttons = new List<Button>(mapSelectButtonGroup);
+
         List<Vector3> startPos = new List<Vector3>();
         List<Vector3> startScale = new List<Vector3>();
-        for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+        for (int i = 0; i < buttons.Count; i++)
         {
-            startPos.Add(mapSelectButtonGroup[i].transform.localPosition);
-            startScale.Add(mapSelectButtonGroup[i].transform.localScale);
+            startPos.Add(buttons[i].transform.localPosition);
+            startScale.Add(buttons[i].transform.localScale);
         }
 
-        // 计算目标位置和缩放
         List<Vector3> targetPos = new List<Vector3>();
         List<Vector3> targetScale = new List<Vector3>();
-        for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+        for (int i = 0; i < buttons.Count; i++)
         {
             int offset = i - currentIndex;
             targetPos.Add(Vector3.right * offset * spacing);
             targetScale.Add(Vector3.one * (offset == 0 ? centerScale : sideScale));
         }
 
-        // 平滑插值
         while (t < 1f)
         {
             t += Time.deltaTime / moveDuration;
             float lerpT = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(t));
-            try
-            {
-                for (int i = 0; i < mapSelectButtonGroup.Count; i++)
-                {
-                    mapSelectButtonGroup[i].transform.localPosition =
-                        Vector3.Lerp(startPos[i], targetPos[i], lerpT);
-                    mapSelectButtonGroup[i].transform.localScale =
-                        Vector3.Lerp(startScale[i], targetScale[i], lerpT);
-                }
-            }
-            catch(Exception ex)
-            {
-                NotificationManager.Instance.ShowNotification(ex.Message, "加载关卡选择出现错误！请重新加载");
-                SceneChangeManager.Instance.LoadScene("StartScene");
-                throw ex;
-            }
 
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (buttons[i] == null) continue; // 防御性检查
+                buttons[i].transform.localPosition = Vector3.Lerp(startPos[i], targetPos[i], lerpT);
+                buttons[i].transform.localScale = Vector3.Lerp(startScale[i], targetScale[i], lerpT);
+            }
             yield return null;
         }
 
-        // 确保最终位置和缩放精确
-        for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+        // 最终位置
+        for (int i = 0; i < buttons.Count; i++)
         {
-            mapSelectButtonGroup[i].transform.localPosition = targetPos[i];
-            mapSelectButtonGroup[i].transform.localScale = targetScale[i];
+            if (buttons[i] == null) continue;
+            buttons[i].transform.localPosition = targetPos[i];
+            buttons[i].transform.localScale = targetScale[i];
         }
 
         isMoving = false;

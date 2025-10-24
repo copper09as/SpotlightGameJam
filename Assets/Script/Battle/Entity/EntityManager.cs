@@ -20,6 +20,14 @@ public class EntityManager
     {
         return GetAllEntities().Where(i => i.dataId == dataId).ToList();
     }
+    public void Lose(float delay)
+    {
+        foreach(var entity in GetAllEntities())
+        {
+            entity.entityStop = true;
+        }
+        SceneChangeManager.Instance.ReloadSceneWithDelay(delay);
+    }
     /*public Entity InstantiateEnityty(GameObject prefab,Transform parent)
     {
         var obj = Instantiate(prefab, parent);

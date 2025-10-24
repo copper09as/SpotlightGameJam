@@ -4,7 +4,13 @@ local maxSize = 4.71
 local minSize = 1
 
 function ScrollCameraSize(entity)
+	if entity == nil then
+		return
+	end
     local data = entity.dataTable
+	if data == nil then
+		return
+	end
     local cam = CS.UnityEngine.Camera.main
     local t = data.scrollProgress
 

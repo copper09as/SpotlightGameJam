@@ -280,5 +280,15 @@
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10027,
+		"InitPath": ["Physics/SetDynamic",
+		"Enemy/SuperEnemyInit"],
+		"UpdatePath": ["Enemy/EnemyMove"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": ["Enemy/EnemyDestroyed"]
 	}]
 }

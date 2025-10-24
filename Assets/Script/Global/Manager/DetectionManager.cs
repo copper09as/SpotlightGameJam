@@ -21,7 +21,7 @@ public static class DetectionManager
         RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
         foreach (var hit in hits)
         {
-            if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (hit.collider != null && hit.collider.tag == "Player")
             {
                 return hit.collider.GetComponent<Entity>();
             }
