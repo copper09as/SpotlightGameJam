@@ -32,7 +32,7 @@ namespace Global.Data
             CommonEDC = LoadConfigData<CommonEntityDataCollection>("CommonEntityData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
             LevtlDC = LoadConfigData<LevelDataCollection>("LevelData.json");
-            UserCD = JsonTool.LoadByJson<UserConfigData>(Path.Combine(Application.persistentDataPath, "UserConfigData.json"));
+            UserCD = JsonTool.LoadByJson<UserConfigData>(Path.Combine(Application.streamingAssetsPath, "UserConfigData.json"));
             if (UserCD == null)
             {
                 UserCD = new UserConfigData();
@@ -45,7 +45,7 @@ namespace Global.Data
             UserCD.ResolutionX =x ;
             UserCD.ResolutionY = y;
             UserCD.isFullScreen = fulls;
-            JsonTool.SaveByJson( Path.Combine(Application.persistentDataPath, "UserConfigData.json"), UserCD);
+            JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "UserConfigData.json"), UserCD);
         }
         public void SetResolution()
         {

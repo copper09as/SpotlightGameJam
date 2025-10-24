@@ -58,7 +58,16 @@ public class BattleStreaming : MonoBehaviour
         }
         else
         {
-            StartCoroutine(LoadBattle());
+            try
+            {
+                StartCoroutine(LoadBattle());
+            }
+            catch(Exception ex)
+            {
+
+                NotificationManager.Instance.ShowNotification(ex.Message, "战斗加载出现错误");
+            }
+         
         }
     }
 
@@ -149,7 +158,7 @@ public class BattleStreaming : MonoBehaviour
         if (isLoading) yield break;
         isLoading = true;
         SetPanelVisible(true);
-
+        yield return new WaitForSecondsRealtime(0.5f);
         var entityManager = new EntityManager();
         EntityUIManager.Instance.entityManager = entityManager;
         foreach (var entity in FindObjectsOfType<Entity>(true))
@@ -157,9 +166,8 @@ public class BattleStreaming : MonoBehaviour
             entityManager.Register(entity);
             entity.entityStop = true;
         }
-
-        yield return new WaitForSecondsRealtime(1f);
-        yield return StartCoroutine(FadeOutPanel());
+        yield return new WaitForSecondsRealtime(0.5f);
+        StartCoroutine(FadeOutPanel());
         foreach (var entity in entityManager.GetAllEntities())
         {
             entity.entityStop =false;

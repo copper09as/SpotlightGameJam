@@ -43,8 +43,6 @@ public class AudioManager : MonoBehaviour
         float scale = 0.2518f; // 校准系数
         float dB = 20f * Mathf.Log10(linear * scale);
         mixer.SetFloat("BgmVolume", dB);
-        Debug.Log(dB);
-        Debug.Log(volume);
     }
 
     public void SetSFXVolume(float volume)
