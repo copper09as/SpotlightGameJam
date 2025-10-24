@@ -23,6 +23,7 @@ function GameOver(entity)
         entity.col.enabled = false
     end
 	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/PlayerDead.wav")
+	CS.UnityEngine.Debug.Log("win")
 	entity.entityManager:Lose(2)
 
 end

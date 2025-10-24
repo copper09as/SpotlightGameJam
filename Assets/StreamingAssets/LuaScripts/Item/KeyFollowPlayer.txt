@@ -12,7 +12,7 @@ local  function OpenTheDoor(entity,character) --这里的entity是门
         character.rb.angularVelocity=0
     end
     CS.UnityEngine.Debug.Log("开门成功")
-    CS.Global.Data.BattleConfig.BattleConfig.Instance:Win(1)--一秒后胜利
+    entity.entityManager:Win(1)--一秒后胜利
     return true
 end
 

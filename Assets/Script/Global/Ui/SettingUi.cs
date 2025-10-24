@@ -54,16 +54,16 @@ public class SettingUi : MonoBehaviour
         exitGameBtn.onClick.AddListener(ExitGame);
         toStartSceneBtn.onClick.AddListener(ToStartScene);
         mapBtn.onClick.AddListener(ToMapScene);
-        confirmResolutionBtn.onClick.AddListener(ChangeResolution);
-        fullScreenTog.onValueChanged.AddListener(SetFullscreen);
-        txtResolutionX.onEndEdit.AddListener(_ => ValidateInput(txtResolutionX));
-        txtResolutionY.onEndEdit.AddListener(_ => ValidateInput(txtResolutionY));
+        //confirmResolutionBtn.onClick.AddListener(ChangeResolution);
+        //fullScreenTog.onValueChanged.AddListener(SetFullscreen);
+        //txtResolutionX.onEndEdit.AddListener(_ => ValidateInput(txtResolutionX));
+        //txtResolutionY.onEndEdit.AddListener(_ => ValidateInput(txtResolutionY));
     }
     private void OnEnable()
     {
-        txtResolutionX.text = Screen.width.ToString();
-        txtResolutionY.text = Screen.height.ToString();
-        fullScreenTog.isOn = Screen.fullScreen;
+        //txtResolutionX.text = Screen.width.ToString();
+        //txtResolutionY.text = Screen.height.ToString();
+        //fullScreenTog.isOn = Screen.fullScreen;
     }
     private void ValidateInput(TMP_InputField field)
     {

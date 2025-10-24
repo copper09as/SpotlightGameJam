@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Game.Battle.Entity;
+using Global.Data.BattleConfig;
 
 public class EntityManager
 {
@@ -27,6 +29,15 @@ public class EntityManager
             entity.entityStop = true;
         }
         SceneChangeManager.Instance.ReloadSceneWithDelay(delay);
+    }
+    public void Win(float delay)
+    {
+        foreach (var entity in GetAllEntities())
+        {
+            entity.entityStop = true;
+            UnityEngine.Debug.Log(entity.name);
+        }
+        BattleConfig.Instance.Win(delay);
     }
     public List<Entity> FindEntityByDataTable(string key)
     {
@@ -93,6 +104,7 @@ public class EntityManager
         entityMap.Remove(entity.entityId);
     }
     //±éÀú
+
     public List<Entity> GetAllEntities()
     {
         return new List<Entity>(entityMap.Values);

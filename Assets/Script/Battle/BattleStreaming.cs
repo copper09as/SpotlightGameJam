@@ -150,8 +150,6 @@ public class BattleStreaming : MonoBehaviour
         isLoading = true;
         SetPanelVisible(true);
 
-
-
         var entityManager = new EntityManager();
         EntityUIManager.Instance.entityManager = entityManager;
         foreach (var entity in FindObjectsOfType<Entity>(true))

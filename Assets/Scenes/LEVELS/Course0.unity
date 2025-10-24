@@ -1349,13 +1349,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1297874042}
-  comicPanel: {fileID: 857496307}
-  comicImage: {fileID: 569661199}
-  comicPages:
-  - {fileID: 21300000, guid: b94bd0b85641a7645a3890fc8368860b, type: 3}
-  - {fileID: 21300000, guid: c0fc1708ff95493459fe77456004386d, type: 3}
-  - {fileID: 21300000, guid: a7abad955bba6914ab39f0e19ccf4fc9, type: 3}
-  - {fileID: 21300000, guid: 9fd5b093095b7394aa2941b1723ffb8c, type: 3}
+  comicPanel: {fileID: 0}
+  comicImage: {fileID: 0}
+  comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
 Transform:
@@ -1383,6 +1379,10 @@ PrefabInstance:
     - target: {fileID: 2457349452065179704, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
       propertyPath: m_Name
       value: MagicDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563918704054678921, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3646428622682380776, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
       propertyPath: m_LocalScale.x
@@ -2094,7 +2094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &857496304
 RectTransform:
   m_ObjectHideFlags: 0
