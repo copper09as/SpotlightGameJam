@@ -10,8 +10,13 @@ local normalTimeScale = 1
 local lerpSpeed = 8
 
 function ScrollBgm(entity)
-
+	if entity == nil then
+		return
+	end
     local data = entity.dataTable
+	if data == nil then
+		return
+	end
     local progress = data.scrollProgress
 	if progress == nil then
 		return

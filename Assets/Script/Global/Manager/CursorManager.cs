@@ -1,4 +1,5 @@
-﻿using Game.Battle.Entity;
+﻿using System.Collections.Generic;
+using Game.Battle.Entity;
 using Global.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D defaultCursor;
     [SerializeField] private Texture2D transCursor;
     private bool isHold = false;
-    private Entity currentEntity;
+    private List<Entity> currentEntities = new ();
     [SerializeField]private GameObject particlePrefab;
     
     void Awake()
@@ -19,6 +20,7 @@ public class CursorManager : MonoBehaviour
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
         GameController.Controller.Main.LeftClick.started += Hold;
         GameController.Controller.Main.LeftClick.canceled += Release;
+        GameController.Controller.Main.Esc.started += Release;
     }
     /// <summary>
     /// 鼠标按下时切换动画并且发出音效
@@ -41,6 +43,7 @@ public class CursorManager : MonoBehaviour
     {
         isHold = false;
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
+        currentEntities.Clear();
     }
     private void TryClick(Vector2 screenPos)
     {
@@ -53,9 +56,8 @@ public class CursorManager : MonoBehaviour
             var entity = hit.collider.GetComponent<Entity>();
             if (entity != null)
             {
-                currentEntity = entity;
+                currentEntities.Add(entity);
                 entity.OnClick();
-                break; // 找到第一个可交互物体就退出
             }
         }
         Vector3 mousePos = Input.mousePosition;
@@ -74,9 +76,12 @@ public class CursorManager : MonoBehaviour
     }
     void Update()
     {
-        if (isHold && currentEntity != null)
+        if (isHold && currentEntities.Count>0)
         {
-            currentEntity.OnDrag();
+            foreach(var entity in currentEntities)
+            {
+                entity.OnDrag();
+            }
         }
     }
 }

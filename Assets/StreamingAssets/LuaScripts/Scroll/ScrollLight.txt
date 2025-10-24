@@ -6,7 +6,9 @@ function ScrollLight(entity, deltaTime)
     local light = CS.LightManager.Instance
 	
     local data = entity.dataTable
-	
+	if data == nil then
+		return
+	end
     local targetProgress = data.scrollProgress or 0
 	
     local targetValue = minLight + (maxLight - minLight) * targetProgress
