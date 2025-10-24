@@ -1822,9 +1822,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 17154945}
-  audioMenu: {fileID: 2011406864}
-  cameraMenu: {fileID: 59891815}
+  settingMenu:
+  - {fileID: 17154945}
+  audioMenu:
+  - {fileID: 2011406864}
+  cameraMenu:
+  - {fileID: 59891815}
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
