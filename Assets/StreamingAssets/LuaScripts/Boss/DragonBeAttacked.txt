@@ -35,6 +35,10 @@ local function DragonInvincible(entity) --龙进入无敌状态
     local colorB = entity.sr.color
     colorA.b = 0.5
     colorA.g = 0.5
+    for i = 0,data.colliders.Length - 1 do
+        local collider = data.colliders[i]
+        collider.enabled = false --关闭碰撞体
+    end
     CE.ChangeColor(entity.sr,colorA,0.2,
             function()
                 colorB.b = 0.5
@@ -44,6 +48,10 @@ local function DragonInvincible(entity) --龙进入无敌状态
                             entity.sr.color = colorB
                             --此时无敌时间结束
                             data.isInvincible = false
+                            for i = 0,data.colliders.Length - 1 do
+                                local collider = data.colliders[i]
+                                collider.enabled = true--关闭碰撞体
+                            end
                         end)
             end)
 

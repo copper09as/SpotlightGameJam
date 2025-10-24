@@ -116,4 +116,9 @@ public static class Tool
         return GameConfig.Instance.WordsD.words[UnityEngine.Random.Range(0, GameConfig.Instance.WordsD.words.Count)];
     }
 
+    public static Collider2D[] GetCollider2Ds(GameObject gameObject)
+    {
+        return gameObject.GetComponentsInChildren<Collider2D>();
+    }
+
 }

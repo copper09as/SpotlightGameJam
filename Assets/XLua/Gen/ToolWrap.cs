@@ -31,13 +31,14 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 7, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 8, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderWidthLua", _m_GetColliderWidthLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderHeightLua", _m_GetColliderHeightLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector2", _m_ToVector2_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector3", _m_ToVector3_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetRandomWords", _m_GetRandomWords_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetCollider2Ds", _m_GetCollider2Ds_xlua_st_);
             
 			
             
@@ -205,6 +206,33 @@ namespace XLua.CSObjectWrap
                     
                         var gen_ret = Tool.GetRandomWords(  );
                         LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetCollider2Ds_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.GameObject _gameObject = (UnityEngine.GameObject)translator.GetObject(L, 1, typeof(UnityEngine.GameObject));
+                    
+                        var gen_ret = Tool.GetCollider2Ds( _gameObject );
+                        translator.Push(L, gen_ret);
                     
                     
                     
