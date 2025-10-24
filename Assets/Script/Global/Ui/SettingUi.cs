@@ -86,20 +86,22 @@ public class SettingUi : MonoBehaviour
     {
         if (!int.TryParse(txtResolutionX.text, out int width))
         {
+            txtResolutionX.text = string.Empty;
             return;
         }
 
         if (!int.TryParse(txtResolutionY.text, out int height))
         {
+            txtResolutionY.text = string.Empty;
             return;
         }
         width = Mathf.Max(800, width);
         height = Mathf.Max(600, height);
-      
+        txtResolutionX.text = width.ToString();
+        txtResolutionY.text = height.ToString();
         Screen.SetResolution(width, height, fullscreen);
         GameConfig.Instance.SaveUserConfig(width,height,fullscreen);
     }
-
     private void OpenUiEve(Global.Events.OpenSettingUi eve)
     {
         ShowSettingUi();
