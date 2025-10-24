@@ -61,16 +61,16 @@ public class CursorManager : MonoBehaviour
             }
         }
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10f; // 视你的摄像机决定
+        mousePos.z = 10f; 
 
-        // 实例化粒子
+
         GameObject go = Instantiate(particlePrefab, GameController.GetWorldMousePos(), Quaternion.identity);
 
-        // 播放粒子系统
+
         var ps = go.GetComponent<ParticleSystem>();
         ps.Play();
 
-        // 自动销毁（等粒子播完）
+
         Destroy(go, 0.5f);
 
     }

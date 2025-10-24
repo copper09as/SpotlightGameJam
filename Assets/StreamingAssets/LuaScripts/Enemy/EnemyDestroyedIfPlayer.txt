@@ -1,0 +1,43 @@
+function EnemyDestroyedIfPlayer(entity,otherEntity)
+	
+    if otherEntity~= nil and otherEntity:CompareTag("Enemy") then
+        print("史莱姆碰撞不死亡")
+        return
+    end
+	if otherEntity~= nil and not otherEntity:CompareTag("Player") then
+        print("史莱姆碰撞不死亡")
+        return
+    end
+	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/ShimeDead.wav")
+    if entity.transform.childCount > 0 then
+        local firstChild = entity.transform:GetChild(0).gameObject
+        CS.UnityEngine.GameObject.Destroy(firstChild)
+    end
+
+    entity.entityStop = true
+
+    if entity.rb then
+        entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
+        entity.rb.angularVelocity = 0
+    end
+
+    if entity.animator then
+        entity.animator:Play("Dead")
+    end
+
+    if entity.sr then
+        local color = entity.sr.color
+        color.a = 0.5  
+        entity.sr.color = color
+    end
+
+    if entity.col then
+        entity.col.enabled = false
+    end
+	CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
+    if otherEntity ~= nil and otherEntity.rb ~= nil then
+		local velocity = otherEntity.rb.velocity
+        velocity.y = 10
+        otherEntity.rb.velocity = velocity
+    end
+end
