@@ -301,5 +301,15 @@
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead"],
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": ["Enemy/EnemyDestroyed"]
+	},
+	{
+		"id": 10029,
+		"InitPath": ["Physics/SetDynamic",
+		"Character/CharacterInit"],
+		"UpdatePath": ["Character/CharacterDeadIfInMiddle"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": ["BattleStreaming/GameOver"]
 	}]
 }
