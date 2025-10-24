@@ -1,18 +1,80 @@
+local CE = CS.XLuaCustomExport
+
+local function DragonDead(entity)
+    if entity.col then
+        entity.col.enabled = false
+    end
+    if entity.sr then
+        local color = entity.sr.color
+        color.a = 0.5
+        entity.sr.color = color
+    end
+    if entity.rb then
+        entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
+        entity.rb.angularVelocity = 0
+    end
+    if entity.animator then
+        entity.animator:Play("Dead")
+    end
+    CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
+    entity.entityStop = true
+end
+local function DragonInvincible(entity) --龙进入无敌状态
+    local data = entity.dataTable
+    --状态处理
+    data.isInvincible = true
+    entity.animator:SetTrigger("BeAttack")
+    CS.UnityEngine.Debug.Log("调用飞行方法")
+    data.afterTimer = data.afterTime--重置后摇计时器
+
+    data.state = "flyBack"
+    entity.animator:SetBool("CanAttack",false)
+    DragonFly(entity)
+
+    local colorA = entity.sr.color
+    local colorB = entity.sr.color
+    colorA.b = 0.5
+    colorA.g = 0.5
+    CE.ChangeColor(entity.sr,colorA,0.2,
+            function()
+                colorB.b = 0.5
+                CE.ChangeColor(entity.sr,colorB,data.invincibleTime,
+                        function()
+                            colorB.b = 1;
+                            entity.sr.color = colorB
+                            --此时无敌时间结束
+                            data.isInvincible = false
+                        end)
+            end)
+
+       --     :OnComplete(   --颜色设为黄色
+       --function()
+       --    color.b = 1;
+       --    entity.sr.color = color
+       --end
+
+
+end
 function DragonBeAttacked(entity,otherEntity)
     if otherEntity~= nil and otherEntity:CompareTag("Enemy") then
         print("被怪物碰撞不死亡")
         return
     end
-    local data = entity.dataTable or {}
-    -- 基础属性
-    data.ccbTime = data.ccbTime-1
+    local data = entity.dataTable
+
+    if not data.isInvincible then
+        data.ccbTime = data.ccbTime - 1 --被踩次数减一
+        DragonInvincible(entity) --龙进入无敌状态
+    end
+
     if otherEntity ~= nil and otherEntity.rb ~= nil then
         local velocity = otherEntity.rb.velocity
         velocity.y = 10
         otherEntity.rb.velocity = velocity
     end
+
     if data.ccbTime <= 0 then
-        CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
-        entity.entityStop = true
+        DragonDead(entity) -- 龙死亡
     end
+
 end

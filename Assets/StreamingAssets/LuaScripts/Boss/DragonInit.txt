@@ -28,8 +28,10 @@ function DragonInit(entity)
     data.originPosition = entity.transform.position   --龙在场景初始位置
     data.canAttack = true
     data.canSprint = true
+    data.invincibleTime = 3           -- 无敌时间
+    data.isInvincible = false         -- 是否无敌
     data.flyTime = 0                  -- 飞行计时
-    data.flyDuration = 3               -- 飞行持续时间
+    data.flyDuration = 3              -- 飞行持续时间
 	data.positionLerpSpeed = 10
 	
 end

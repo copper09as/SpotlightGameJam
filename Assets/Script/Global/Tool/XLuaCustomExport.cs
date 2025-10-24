@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using XLua;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public static class XLuaCustomExport
 {
@@ -71,5 +72,14 @@ public static class XLuaCustomExport
             currentText => _Text.text = currentText,
              words,
              time);
+    }
+    [LuaCallCSharp]
+    public static void ChangeColor(SpriteRenderer sr, Color color, float time,Action actionback)
+    {
+        sr.DOColor(color, time).OnComplete(
+
+           () => { actionback?.Invoke(); }
+        );
+           
     }
 }
