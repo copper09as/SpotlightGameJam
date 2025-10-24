@@ -219,12 +219,12 @@
 	},
 	{
 		"id": 10021,
-		"InitPath": [ "Boss/DragonInit", "Physics/SetKinematic" ],
-		"UpdatePath": [ "Boss/DragonUpdate" ],
+		"InitPath": ["Boss/DragonInit", "Physics/SetKinematic"],
+		"UpdatePath": ["Boss/DragonUpdate"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
 		"OnDragPath": ["Mouse/FollowMouse"],
-		"DeadPath": [ "Boss/DragonBeAttacked" ],
+		"DeadPath": [ "Boss/DragonBeAttacked"],
 		"OnDisablePath": []
 	},
 	{
@@ -311,5 +311,15 @@
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": ["BattleStreaming/GameOver"]
+	},
+	{
+		"id": 10030,
+		"InitPath": ["Physics/SetDynamic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}]
 }

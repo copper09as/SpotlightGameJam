@@ -57,8 +57,17 @@ namespace Game.Battle.Entity
 
 
             dataTable = LuaManager.Instance._luaEnv.NewTable();
-            CommonEntityData =
+            try
+            {
+                CommonEntityData =
                 GameConfig.Instance.CommonEDC.CommonEntityList.Find(i => i.id == id);
+            }
+            catch(Exception ex)
+            {
+                NotificationManager.Instance.ShowNotification(ex.Message, "实体名字为：" + name + "Id为：" + dataId.ToString());
+                SceneChangeManager.Instance.LoadScene("StartScene");
+                throw ex;
+            }
             try
             {
                 scriptData =
