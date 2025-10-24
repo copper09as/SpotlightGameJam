@@ -51,7 +51,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
+  m_Material: {fileID: 6200000, guid: f6ed31e7c5707bc48b4d143674ba70eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -71,7 +71,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8032353788050845218}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f6ed31e7c5707bc48b4d143674ba70eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -125,13 +125,13 @@ MonoBehaviour:
     UpdatePath: []
     OnMouseDownPath: []
     OnCollisionPath: []
+    OnTriggerPath: []
     OnDragPath: []
     DeadPath: []
     OnDisablePath: []
     OnEntityExitPath: []
   animator: {fileID: 0}
   dataId: 20010
-  entityId: 0
   CommonEntityData:
     id: 0
     EffectId: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
     ScaleY: 0
   entityPairs: []
   sr: {fileID: 0}
+  headDamageEffectPrefab: {fileID: 0}
   entityStop: 0
 --- !u!212 &149080930087760722
 SpriteRenderer:
