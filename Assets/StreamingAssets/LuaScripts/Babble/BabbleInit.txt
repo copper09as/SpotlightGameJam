@@ -4,7 +4,7 @@ function BabbleInit(entity)
     data.player = CS.UnityEngine.GameObject.Find("Character"):GetComponent("Entity")
     data.TMP = CE.GetTMPText(entity)
     data.sprite = entity.sr
-    data.words = "策划，你是不是没活了"
+    data.words = nil
     data.printTimer =  5--气泡输出计时器
     data.extinctionTimer = 2 --气泡消失计时器
     data.printTime = 5 --5秒停止不动开始打印

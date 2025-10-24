@@ -47,13 +47,6 @@ local function DragonInvincible(entity) --龙进入无敌状态
                         end)
             end)
 
-       --     :OnComplete(   --颜色设为黄色
-       --function()
-       --    color.b = 1;
-       --    entity.sr.color = color
-       --end
-
-
 end
 function DragonBeAttacked(entity,otherEntity)
     if otherEntity~= nil and otherEntity:CompareTag("Enemy") then
