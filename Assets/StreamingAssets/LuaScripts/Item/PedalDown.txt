@@ -6,7 +6,7 @@ function PedalDown(entity)--踏板被踩下
     local data = entity.CommonEntityData --实体通用数据
     local a = 1 --体型判定值
     local key = "OpenTheDoor"
-
+	CS.UnityEngine.Debug.Log("触碰踏板")
     print(entity.entityPairs.Count)
     if a<=  data.ScaleX*data.ScaleY then
         --播放踩下动画
