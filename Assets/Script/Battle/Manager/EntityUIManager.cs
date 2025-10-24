@@ -24,7 +24,7 @@ public class EntityUIManager : MonoBehaviour
     [SerializeField] private Button openMenuBtn;
 
     public EntityManager entityManager;
-
+    public bool isLoading = true;
     private bool isSettingMenuActive = false;
     private bool isAudioMenuActive = false;
     private bool isCameraMenuActive = false;
@@ -59,6 +59,7 @@ public class EntityUIManager : MonoBehaviour
 
     public void Init()
     {
+        isLoading = true;
         SetAllMenuActive(false);
         GameController.Controller.Main.Esc.started += OnEscPressed;
         openMenuBtn.onClick.AddListener(ShowSettingMenu);
@@ -134,6 +135,7 @@ public class EntityUIManager : MonoBehaviour
 
     private void ShowSettingMenu()
     {
+        if (isLoading) return;
         reallSettingUi.gameObject.SetActive(true);
         openMenuBtn.gameObject.SetActive(false);
         SetMenuActive(settingMenu, true);
