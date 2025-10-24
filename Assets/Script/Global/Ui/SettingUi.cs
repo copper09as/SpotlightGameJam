@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Global.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,12 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Vector3 hiddenPos = new Vector3(0, 1000, 0); // 面板屏幕外位置
     [SerializeField] private Vector3 shownPos = new Vector3(0, 0, 0);     // 面板显示位置
     [SerializeField] private float slideDuration = 0.3f;                  // 动画时间
+
+    [SerializeField] private TMP_InputField txtResolutionX;
+    [SerializeField] private TMP_InputField txtResolutionY;
+    [SerializeField] private Button confirmResolutionBtn;
+    [SerializeField] private bool fullscreen = true;
+    [SerializeField] private Toggle fullScreenTog;
 
     private float currentScale = 1f;
     private Coroutine slideCoroutine;
@@ -47,6 +54,53 @@ public class SettingUi : MonoBehaviour
         exitGameBtn.onClick.AddListener(ExitGame);
         toStartSceneBtn.onClick.AddListener(ToStartScene);
         mapBtn.onClick.AddListener(ToMapScene);
+        confirmResolutionBtn.onClick.AddListener(ChangeResolution);
+        fullScreenTog.onValueChanged.AddListener(SetFullscreen);
+        txtResolutionX.onEndEdit.AddListener(_ => ValidateInput(txtResolutionX));
+        txtResolutionY.onEndEdit.AddListener(_ => ValidateInput(txtResolutionY));
+    }
+    private void OnEnable()
+    {
+        txtResolutionX.text = Screen.width.ToString();
+        txtResolutionY.text = Screen.height.ToString();
+        fullScreenTog.isOn = Screen.fullScreen;
+    }
+    private void ValidateInput(TMP_InputField field)
+    {
+        string newText = "";
+        foreach (char c in field.text)
+        {
+            if (char.IsDigit(c))
+                newText += c;
+        }
+        if (newText != field.text)
+            field.text = newText;
+    }
+    private void SetFullscreen(bool isFullscreen)
+    {
+        fullscreen = isFullscreen;
+        Screen.SetResolution(Screen.width, Screen.height, fullscreen);
+        GameConfig.Instance.SaveUserConfig(Screen.width, Screen.height, fullscreen);
+    }
+    private void ChangeResolution()
+    {
+        if (!int.TryParse(txtResolutionX.text, out int width))
+        {
+            txtResolutionX.text = string.Empty;
+            return;
+        }
+
+        if (!int.TryParse(txtResolutionY.text, out int height))
+        {
+            txtResolutionY.text = string.Empty;
+            return;
+        }
+        width = Mathf.Max(800, width);
+        height = Mathf.Max(600, height);
+        txtResolutionX.text = width.ToString();
+        txtResolutionY.text = height.ToString();
+        Screen.SetResolution(width, height, fullscreen);
+        GameConfig.Instance.SaveUserConfig(width,height,fullscreen);
     }
     private void OpenUiEve(Global.Events.OpenSettingUi eve)
     {
