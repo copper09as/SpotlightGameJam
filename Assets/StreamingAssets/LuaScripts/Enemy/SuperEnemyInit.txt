@@ -20,6 +20,6 @@ function SuperEnemyInit(entity)
     local velocity = entity.rb.velocity
     velocity.x = data.EnemySpeed
     entity.rb.velocity = velocity --设置初始速度
-	entity.sr.color = CS.UnityEngine.Color(1, 0, 0, 1)
+
 
 end
