@@ -1,4 +1,5 @@
 local CE = CS.XLuaCustomExport
+local CT = CS.Tool
 function BabbleUpdate(entity,dt)
     local data = entity.dataTable or {}
     if CS.UnityEngine.Input.anyKey == false then
@@ -13,9 +14,10 @@ function BabbleUpdate(entity,dt)
 
 
     if data.printTimer == 0 and data.canPrint then
-            data.TMP.gameObject:SetActive(true)
-            data.sprite.gameObject:SetActive(true)
-            CE.TypeWriter(data.TMP,data.words,2)
+        data.TMP.gameObject:SetActive(true)
+        data.sprite.gameObject:SetActive(true)
+        data.words = CT.GetRandomWords()
+        CE.TypeWriter(data.TMP,data.words,2)
             data.canPrint = false
             data.extinctionTimer = data.extinctionTime--重置消失时间
     end

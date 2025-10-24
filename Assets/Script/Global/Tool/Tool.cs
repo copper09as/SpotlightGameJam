@@ -1,3 +1,4 @@
+using Global.Data;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -110,6 +111,9 @@ public static class Tool
         return new Vector3(vector.x, vector.y,0);
     }
 
-    
+    public static string GetRandomWords()
+    {
+        return GameConfig.Instance.WordsD.words[UnityEngine.Random.Range(0, GameConfig.Instance.WordsD.words.Count)];
+    }
 
 }

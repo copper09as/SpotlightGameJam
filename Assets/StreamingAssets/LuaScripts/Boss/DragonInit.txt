@@ -32,6 +32,5 @@ function DragonInit(entity)
     data.isInvincible = false         -- 是否无敌
     data.flyTime = 0                  -- 飞行计时
     data.flyDuration = 3              -- 飞行持续时间
-	data.positionLerpSpeed = 10
 	
 end
