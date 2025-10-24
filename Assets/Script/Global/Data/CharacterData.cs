@@ -56,4 +56,12 @@ namespace Global.Data
         public List<CommonEntityData> CommonEntityList = new List<CommonEntityData>();
     }
 
+    [Serializable]
+    /// <summary>
+    /// 气泡文字数据
+    /// </summary>
+    public class WordsData
+    {
+        public List<string> words;
+    }
 }

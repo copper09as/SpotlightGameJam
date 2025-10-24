@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Game.Battle.Entity;
+using Global.Data;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -82,4 +83,5 @@ public static class XLuaCustomExport
         );
            
     }
+    
 }
