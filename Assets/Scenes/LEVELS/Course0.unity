@@ -990,7 +990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3585497249330298471, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
       propertyPath: m_Constraints
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6245647477456712934, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
       propertyPath: m_Name
@@ -4046,6 +4046,7 @@ MonoBehaviour:
   reallSettingUi: {fileID: 472285404}
   autoInit: 1
   openMenuBtn: {fileID: 1151634348}
+  isLoading: 1
 --- !u!1 &1641882554
 GameObject:
   m_ObjectHideFlags: 0
