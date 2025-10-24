@@ -639,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &267954277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -884,6 +884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 267954278}
+  comicPanel: {fileID: 0}
+  comicImage: {fileID: 0}
+  comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
 Transform:
@@ -1188,14 +1191,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.92597985, a: 1}
+  m_Color: {r: 0.20784314, g: 0.31764707, b: 0.48235294, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1075219037, guid: aeb471af607f58743aac74ab6a3eb213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2850cce2826ef1940837991c5943e8bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1831,6 +1834,7 @@ MonoBehaviour:
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
+  isLoading: 1
 --- !u!1001 &1598528727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2376,7 +2380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1075219037, guid: aeb471af607f58743aac74ab6a3eb213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2850cce2826ef1940837991c5943e8bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

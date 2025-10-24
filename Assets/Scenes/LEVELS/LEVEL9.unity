@@ -352,11 +352,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
   m_PrefabInstance: {fileID: 59891813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &59891815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-  m_PrefabInstance: {fileID: 59891813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &66249660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,11 +509,6 @@ PrefabInstance:
 --- !u!224 &121401049 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3618759915288087748, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
-  m_PrefabInstance: {fileID: 121401048}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &121401050 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
   m_PrefabInstance: {fileID: 121401048}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &176139039
@@ -807,6 +797,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1526738266}
+  comicPanel: {fileID: 0}
+  comicImage: {fileID: 0}
+  comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
 Transform:
@@ -1126,14 +1119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.20784314, g: 0.31764707, b: 0.48235294, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1075219037, guid: aeb471af607f58743aac74ab6a3eb213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2850cce2826ef1940837991c5943e8bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1387,7 +1380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1075219037, guid: aeb471af607f58743aac74ab6a3eb213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2850cce2826ef1940837991c5943e8bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3038,12 +3031,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 59891815}
-  audioMenu: {fileID: 2011406864}
-  cameraMenu: {fileID: 121401050}
+  settingMenu:
+  - {fileID: 0}
+  audioMenu:
+  - {fileID: 0}
+  cameraMenu:
+  - {fileID: 0}
   reallSettingUi: {fileID: 593277201}
   autoInit: 1
   openMenuBtn: {fileID: 760528055}
+  isLoading: 1
 --- !u!1001 &1692159074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14992,11 +14989,6 @@ PrefabInstance:
 --- !u!224 &2011406863 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
-  m_PrefabInstance: {fileID: 2011406862}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2011406864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
   m_PrefabInstance: {fileID: 2011406862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055242829
