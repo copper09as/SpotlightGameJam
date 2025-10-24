@@ -35,7 +35,6 @@ public class EntityManager
         foreach (var entity in GetAllEntities())
         {
             entity.entityStop = true;
-            UnityEngine.Debug.Log(entity.name);
         }
         BattleConfig.Instance.Win(delay);
     }

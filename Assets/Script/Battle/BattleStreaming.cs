@@ -155,10 +155,15 @@ public class BattleStreaming : MonoBehaviour
         foreach (var entity in FindObjectsOfType<Entity>(true))
         {
             entityManager.Register(entity);
+            entity.entityStop = true;
         }
 
         yield return new WaitForSecondsRealtime(1f);
         yield return StartCoroutine(FadeOutPanel());
+        foreach (var entity in entityManager.GetAllEntities())
+        {
+            entity.entityStop =false;
+        }
         isLoading = false;
         EntityUIManager.Instance.isLoading = false;
     }
