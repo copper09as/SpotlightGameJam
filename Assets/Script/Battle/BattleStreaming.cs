@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Game.Battle.Entity;
 using Global.Data;
 using Global.Data.BattleConfig;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class BattleStreaming : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup panel;  // 加载界面
+    [Header("加载界面")]
+    [SerializeField] private CanvasGroup panel;
     private TextMeshProUGUI tipText;
     private TextMeshProUGUI sceneNameText;
-    private bool isLoading = false;
 
-    [SerializeField] private float fadeDuration = 2f; // ✅ 淡出时间
+    [Header("漫画页系统")]
+    [SerializeField] private CanvasGroup comicPanel;   // 放漫画图片的画布
+    [SerializeField] private Image comicImage;         // 用于显示当前页图片
+    [SerializeField] private Sprite[] comicPages;      // 所有漫画页
+    private int currentPageIndex = 0;
+    private bool isComicFinished = false;
+
+    [SerializeField] private float fadeDuration = 2f; 
+
+    private bool isLoading = false;
 
     private void Awake()
     {
@@ -26,46 +38,131 @@ public class BattleStreaming : MonoBehaviour
             var child2 = panel.transform.GetChild(0);
             sceneNameText = child2.GetComponent<TextMeshProUGUI>();
         }
-    }
-
-    private void Start()
-    {
-        GameController.Controller.Main.Reset.started += ResetBattle;
-        StartCoroutine(LoadBattle(BattleConfig.Instance.levelId));
-    }
-
-    private void ResetBattle(InputAction.CallbackContext context)
-    {
-        SceneChangeManager.Instance.ReloadCurrentScene();
-    }
-
-    /// <summary>
-    /// 战斗加载逻辑
-    /// </summary>
-    private IEnumerator LoadBattle(int levelId)
-    {
-        if (isLoading) yield break;
-        isLoading = true;
-
-        SetPanelVisible(true);
-
-        var levelData = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == levelId);
+        var levelData = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == BattleConfig.Instance.levelId);
         if (levelData != null)
         {
             if (tipText != null) tipText.text = levelData.noteString;
             if (sceneNameText != null) sceneNameText.text = levelData.SceneName;
         }
+    }
+
+    private void Start()
+    {
+        // 注册输入
+        GameController.Controller.Main.Reset.started += ResetBattle;
+        GameController.Controller.Main.LeftClick.started += OnLeftClick;
+
+        if (comicPages != null && comicPages.Length > 0)
+        {
+            ShowComicPage(0);
+        }
+        else
+        {
+            StartCoroutine(LoadBattle());
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameController.Controller.Main.Reset.started -= ResetBattle;
+        GameController.Controller.Main.LeftClick.started -= OnLeftClick;
+    }
+
+    /// <summary>
+    /// 鼠标左键逻辑
+    /// </summary>
+    private void OnLeftClick(InputAction.CallbackContext context)
+    {
+        if (!isComicFinished)
+        {
+            NextComicPage();
+        }
+    }
+
+    /// <summary>
+    /// 播放下一页漫画
+    /// </summary>
+    private void NextComicPage()
+    {
+        if (comicPages == null || comicPages.Length == 0 || comicImage == null) return;
+
+        currentPageIndex++;
+
+        if (currentPageIndex < comicPages.Length)
+        {
+            comicImage.sprite = comicPages[currentPageIndex];
+        }
+        else
+        {
+            isComicFinished = true;
+            StartCoroutine(FadeOutComicAndLoad());
+        }
+    }
+
+    /// <summary>
+    /// 显示某一页漫画
+    /// </summary>
+    private void ShowComicPage(int index)
+    {
+        if (comicPanel != null)
+        {
+            comicPanel.alpha = 1f;
+            comicPanel.interactable = true;
+            comicPanel.blocksRaycasts = true;
+        }
+
+        if (comicImage != null && comicPages != null && index >= 0 && index < comicPages.Length)
+        {
+            comicImage.sprite = comicPages[index];
+        }
+    }
+
+    /// <summary>
+    /// 淡出漫画面板后再加载
+    /// </summary>
+    private IEnumerator FadeOutComicAndLoad()
+    {
+        if (comicPanel != null)
+        {
+            float time = 0f;
+            float startAlpha = comicPanel.alpha;
+            while (time < 1f)
+            {
+                time += Time.unscaledDeltaTime;
+                comicPanel.alpha = Mathf.Lerp(startAlpha, 0f, time / 1f);
+                yield return null;
+            }
+
+            comicPanel.alpha = 0f;
+            comicPanel.interactable = false;
+            comicPanel.blocksRaycasts = false;
+        }
+
+        StartCoroutine(LoadBattle());
+    }
+
+    /// <summary>
+    /// 战斗加载逻辑
+    /// </summary>
+    private IEnumerator LoadBattle()
+    {
+        if (isLoading) yield break;
+        isLoading = true;
+        SetPanelVisible(true);
+
+
 
         var entityManager = new EntityManager();
+        EntityUIManager.Instance.entityManager = entityManager;
         foreach (var entity in FindObjectsOfType<Entity>(true))
         {
             entityManager.Register(entity);
         }
 
         yield return new WaitForSecondsRealtime(1f);
-
         yield return StartCoroutine(FadeOutPanel());
         isLoading = false;
+        EntityUIManager.Instance.isLoading = false;
     }
 
     /// <summary>
@@ -105,8 +202,9 @@ public class BattleStreaming : MonoBehaviour
         panel.interactable = false;
         panel.blocksRaycasts = false;
     }
-    private void OnDestroy()
+
+    private void ResetBattle(InputAction.CallbackContext context)
     {
-        GameController.Controller.Main.Reset.started -= ResetBattle;
+        SceneChangeManager.Instance.ReloadCurrentScene();
     }
 }

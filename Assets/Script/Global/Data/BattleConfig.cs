@@ -24,12 +24,24 @@ namespace Global.Data.BattleConfig
         public UserData userData;
         private void Awake()
         {
-            if(Instance == null)
+            if (Instance == null)
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            userData = JsonTool.LoadByJson<UserData>(Path.Combine(Application.persistentDataPath, "UserData.json"));
+
+            if (Screen.width < 1366 || Screen.height < 768)
+            {
+                Debug.LogError($"当前分辨率过低 ({Screen.width}×{Screen.height})，请使用至少 1366×768 的屏幕。");
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false; 
+#else
+        Application.Quit();
+#endif
+                return;
+            }
+            Debug.Log("您的分辨率通过检测！可以正常进行游戏");
+           userData = JsonTool.LoadByJson<UserData>(Path.Combine(Application.persistentDataPath, "UserData.json"));
             if (userData == null)
             {
                 userData = new UserData();
@@ -54,9 +66,7 @@ namespace Global.Data.BattleConfig
             {
                 userData.unLockLevel += 1;
                 JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
-
             }
-
             if (levelId < GameConfig.Instance.LevtlDC.levelDataList.Count - 1)
             {
                 SceneChangeManager.Instance.LoadScene

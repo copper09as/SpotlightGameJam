@@ -1,4 +1,6 @@
 using System.Collections;
+using Global.Data;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,9 +36,8 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
 
     private IEnumerator LoadSceneCoroutine(string newScene,LoadSceneMode mode)
     {
-        // 异步加载新场景
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(newScene, mode);
-        loadOp.allowSceneActivation = true; // 直接激活
+        loadOp.allowSceneActivation = true;
 
         // 等待加载完成
         while (!loadOp.isDone)

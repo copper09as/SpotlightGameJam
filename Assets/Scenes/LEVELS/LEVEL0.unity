@@ -705,7 +705,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.00014877, y: -0.0081034}
-  m_SizeDelta: {x: 1920, y: 1080.1}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &284846416
 MonoBehaviour:
@@ -5499,8 +5499,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 3bbd8950d74fdd1419c4c139af0ef873, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b606f031053403d41a937528f880904e, type: 3}
+  m_Color: {r: 0.34092793, g: 0.40788198, b: 0.49056602, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5519,8 +5519,8 @@ Transform:
   m_GameObject: {fileID: 977456295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0512, y: -0.2116, z: 0}
-  m_LocalScale: {x: 2.0906887, y: 1.1686277, z: 1.1686277}
+  m_LocalPosition: {x: 0.3396, y: 0.2217, z: 0}
+  m_LocalScale: {x: 1.2759614, y: 1.468014, z: 0.52973896}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6718,9 +6718,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 59891815}
-  audioMenu: {fileID: 2011406864}
-  cameraMenu: {fileID: 1902339401}
+  settingMenu:
+  - {fileID: 59891815}
+  audioMenu:
+  - {fileID: 2011406864}
+  cameraMenu:
+  - {fileID: 1902339401}
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
@@ -7811,8 +7814,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5319824, y: -0.000061035156}
-  m_SizeDelta: {x: 65.841, y: 0}
+  m_AnchoredPosition: {x: -2.5319214, y: 0.37854}
+  m_SizeDelta: {x: 65.841, y: 0.7572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1688853441
 CanvasGroup:
@@ -7872,6 +7875,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4772707875188089891, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
+      propertyPath: dataId
+      value: 20028
+      objectReference: {fileID: 0}
     - target: {fileID: 6245647477456712934, guid: d767edd3c6ff26e41801b7bd1eabf7cf, type: 3}
       propertyPath: m_Name
       value: Enemy

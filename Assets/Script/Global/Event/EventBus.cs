@@ -8,7 +8,7 @@ public static class EventBus
 {
     private static readonly Dictionary<Type, List<Delegate>> _subscribers = new();
 
-
+    
     public static void Subscribe<T>(Action<T> handler)
     {
         var type = typeof(T);

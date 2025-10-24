@@ -12,7 +12,6 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D transCursor;
     private bool isHold = false;
     private List<Entity> currentEntities = new ();
-    [SerializeField]private GameObject particlePrefab;
     
     void Awake()
     {
@@ -62,16 +61,6 @@ public class CursorManager : MonoBehaviour
         }
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; 
-
-
-        GameObject go = Instantiate(particlePrefab, GameController.GetWorldMousePos(), Quaternion.identity);
-
-
-        var ps = go.GetComponent<ParticleSystem>();
-        ps.Play();
-
-
-        Destroy(go, 0.5f);
 
     }
     void Update()
