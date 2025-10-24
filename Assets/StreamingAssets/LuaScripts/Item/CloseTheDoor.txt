@@ -1,7 +1,7 @@
 function CloseTheDoor(entity,_, a, b)--pedal关闭门
     print("关门")
     --播放踏板上升动画
-    if entity.animator == nil then
+    if not entity.animator:Equals(nil) then
         entity.animator:SetBool("IsDown",false)
     end
     local entities = entity:GetEntities("OpenTheDoor")
