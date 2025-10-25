@@ -63,33 +63,33 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private float normalFloatAmplitude = 2f; // 正常状态漂浮幅度
     [SerializeField] private float normalFloatSpeed = 1f;     // 正常状态漂浮速度
 
+    [Header("Frame旋转参数")]
+    [SerializeField] private float frameRotateSpeed = 45f; // 每秒旋转角度
+
     private void Update()
     {
-        // 1️⃣ 正常状态漂浮
         Vector3 normalOffset = Vector3.up * Mathf.Sin(Time.time * normalFloatSpeed) * normalFloatAmplitude;
-
-        // 2️⃣ 悬停漂浮叠加
         Vector3 hoverOffset = Vector3.zero;
         if (isHovered)
         {
             hoverOffset = Vector3.up * Mathf.Sin(Time.time * hoverFloatSpeed) * hoverFloatAmplitude;
         }
 
-        // 3️⃣ 计算最终位置
         transform.localPosition = basePosition + normalOffset + hoverOffset;
 
-        // 文字效果
         if (nameTxt != null)
         {
-            // 文字颜色渐变
             Color targetColor = isHovered ? highlightColor : normalColor;
             nameTxt.color = Color.Lerp(nameTxt.color, targetColor, Time.deltaTime * colorLerpSpeed);
 
-            // 文字缩放 + 漂浮
             float floatOffset = Mathf.Sin(Time.time * textHoverSpeed) * textHoverAmplitude;
             float scale = isHovered ? textHoverScale : 1f;
             nameTxt.transform.localScale = Vector3.one * scale;
             nameTxt.transform.localPosition = new Vector3(nameTxt.transform.localPosition.x, floatOffset, nameTxt.transform.localPosition.z);
+        }
+        if (frame != null && frame.activeSelf)
+        {
+            frame.transform.Rotate(Vector3.forward, frameRotateSpeed * Time.deltaTime);
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -98,7 +98,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         isHovered = true;
         AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/MouseFlow (2).wav");
-        FadeFrame(true); // frame 从外往里弹入
+        FadeFrame(true);
         OnHover?.Invoke();
     }
 
