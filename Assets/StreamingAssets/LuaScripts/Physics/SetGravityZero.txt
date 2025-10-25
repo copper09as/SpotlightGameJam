@@ -1,0 +1,10 @@
+function SetGravityZero(entity)
+    if entity.rb == nil then
+        entity.rb = entity:GetComponent(typeof(CS.UnityEngine.Rigidbody2D))
+    end
+    local rb = entity.rb
+    if rb ~= nil then
+        rb.gravityScale = 0
+        rb.velocity = CS.UnityEngine.Vector2(0, 0)
+    end
+end
