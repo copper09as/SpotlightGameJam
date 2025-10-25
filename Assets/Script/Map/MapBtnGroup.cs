@@ -22,10 +22,11 @@ public class MapBtnGroup : MonoBehaviour
     [SerializeField] private float jumpDuration = 0.5f;
     [SerializeField] private float charYOffset = 100f;
     [SerializeField] private float centerExtraHeight = 20f;
-
+    private readonly HashSet<int> hideIndexes = new HashSet<int> { 1, 2, 0, 18, 19, 20 };
     private readonly List<MapBtn> mapBtns = new List<MapBtn>();
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
-    private int currentIndex = 3;
+    private int currentIndex = 0;
+    [SerializeField] private int characterCurrentIndex = 3;
     private bool isMoving = false;
     private bool isJumping = false;
     [SerializeField] private float xOffset = 0f;
@@ -47,28 +48,28 @@ public class MapBtnGroup : MonoBehaviour
     private IEnumerator LoadMapButtonsCoroutine()
     {
         var levelDataList = GameConfig.Instance.LevtlDC.levelDataList;
-
+        /*
         // 先添加开头的虚假按钮
         for (int i = 0; i < 3; i++)
         {
             CreateFakeButton();
             yield return null;
         }
-
+        */
         for (int i = 0; i < levelDataList.Count; i++)
         {
             var levelData = levelDataList[i];
             CreateButton(levelData.Id, levelData.SpritePath, levelData.SceneName, i <= BattleConfig.Instance.userData.unLockLevel);
             yield return null;
         }
-
+        /*
         // 添加结尾的虚假按钮
         for (int i = 0; i < 3; i++)
         {
             CreateFakeButton();
             yield return null;
         }
-
+        */
         LayoutButtons(true);
 
         if (panelCanvasGroup != null)
@@ -81,7 +82,7 @@ public class MapBtnGroup : MonoBehaviour
     {
         var btnInstance = Instantiate(buttonPrefab, transform);
         var mapBtn = btnInstance.GetComponent<MapBtn>();
-        mapBtn.Init(false, "", null);
+        mapBtn.Init(false, "", null, mapBtns.Count);
         mapSelectButtonGroup.Add(mapBtn.GetComponent<Button>());
         mapBtns.Add(mapBtn);
     }
@@ -113,12 +114,11 @@ public class MapBtnGroup : MonoBehaviour
         }
 
         int captureId = id;
-        mapBtn.Init(isUnlock, sceneName, () => EnterByIndex(captureId, mapBtn));
+        mapBtn.Init(isUnlock, sceneName, () => EnterByIndex(captureId, mapBtn), mapBtns.Count);
         mapSelectButtonGroup.Add(mapBtn.GetComponent<Button>());
         mapBtns.Add(mapBtn);
 
         var rect = mapBtn.GetComponent<RectTransform>();
-
         mapBtn.OnHover += () =>
         {
             if (!isUnlock) return;
@@ -132,8 +132,8 @@ public class MapBtnGroup : MonoBehaviour
                 currentJumpCoroutine = null;
                 isJumping = false;
             }
-
-            currentJumpCoroutine = StartCoroutine(CharacterJumpTo(rect, captureId, JumpSource.Hover));
+            characterCurrentIndex = mapBtn.id;
+            currentJumpCoroutine = StartCoroutine(CharacterJumpTo(rect, JumpSource.Hover));
         };
 
     }
@@ -159,7 +159,7 @@ public class MapBtnGroup : MonoBehaviour
     {
         Button btn = mapBtn.GetComponent<Button>();
         Vector3 originalScale = btn.transform.localScale;
-        Vector3 targetScale = originalScale * 1.2f; 
+        Vector3 targetScale = originalScale * 1.2f;
         float duration = 0.2f;
         float t = 0f;
 
@@ -185,14 +185,7 @@ public class MapBtnGroup : MonoBehaviour
         mapBtn.FadeFrame(false, 0.1f);
 
         SceneChangeManager.Instance.LoadScene(scenePath);
-
-
-
-
     }
-
-
-
     private void Update()
     {
         if (isMoving || isJumping) return;
@@ -204,9 +197,9 @@ public class MapBtnGroup : MonoBehaviour
 
     private void MoveToNext()
     {
-        int maxRealIndex = mapSelectButtonGroup.Count - 4; // 末尾真实按钮
+        int maxRealIndex = mapSelectButtonGroup.Count - 1; // 末尾真实按钮
         if (currentIndex >= maxRealIndex) return; // 已到末尾真实按钮，不移动
-
+        characterCurrentIndex++;
         int prevIndex = currentIndex;
         currentIndex++;
         StartCoroutine(AnimateLayout());
@@ -219,14 +212,14 @@ public class MapBtnGroup : MonoBehaviour
         }
 
         currentJumpSource = JumpSource.Scroll;
-        currentJumpCoroutine = StartCoroutine(CharacterJumpTo(mapSelectButtonGroup[currentIndex].GetComponent<RectTransform>(), prevIndex, JumpSource.Scroll));
+        currentJumpCoroutine = StartCoroutine(CharacterJumpTo(mapSelectButtonGroup[currentIndex].GetComponent<RectTransform>(),JumpSource.Scroll));
     }
 
     private void MoveToPrev()
     {
-        int minRealIndex = 3; // 开头真实按钮
+        int minRealIndex = 0; // 开头真实按钮
         if (currentIndex <= minRealIndex) return; // 已到开头真实按钮，不移动
-
+        characterCurrentIndex--;
         int prevIndex = currentIndex;
         currentIndex--;
         StartCoroutine(AnimateLayout());
@@ -239,7 +232,7 @@ public class MapBtnGroup : MonoBehaviour
         }
 
         currentJumpSource = JumpSource.Scroll;
-        currentJumpCoroutine = StartCoroutine(CharacterJumpTo(mapSelectButtonGroup[currentIndex].GetComponent<RectTransform>(), prevIndex, JumpSource.Scroll));
+        currentJumpCoroutine = StartCoroutine(CharacterJumpTo(mapSelectButtonGroup[currentIndex].GetComponent<RectTransform>(),JumpSource.Scroll));
     }
 
 
@@ -319,49 +312,58 @@ public class MapBtnGroup : MonoBehaviour
         isMoving = false;
     }
 
-
-    private IEnumerator CharacterJumpTo(RectTransform targetButton, int fromIndex, JumpSource source)
+    private IEnumerator CharacterJumpTo(RectTransform targetButton, JumpSource source)
     {
-        if (mapCharacter == null || targetButton == null) yield break;
+        if (mapCharacter == null) yield break;
+
         isJumping = true;
         currentJumpSource = source;
 
         var animator = mapCharacter.GetComponent<Animator>();
-        if (animator != null)
-            animator.SetTrigger("Jump");
+        if (animator != null) animator.SetTrigger("Jump");
 
         Vector3 startPos = mapCharacter.localPosition;
         Vector3 endPos;
 
-        if (source == JumpSource.Hover)
+        // 判断 characterCurrentIndex 是否越界
+        if (characterCurrentIndex < 0)
         {
-            // 悬停跳跃，角色跳到目标按钮上
+            // 跳到开头虚假按钮
+            characterCurrentIndex = 0;
+            RectTransform target = mapSelectButtonGroup[1].GetComponent<RectTransform>();
+            bool isCenter = target.localScale.x > 1.2f;
+            float extraHeight = isCenter ? centerExtraHeight : 0f;
+            endPos = mapSelectButtonGroup[1].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
+        }
+        else if (characterCurrentIndex > 14)
+        {
+            // 跳到结尾虚假按钮
+            characterCurrentIndex = 14;
+            RectTransform target = mapSelectButtonGroup[13].GetComponent<RectTransform>();
+            bool isCenter = target.localScale.x > 1.2f;
+            float extraHeight = isCenter ? centerExtraHeight : 0f;
+            endPos = mapSelectButtonGroup[13].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
+        }
+        else if (source == JumpSource.Hover)
+        {
             bool isCenter = targetButton.localScale.x > 1.2f;
             float extraHeight = isCenter ? centerExtraHeight : 0f;
-            endPos = targetButton.localPosition
-                     + Vector3.up * (charYOffset + extraHeight)
-                     + Vector3.right * xOffset;
+            endPos = targetButton.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
         }
         else
         {
-            // 滚轮跳跃，角色原地跳跃
-            endPos = startPos;
+            endPos = startPos; // Scroll 时保持当前位置
         }
 
         float effectiveJumpDuration = jumpDuration * Mathf.Clamp(jumpDistanceScale, 0.5f, 2f);
         float t = 0f;
-
         while (t < 1f)
         {
             t += Time.deltaTime / effectiveJumpDuration;
             float progress = Mathf.SmoothStep(0f, 1f, t);
-
-            // 正弦曲线控制跳跃弧度
             float heightOffset = Mathf.Sin(progress * Mathf.PI) * jumpHeight;
-
             Vector3 lerped = Vector3.Lerp(startPos, endPos, progress);
             mapCharacter.localPosition = new Vector3(lerped.x, lerped.y + heightOffset, lerped.z);
-
             yield return null;
         }
 
@@ -370,6 +372,7 @@ public class MapBtnGroup : MonoBehaviour
         currentJumpCoroutine = null;
         currentJumpSource = JumpSource.None;
     }
+
 
 
 

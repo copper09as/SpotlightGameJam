@@ -24,6 +24,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [HideInInspector] public Vector3 basePosition; // MapBtnGroup 设置的基础位置
     private bool isHovered = false;
+    public int id = -1;
 
     private void Awake()
     {
@@ -42,12 +43,12 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void Init(bool isUnlock, string sceneName, UnityAction action)
+    public void Init(bool isUnlock, string sceneName, UnityAction action,int id)
     {
         btn.interactable = isUnlock;
         nameTxt.text = sceneName;
         btn.onClick.AddListener(action);
-
+        this.id = id;
         if (frameCanvasGroup != null)
         {
             frameCanvasGroup.alpha = 0f;
