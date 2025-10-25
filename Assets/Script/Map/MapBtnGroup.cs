@@ -148,16 +148,7 @@ public class MapBtnGroup : MonoBehaviour
         SceneChangeManager.Instance.LoadScene(scenePath);
     }
 
-    private void LayoutButtons(bool isInit = false)
-    {
-        for (int i = 0; i < mapSelectButtonGroup.Count; i++)
-        {
-            int offset = i - currentIndex;
-            mapSelectButtonGroup[i].transform.localPosition = Vector3.right * offset * spacing;
-            float scale = (offset == 0) ? centerScale : sideScale;
-            mapSelectButtonGroup[i].transform.localScale = Vector3.one * scale;
-        }
-    }
+
 
     private void Update()
     {
@@ -210,26 +201,46 @@ public class MapBtnGroup : MonoBehaviour
 
 
 
+    private void LayoutButtons(bool isInit = false)
+    {
+        for (int i = 0; i < mapSelectButtonGroup.Count; i++)
+        {
+            int offset = i - currentIndex;
+            Vector3 targetPos = Vector3.right * offset * spacing;
+            mapSelectButtonGroup[i].transform.localPosition = targetPos;
+            float scale = (offset == 0) ? centerScale : sideScale;
+            mapSelectButtonGroup[i].transform.localScale = Vector3.one * scale;
+
+            // 给 MapBtn 赋值 basePosition
+            MapBtn mapBtn = mapSelectButtonGroup[i].GetComponent<MapBtn>();
+            if (mapBtn != null)
+            {
+                mapBtn.basePosition = targetPos;
+            }
+        }
+    }
+
     private IEnumerator AnimateLayout()
     {
         isMoving = true;
         float t = 0f;
 
         var buttons = new List<Button>(mapSelectButtonGroup);
-        List<Vector3> startPos = new List<Vector3>();
+        List<Vector3> startBasePos = new List<Vector3>();
+        List<Vector3> targetBasePos = new List<Vector3>();
         List<Vector3> startScale = new List<Vector3>();
-        for (int i = 0; i < buttons.Count; i++)
-        {
-            startPos.Add(buttons[i].transform.localPosition);
-            startScale.Add(buttons[i].transform.localScale);
-        }
-
-        List<Vector3> targetPos = new List<Vector3>();
         List<Vector3> targetScale = new List<Vector3>();
+
         for (int i = 0; i < buttons.Count; i++)
         {
+            MapBtn mapBtn = buttons[i].GetComponent<MapBtn>();
+            startBasePos.Add(mapBtn != null ? mapBtn.basePosition : buttons[i].transform.localPosition);
+
             int offset = i - currentIndex;
-            targetPos.Add(Vector3.right * offset * spacing);
+            Vector3 targetPos = Vector3.right * offset * spacing;
+            targetBasePos.Add(targetPos);
+
+            startScale.Add(buttons[i].transform.localScale);
             targetScale.Add(Vector3.one * (offset == 0 ? centerScale : sideScale));
         }
 
@@ -240,21 +251,31 @@ public class MapBtnGroup : MonoBehaviour
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                if (buttons[i] == null) continue;
-                buttons[i].transform.localPosition = Vector3.Lerp(startPos[i], targetPos[i], lerpT);
+                MapBtn mapBtn = buttons[i].GetComponent<MapBtn>();
+                if (mapBtn != null)
+                {
+                    // AnimateLayout 只修改 basePosition
+                    mapBtn.basePosition = Vector3.Lerp(startBasePos[i], targetBasePos[i], lerpT);
+                }
+
                 buttons[i].transform.localScale = Vector3.Lerp(startScale[i], targetScale[i], lerpT);
             }
+
             yield return null;
         }
 
         for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].transform.localPosition = targetPos[i];
+            MapBtn mapBtn = buttons[i].GetComponent<MapBtn>();
+            if (mapBtn != null)
+                mapBtn.basePosition = targetBasePos[i];
+
             buttons[i].transform.localScale = targetScale[i];
         }
 
         isMoving = false;
     }
+
 
     private IEnumerator CharacterJumpTo(RectTransform targetButton, int fromIndex, JumpSource source)
     {
