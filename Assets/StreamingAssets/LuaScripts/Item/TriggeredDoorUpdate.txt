@@ -1,0 +1,36 @@
+function TriggeredDoorUpdate(entity)
+    local t = entity.transform
+    if t == nil then return end
+
+    local data = entity.dataTable
+    if data.originVisualPos == nil then
+        data.originVisualPos = t.localPosition
+    end
+    local originPos = data.originVisualPos
+
+    local originHeight = data.originHeight or 3.0
+    local lerpSpeed = 5.0
+    local open = data.open
+    local targetHeight = open and 0.01 or originHeight
+    local currentHeight = data.currentHeight or originHeight
+    local newHeight = CS.UnityEngine.Mathf.Lerp(currentHeight, targetHeight, CS.UnityEngine.Time.deltaTime * lerpSpeed)
+    data.currentHeight = newHeight
+
+    local angleZ = t.localEulerAngles.z
+    if angleZ > 180 then angleZ = angleZ - 360 end
+    local scaleY = t.localScale.y
+
+    local offsetVec = CS.UnityEngine.Vector3(0, 0, 0)
+    local heightDiff = originHeight - newHeight
+    if angleZ == 0 then
+        offsetVec.y = -heightDiff * scaleY
+    elseif angleZ == 90 then
+        offsetVec.x = heightDiff * scaleY
+    elseif angleZ == -90 then
+        offsetVec.x = -heightDiff * scaleY
+    else
+        offsetVec.y = -heightDiff * scaleY
+    end
+
+    t.localPosition = originPos + offsetVec
+end

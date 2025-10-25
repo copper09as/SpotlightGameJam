@@ -32,9 +32,8 @@ namespace Global.Data.BattleConfig
 
             if (Screen.width < 1366 || Screen.height < 768)
             {
-                Debug.LogError($"当前分辨率过低 ({Screen.width}×{Screen.height})，请使用至少 1366×768 的屏幕。");
+               
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false; 
 #else
         Application.Quit();
 #endif

@@ -138,6 +138,17 @@ MonoBehaviour:
   btn: {fileID: 7925490877865441428}
   nameTxt: {fileID: 890784725714668843}
   frame: {fileID: 4848005774895520792}
+  hoverFloatAmplitude: 5
+  hoverFloatSpeed: 3
+  basePosition: {x: 0, y: 0, z: 0}
+  id: -1
+  textHoverScale: 1.1
+  textHoverSpeed: 3
+  textHoverAmplitude: 3
+  colorLerpSpeed: 5
+  normalFloatAmplitude: 2
+  normalFloatSpeed: 1
+  frameRotateSpeed: 45
 --- !u!1 &4848005774895520792
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +160,7 @@ GameObject:
   - component: {fileID: 4430821799423219689}
   - component: {fileID: 434975967620650195}
   - component: {fileID: 6192544815523533115}
+  - component: {fileID: 5547981009238224828}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -213,6 +225,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5547981009238224828
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848005774895520792}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7736718770133192205
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +271,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000002861, y: -0.0011492}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: -0.6098, y: -0.0011492}
+  m_SizeDelta: {x: 162.1935, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2874749359468382488
 CanvasRenderer:
@@ -278,7 +302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u65E5\u5FD7\u7684\u6E29\u67D4"
+  m_text: "\u65E5\u5FD7\u7684\u6E29\u67D4\u7684\u903B\u8F91\u54C8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b652cf73c976549a0bd13659ee9ce3, type: 2}
   m_sharedMaterial: {fileID: -2420863139211469507, guid: 17b652cf73c976549a0bd13659ee9ce3, type: 2}

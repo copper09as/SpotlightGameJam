@@ -124,8 +124,8 @@
 	},
 	{
 		"id": 10012,
-		"InitPath": ["Physics/SetKinematic"],
-		"UpdatePath": [],
+		"InitPath": ["Physics/SetKinematic","Item/TriggeredDoorInit"],
+		"UpdatePath": ["Item/TriggeredDoorUpdate"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
@@ -319,6 +319,16 @@
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
 		"OnDragPath": ["Mouse/FollowMouse"],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10031,
+		"InitPath": [],
+		"UpdatePath": ["Col/ShowByLightTiles"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	}]

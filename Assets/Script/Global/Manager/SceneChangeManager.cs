@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Global.Data;
 using UnityEditor.Rendering;
@@ -31,13 +32,34 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         }
        
         isLoading = true;
-        StartCoroutine(LoadSceneCoroutine(newScene, mode));
+       StartCoroutine(LoadSceneCoroutine(newScene, mode));
+
+       
     }
 
     private IEnumerator LoadSceneCoroutine(string newScene,LoadSceneMode mode)
     {
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync(newScene, mode);
-        loadOp.allowSceneActivation = true;
+        AsyncOperation loadOp = null;
+        try
+        {
+            loadOp = SceneManager.LoadSceneAsync(newScene, mode);
+            if (loadOp == null)
+            {
+                isLoading = false;
+                NotificationManager.Instance.ShowNotification(newScene, "加载场景出现错误！" + newScene);
+                ReloadCurrentScene();
+                yield break;
+            }
+
+            loadOp.allowSceneActivation = true;
+        }
+        catch (Exception ex)
+        {
+            isLoading = false;
+            NotificationManager.Instance.ShowNotification(ex.Message, "加载场景出现错误！" + newScene);
+            yield break;
+        }
+
 
         // 等待加载完成
         while (!loadOp.isDone)

@@ -12,6 +12,7 @@ public class LightManager : MonoBehaviour
 
     public void Awake()
     {
+
         if (Instance == null)
             Instance = this;
         else

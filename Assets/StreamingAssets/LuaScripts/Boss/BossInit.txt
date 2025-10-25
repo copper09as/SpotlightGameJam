@@ -1,5 +1,5 @@
 function BossInit(entity)
-    local data = entity.dataTable or {}
+    local data = entity.dataTable
 
     -- 基础属性
     data.speed = 3.5                  -- 普通移动速度
@@ -20,5 +20,6 @@ function BossInit(entity)
     data.flyTime = 0                  -- 飞行计时
     data.flyDuration = 3               -- 飞行持续时间
 	data.positionLerpSpeed = 10
+	data.isEnemy= true
 	
 end

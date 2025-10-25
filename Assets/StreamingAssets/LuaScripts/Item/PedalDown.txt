@@ -1,25 +1,15 @@
-local function OpenTheDoor(entity)--Door初始化
-    entity.animator:SetBool("IsOpen",true)
-end
 
 function PedalDown(entity)--踏板被踩下
-    local data = entity.CommonEntityData --实体通用数据
-    local a = 1 --体型判定值
     local key = "OpenTheDoor"
-	CS.UnityEngine.Debug.Log("触碰踏板")
+	CS.UnityEngine.Debug.Log(entity.gameObject.name .. "触碰踏板")
     print(entity.entityPairs.Count)
-    if a<=  data.ScaleX*data.ScaleY then
-        --播放踩下动画
-        entity.animator:SetBool("IsDown",true)
+    entity.animator:SetBool("IsDown",true)
 
-		local entities = entity:GetEntities(key)
-		local entitiesCount = entities.Count
-		for j = 0, entitiesCount - 1 do
-			local otherEntity = entities[j]
+	local entities = entity:GetEntities(key)
+	local entitiesCount = entities.Count
+	for j = 0, entitiesCount - 1 do
+		local otherEntity = entities[j]
 
-            OpenTheDoor(otherEntity)
-		end
-    end
-    --写怎么样触发开门
-
+        otherEntity.dataTable.open = true
+	end
 end

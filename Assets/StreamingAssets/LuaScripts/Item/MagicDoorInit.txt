@@ -1,4 +1,0 @@
-function MagicDoorInit(entity)
-    local data  = entity.dataTable or {}
-    
-end
