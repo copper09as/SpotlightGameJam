@@ -5078,7 +5078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835847381932805672, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: m_Name
-      value: Pedal
+      value: PedalNew
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
