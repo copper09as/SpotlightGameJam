@@ -114,7 +114,7 @@
 	},
 	{
 		"id": 10011,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetKinematic"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
