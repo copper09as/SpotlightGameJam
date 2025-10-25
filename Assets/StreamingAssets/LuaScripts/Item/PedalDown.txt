@@ -21,6 +21,8 @@ function PedalDown(entity)--踏板被踩下
 	else
 		offsetVec.y = data.distance * scaleY
 	end
+
+	data.offsetVec = offsetVec
 	t.localPosition = t.localPosition + offsetVec
 
 

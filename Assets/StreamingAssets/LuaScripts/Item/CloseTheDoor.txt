@@ -1,9 +1,11 @@
 function CloseTheDoor(entity,_, a, b)--pedal关闭门
-    print("关门")
+    local data = entity.dataTable
     --播放踏板上升动画
     if not entity.animator:Equals(nil) then
         entity.animator:SetBool("IsDown",false)
     end
+    entity.transform.localPosition = entity.transform.localPosition + data.offsetVec
+
     local entities = entity:GetEntities("OpenTheDoor")
     local entitiesCount = entities.Count
     for j = 0, entitiesCount - 1 do
@@ -13,6 +15,8 @@ function CloseTheDoor(entity,_, a, b)--pedal关闭门
         end
         otherEntity.dataTable.open= false
     end
+
+
 end
 
 
