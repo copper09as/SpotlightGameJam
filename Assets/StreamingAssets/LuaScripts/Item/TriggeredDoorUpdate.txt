@@ -1,50 +1,36 @@
 function TriggeredDoorUpdate(entity)
-    -- 获取 collider
-    if entity.col == nil then
-        entity.col = entity:GetComponent(typeof(CS.UnityEngine.BoxCollider2D))
-        if entity.col ~= nil then
-            local size = entity.col.size
-            entity.dataTable.originHeight = size.y
-            entity.dataTable.originWidth = size.x
-            entity.dataTable.originOffsetY = entity.col.offset.y
-        end
-    end
-    local col = entity.col
-    if col == nil then return end
+    local t = entity.transform
+    if t == nil then return end
 
-    -- 获取 animator
-    if entity.animator == nil then
-        entity.animator = entity:GetComponent(typeof(CS.UnityEngine.Animator))
+    local data = entity.dataTable
+    if data.originVisualPos == nil then
+        data.originVisualPos = t.localPosition
     end
+    local originPos = data.originVisualPos
 
-    -- 判断门是否打开
-    local open = entity.dataTable.open
-    if entity.animator ~= nil then
-        entity.animator:SetBool("IsOpen", open)
-    end
-
-    -- 计算新的高度
-    local originHeight = entity.dataTable.originHeight or 3.0
-    local originOffsetY = entity.dataTable.originOffsetY or 0.0
+    local originHeight = data.originHeight or 3.0
     local lerpSpeed = 5.0
+    local open = data.open
     local targetHeight = open and 0.01 or originHeight
-    local currentHeight = col.size.y
+    local currentHeight = data.currentHeight or originHeight
     local newHeight = CS.UnityEngine.Mathf.Lerp(currentHeight, targetHeight, CS.UnityEngine.Time.deltaTime * lerpSpeed)
+    data.currentHeight = newHeight
 
-    -- 修改 collider size
-    col.size = CS.UnityEngine.Vector2(col.size.x, newHeight)
+    local angleZ = t.localEulerAngles.z
+    if angleZ > 180 then angleZ = angleZ - 360 end
+    local scaleY = t.localScale.y
 
-    -- 修改 collider offset，使门底固定
-    local heightDiff = (originHeight - newHeight) / 2
-    col.offset = CS.UnityEngine.Vector2(col.offset.x, originOffsetY - heightDiff)
-
-    -- 启用/禁用 collider
-    if open and newHeight < 0.05 then
-        col.enabled = false
-    elseif not open and newHeight > 0.1 then
-        col.enabled = true
+    local offsetVec = CS.UnityEngine.Vector3(0, 0, 0)
+    local heightDiff = originHeight - newHeight
+    if angleZ == 0 then
+        offsetVec.y = -heightDiff * scaleY
+    elseif angleZ == 90 then
+        offsetVec.x = heightDiff * scaleY
+    elseif angleZ == -90 then
+        offsetVec.x = -heightDiff * scaleY
+    else
+        offsetVec.y = -heightDiff * scaleY
     end
 
-    -- 保存当前高度（可选）
-    entity.dataTable.currentHeight = newHeight
+    t.localPosition = originPos + offsetVec
 end

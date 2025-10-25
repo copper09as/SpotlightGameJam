@@ -1,5 +1,4 @@
 
-
 function PedalDown(entity)--踏板被踩下
     local key = "OpenTheDoor"
 	CS.UnityEngine.Debug.Log(entity.gameObject.name .. "触碰踏板")
@@ -13,6 +12,4 @@ function PedalDown(entity)--踏板被踩下
 
         otherEntity.dataTable.open = true
 	end
-    --写怎么样触发开门
-
 end
