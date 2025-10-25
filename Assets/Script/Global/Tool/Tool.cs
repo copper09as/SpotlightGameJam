@@ -156,7 +156,7 @@ public static class Tool
         //action触发后删除本身
         EventCenter.Instance.AddAction("BabbleEvent" + id.ToString(), action);
     }
-    public static void BabbleEventTrigger(int id) //注册触发多次的事件
+    public static void BabbleEventTrigger(int id) 
     {
         EventCenter.Instance.SafeTrigger("BabbleEvent" + id.ToString());
     }

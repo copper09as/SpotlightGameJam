@@ -16,24 +16,24 @@ function BabbleInit(entity)
     entity.transform.parent = data.player.transform
     entity.transform.localPosition = CS.UnityEngine.Vector3(0,0,0)
 
-    --注册气泡事件
-    CT.AddBabbleEvent(-1,function() --编号-1为气泡获取随机文字
-        data.TMP.gameObject:SetActive(true)
-        data.sprite.gameObject:SetActive(true)
-        data.words = CT.GetRandomWords()
-        CT.TypeWriter(data.TMP,data.words,2)
-    end)
 
-    for i=0, CT.GetSpecialWordsCount()  do
-        CT.AddBabbleEventOneTime(i,function() --编号0之后为获取特殊文字表内文字
-            data.TMP.gameObject:SetActive(true)
-            data.sprite.gameObject:SetActive(true)
-            data.words = CT.GetSpecialWords(i)
-            CT.TypeWriter(data.TMP,data.words,2,function()
-                data.TMP.gameObject:SetActive(false)
-                data.sprite.gameObject:SetActive(false)
-            end)
-        end)
+    --CT.AddBabbleEvent(-1,function() --编号-1为气泡获取随机文字
+    --    data.TMP.gameObject:SetActive(true)
+    --    data.sprite.gameObject:SetActive(true)
+    --    data.words = CT.GetRandomWords()
+    --    CT.TypeWriter(data.TMP,data.words,2)
+    --end)
 
-    end
+    --for i=0, CT.GetSpecialWordsCount()  do
+    --    CT.AddBabbleEventOneTime(i,function() --编号0之后为获取特殊文字表内文字
+    --        data.TMP.gameObject:SetActive(true)
+    --        data.sprite.gameObject:SetActive(true)
+    --        data.words = CT.GetSpecialWords(i)
+    --        CT.TypeWriter(data.TMP,data.words,2,function()
+    --            data.TMP.gameObject:SetActive(false)
+    --            data.sprite.gameObject:SetActive(false)
+    --        end)
+    --    end)
+    --
+    --end
 end
