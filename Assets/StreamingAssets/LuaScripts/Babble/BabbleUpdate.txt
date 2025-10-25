@@ -1,4 +1,3 @@
-local CE = CS.XLuaCustomExport
 local CT = CS.Tool
 function BabbleUpdate(entity,dt)
     local data = entity.dataTable or {}
@@ -9,17 +8,13 @@ function BabbleUpdate(entity,dt)
         data.printTimer = data.printTime
         --输入按键则气泡消失开始计时
         data.extinctionTimer = math.max(0,data.extinctionTimer-dt)
-
     end
 
 
     if data.printTimer == 0 and data.canPrint then
-        data.TMP.gameObject:SetActive(true)
-        data.sprite.gameObject:SetActive(true)
-        data.words = CT.GetRandomWords()
-        CE.TypeWriter(data.TMP,data.words,2)
-            data.canPrint = false
-            data.extinctionTimer = data.extinctionTime--重置消失时间
+        --CT.BabbleEventTrigger(-1)
+        data.canPrint = false
+        data.extinctionTimer = data.extinctionTime--重置消失时间
     end
     if data.extinctionTimer == 0 and not data.canPrint then
         data.TMP.gameObject:SetActive(false)

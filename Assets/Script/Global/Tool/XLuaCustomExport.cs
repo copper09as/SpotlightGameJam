@@ -65,15 +65,7 @@ public static class XLuaCustomExport
     {
         return entity.GetComponentInChildren<TMP_Text>(true);
     }
-    [LuaCallCSharp]
-    public static void TypeWriter(TMP_Text _Text,string words,float time)
-    {
-        Debug.Log("¿ªÊ¼´ò×Ö");
-        DOTween.To(() => string.Empty,
-            currentText => _Text.text = currentText,
-             words,
-             time);
-    }
+    
     [LuaCallCSharp]
     public static void ChangeColor(SpriteRenderer sr, Color color, float time,Action actionback)
     {

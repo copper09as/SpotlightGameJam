@@ -31,14 +31,20 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 8, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 14, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderWidthLua", _m_GetColliderWidthLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderHeightLua", _m_GetColliderHeightLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector2", _m_ToVector2_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "ToVector3", _m_ToVector3_xlua_st_);
-            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetRandomWords", _m_GetRandomWords_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetCollider2Ds", _m_GetCollider2Ds_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetRandomWords", _m_GetRandomWords_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetSpecialWords", _m_GetSpecialWords_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "GetSpecialWordsCount", _m_GetSpecialWordsCount_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "TypeWriter", _m_TypeWriter_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEvent", _m_AddBabbleEvent_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEventOneTime", _m_AddBabbleEventOneTime_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "BabbleEventTrigger", _m_BabbleEventTrigger_xlua_st_);
             
 			
             
@@ -195,6 +201,33 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetCollider2Ds_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.GameObject _gameObject = (UnityEngine.GameObject)translator.GetObject(L, 1, typeof(UnityEngine.GameObject));
+                    
+                        var gen_ret = Tool.GetCollider2Ds( _gameObject );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_GetRandomWords_xlua_st_(RealStatePtr L)
         {
 		    try {
@@ -219,7 +252,56 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_GetCollider2Ds_xlua_st_(RealStatePtr L)
+        static int _m_GetSpecialWords_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    int _id = LuaAPI.xlua_tointeger(L, 1);
+                    
+                        var gen_ret = Tool.GetSpecialWords( _id );
+                        LuaAPI.lua_pushstring(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetSpecialWordsCount_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    
+                        var gen_ret = Tool.GetSpecialWordsCount(  );
+                        LuaAPI.xlua_pushinteger(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_TypeWriter_xlua_st_(RealStatePtr L)
         {
 		    try {
             
@@ -229,14 +311,94 @@ namespace XLua.CSObjectWrap
             
                 
                 {
-                    UnityEngine.GameObject _gameObject = (UnityEngine.GameObject)translator.GetObject(L, 1, typeof(UnityEngine.GameObject));
+                    TMPro.TMP_Text __Text = (TMPro.TMP_Text)translator.GetObject(L, 1, typeof(TMPro.TMP_Text));
+                    string _words = LuaAPI.lua_tostring(L, 2);
+                    float _time = (float)LuaAPI.lua_tonumber(L, 3);
+                    System.Action _actionback = translator.GetDelegate<System.Action>(L, 4);
                     
-                        var gen_ret = Tool.GetCollider2Ds( _gameObject );
-                        translator.Push(L, gen_ret);
+                    Tool.TypeWriter( __Text, _words, _time, _actionback );
                     
                     
                     
-                    return 1;
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_AddBabbleEvent_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    int _id = LuaAPI.xlua_tointeger(L, 1);
+                    System.Action _action = translator.GetDelegate<System.Action>(L, 2);
+                    
+                    Tool.AddBabbleEvent( _id, _action );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_AddBabbleEventOneTime_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    int _id = LuaAPI.xlua_tointeger(L, 1);
+                    System.Action _action = translator.GetDelegate<System.Action>(L, 2);
+                    
+                    Tool.AddBabbleEventOneTime( _id, _action );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_BabbleEventTrigger_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    int _id = LuaAPI.xlua_tointeger(L, 1);
+                    
+                    Tool.BabbleEventTrigger( _id );
+                    
+                    
+                    
+                    return 0;
                 }
                 
             } catch(System.Exception gen_e) {

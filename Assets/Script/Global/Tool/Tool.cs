@@ -1,7 +1,11 @@
+using DG.Tweening;
 using Global.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using XLua;
 
@@ -111,14 +115,49 @@ public static class Tool
         return new Vector3(vector.x, vector.y,0);
     }
 
-    public static string GetRandomWords()
-    {
-        return GameConfig.Instance.WordsD.words[UnityEngine.Random.Range(0, GameConfig.Instance.WordsD.words.Count)];
-    }
-
+    
     public static Collider2D[] GetCollider2Ds(GameObject gameObject)
     {
         return gameObject.GetComponentsInChildren<Collider2D>();
     }
 
+    public static string GetRandomWords()
+    {
+        return GameConfig.Instance.WordsD.words[UnityEngine.Random.Range(0, GameConfig.Instance.WordsD.words.Count)];
+    }
+
+    public static string GetSpecialWords(int id)
+    {
+        return GameConfig.Instance.SpecialWD.words[id];
+    }
+    public static int GetSpecialWordsCount()
+    {
+        return GameConfig.Instance.SpecialWD.words.Count;
+    }
+    public static void TypeWriter(TMP_Text _Text, string words, float time,Action actionback)
+    {
+        Debug.Log("开始打字");
+        DOTween.To(() => string.Empty,
+            currentText => _Text.text = currentText,
+             words,
+             time).onComplete +=()=>
+             {
+                 actionback?.Invoke();
+             };
+    }
+    public static void AddBabbleEvent(int id,Action action) //注册触发多次的事件
+    {
+        EventCenter.Instance.AddAction("BabbleEvent" + id.ToString(), action);
+    }
+
+    public static void AddBabbleEventOneTime(int id, Action action) //注册触发一次就删除的事件
+    {
+        action += () => { EventCenter.Instance.RemoveAction("BabbleEvent" + id.ToString(), action); };
+        //action触发后删除本身
+        EventCenter.Instance.AddAction("BabbleEvent" + id.ToString(), action);
+    }
+    public static void BabbleEventTrigger(int id) //注册触发多次的事件
+    {
+        EventCenter.Instance.SafeTrigger("BabbleEvent" + id.ToString());
+    }
 }

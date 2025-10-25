@@ -140,6 +140,8 @@ public class EntityUIManager : MonoBehaviour
         openMenuBtn.gameObject.SetActive(false);
         SetMenuActive(settingMenu, true);
         isSettingMenuActive = true;
+
+        Tool.BabbleEventTrigger(0);//触发第0个事件
     }
 
     private void HideSettingMenu()

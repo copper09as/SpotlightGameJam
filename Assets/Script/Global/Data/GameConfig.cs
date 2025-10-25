@@ -15,6 +15,7 @@ namespace Global.Data
         public LevelDataCollection LevtlDC;
         public UserConfigData UserCD;
         public WordsData WordsD;
+        public WordsData SpecialWD;
         private void Awake()
         {
             if (Instance != null)
@@ -33,7 +34,8 @@ namespace Global.Data
             CommonEDC = LoadConfigData<CommonEntityDataCollection>("CommonEntityData.json");
             EntitySDC = LoadConfigData<EntityScriptDataCollection>("EntityScriptData.json");
             LevtlDC = LoadConfigData<LevelDataCollection>("LevelData.json");
-            WordsD= JsonTool.LoadByJson<WordsData>(Path.Combine(Application.streamingAssetsPath, "WordsData.json"));
+            WordsD = JsonTool.LoadByJson<WordsData>(Path.Combine(Application.streamingAssetsPath, "WordsData.json"));
+            SpecialWD = JsonTool.LoadByJson<WordsData>(Path.Combine(Application.streamingAssetsPath, "SpecialWordData.json"));
             UserCD = JsonTool.LoadByJson<UserConfigData>(Path.Combine(Application.streamingAssetsPath, "UserConfigData.json"));
             if (UserCD == null)
             {
