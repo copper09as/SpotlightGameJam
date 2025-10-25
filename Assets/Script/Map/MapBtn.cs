@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections;
+using DG.Tweening;
 
 public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -19,12 +19,13 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private float hoverFloatSpeed = 3f;     // 漂浮速度
 
     private CanvasGroup frameCanvasGroup;
-    private Coroutine frameCoroutine = null;
     private Vector3 originalScale;
 
-    [HideInInspector] public Vector3 basePosition; // MapBtnGroup 设置的基础位置
+    [HideInInspector] public Vector3 basePosition;
     private bool isHovered = false;
     public int id = -1;
+
+    private Tween frameTween; 
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void Init(bool isUnlock, string sceneName, UnityAction action,int id)
+    public void Init(bool isUnlock, string sceneName, UnityAction action, int id)
     {
         btn.interactable = isUnlock;
         nameTxt.text = sceneName;
@@ -55,27 +56,23 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             frame.SetActive(false);
         }
     }
+
     private Color normalColor = Color.gray;
     private Color highlightColor = Color.black;
-    [SerializeField] private float textHoverScale = 1.1f; // 悬停文字放大比例
-    [SerializeField] private float textHoverSpeed = 3f;   // 文字漂浮速度
-    [SerializeField] private float textHoverAmplitude = 3f; // 文字漂浮幅度
-    [SerializeField] private float colorLerpSpeed = 5f;   // 颜色渐变速度
-    [SerializeField] private float normalFloatAmplitude = 2f; // 正常状态漂浮幅度
-    [SerializeField] private float normalFloatSpeed = 1f;     // 正常状态漂浮速度
+    [SerializeField] private float textHoverScale = 1.1f;
+    [SerializeField] private float textHoverSpeed = 3f;
+    [SerializeField] private float textHoverAmplitude = 3f;
+    [SerializeField] private float colorLerpSpeed = 5f;
+    [SerializeField] private float normalFloatAmplitude = 2f;
+    [SerializeField] private float normalFloatSpeed = 1f;
 
     [Header("Frame旋转参数")]
-    [SerializeField] private float frameRotateSpeed = 45f; // 每秒旋转角度
+    [SerializeField] private float frameRotateSpeed = 45f;
 
     private void Update()
     {
         Vector3 normalOffset = Vector3.up * Mathf.Sin(Time.time * normalFloatSpeed) * normalFloatAmplitude;
-        Vector3 hoverOffset = Vector3.zero;
-        if (isHovered)
-        {
-            hoverOffset = Vector3.up * Mathf.Sin(Time.time * hoverFloatSpeed) * hoverFloatAmplitude;
-        }
-
+        Vector3 hoverOffset = isHovered ? Vector3.up * Mathf.Sin(Time.time * hoverFloatSpeed) * hoverFloatAmplitude : Vector3.zero;
         transform.localPosition = basePosition + normalOffset + hoverOffset;
 
         if (nameTxt != null)
@@ -88,11 +85,13 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             nameTxt.transform.localScale = Vector3.one * scale;
             nameTxt.transform.localPosition = new Vector3(nameTxt.transform.localPosition.x, floatOffset, nameTxt.transform.localPosition.z);
         }
+
         if (frame != null && frame.activeSelf)
         {
             frame.transform.Rotate(Vector3.forward, frameRotateSpeed * Time.deltaTime);
         }
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!btn.interactable) return;
@@ -108,47 +107,45 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!btn.interactable) return;
 
         isHovered = false;
-        FadeFrame(false); // frame 收回
+        FadeFrame(false);
     }
 
+    /// <summary>
+    /// 使用 DOTween 淡入淡出 frame
+    /// </summary>
     public void FadeFrame(bool show, float duration = 0.25f)
     {
-        if (frameCoroutine != null)
-            StopCoroutine(frameCoroutine);
+        if (frameCanvasGroup == null || frame == null) return;
 
-        frameCoroutine = StartCoroutine(FadeFrameCoroutine(show, duration));
-    }
+        // 停止旧动画
+        frameTween?.Kill();
 
-    private IEnumerator FadeFrameCoroutine(bool show, float duration)
-    {
-        if (frameCanvasGroup == null) yield break;
-
-        float startAlpha = frameCanvasGroup.alpha;
-        float targetAlpha = show ? 1f : 0f;
-
-        Vector3 startScale = show ? originalScale * 1.5f : originalScale; // 从大缩小
-        Vector3 endScale = show ? originalScale : originalScale * 0.5f;   // 收回缩小
-
-        float t = 0f;
-        frame.SetActive(true);
-
-        while (t < 1f)
+        if (show)
         {
-            t += Time.deltaTime / duration;
-            float lerp = Mathf.SmoothStep(0f, 1f, t);
+            frame.SetActive(true);
+            frame.transform.localScale = originalScale * 1.5f;
+            frameCanvasGroup.alpha = 0f;
 
-            frameCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, lerp);
-            frame.transform.localScale = Vector3.Lerp(startScale, endScale, lerp);
-
-            yield return null;
+            // 同时控制缩放和透明度
+            frameTween = DOTween.Sequence()
+                .Join(frameCanvasGroup.DOFade(1f, duration))
+                .Join(frame.transform.DOScale(originalScale, duration).SetEase(Ease.OutBack))
+                .OnComplete(() =>
+                {
+                    frameCanvasGroup.alpha = 1f;
+                    frame.transform.localScale = originalScale;
+                });
         }
-
-        frameCanvasGroup.alpha = targetAlpha;
-        frame.transform.localScale = originalScale;
-
-        if (!show)
-            frame.SetActive(false);
-
-        frameCoroutine = null;
+        else
+        {
+            frameTween = DOTween.Sequence()
+                .Join(frameCanvasGroup.DOFade(0f, duration))
+                .Join(frame.transform.DOScale(originalScale * 0.5f, duration).SetEase(Ease.InBack))
+                .OnComplete(() =>
+                {
+                    frame.SetActive(false);
+                    frame.transform.localScale = originalScale;
+                });
+        }
     }
 }

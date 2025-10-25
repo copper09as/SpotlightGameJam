@@ -26,6 +26,7 @@ public class MapBtnGroup : MonoBehaviour
     private readonly List<MapBtn> mapBtns = new List<MapBtn>();
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
     private int currentIndex = 0;
+    private int lastCharacterIndex = 0;
     [SerializeField] private int characterCurrentIndex = 0;
     private bool isMoving = false;
     private bool isJumping = false;
@@ -330,19 +331,16 @@ public class MapBtnGroup : MonoBehaviour
         Vector3 startPos = mapCharacter.localPosition;
         Vector3 endPos;
 
-        // 判断 characterCurrentIndex 是否越界
         if (characterCurrentIndex < 0)
         {
-            // 跳到开头虚假按钮
             characterCurrentIndex = 0;
             RectTransform target = mapSelectButtonGroup[1].GetComponent<RectTransform>();
             bool isCenter = target.localScale.x > 1.2f;
             float extraHeight = isCenter ? centerExtraHeight : 0f;
             endPos = mapSelectButtonGroup[1].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
         }
-        else if (characterCurrentIndex > unLockCount-1)
+        else if (characterCurrentIndex > unLockCount - 1)
         {
-            // 跳到结尾虚假按钮
             characterCurrentIndex = unLockCount - 1;
             RectTransform target = mapSelectButtonGroup[unLockCount - 2].GetComponent<RectTransform>();
             bool isCenter = target.localScale.x > 1.2f;
@@ -357,8 +355,33 @@ public class MapBtnGroup : MonoBehaviour
         }
         else
         {
-            endPos = startPos; // Scroll 时保持当前位置
+            endPos = startPos;
         }
+
+        Vector3 scale = mapCharacter.localScale;
+        if (characterCurrentIndex > lastCharacterIndex)
+        {
+            // 向右
+            scale.x = Mathf.Abs(scale.x);
+            mapCharacter.localScale = scale;
+        }
+        else if (characterCurrentIndex < lastCharacterIndex)
+        {
+            // 向左
+            scale.x = -Mathf.Abs(scale.x);
+            mapCharacter.localScale = scale;
+        }
+        else
+        {
+            if (endPos.x < startPos.x)
+                scale.x = -Mathf.Abs(scale.x);
+            else if (endPos.x > startPos.x)
+                scale.x = Mathf.Abs(scale.x);
+
+            mapCharacter.localScale = scale;
+        }
+
+        lastCharacterIndex = characterCurrentIndex;
 
         float effectiveJumpDuration = jumpDuration * Mathf.Clamp(jumpDistanceScale, 0.5f, 2f);
         float t = 0f;
@@ -377,8 +400,5 @@ public class MapBtnGroup : MonoBehaviour
         currentJumpCoroutine = null;
         currentJumpSource = JumpSource.None;
     }
-
-
-
 
 }
