@@ -1,0 +1,17 @@
+function TriggeredDoorInit(entity)
+    local data = entity.dataTable
+    data.open = false
+
+    local col = entity.col
+    if col == nil then
+        col = entity:GetComponent(typeof(CS.UnityEngine.BoxCollider2D))
+        entity.col = col
+    end
+    if col == nil then return end
+
+    data.originHeight = col.size.y
+    data.originWidth = col.size.x
+    data.originOffsetY = col.offset.y
+
+    data.currentHeight = col.size.y
+end

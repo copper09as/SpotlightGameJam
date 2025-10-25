@@ -21,4 +21,5 @@ function BossInit(entity)
     data.flyDuration = 3               -- 飞行持续时间
 	data.positionLerpSpeed = 10
 	data.isEnemy= true
+	
 end

@@ -11,7 +11,7 @@ function CloseTheDoor(entity,_, a, b)--pedal关闭门
         if otherEntity.animator == nil or otherEntity.animator:Equals(nil) then --如果门提前被销毁直接返回
             return
         end
-        otherEntity.animator:SetBool("IsOpen",false)
+        otherEntity.dataTable.open= false
     end
 end
 

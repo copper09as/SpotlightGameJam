@@ -1,0 +1,50 @@
+function TriggeredDoorUpdate(entity)
+    -- 获取 collider
+    if entity.col == nil then
+        entity.col = entity:GetComponent(typeof(CS.UnityEngine.BoxCollider2D))
+        if entity.col ~= nil then
+            local size = entity.col.size
+            entity.dataTable.originHeight = size.y
+            entity.dataTable.originWidth = size.x
+            entity.dataTable.originOffsetY = entity.col.offset.y
+        end
+    end
+    local col = entity.col
+    if col == nil then return end
+
+    -- 获取 animator
+    if entity.animator == nil then
+        entity.animator = entity:GetComponent(typeof(CS.UnityEngine.Animator))
+    end
+
+    -- 判断门是否打开
+    local open = entity.dataTable.open
+    if entity.animator ~= nil then
+        entity.animator:SetBool("IsOpen", open)
+    end
+
+    -- 计算新的高度
+    local originHeight = entity.dataTable.originHeight or 3.0
+    local originOffsetY = entity.dataTable.originOffsetY or 0.0
+    local lerpSpeed = 5.0
+    local targetHeight = open and 0.01 or originHeight
+    local currentHeight = col.size.y
+    local newHeight = CS.UnityEngine.Mathf.Lerp(currentHeight, targetHeight, CS.UnityEngine.Time.deltaTime * lerpSpeed)
+
+    -- 修改 collider size
+    col.size = CS.UnityEngine.Vector2(col.size.x, newHeight)
+
+    -- 修改 collider offset，使门底固定
+    local heightDiff = (originHeight - newHeight) / 2
+    col.offset = CS.UnityEngine.Vector2(col.offset.x, originOffsetY - heightDiff)
+
+    -- 启用/禁用 collider
+    if open and newHeight < 0.05 then
+        col.enabled = false
+    elseif not open and newHeight > 0.1 then
+        col.enabled = true
+    end
+
+    -- 保存当前高度（可选）
+    entity.dataTable.currentHeight = newHeight
+end
