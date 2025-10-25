@@ -110,7 +110,7 @@ public class MapBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         FadeFrame(false); // frame 收回
     }
 
-    private void FadeFrame(bool show, float duration = 0.25f)
+    public void FadeFrame(bool show, float duration = 0.25f)
     {
         if (frameCoroutine != null)
             StopCoroutine(frameCoroutine);

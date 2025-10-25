@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Global.Data;
 using UnityEditor.Rendering;
@@ -31,13 +32,31 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         }
        
         isLoading = true;
-        StartCoroutine(LoadSceneCoroutine(newScene, mode));
+        try
+        {
+            StartCoroutine(LoadSceneCoroutine(newScene, mode));
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+       
     }
 
     private IEnumerator LoadSceneCoroutine(string newScene,LoadSceneMode mode)
     {
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync(newScene, mode);
-        loadOp.allowSceneActivation = true;
+        AsyncOperation loadOp = null;
+        try
+        {
+            loadOp = SceneManager.LoadSceneAsync(newScene, mode);
+            loadOp.allowSceneActivation = true;
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
+
 
         // 等待加载完成
         while (!loadOp.isDone)

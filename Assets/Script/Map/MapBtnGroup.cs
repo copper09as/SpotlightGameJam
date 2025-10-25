@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Global.Data;
 using Global.Data.BattleConfig;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class MapBtnGroup : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class MapBtnGroup : MonoBehaviour
     [SerializeField] private float jumpHeight = 120f;
     [SerializeField] private float jumpDuration = 0.5f;
     [SerializeField] private float charYOffset = 100f;
-    [SerializeField] private float centerExtraHeight = 20f; 
+    [SerializeField] private float centerExtraHeight = 20f;
 
     private readonly List<MapBtn> mapBtns = new List<MapBtn>();
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
@@ -114,7 +114,7 @@ public class MapBtnGroup : MonoBehaviour
         }
 
         int captureId = id;
-        mapBtn.Init(isUnlock, sceneName, () => EnterByIndex(captureId));
+        mapBtn.Init(isUnlock, sceneName, () => EnterByIndex(captureId, mapBtn));
         mapSelectButtonGroup.Add(mapBtn.GetComponent<Button>());
         mapBtns.Add(mapBtn);
 
@@ -139,13 +139,67 @@ public class MapBtnGroup : MonoBehaviour
 
     }
 
-
-    private void EnterByIndex(int id)
+    private void EnterByIndex(int id, MapBtn mapBtn)
     {
         AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
         BattleConfig.Instance.levelId = id;
-        var scenePath = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == id).ScenePath;
-        SceneChangeManager.Instance.LoadScene(scenePath);
+
+        string scenePath = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == id).ScenePath;
+
+        if (mapBtn != null)
+        {
+            StartCoroutine(PlayClickEffectThenLoad(mapBtn, scenePath));
+        }
+        else
+        {
+            // 防护：如果 mapBtn 为 null，直接加载场景
+            SceneChangeManager.Instance.LoadScene(scenePath);
+        }
+    }
+
+    private IEnumerator PlayClickEffectThenLoad(MapBtn mapBtn, string scenePath)
+    {
+        Button btn = mapBtn.GetComponent<Button>();
+        Vector3 originalScale = btn.transform.localScale;
+        Vector3 targetScale = originalScale * 1.2f; // 放大 20%
+        float duration = 0.2f;
+        float t = 0f;
+
+        // frame 弹入 + 缩放
+        mapBtn.FadeFrame(true, duration);
+
+        // 缩放动画（放大）
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            float lerp = Mathf.SmoothStep(0f, 1f, t);
+            btn.transform.localScale = Vector3.Lerp(originalScale, targetScale, lerp);
+            yield return null;
+        }
+
+        // 缩放回原始大小
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            float lerp = Mathf.SmoothStep(0f, 1f, t);
+            btn.transform.localScale = Vector3.Lerp(targetScale, originalScale, lerp);
+            yield return null;
+        }
+
+        // 可以顺便加 frame 缩小消失动画
+        mapBtn.FadeFrame(false, 0.1f);
+        try
+        {
+            SceneChangeManager.Instance.LoadScene(scenePath);
+        }
+        catch (Exception ex)
+        {
+            NotificationManager.Instance.ShowNotification(ex.Message, "加载场景出现错误！" + scenePath);
+        }
+
+
+
     }
 
 
