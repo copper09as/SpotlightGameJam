@@ -114,7 +114,7 @@
 	},
 	{
 		"id": 10011,
-		"InitPath": ["Physics/SetDynamic","Physics/SetGravityZero"],
+		"InitPath": [ "Physics/SetDynamic", "Physics/SetGravityZero", "Item/PedalInit" ],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],

@@ -4,7 +4,10 @@ function CloseTheDoor(entity,_, a, b)--pedal关闭门
     if not entity.animator:Equals(nil) then
         entity.animator:SetBool("IsDown",false)
     end
-    entity.transform.localPosition = entity.transform.localPosition + data.offsetVec
+    CS.Tool.SetBoxColliderAnimation(data.col,
+            data.originSize,
+            data.originOffset,
+            data.time)
 
     local entities = entity:GetEntities("OpenTheDoor")
     local entitiesCount = entities.Count

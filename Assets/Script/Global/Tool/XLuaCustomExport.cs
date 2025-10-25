@@ -43,6 +43,17 @@ public static class XLuaCustomExport
         typeof(DG.Tweening.ScrambleMode),
         typeof(DG.Tweening.TweenType),
         typeof(DG.Tweening.UpdateType),
+
+        // 添加 DG.Tweening 相关类型
+        typeof(DG.Tweening.Core.DOGetter<UnityEngine.Vector2>),
+        typeof(DG.Tweening.Core.DOSetter<UnityEngine.Vector2>),
+        typeof(DG.Tweening.TweenCallback),
+        
+        // 如果需要其他类型，也可以添加
+        typeof(DG.Tweening.Core.DOGetter<UnityEngine.Vector3>),
+        typeof(DG.Tweening.Core.DOSetter<UnityEngine.Vector3>),
+        typeof(DG.Tweening.Core.DOGetter<float>),
+        typeof(DG.Tweening.Core.DOSetter<float>),
         
         // Unity 组件类型（扩展方法的目标）
         typeof(UnityEngine.Transform),

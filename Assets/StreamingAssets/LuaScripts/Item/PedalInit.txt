@@ -1,7 +1,31 @@
-
+local Vector2 = CS.UnityEngine.Vector2
 function PedalInit(entity)--踏板效果注册
     local data = entity.dataTable or {} --实体通用数据
-    data.distance = 1; --踏板位移
+
+    data.col = entity:GetComponent("BoxCollider2D")
+    data.scale = 0.3 --踏板的碰撞体的高度的倍数
+    data.time = 0.3
+    data.originSize = data.col.size
+    data.originOffset = data.col.offset
+
+    data.targetSize = Vector2(data.originSize.x,data.originSize.y*data.scale)
+    data.targetOffset = Vector2(data.originOffset.x,
+            data.originOffset.y-data.originSize.y*(1-data.scale)/2)
+
+
+    --local angleZ = entity.transform.localEulerAngles.z
+    --if angleZ > 180 then angleZ = angleZ - 360 end
+    --local scaleY = entity.transform.localScale.y
+    --local offsetVec = CS.UnityEngine.Vector3(0, 0, 0)
+    --if angleZ == 0 then
+    --    offsetVec.y = -data.distance * scaleY
+    --elseif angleZ == 90 then
+    --    offsetVec.x = data.distance * scaleY
+    --elseif angleZ == -90 then
+    --    offsetVec.x = -data.distance * scaleY
+    --else
+    --    offsetVec.y = data.distance * scaleY
+    --end
 
 
 

@@ -145,6 +145,29 @@ public static class Tool
                  actionback?.Invoke();
              };
     }
+    public static void SetBoxColliderAnimation(BoxCollider2D collider2D,
+        Vector2 targetSize,
+        Vector2 targetOffset,
+        float time, Action actionback)
+    {
+        
+        DOTween.To(() => collider2D.size,
+           currentsize => collider2D.size = currentsize,
+            targetSize,
+            time).onComplete += () =>
+            {
+                actionback?.Invoke();
+            };
+        DOTween.To(() => collider2D.offset,
+           currentOffset => collider2D.offset = currentOffset,
+            targetOffset,
+            time).onComplete += () =>
+            {
+                actionback?.Invoke();
+            };
+    }
+
+
     public static void AddBabbleEvent(int id,Action action) //注册触发多次的事件
     {
         EventCenter.Instance.AddAction("BabbleEvent" + id.ToString(), action);

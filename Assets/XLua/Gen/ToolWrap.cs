@@ -31,7 +31,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 14, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 15, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderWidthLua", _m_GetColliderWidthLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderHeightLua", _m_GetColliderHeightLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
@@ -42,6 +42,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetSpecialWords", _m_GetSpecialWords_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetSpecialWordsCount", _m_GetSpecialWordsCount_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "TypeWriter", _m_TypeWriter_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "SetBoxColliderAnimation", _m_SetBoxColliderAnimation_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEvent", _m_AddBabbleEvent_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEventOneTime", _m_AddBabbleEventOneTime_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "BabbleEventTrigger", _m_BabbleEventTrigger_xlua_st_);
@@ -317,6 +318,36 @@ namespace XLua.CSObjectWrap
                     System.Action _actionback = translator.GetDelegate<System.Action>(L, 4);
                     
                     Tool.TypeWriter( __Text, _words, _time, _actionback );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_SetBoxColliderAnimation_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.BoxCollider2D _collider2D = (UnityEngine.BoxCollider2D)translator.GetObject(L, 1, typeof(UnityEngine.BoxCollider2D));
+                    UnityEngine.Vector2 _targetSize;translator.Get(L, 2, out _targetSize);
+                    UnityEngine.Vector2 _targetOffset;translator.Get(L, 3, out _targetOffset);
+                    float _time = (float)LuaAPI.lua_tonumber(L, 4);
+                    System.Action _actionback = translator.GetDelegate<System.Action>(L, 5);
+                    
+                    Tool.SetBoxColliderAnimation( _collider2D, _targetSize, _targetOffset, _time, _actionback );
                     
                     
                     
