@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2285242108696789106}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pedal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8804801278700765558}
   - component: {fileID: 7472658336681531093}
   - component: {fileID: 2886310799385829095}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1255106403087272106}
   - component: {fileID: 6887394540202940317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

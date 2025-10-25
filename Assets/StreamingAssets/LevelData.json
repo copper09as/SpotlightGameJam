@@ -37,24 +37,24 @@
     },
     {
       "Id": 5,
-      "SceneName": "月面波纹",
+      "SceneName": "错误分裂",
       "SpritePath": "",
       "ScenePath": "LEVEL3(Double)",
-      "noteString": "注意波纹移动节奏"
+      "noteString": "你变成两个人了"
     },
     {
       "Id": 6,
-      "SceneName": "明珠暗投",
+      "SceneName": "监狱",
       "SpritePath": "",
       "ScenePath": "LEVEL4(Passable)",
-      "noteString": "机关陷阱频繁出现"
+      "noteString": "可以从摄像机左右两边穿越"
     },
     {
       "Id": 7,
-      "SceneName": "缺少参数",
+      "SceneName": "深井",
       "SpritePath": "",
-      "ScenePath": "LEVEL5(CantMove)",
-      "noteString": "注意道具收集顺序"
+      "ScenePath": "LEVEL8(DeepWell)",
+      "noteString": "墙壁里藏着什么"
     },
     {
       "Id": 8,
