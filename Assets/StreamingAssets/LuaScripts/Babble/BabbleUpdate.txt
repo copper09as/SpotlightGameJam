@@ -12,7 +12,10 @@ function BabbleUpdate(entity,dt)
 
 
     if data.printTimer == 0 and data.canPrint then
-        --CT.BabbleEventTrigger(-1)
+        data.TMP.gameObject:SetActive(true)
+        data.sprite.gameObject:SetActive(true)
+        data.words = CT.GetRandomWords()
+        CT.TypeWriter(data.TMP,data.words,2)
         data.canPrint = false
         data.extinctionTimer = data.extinctionTime--重置消失时间
     end
