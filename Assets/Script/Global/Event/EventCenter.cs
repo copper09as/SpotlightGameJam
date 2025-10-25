@@ -45,6 +45,14 @@ public class EventCenter : SingleCaseMono<EventCenter>
 
     public void SafeTrigger(string eventName)//事件的广播
     {
-        Actions[eventName]?.Invoke();
+        try
+        {
+            Actions[eventName]?.Invoke();
+        }
+        catch (Exception ex)
+        {
+            NotificationManager.Instance.ShowNotification(ex.Message, "事件触发发送错误!请及时联系策划！" + eventName);
+            throw ex;
+        }
     }
 }

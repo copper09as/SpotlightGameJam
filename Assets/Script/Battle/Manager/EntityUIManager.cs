@@ -141,7 +141,7 @@ public class EntityUIManager : MonoBehaviour
         SetMenuActive(settingMenu, true);
         isSettingMenuActive = true;
 
-        Tool.BabbleEventTrigger(0);//触发第0个事件
+       
     }
 
     private void HideSettingMenu()

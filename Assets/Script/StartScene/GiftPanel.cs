@@ -23,7 +23,7 @@ public class GiftPanel : MonoBehaviour
 
     private void Confirm()
     {
-        if(input.text == "Lizz76")
+        if(input.text == "BlackField")
         {
             BattleConfig.Instance.UnLockLevel();
             Close();

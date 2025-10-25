@@ -1,9 +1,30 @@
 
 function PedalDown(entity)--踏板被踩下
+	local data = entity.dataTable
     local key = "OpenTheDoor"
-	CS.UnityEngine.Debug.Log(entity.gameObject.name .. "触碰踏板")
-    print(entity.entityPairs.Count)
+	data.distance = 0.1;
+	local t = entity.transform
+	if t:Equals(nil) then return end
     entity.animator:SetBool("IsDown",true)
+	local angleZ = t.localEulerAngles.z
+
+	CS.UnityEngine.Debug.Log(entity.dataTable.distance .. "距离")
+	if angleZ > 180 then angleZ = angleZ - 360 end
+	local scaleY = t.localScale.y
+	local offsetVec = CS.UnityEngine.Vector3(0, 0, 0)
+	if angleZ == 0 then
+		offsetVec.y = -data.distance * scaleY
+	elseif angleZ == 90 then
+		offsetVec.x = data.distance * scaleY
+	elseif angleZ == -90 then
+		offsetVec.x = -data.distance * scaleY
+	else
+		offsetVec.y = data.distance * scaleY
+	end
+
+	data.offsetVec = offsetVec
+	t.localPosition = t.localPosition + offsetVec
+
 
 	local entities = entity:GetEntities(key)
 	local entitiesCount = entities.Count
