@@ -10,12 +10,9 @@ public class Notification : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private Button closeBtn;
     [SerializeField] private Button restartBtn;
-    [SerializeField] private Button urlBtn; 
-
-  private string openUrl = "https://space.bilibili.com/80632239";
-
+    [SerializeField] private Button urlBtn;
+    private string openUrl = "https://space.bilibili.com/80632239";
     public static int count;
-
     public void Init(string note, string title)
     {
         notificationText.text = note;
