@@ -32,14 +32,8 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         }
        
         isLoading = true;
-        try
-        {
-            StartCoroutine(LoadSceneCoroutine(newScene, mode));
-        }
-        catch(Exception ex)
-        {
-            throw ex;
-        }
+       StartCoroutine(LoadSceneCoroutine(newScene, mode));
+
        
     }
 
@@ -49,12 +43,22 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         try
         {
             loadOp = SceneManager.LoadSceneAsync(newScene, mode);
+            if (loadOp == null)
+            {
+                isLoading = false;
+                NotificationManager.Instance.ShowNotification(newScene, "加载场景出现错误！" + newScene);
+                ReloadCurrentScene();
+                yield break;
+            }
+
             loadOp.allowSceneActivation = true;
         }
         catch (Exception ex)
         {
-
-            throw ex;
+            isLoading = false;
+            NotificationManager.Instance.ShowNotification(ex.Message, "加载场景出现错误！" + newScene);
+           
+            yield break;
         }
 
 

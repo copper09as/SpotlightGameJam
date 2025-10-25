@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Global.Data;
 using Global.Data.BattleConfig;
@@ -152,7 +151,6 @@ public class MapBtnGroup : MonoBehaviour
         }
         else
         {
-            // 防护：如果 mapBtn 为 null，直接加载场景
             SceneChangeManager.Instance.LoadScene(scenePath);
         }
     }
@@ -161,14 +159,12 @@ public class MapBtnGroup : MonoBehaviour
     {
         Button btn = mapBtn.GetComponent<Button>();
         Vector3 originalScale = btn.transform.localScale;
-        Vector3 targetScale = originalScale * 1.2f; // 放大 20%
+        Vector3 targetScale = originalScale * 1.2f; 
         float duration = 0.2f;
         float t = 0f;
 
-        // frame 弹入 + 缩放
         mapBtn.FadeFrame(true, duration);
 
-        // 缩放动画（放大）
         while (t < 1f)
         {
             t += Time.deltaTime / duration;
@@ -177,7 +173,6 @@ public class MapBtnGroup : MonoBehaviour
             yield return null;
         }
 
-        // 缩放回原始大小
         t = 0f;
         while (t < 1f)
         {
@@ -187,16 +182,10 @@ public class MapBtnGroup : MonoBehaviour
             yield return null;
         }
 
-        // 可以顺便加 frame 缩小消失动画
         mapBtn.FadeFrame(false, 0.1f);
-        try
-        {
-            SceneChangeManager.Instance.LoadScene(scenePath);
-        }
-        catch (Exception ex)
-        {
-            NotificationManager.Instance.ShowNotification(ex.Message, "加载场景出现错误！" + scenePath);
-        }
+
+        SceneChangeManager.Instance.LoadScene(scenePath);
+
 
 
 
