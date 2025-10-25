@@ -26,9 +26,10 @@ public class MapBtnGroup : MonoBehaviour
     private readonly List<MapBtn> mapBtns = new List<MapBtn>();
     private readonly List<Button> mapSelectButtonGroup = new List<Button>();
     private int currentIndex = 0;
-    [SerializeField] private int characterCurrentIndex = 3;
+    [SerializeField] private int characterCurrentIndex = 0;
     private bool isMoving = false;
     private bool isJumping = false;
+    private int unLockCount = 0;
     [SerializeField] private float xOffset = 0f;
     [SerializeField] private float jumpDistanceScale = 1f;
     private Coroutine currentJumpCoroutine = null;
@@ -59,9 +60,13 @@ public class MapBtnGroup : MonoBehaviour
         for (int i = 0; i < levelDataList.Count; i++)
         {
             var levelData = levelDataList[i];
-            CreateButton(levelData.Id, levelData.SpritePath, levelData.SceneName, i <= BattleConfig.Instance.userData.unLockLevel);
+            bool unLock = i <= BattleConfig.Instance.userData.unLockLevel;
+            CreateButton(levelData.Id, levelData.SpritePath, levelData.SceneName, unLock);
+            if (unLock)
+                unLockCount++;
             yield return null;
         }
+
         /*
         // 添加结尾的虚假按钮
         for (int i = 0; i < 3; i++)
@@ -197,7 +202,7 @@ public class MapBtnGroup : MonoBehaviour
 
     private void MoveToNext()
     {
-        int maxRealIndex = mapSelectButtonGroup.Count - 1; // 末尾真实按钮
+        int maxRealIndex = unLockCount-1;//mapSelectButtonGroup.Count - 1; // 末尾真实按钮
         if (currentIndex >= maxRealIndex) return; // 已到末尾真实按钮，不移动
         characterCurrentIndex++;
         int prevIndex = currentIndex;
@@ -335,14 +340,14 @@ public class MapBtnGroup : MonoBehaviour
             float extraHeight = isCenter ? centerExtraHeight : 0f;
             endPos = mapSelectButtonGroup[1].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
         }
-        else if (characterCurrentIndex > 14)
+        else if (characterCurrentIndex > unLockCount-1)
         {
             // 跳到结尾虚假按钮
-            characterCurrentIndex = 14;
-            RectTransform target = mapSelectButtonGroup[13].GetComponent<RectTransform>();
+            characterCurrentIndex = unLockCount - 1;
+            RectTransform target = mapSelectButtonGroup[unLockCount - 2].GetComponent<RectTransform>();
             bool isCenter = target.localScale.x > 1.2f;
             float extraHeight = isCenter ? centerExtraHeight : 0f;
-            endPos = mapSelectButtonGroup[13].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
+            endPos = mapSelectButtonGroup[unLockCount - 2].transform.localPosition + Vector3.up * (charYOffset + extraHeight) + Vector3.right * xOffset;
         }
         else if (source == JumpSource.Hover)
         {
