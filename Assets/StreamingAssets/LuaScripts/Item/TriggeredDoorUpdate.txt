@@ -29,7 +29,7 @@ function TriggeredDoorUpdate(entity)
     elseif angleZ == -90 then
         offsetVec.x = -heightDiff * scaleY
     else
-        offsetVec.y = -heightDiff * scaleY
+        offsetVec.y = heightDiff * scaleY
     end
 
     t.localPosition = originPos + offsetVec

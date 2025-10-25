@@ -836,7 +836,23 @@ PrefabInstance:
     - target: {fileID: 226553074565018480, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
-      objectReference: {fileID: 1588115852}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Size.x
+      value: 0.729352
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5007529
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.004802346
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.7703023
+      objectReference: {fileID: 0}
     - target: {fileID: 2457349452065179704, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_Name
       value: MechanismDoor (1)
@@ -932,7 +948,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
 --- !u!114 &379609045 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 226553074565018480, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5618173697479223085, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
   m_PrefabInstance: {fileID: 379609044}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -964,7 +980,23 @@ PrefabInstance:
     - target: {fileID: 226553074565018480, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
-      objectReference: {fileID: 1588115852}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Size.x
+      value: 0.89410496
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5431523
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.013454437
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.2933457
+      objectReference: {fileID: 0}
     - target: {fileID: 2457349452065179704, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_Name
       value: MechanismDoor
@@ -1019,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.55
+      value: 4.53
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1060,7 +1092,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
 --- !u!114 &474393081 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 226553074565018480, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5618173697479223085, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
   m_PrefabInstance: {fileID: 474393080}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -5918,7 +5950,7 @@ PrefabInstance:
     - target: {fileID: 226553074565018480, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
-      objectReference: {fileID: 1588115852}
+      objectReference: {fileID: 0}
     - target: {fileID: 2457349452065179704, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
       propertyPath: m_Name
       value: MagicDoor
@@ -7208,31 +7240,32 @@ PrefabInstance:
     - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
-      objectReference: {fileID: 474393081}
+      objectReference: {fileID: 0}
     - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
       value: 
-      objectReference: {fileID: 379609045}
+      objectReference: {fileID: 0}
     - target: {fileID: 7472658336681531093, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
       propertyPath: m_Constraints
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7819989131839038422, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819989131839038422, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
+      value: 
+      objectReference: {fileID: 474393081}
+    - target: {fileID: 7819989131839038422, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
+      value: 
+      objectReference: {fileID: 379609045}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
---- !u!114 &1588115852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
-  m_PrefabInstance: {fileID: 1588115851}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1631028596
 PrefabInstance:
   m_ObjectHideFlags: 0
