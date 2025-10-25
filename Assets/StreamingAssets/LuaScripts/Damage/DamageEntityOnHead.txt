@@ -6,6 +6,7 @@ function DamageEntityOnHead(entity, otherEntity, x, y)
         if otherEntity ~= nil then
             otherEntity:Dead(entity)
         end
+		CS.UnityEngine.Debug.Log(otherEntity.dataTable.isEnemy)
 		if otherEntity.dataTable.isEnemy then
 			entity:PlayDamageObj()
 		end
