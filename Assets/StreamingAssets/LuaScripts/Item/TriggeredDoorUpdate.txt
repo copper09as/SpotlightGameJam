@@ -13,7 +13,7 @@ function TriggeredDoorUpdate(entity)
     local open = data.open
     local targetHeight = open and 0.01 or originHeight
     local currentHeight = data.currentHeight or originHeight
-    local newHeight = CS.UnityEngine.Mathf.Lerp(currentHeight, targetHeight, CS.UnityEngine.Time.deltaTime * lerpSpeed)
+    local newHeight = CS.UnityEngine.Mathf.Lerp(currentHeight, targetHeight, CS.UnityEngine.Time.unscaledDeltaTime * lerpSpeed)
     data.currentHeight = newHeight
 
     local angleZ = t.localEulerAngles.z
