@@ -1,0 +1,16 @@
+function ShowByLightTiles(entity, deltaTime)
+    local light = CS.LightManager.Instance
+    local value = light:GetGlobalLight()
+    local hideValue = 0.1
+    local fadeSpeed = 5
+
+    local tilemap = entity:GetComponent(typeof(CS.UnityEngine.Tilemaps.Tilemap))
+    if tilemap == nil then
+        return
+    end
+
+    local color = tilemap.color
+    local targetAlpha = (value < hideValue) and 0 or 1
+    color.a = color.a + (targetAlpha - color.a) * math.min(deltaTime * fadeSpeed, 1)
+    tilemap.color = color
+end

@@ -57,7 +57,6 @@ public class SceneChangeManager : SingleCaseMono<SceneChangeManager>
         {
             isLoading = false;
             NotificationManager.Instance.ShowNotification(ex.Message, "加载场景出现错误！" + newScene);
-           
             yield break;
         }
 

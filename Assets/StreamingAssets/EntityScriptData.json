@@ -321,5 +321,15 @@
 		"OnDragPath": ["Mouse/FollowMouse"],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10031,
+		"InitPath": [],
+		"UpdatePath": ["Col/ShowByLightTiles"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}]
 }
