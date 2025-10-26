@@ -345,13 +345,18 @@ namespace XLua.CSObjectWrap
                     UnityEngine.Vector2 _targetSize;translator.Get(L, 2, out _targetSize);
                     UnityEngine.Vector2 _targetOffset;translator.Get(L, 3, out _targetOffset);
                     float _time = (float)LuaAPI.lua_tonumber(L, 4);
-                    System.Action _actionback = translator.GetDelegate<System.Action>(L, 5);
+                    DG.Tweening.Tween _sizeTween;
+                    DG.Tweening.Tween _offsetTween;
                     
-                    Tool.SetBoxColliderAnimation( _collider2D, _targetSize, _targetOffset, _time, _actionback );
+                    Tool.SetBoxColliderAnimation( _collider2D, _targetSize, _targetOffset, _time, out _sizeTween, out _offsetTween );
+                    translator.Push(L, _sizeTween);
+                        
+                    translator.Push(L, _offsetTween);
+                        
                     
                     
                     
-                    return 0;
+                    return 2;
                 }
                 
             } catch(System.Exception gen_e) {

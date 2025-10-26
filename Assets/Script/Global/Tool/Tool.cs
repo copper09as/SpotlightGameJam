@@ -148,23 +148,17 @@ public static class Tool
     public static void SetBoxColliderAnimation(BoxCollider2D collider2D,
         Vector2 targetSize,
         Vector2 targetOffset,
-        float time, Action actionback)
+        float time,out Tween sizeTween, out Tween offsetTween)
     {
-        
-        DOTween.To(() => collider2D.size,
+
+        sizeTween = DOTween.To(() => collider2D.size,
            currentsize => collider2D.size = currentsize,
             targetSize,
-            time).onComplete += () =>
-            {
-                actionback?.Invoke();
-            };
-        DOTween.To(() => collider2D.offset,
+            time);
+        offsetTween = DOTween.To(() => collider2D.offset,
            currentOffset => collider2D.offset = currentOffset,
             targetOffset,
-            time).onComplete += () =>
-            {
-                actionback?.Invoke();
-            };
+            time);
     }
 
 

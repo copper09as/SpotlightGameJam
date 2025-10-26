@@ -3,10 +3,13 @@ function PedalInit(entity)--踏板效果注册
     local data = entity.dataTable or {} --实体通用数据
 
     data.col = entity:GetComponent("BoxCollider2D")
-    data.scale = 0.3 --踏板的碰撞体的高度的倍数
-    data.time = 0.3
+    data.scale = 1 --踏板的碰撞体的高度的倍数
+    data.time = 1
     data.originSize = data.col.size
     data.originOffset = data.col.offset
+
+    data.sizeTween = nil
+    data.offsetTween = nil
 
     data.targetSize = Vector2(data.originSize.x,data.originSize.y*data.scale)
     data.targetOffset = Vector2(data.originOffset.x,

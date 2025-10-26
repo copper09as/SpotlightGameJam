@@ -1,10 +1,17 @@
 function CloseTheDoor(entity,_, a, b)--pedal关闭门
     local data = entity.dataTable
+    if data.sizeTween and data.offsetTween then
+        if data.sizeTween:IsPlaying() and data.offsetTween:IsPlaying() then
+            data.sizeTween:Pause()
+            data.offsetTween:Pause()
+        end
+    end
+
     --播放踏板上升动画
     if not entity.animator:Equals(nil) then
         entity.animator:SetBool("IsDown",false)
     end
-    CS.Tool.SetBoxColliderAnimation(data.col,
+    data.sizeTween ,data.offsetTween = CS.Tool.SetBoxColliderAnimation(data.col,
             data.originSize,
             data.originOffset,
             data.time)
