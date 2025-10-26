@@ -1,0 +1,39 @@
+local GC = CS.GameController
+local DM = CS.DetectionManager
+
+function EverythingMove(entity)
+    if entity.transform == nil then return end
+
+    local data = entity.dataTable
+    if data == nil then return end
+
+    local x = GC:MoveX()  -- 获取水平输入
+    local speed = data.characterSpeed or 10  -- 基础移动速度
+
+    -- 平滑加速度参数
+    local accel = data.runAccelAmount or 10
+    local deccel = data.runDeccelAmount or 10
+
+    -- 当前速度（记录在 data 里）
+    data.currentSpeed = data.currentSpeed or 0
+
+    -- 目标速度
+    local targetSpeed = x * speed
+
+    -- 选择加速或减速速率
+    local accelRate = (math.abs(targetSpeed) > 0.01) and accel or deccel
+
+    -- 平滑插值速度
+    local speedDif = targetSpeed - data.currentSpeed
+    data.currentSpeed = data.currentSpeed + speedDif * accelRate * CS.UnityEngine.Time.deltaTime
+
+    -- 根据缩放调整移动强度
+    local rawFactor = entity.transform.localScale.x / 0.3
+    local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+
+    -- 计算最终位移
+    local moveDelta = CS.UnityEngine.Vector3(data.currentSpeed * scaleFactor * CS.UnityEngine.Time.deltaTime, 0, 0)
+
+    -- 应用位置变化
+    entity.transform.position = entity.transform.position + moveDelta
+end

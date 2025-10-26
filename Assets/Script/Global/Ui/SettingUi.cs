@@ -18,7 +18,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Button toStartSceneBtn;
     //[SerializeField] private Button openSettingUi;
     [SerializeField] private Button mapBtn;
-
+    [SerializeField] private GameObject settingUIPrefab;
     [Header("Animation Settings")]
     [SerializeField] private Vector3 hiddenPos = new Vector3(0, 1000, 0); // 面板屏幕外位置
     [SerializeField] private Vector3 shownPos = new Vector3(0, 0, 0);     // 面板显示位置
@@ -36,7 +36,6 @@ public class SettingUi : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(settingUi.gameObject);
         EventBus.Subscribe<Global.Events.OpenSettingUi>(OpenUiEve);
         // 初始化面板状态
         settingUi.transform.localPosition = hiddenPos;
@@ -152,7 +151,6 @@ public class SettingUi : MonoBehaviour
         {
             NotificationManager.Instance.ShowNotification(ex.Message, "设置界面打开错误！");
             SceneChangeManager.Instance.LoadScene("StartScene");
-            throw ex;
         }
 
         if (slideCoroutine != null)

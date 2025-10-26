@@ -35,6 +35,7 @@ public class NotificationManager : MonoBehaviour
 
         foreach (Transform child in notificationParent)
         {
+            if(child.GetComponent<Notification>()!=null)
             Destroy(child.gameObject);
         }
 

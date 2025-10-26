@@ -24,11 +24,21 @@ public class EntityManager
     }
     public void Lose(float delay)
     {
-        foreach(var entity in GetAllEntities())
+        foreach (var entity in GetAllEntities())
         {
             entity.entityStop = true;
         }
-        SceneChangeManager.Instance.ReloadSceneWithDelay(delay);
+        if (BattleConfig.Instance.DeadMode)
+        {
+            BattleConfig.Instance.ClearLevel();
+            SceneChangeManager.Instance.LoadSceneWithDelay("StartScene", delay);
+            NotificationManager.Instance.ShowNotification("死亡模式失败，存档已清空，请重新挑战！", "死亡模式失败，请重新挑战！");
+        }
+        else
+        {
+            SceneChangeManager.Instance.ReloadSceneWithDelay(delay);
+        }
+        
     }
     public void Win(float delay)
     {
@@ -97,6 +107,35 @@ public class EntityManager
         }
         entityMap[entity.entityId] = entity;
         entity.Init(this);
+        if(BattleConfig.Instance.DragMode)
+        {
+            if(!entity.scriptData.OnDragPath.Contains("Mouse/FollowMouseY")
+                && !entity.scriptData.OnDragPath.Contains("Mouse/FollowMouseX")
+                &&!entity.scriptData.OnDragPath.Contains("Mouse/FollowMouse"))
+            {
+                entity.scriptData.OnDragPath.Add("Mouse/FollowMouse");
+            }
+            
+        }
+        if(BattleConfig.Instance.EverythingMoveMode)
+        {
+            if (!entity.scriptData.UpdatePath.Contains("Character/CharacterMove"))
+            {
+                entity.scriptData.UpdatePath.Add("Position/EverythingMove");
+            } 
+           
+        }
+        if(BattleConfig.Instance.PoisionMode)
+        {
+          entity.scriptData.OnCollisionPath.Add("Damage/DamageEntity");
+        }
+        if(BattleConfig.Instance.DontDeadMode)
+        {
+            if(entity.scriptData.InitPath.Contains("Character/CharacterInit"))
+            {
+                entity.scriptData.DeadPath.Clear();
+            }
+        }
     }
     // 注销
     public void Unregister(Entity entity)

@@ -22,6 +22,13 @@ namespace Global.Data.BattleConfig
         public int levelId;
         public static BattleConfig Instance;
         public UserData userData;
+        public bool FlyMode = false;
+        public bool EverythingMoveMode = false;
+        public bool DragMode = false;
+        public bool PoisionMode = false;
+        public bool DontDeadMode = false;
+        public bool DeadMode = false;
+
         private void Awake()
         {
             if (Instance == null)
@@ -72,7 +79,25 @@ namespace Global.Data.BattleConfig
                (GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == levelId).ScenePath);
             }
             else
-                SceneChangeManager.Instance.LoadScene("StartScene");
+            {
+                if(DeadMode)
+                {
+                    NotificationManager.Instance.ShowNotification("恭喜您通关死亡模式！", "恭喜您通关死亡模式！");
+                    SceneChangeManager.Instance.LoadScene("StartScene");
+                }
+                else
+                {
+                    SceneChangeManager.Instance.LoadScene("StartScene");
+                }
+              
+            }
+                
+        }
+
+        internal void ClearLevel()
+        {
+            userData.unLockLevel = 0;
+            JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
         }
     }
 }
