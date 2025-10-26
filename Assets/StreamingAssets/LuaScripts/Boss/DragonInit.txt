@@ -40,11 +40,13 @@ function DragonInit(entity)
     data.isInvincible = false         -- 是否无敌
     data.flyTime = 0                  -- 飞行计时
     data.flyDuration = 3              -- 飞行持续时间
+    data.DMRadius = 10                -- 最远攻击距离
+
 	data.isEnemy= true
     data.isDragon = true
     data.colliders = CS.Tool.GetCollider2Ds(entity.gameObject)
     data.state = "flyBack"               -- Boss 状态
     --idle（fly）/attack/attackBefore/attackAfter/
     DragonFly(entity)                 --boss从场外飞入场内随机一个点位
-	CS.UnityEngine.Debug.Log(data.isEnemy)
+
 end
