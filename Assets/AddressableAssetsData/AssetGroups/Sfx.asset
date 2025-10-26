@@ -17,6 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9d1eeeeddb1d88046a11b8920025f588
   m_SerializeEntries:
+  - m_GUID: 135be6112151a23488252d577133cd0d
+    m_Address: Assets/Audio/Sfx/ButtonDown (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 15cded3c75ee5034f91adc87f8aa60df
     m_Address: Assets/Audio/Sfx/PlayerWalk (6).wav
     m_ReadOnly: 0
@@ -27,8 +32,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 235dd32cc89e50b41a38d06d63cd61f1
+    m_Address: Assets/Audio/Sfx/ButtonDown (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24a566496b4ce0049bbdc75c614abc8c
     m_Address: Assets/Audio/Sfx/LeftClick.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27150936504add24898767fef84d7d8e
+    m_Address: Assets/Audio/Sfx/GameStart (1).wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -72,8 +87,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc67263cb83126a4592c76f726a4797c
+    m_Address: Assets/Audio/Sfx/GameStart (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0b40a646b36dd24b929b7f191dbcdc2
     m_Address: Assets/Audio/Sfx/PlayerWalk (5).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8fff445ec24ddc4781f26c6a7d80132
+    m_Address: Assets/Audio/Sfx/OpenDoor.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -84,6 +109,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8ad5452766f76a4fa683bd118097df1
     m_Address: Assets/Audio/Sfx/PlayerWalk (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcc2cee00d53a8c408a303143a68ea77
+    m_Address: Assets/Audio/Sfx/ERROR 02.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

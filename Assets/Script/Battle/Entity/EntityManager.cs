@@ -36,6 +36,7 @@ public class EntityManager
         {
             entity.entityStop = true;
         }
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/OpenDoor.wav");
         BattleConfig.Instance.Win(delay);
     }
     public List<Entity> FindEntityByDataTable(string key)

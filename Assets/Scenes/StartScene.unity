@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 297323162}
   - component: {fileID: 297323161}
   - component: {fileID: 297323160}
+  - component: {fileID: 297323163}
   m_Layer: 5
   m_Name: GiftBtn
   m_TagString: Untagged
@@ -610,6 +611,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297323158}
   m_CullTransparentMesh: 1
+--- !u!114 &297323163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297323158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1 &359684579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,6 +1684,7 @@ GameObject:
   - component: {fileID: 1317669863}
   - component: {fileID: 1317669864}
   - component: {fileID: 1317669865}
+  - component: {fileID: 1317669866}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -1718,8 +1741,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
-    m_HighlightedColor: {r: 0.6453036, g: 0.2651548, b: 0.8415094, a: 1}
-    m_PressedColor: {r: 1, g: 0, b: 0.53201437, a: 1}
+    m_HighlightedColor: {r: 0.97240406, g: 0.91886795, b: 1, a: 1}
+    m_PressedColor: {r: 0.86415094, g: 0.6766465, b: 0.7766489, a: 1}
     m_SelectedColor: {r: 0.7960785, g: 0.6745098, b: 0.8588236, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1770,6 +1793,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1317669866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317669860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1 &1409702799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,6 +2593,7 @@ GameObject:
   - component: {fileID: 1764114090}
   - component: {fileID: 1764114089}
   - component: {fileID: 1764114088}
+  - component: {fileID: 1764114091}
   m_Layer: 5
   m_Name: ShowSetting
   m_TagString: Untagged
@@ -2657,6 +2702,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764114086}
   m_CullTransparentMesh: 1
+--- !u!114 &1764114091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764114086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1 &1835112366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,8 +2750,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1952596268}
   - {fileID: 2079926358}
@@ -2710,6 +2776,8 @@ MonoBehaviour:
   - {fileID: 1501714351}
   rollingSpeed: 1
   backGroundWidth: 1
+  maxOffset: 1
+  followSpeed: 2
 --- !u!1 &1868716521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2790,7 @@ GameObject:
   - component: {fileID: 1868716524}
   - component: {fileID: 1868716523}
   - component: {fileID: 1868716525}
+  - component: {fileID: 1868716526}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2745,7 +2814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 28, y: 257.918}
+  m_AnchoredPosition: {x: 28, y: 217}
   m_SizeDelta: {x: 772.224, y: 589.575}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868716523
@@ -2768,7 +2837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 230670f7d398f9f46b5251f9f57046b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8840ddb8791a4554b862a6da8edd4298, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2830,6 +2899,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1868716526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868716521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 1
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1 &1918492736
 GameObject:
   m_ObjectHideFlags: 0

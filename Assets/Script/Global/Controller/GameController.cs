@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 public static class GameController
 {
     public static OriginGame Controller = new OriginGame();
-
-    // 跳跃时间控制变量
     public static bool isSpacePressed = false;
     private static float spacePressStartTime = 0f;
 

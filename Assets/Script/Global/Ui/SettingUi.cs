@@ -142,7 +142,7 @@ public class SettingUi : MonoBehaviour
         if (isOpen)
             return;
         isOpen = true;
-        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
+      
         currentScale = Time.timeScale;
         try
         {
