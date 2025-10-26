@@ -81,7 +81,7 @@ end
 
 
 function DragonAttackAfter(entity, dt)--攻击后摇期间
-    entity.sr.gameObject.transform:DORotate(Vector3(0, 0, 0),0.3)
+    --entity.sr.gameObject.transform:DORotate(Vector3(0, 0, 0),0.3)
     CS.UnityEngine.Debug.Log("恶龙攻击后摇")
     local data = entity.dataTable
     data.afterTimer = math.max(0, data.afterTimer - dt)--更新时间计时器

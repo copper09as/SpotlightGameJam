@@ -41,6 +41,7 @@ function DragonInit(entity)
     data.flyTime = 0                  -- 飞行计时
     data.flyDuration = 3              -- 飞行持续时间
 	data.isEnemy= true
+    data.isDragon = true
     data.colliders = CS.Tool.GetCollider2Ds(entity.gameObject)
     data.state = "flyBack"               -- Boss 状态
     --idle（fly）/attack/attackBefore/attackAfter/
