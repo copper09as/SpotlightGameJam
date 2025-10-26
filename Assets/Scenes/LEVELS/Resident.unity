@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16ef74f22523ce469a252788468a5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testScene: StartScene
+  testScene: LEVEL9(Boss0)
 --- !u!4 &1451376373
 Transform:
   m_ObjectHideFlags: 0
@@ -2523,6 +2523,8 @@ MonoBehaviour:
   FlyMode: 0
   EverythingMoveMode: 0
   DragMode: 0
+  PoisionMode: 0
+  DontDeadMode: 0
   DeadMode: 0
 --- !u!4 &1694435562
 Transform:
