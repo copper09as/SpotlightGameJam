@@ -32,7 +32,8 @@ public class EntityManager
         {
             BattleConfig.Instance.ClearLevel();
             SceneChangeManager.Instance.LoadSceneWithDelay("StartScene", delay);
-            NotificationManager.Instance.ShowNotification("死亡模式失败，存档已清空，请重新挑战！", "死亡模式失败，请重新挑战！");
+            BattleConfig.Instance.DeadMode = false;
+            NotificationManager.Instance.ShowNotification("死亡模式失败，存档已清空，并且死亡模式已自动关闭，请重新挑战！", "死亡模式失败，请重新挑战！");
         }
         else
         {
