@@ -5486,7 +5486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337522256}
   - component: {fileID: 1337522255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColliderShadowGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22435,7 +22435,7 @@ GameObject:
   - component: {fileID: 2021793747}
   - component: {fileID: 2021793746}
   - component: {fileID: 2021793745}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShadowTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22965,7 +22965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2069749707
 RectTransform:
   m_ObjectHideFlags: 0
