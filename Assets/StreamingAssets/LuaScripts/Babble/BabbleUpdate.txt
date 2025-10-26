@@ -12,6 +12,7 @@ function BabbleUpdate(entity,dt)
 
 
     if data.printTimer == 0 and data.canPrint then
+        entity.transform.localPosition = CS.UnityEngine.Vector3(0,0,0)
         data.TMP.gameObject:SetActive(true)
         data.sprite.gameObject:SetActive(true)
         data.words = CT.GetRandomWords()
