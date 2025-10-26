@@ -5,49 +5,49 @@
       "SceneName": "世界的起点",
       "SpritePath": "",
       "ScenePath": "Course0",
-      "noteString": "有问题请点击游戏主界面标题联系策划"
+      "noteString": "奇怪？怎么打开Ui没法暂停了，有问题请点击游戏主界面标题联系策划"
     },
     {
       "Id": 1,
       "SceneName": "永恒的温柔",
       "SpritePath": "",
       "ScenePath": "Course1",
-      "noteString": "触发bug后要及时联系策划"
+      "noteString": "我一定要救回公主！触发bug后要及时联系策划"
     },
     {
       "Id": 2,
       "SceneName": "刻着过去的钟表",
       "SpritePath": "",
       "ScenePath": "LEVEL0",
-      "noteString": "注意时间机关，谨慎操作"
+      "noteString": "按R重置关卡"
     },
     {
       "Id": 3,
       "SceneName": "白垩的俄罗斯人偶",
       "SpritePath": "",
       "ScenePath": "LEVEL1",
-      "noteString": "关卡机关复杂，建议多观察"
+      "noteString": "按R重置关卡"
     },
     {
       "Id": 4,
       "SceneName": "荣华之梦",
       "SpritePath": "",
       "ScenePath": "LEVEL2",
-      "noteString": "可尝试隐藏路径探索"
+      "noteString": "听说在亮度滑块上也可以变小"
     },
     {
       "Id": 5,
       "SceneName": "错误分裂",
       "SpritePath": "",
       "ScenePath": "LEVEL3(Double)",
-      "noteString": "你变成两个人了"
+      "noteString": "我怎么一分为二了"
     },
     {
       "Id": 6,
       "SceneName": "监狱",
       "SpritePath": "",
       "ScenePath": "LEVEL4(Passable)",
-      "noteString": "可以从摄像机左右两边穿越"
+      "noteString": "缩放相机试试吧"
     },
     {
       "Id": 7,
