@@ -66,18 +66,21 @@ namespace Global.Data.BattleConfig
         private IEnumerator WinWithDelayCoroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
-            levelId += 1;
+
             //9->10,count ->10,levelId=count,so return StartScene
             if (levelId == userData.unLockLevel)
             {
                 userData.unLockLevel += 1;
                 JsonTool.SaveByJson(Path.Combine(Application.persistentDataPath, "UserData.json"), userData);
             }
+            levelId += 1;
+            
             if (levelId < GameConfig.Instance.LevtlDC.levelDataList.Count - 1)
             {
                 SceneChangeManager.Instance.LoadScene
                (GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == levelId).ScenePath);
             }
+            
             else
             {
                 if(DeadMode)

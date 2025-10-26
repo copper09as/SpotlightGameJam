@@ -3,7 +3,7 @@ function BabbleUpdate(entity,dt)
     local data = entity.dataTable or {}
     if CS.UnityEngine.Input.anyKey == false then
         data.printTimer = math.max(0,data.printTimer-dt) --如果不输入按键则计时
-        CS.UnityEngine.Debug.Log("气泡开始计时")
+        --CS.UnityEngine.Debug.Log("气泡开始计时")
     else
         data.printTimer = data.printTime
         --输入按键则气泡消失开始计时
