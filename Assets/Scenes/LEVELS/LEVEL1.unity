@@ -7752,6 +7752,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
+--- !u!1 &988970552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2457349452065179704, guid: 06c33b181957d1242aa127c8eec84211, type: 3}
+  m_PrefabInstance: {fileID: 988970551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1027292105
 GameObject:
   m_ObjectHideFlags: 0
@@ -7966,6 +7971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingMenu:
   - {fileID: 59891815}
+  - {fileID: 988970552}
   audioMenu:
   - {fileID: 2011406864}
   cameraMenu:
