@@ -45,7 +45,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LEVELS/LEVEL5(Drag).unity
     guid: a0719491c776bfd4eaea815d8677e0ed
   - enabled: 1
-    path: Assets/Scenes/LEVELS/LEVEL9.unity
+    path: Assets/Scenes/LEVELS/LEVEL9(Boss0).unity
     guid: c0072a755212a584ca57f966f9a6c410
   - enabled: 1
     path: Assets/Scenes/LEVELS/LEVEL8(DeepWell).unity
