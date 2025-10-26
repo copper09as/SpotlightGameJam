@@ -151,6 +151,7 @@ public class SettingUi : MonoBehaviour
         {
             NotificationManager.Instance.ShowNotification(ex.Message, "设置界面打开错误！");
             SceneChangeManager.Instance.LoadScene("StartScene");
+            throw ex;
         }
 
         if (slideCoroutine != null)
