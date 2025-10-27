@@ -72,6 +72,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8db995b08271ce74e91fddb5130343df
+    m_Address: "Assets/Audio/Sfx/\u5F00\u9501.wav"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96dc2f7c2ccd16242a05a07643402a38
     m_Address: Assets/Audio/Sfx/Magic10_A.ogg
     m_ReadOnly: 0

@@ -3533,6 +3533,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!19719996 &1260433185
 TilemapCollider2D:
