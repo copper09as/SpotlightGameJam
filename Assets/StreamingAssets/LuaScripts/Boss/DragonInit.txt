@@ -1,7 +1,21 @@
+local function SetDirection(position,entity) --设置朝向
+    local Direction = position - entity.transform.position
+
+    if Direction.x <=0 then
+        entity.transform.localScale = Vector3(1, 1, 1)
+    else
+        entity.transform.localScale = Vector3(-1, 1, 1)
+    end
+end
 local function DragonFly(entity)--飞回原来的位置
     CS.UnityEngine.Debug.Log("恶龙飞到随机的点位")--点位提前放置
     local data = entity.dataTable
-    entity.transform:DOMove( CS.BossStopPoint.Instance:GetPoint(),data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+    if CS.BossStopPoint.Instance:Equals(nil) then --如果被销毁则返回
+        return
+    end
+    local flyPosition = CS.BossStopPoint.Instance:GetPoint()
+    SetDirection(flyPosition,entity) --设置朝向
+    entity.transform:DOMove( flyPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
           :OnComplete(function ()
         data.state = "idle"
         CS.UnityEngine.Debug.Log("飞回完成")
