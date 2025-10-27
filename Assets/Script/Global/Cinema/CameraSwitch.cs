@@ -1,30 +1,69 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSwitch : SingleCaseMono<CameraSwitch>
+public class CameraSwitch : MonoBehaviour
 {
     public CinemachineVirtualCamera[] virtualCameras;
-    [SerializeField] private CinemachineVirtualCamera activeVirtualCamera;//此时活跃的虚拟相机
-    // Start is called before the first frame update
-    protected override void Awake()
+    public static CameraSwitch Instance;
+
+    [SerializeField] private float switchRecoverDelay = 2f;
+
+    private Coroutine recoverCoroutine;
+
+    private void Awake()
     {
-        base.Awake();
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         virtualCameras = GetComponentsInChildren<CinemachineVirtualCamera>();
-        activeVirtualCamera = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
-    }
-    public void Switch(CinemachineVirtualCamera virtualCamera)//切换摄像机机位（固定两个）
-    {
-        for (int i = 0; i < virtualCameras.Length; i++)
-        virtualCameras[i].Priority = virtualCamera == virtualCameras[i] ? 10 : 0;
-        activeVirtualCamera = virtualCamera;
-        EntityUIManager.Instance.isLoading = true;
-        EntityUIManager.Instance.HideAllMenus();
     }
 
-    public void SetTheCinameSize(float size) 
+    private void OnDestroy()
     {
-        activeVirtualCamera.m_Lens.OrthographicSize = size;
+        if (Instance == this)
+            Instance = null;
+    }
+
+
+    public void Switch(CinemachineVirtualCamera virtualCamera)
+    {
+
+        if (virtualCameras == null || virtualCameras.Length == 0)
+            return;
+
+        for (int i = 0; i < virtualCameras.Length; i++)
+            virtualCameras[i].Priority = (virtualCamera == virtualCameras[i]) ? 10 : 0;
+
+        EntityUIManager.Instance.isLoading = true;
+        EntityUIManager.Instance.HideAllMenus();
+
+        if (recoverCoroutine != null)
+        {
+            StopCoroutine(recoverCoroutine);
+            recoverCoroutine = null;
+        }
+
+        recoverCoroutine = StartCoroutine(RecoverLoadingFlag());
+    }
+
+
+    private IEnumerator RecoverLoadingFlag()
+    {
+        yield return new WaitForSecondsRealtime(switchRecoverDelay);
+
+        EntityUIManager.Instance.isLoading = false;
+        recoverCoroutine = null;
+    }
+
+
+    public void SetTheCinameSize(float size)
+    {
+        if (virtualCameras == null || virtualCameras.Length == 0) return;
+
+        var activeCam = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
+        activeCam.m_Lens.OrthographicSize = size;
     }
 }

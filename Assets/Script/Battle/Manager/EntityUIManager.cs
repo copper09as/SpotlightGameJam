@@ -56,7 +56,11 @@ public class EntityUIManager : MonoBehaviour
         yield return null;
         action?.Invoke();
     }
-
+    private void Update()
+    {
+        if (isLoading == true)
+            Debug.Log(isLoading);
+    }
     public void Init()
     {
         isLoading = true;
@@ -95,6 +99,8 @@ public class EntityUIManager : MonoBehaviour
     /// </summary>
     private void OnEscPressed(InputAction.CallbackContext ctx)
     {
+        if (isLoading)
+            return;
         if (!isSettingMenuActive && !isAudioMenuActive && !isCameraMenuActive)
         {
             ShowSettingMenu();

@@ -2192,6 +2192,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2019781452222742781, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
+      propertyPath: switchRecoverDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019781452222742781, guid: ea95d6f1825593b4d875893e57c7b857, type: 3}
       propertyPath: virtualCameras.Array.size
       value: 2
       objectReference: {fileID: 0}
