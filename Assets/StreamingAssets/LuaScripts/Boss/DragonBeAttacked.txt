@@ -4,11 +4,11 @@ local function DragonWakeFly(entity)
     if entity.col then
         entity.col.enabled = false
     end
-    if entity.sr then
-        local color = entity.sr.color
-        color.a = 0.5
-        entity.sr.color = color
-    end
+    --if entity.sr then
+    --    local color = entity.sr.color
+    --    color.a = 0.5
+    --    entity.sr.color = color
+    --end
     if entity.rb then
         entity.rb.velocity = CS.UnityEngine.Vector2(10, 10)
         entity.rb.angularVelocity = 0
@@ -69,9 +69,9 @@ function DragonBeAttacked(entity,otherEntity)
 
 	if not data.isInvincible then
 		data.ccbTime = data.ccbTime - 1
-
+        if data.ccbTime ~= 0 then
 		DragonInvincible(entity)
-
+        end
 	end
 
 
