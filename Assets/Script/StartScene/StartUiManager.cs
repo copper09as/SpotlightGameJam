@@ -8,12 +8,18 @@ using UnityEngine.UI;
 public class StartUiManager : MonoBehaviour
 {
     [Header("Buttons")]
+
     [SerializeField] private Button startButton;
     [SerializeField] private Button websiteButton;
-    [SerializeField] private Button OpenMenusButton;
+    
     [SerializeField] private Button openGiftPanelBtn;
     [SerializeField] private GameObject giftPanel;
-
+    [Header("设置按钮")]
+    [SerializeField] private Button OpenMenusButton;
+    [Header("退出游戏按钮")]
+    [SerializeField] private Button ExitBtn;
+    [Header("制作人员按钮")]
+    [SerializeField] private Button StaffBtn;
     private string websiteUrl = 
         "https://message.bilibili.com/?spm_id_from=333.1387.0.0#/whisper/mid80632239";
 
@@ -30,9 +36,24 @@ public class StartUiManager : MonoBehaviour
             websiteButton.onClick.AddListener(OnWebsiteButtonClicked);
         OpenMenusButton.onClick.AddListener(OpenMenu);
         openGiftPanelBtn.onClick.AddListener(OpenGiftPanel);
+        ExitBtn.onClick.AddListener(Exit);
+        StaffBtn.onClick.AddListener(ShowStaff);
         AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/GameStart (1).wav");
     }
-    
+
+    private void ShowStaff()
+    {
+        SceneChangeManager.Instance.LoadScene("Prepare");
+    }
+
+    private void Exit()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
     private void OpenGiftPanel()
     {
         giftPanel.SetActive(true);
