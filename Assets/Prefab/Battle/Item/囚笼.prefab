@@ -60,7 +60,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!114 &2605911838617641248
 MonoBehaviour:
@@ -95,6 +95,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 3556195997607010393}
   headDamageEffectPrefab: {fileID: 0}
+  rb: {fileID: 0}
   col: {fileID: 0}
   entityStop: 0
 --- !u!60 &7128026330179800005
