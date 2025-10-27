@@ -10,6 +10,11 @@ public class EntityManager
 {
     private readonly Dictionary<int, Entity> entityMap = new Dictionary<int, Entity>();
     private int nextId = 0;
+    public void DestroyEntity(Entity entity)
+    {
+        Unregister(entity);
+        UnityEngine.Object.Destroy(entity.gameObject);
+    }
     //ªÒ»°
     public Entity GetEntity(int id)
     {

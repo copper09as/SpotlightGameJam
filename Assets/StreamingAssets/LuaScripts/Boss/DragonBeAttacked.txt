@@ -75,8 +75,8 @@ function DragonBeAttacked(entity,otherEntity)
 		if liveFireList ~= nil and liveFireList.Count > 0 then
 			local index = liveFireList.Count - data.ccbTime
 
-			if index >= 1 and index <= #liveFireList then
-				local fireEntity = liveFireList[index]
+			if index >= 1 and index <= liveFireList.Count then
+				local fireEntity = liveFireList[index-1]
 				if fireEntity ~= nil and fireEntity.dataTable ~= nil then
 					fireEntity.dataTable.live = false
 				end

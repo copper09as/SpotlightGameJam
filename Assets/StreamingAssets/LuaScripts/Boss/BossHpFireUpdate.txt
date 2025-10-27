@@ -1,10 +1,6 @@
 function BossHpFireUpdate(entity)
     local data = entity.dataTable
     if not data.live then
-        local particle = entity.UnityEntity:GetComponent(typeof(CS.UnityEngine.ParticleSystem))
-        if particle ~= nil then
-            local main = particle.main
-            main.startSize = CS.UnityEngine.ParticleSystem.MinMaxCurve(0)
-        end
+        entity.entityManager:DestroyEntity(entity)
     end
 end
