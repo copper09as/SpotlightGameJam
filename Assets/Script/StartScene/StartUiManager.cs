@@ -67,7 +67,7 @@ public class StartUiManager : MonoBehaviour
     }
     private void Start()
     {
-        AudioManager.Instance.PlayBGM(StringResource.StartBgmPath);
+        AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
     }
     private void OnStartButtonClicked()
     {

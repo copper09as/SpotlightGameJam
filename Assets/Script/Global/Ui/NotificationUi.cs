@@ -9,7 +9,6 @@ public class Notification : MonoBehaviour
     [SerializeField] private TextMeshProUGUI notificationText;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private Button closeBtn;
-    [SerializeField] private Button restartBtn;
     [SerializeField] private Button urlBtn;
     private string openUrl = "https://space.bilibili.com/80632239";
     public static int count;
@@ -18,7 +17,6 @@ public class Notification : MonoBehaviour
         notificationText.text = note;
         titleText.text = title;
         closeBtn.onClick.AddListener(DestroySelf);
-        restartBtn.onClick.AddListener(ForceRestart);
         urlBtn.onClick.AddListener(OpenUrl);
         count++;
     }
@@ -26,15 +24,6 @@ public class Notification : MonoBehaviour
     private void DestroySelf()
     {
         Destroy(gameObject);
-    }
-
-    private void ForceRestart()
-    {
-        Application.Quit();
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
     }
 
 
