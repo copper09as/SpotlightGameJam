@@ -56,11 +56,7 @@ public class EntityUIManager : MonoBehaviour
         yield return null;
         action?.Invoke();
     }
-    private void Update()
-    {
-        if (isLoading == true)
-            Debug.Log(isLoading);
-    }
+
     public void Init()
     {
         isLoading = true;
