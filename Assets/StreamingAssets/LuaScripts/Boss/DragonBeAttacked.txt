@@ -17,9 +17,9 @@ local function DragonDead(entity)
         entity.animator:Play("Dead")
     end
     CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
-    entity.entityStop = true
 
     --放胜利的逻辑
+    entity.entityManager:Win(1)--一秒后胜利
 end
 local function DragonInvincible(entity) --龙进入无敌状态
     local data = entity.dataTable
