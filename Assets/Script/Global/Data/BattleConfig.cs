@@ -86,11 +86,11 @@ namespace Global.Data.BattleConfig
                 if(DeadMode)
                 {
                     NotificationManager.Instance.ShowNotification("恭喜您通关死亡模式！", "恭喜您通关死亡模式！");
-                    SceneChangeManager.Instance.LoadScene("StartScene");
+                    SceneChangeManager.Instance.LoadScene("Finally");
                 }
                 else
                 {
-                    SceneChangeManager.Instance.LoadScene("StartScene");
+                    SceneChangeManager.Instance.LoadScene("Finally");
                 }
               
             }
