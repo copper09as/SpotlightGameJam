@@ -3067,6 +3067,8 @@ GameObject:
   - component: {fileID: 1260433180}
   - component: {fileID: 1260433182}
   - component: {fileID: 1260433181}
+  - component: {fileID: 1260433184}
+  - component: {fileID: 1260433183}
   m_Layer: 0
   m_Name: ShadowTile
   m_TagString: Untagged
@@ -3208,6 +3210,77 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1260433183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260433179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e1104df709fe44cb9d09de0e27f470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptData:
+    id: 0
+    InitPath: []
+    UpdatePath: []
+    OnMouseDownPath: []
+    OnCollisionPath: []
+    OnTriggerPath: []
+    OnDragPath: []
+    DeadPath: []
+    OnDisablePath: []
+    OnEntityExitPath: []
+  animator: {fileID: 0}
+  dataId: 20025
+  CommonEntityData:
+    id: 0
+    EffectId: 0
+    ScaleX: 0
+    ScaleY: 0
+  entityPairs: []
+  sr: {fileID: 0}
+  headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
+  entityStop: 0
+--- !u!19719996 &1260433184
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260433179}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1290686251
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,6 +155,7 @@ MonoBehaviour:
     - {fileID: 0}
   sr: {fileID: 8804801278700765558}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!61 &7105879606534922062
 BoxCollider2D:
@@ -227,7 +228,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 2
   m_CollisionDetection: 1
-  m_Constraints: 5
+  m_Constraints: 7
 --- !u!1 &4958398536152570223
 GameObject:
   m_ObjectHideFlags: 0
