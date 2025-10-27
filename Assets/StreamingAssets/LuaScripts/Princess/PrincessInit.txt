@@ -1,0 +1,17 @@
+function PrincessInit(entity)
+    local data = entity.dataTable or {}
+    entity.dataTable = data
+
+    data.isPrincess = true
+
+    data.actionTimer = 0
+    data.nextActionTime = math.random(2, 5)
+
+    local scale = entity.transform.localScale
+    data.defaultScaleY = scale.y
+    data.scaleTimer = nil
+    data.jumpPower = 120
+    data.moveSpeed = 40
+    data.minActionGap = 2
+    data.maxActionGap = 5
+end
