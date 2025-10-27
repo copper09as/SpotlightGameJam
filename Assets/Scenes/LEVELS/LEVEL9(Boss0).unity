@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraMenu 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3524431363998892689, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
+      propertyPath: dataId
+      value: 20036
+      objectReference: {fileID: 0}
     - target: {fileID: 3618759915288087748, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
