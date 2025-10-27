@@ -2,16 +2,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class OpController : MonoBehaviour
 {
     [Header("Video Player")]
     public VideoPlayer videoPlayer;
 
+    [Header("RawImage 渲染视频")]
+    public CanvasGroup videoCanvasGroup;
+
     [Header("下一个场景名")]
     public string nextSceneName = "StartScene";
 
-    private bool isSkipped = false;
+    [Header("淡出时间")]
+    public float fadeDuration = 1.0f;
+
+    private bool isSkippingOrEnding = false;
 
     void Start()
     {
@@ -20,42 +27,66 @@ public class OpController : MonoBehaviour
             videoPlayer.loopPointReached += OnVideoEnd;
         }
 
-
         if (GameController.Controller != null)
         {
             GameController.Controller.Main.Esc.started += OnEscPressed;
         }
+
+        if (videoCanvasGroup != null)
+        {
+            videoCanvasGroup.alpha = 1f;
+        }
     }
 
-    void OnVideoEnd(VideoPlayer vp)
+    void Update()
     {
-        if (!isSkipped)
+        if (!isSkippingOrEnding && videoPlayer != null && videoPlayer.isPlaying)
         {
-            LoadNextScene();
+            if (videoPlayer.length - videoPlayer.time <= fadeDuration)
+            {
+                StartCoroutine(FadeOutAndLoadScene());
+            }
+        }
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        if (!isSkippingOrEnding)
+        {
+            StartCoroutine(FadeOutAndLoadScene());
         }
     }
 
     private void OnEscPressed(InputAction.CallbackContext ctx)
     {
-        SkipOp();
+        if (!isSkippingOrEnding)
+        {
+            StartCoroutine(FadeOutAndLoadScene());
+        }
     }
 
-    void SkipOp()
+    private IEnumerator FadeOutAndLoadScene()
     {
-        if (isSkipped) return;
-
-        isSkipped = true;
+        if (isSkippingOrEnding) yield break;
+        isSkippingOrEnding = true;
 
         if (videoPlayer != null)
         {
             videoPlayer.Stop();
         }
 
-        LoadNextScene();
-    }
+        if (videoCanvasGroup != null)
+        {
+            float timer = 0f;
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                videoCanvasGroup.alpha = Mathf.Clamp01(1f - timer / fadeDuration);
+                yield return null;
+            }
+            videoCanvasGroup.alpha = 0f;
+        }
 
-    void LoadNextScene()
-    {
         SceneChangeManager.Instance.LoadScene(nextSceneName);
     }
 
@@ -64,6 +95,11 @@ public class OpController : MonoBehaviour
         if (GameController.Controller != null)
         {
             GameController.Controller.Main.Esc.started -= OnEscPressed;
+        }
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.loopPointReached -= OnVideoEnd;
         }
     }
 }
