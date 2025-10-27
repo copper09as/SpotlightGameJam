@@ -1,3 +1,4 @@
+local Vector3 = CS.UnityEngine.Vector3
 local function SetDirection(position,entity) --设置朝向
     local Direction = position - entity.transform.position
 
