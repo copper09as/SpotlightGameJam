@@ -2,17 +2,17 @@
   "levelDataList": [
     {
       "Id": 0,
-      "SceneName": "世界的起点",
+      "SceneName": "故事的起点",
       "SpritePath": "",
       "ScenePath": "Course0",
-      "noteString": "奇怪？怎么打开Ui没法暂停了，有问题请点击游戏主界面标题联系策划"
+      "noteString": "奇怪？怎么打开Ui没法暂停了"
     },
     {
       "Id": 1,
-      "SceneName": "永恒的温柔",
+      "SceneName": "世界的变动",
       "SpritePath": "",
       "ScenePath": "Course1",
-      "noteString": "我一定要救回公主！触发bug后要及时联系策划"
+      "noteString": "我一定要救回公主！"
     },
     {
       "Id": 2,
@@ -37,7 +37,7 @@
     },
     {
       "Id": 5,
-      "SceneName": "错误分裂",
+      "SceneName": "分裂",
       "SpritePath": "",
       "ScenePath": "LEVEL3(Double)",
       "noteString": "我怎么一分为二了"
@@ -60,7 +60,7 @@
       "Id": 8,
       "SceneName": "回归虚无",
       "SpritePath": "",
-      "ScenePath": "LEVEL4(Passable)",
+      "ScenePath": "LEVEL9(Boss0)",
       "noteString": "迷宫较复杂，建议标记路线"
     },
     {
