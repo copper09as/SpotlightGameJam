@@ -129,7 +129,7 @@ function DragonFindPlayer(entity)--寻找角色
     SetDirection( data.attackPosition,entity) --设置朝向
     local Direction =  data.attackPosition - entity.transform.position
     if Direction.magnitude > data.DMRadius then
-        local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius)
+        local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.2)
         entity.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
               :OnComplete(function ()
             data.state = "idle"
