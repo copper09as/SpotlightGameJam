@@ -1,6 +1,6 @@
 local CE = CS.XLuaCustomExport
 
-local function DragonDead(entity)
+local function WakeDragonDead(entity)
     if entity.col then
         entity.col.enabled = false
     end
@@ -92,7 +92,7 @@ function WakeDragonBeAttacked(entity,otherEntity)
     end
 
     if data.ccbTime <= 0 then
-        DragonDead(entity) -- 龙死亡
+        WakeDragonDead(entity) -- 龙死亡
     end
 
 end

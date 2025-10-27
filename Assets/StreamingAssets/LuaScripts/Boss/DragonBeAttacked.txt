@@ -1,6 +1,6 @@
 local CE = CS.XLuaCustomExport
 
-local function DragonDead(entity)
+local function DragonWakeFly(entity)
     if entity.col then
         entity.col.enabled = false
     end
@@ -10,16 +10,18 @@ local function DragonDead(entity)
         entity.sr.color = color
     end
     if entity.rb then
-        entity.rb.velocity = CS.UnityEngine.Vector2(0, 0)
+        entity.rb.velocity = CS.UnityEngine.Vector2(10, 10)
         entity.rb.angularVelocity = 0
     end
     if entity.animator then
-        entity.animator:Play("Dead")
+        entity.animator:Play("Fly")
     end
+    entity.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
+
     CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
 
     --放胜利的逻辑
-    entity.entityManager:Win(1)--一秒后胜利
+
 end
 local function DragonInvincible(entity) --龙进入无敌状态
     local data = entity.dataTable
@@ -80,7 +82,7 @@ function DragonBeAttacked(entity,otherEntity)
     end
 
     if data.ccbTime <= 0 then
-        DragonDead(entity) -- 龙死亡
+        DragonWakeFly(entity) -- 龙死亡
     end
 
 end
