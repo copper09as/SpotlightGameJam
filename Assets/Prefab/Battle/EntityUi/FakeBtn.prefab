@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 453611518574648966}
   - component: {fileID: 815744775172103969}
   - component: {fileID: 6194730088779915494}
+  - component: {fileID: 9068996831949612463}
   m_Layer: 5
   m_Name: FakeBtn
   m_TagString: Untagged
@@ -120,3 +121,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9068996831949612463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723050324661510760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15

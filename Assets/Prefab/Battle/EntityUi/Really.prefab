@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 914594388261141171}
   - component: {fileID: 652500942573993121}
   - component: {fileID: 8600572489837197350}
+  - component: {fileID: 4503018549121023978}
   m_Layer: 5
   m_Name: Really
   m_TagString: Untagged
@@ -120,3 +121,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4503018549121023978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216878953719376830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
