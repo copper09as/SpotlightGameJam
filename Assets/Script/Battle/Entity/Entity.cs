@@ -28,7 +28,7 @@ namespace Game.Battle.Entity
         [NonSerialized] public LuaTable dataTable;//保存lua初始化的数据
         [SerializeField] public SpriteRenderer sr;
         [SerializeField] private GameObject headDamageEffectPrefab; // 修改名字
-        [NonSerialized] public Rigidbody2D rb;
+        [SerializeField] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
         [SerializeField] public Collider2D col;
 
