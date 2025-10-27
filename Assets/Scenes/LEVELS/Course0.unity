@@ -1183,6 +1183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PedalNew
       objectReference: {fileID: 0}
+    - target: {fileID: 7998465410460274557, guid: 56547d7767b964947a83961448ab708c, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
+      value: 
+      objectReference: {fileID: 2139021462}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
