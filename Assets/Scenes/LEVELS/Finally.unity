@@ -315,8 +315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 21300000, guid: 794a4f03028ede346841dfdb501e1390, type: 3}
-  - {fileID: 21300000, guid: d0f18919ced13464595d9d0ebe503933, type: 3}
+  - {fileID: 21300000, guid: 2b38b53565d5e5848abfcd6de12b9875, type: 3}
+  - {fileID: 21300000, guid: eabbd0deeb07b3e4eba06892378b1041, type: 3}
+  - {fileID: 21300000, guid: ed4f7295100abbf49ab9aa59a8b3706a, type: 3}
+  - {fileID: 21300000, guid: b00744411f9c10c468b9daa0a643db2e, type: 3}
+  - {fileID: 21300000, guid: 24de0925314c8a74b974f77122b57659, type: 3}
   displayImage: {fileID: 1233536489}
   fadeDuration: 0.5
   finalFadeDuration: 1
@@ -378,7 +381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4fcc3f66c6c28df4a8faea6c002ce1e3, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
