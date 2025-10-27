@@ -9,7 +9,7 @@ local Time = CS.UnityEngine.Time
 -- 🟦 X方向跟随（动态屏幕适配）
 ------------------------------------------------------
 function FollowMouseX(entity)
-    if entity == nil or entity.transform == nil then return end
+    if entity:Equals(nil) or entity.transform:Equals(nil) then return end
 
     local cam = Camera.main
     local data = entity.dataTable
