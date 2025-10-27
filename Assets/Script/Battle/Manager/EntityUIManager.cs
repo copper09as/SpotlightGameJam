@@ -95,6 +95,8 @@ public class EntityUIManager : MonoBehaviour
     /// </summary>
     private void OnEscPressed(InputAction.CallbackContext ctx)
     {
+        if (isLoading)
+            return;
         if (!isSettingMenuActive && !isAudioMenuActive && !isCameraMenuActive)
         {
             ShowSettingMenu();
