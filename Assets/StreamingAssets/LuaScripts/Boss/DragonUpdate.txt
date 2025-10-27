@@ -126,12 +126,17 @@ function DragonFindPlayer(entity)--寻找角色
     CS.UnityEngine.Debug.Log("恶龙寻找角色")
     local data = entity.dataTable
     data.attackPosition = data.target.transform.position
+    SetDirection( data.attackPosition,entity) --设置朝向
     local Direction =  data.attackPosition - entity.transform.position
-    local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius)
-    entity.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
-          :OnComplete(function ()
-        data.state = "idle"
-        CS.UnityEngine.Debug.Log("到角色附近")
-    end)
+    if Direction.magnitude > data.DMRadius then
+        local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius)
+        entity.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+              :OnComplete(function ()
+            data.state = "idle"
+            CS.UnityEngine.Debug.Log("到角色附近")
+        end)
+    else
+        CS.UnityEngine.Debug.Log("已经角色附近")
+    end
 end
 
