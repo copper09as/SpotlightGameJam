@@ -345,5 +345,15 @@
 	{
 		"id": 10033,
 		"InitPath": ["Physics/SetStatic"]
+	},
+	{
+		"id": 10034,
+		"InitPath": ["Boss/BossHpFireInit"],
+		"UpdatePath": ["Boss/BossHpFireUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}]
 }
