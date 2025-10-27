@@ -15,7 +15,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Button exitGameBtn;
     [SerializeField] private GameObject settingUi;
     [SerializeField] private CanvasGroup panelCanvasGroup;
-    [SerializeField] private Button toStartSceneBtn;
+    //[SerializeField] private Button toStartSceneBtn;
     //[SerializeField] private Button openSettingUi;
     [SerializeField] private Button mapBtn;
     [SerializeField] private GameObject settingUIPrefab;
@@ -51,7 +51,7 @@ public class SettingUi : MonoBehaviour
        // openSettingUi.onClick.AddListener(ShowSettingUi);
         closePanelBtn.onClick.AddListener(CloseSettingPanel);
         exitGameBtn.onClick.AddListener(ExitGame);
-        toStartSceneBtn.onClick.AddListener(ToStartScene);
+       // toStartSceneBtn.onClick.AddListener(ToStartScene);
         mapBtn.onClick.AddListener(ToMapScene);
         //confirmResolutionBtn.onClick.AddListener(ChangeResolution);
         //fullScreenTog.onValueChanged.AddListener(SetFullscreen);

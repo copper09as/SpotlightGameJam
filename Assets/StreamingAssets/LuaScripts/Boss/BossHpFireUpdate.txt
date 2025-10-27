@@ -1,0 +1,6 @@
+function BossHpFireUpdate(entity)
+    local data = entity.dataTable
+    if not data.live then
+        entity.entityManager:DestroyEntity(entity)
+    end
+end
