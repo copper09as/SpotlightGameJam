@@ -1414,8 +1414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1297874042}
-  comicPanel: {fileID: 0}
-  comicImage: {fileID: 0}
+  comicPanel: {fileID: 857496307}
+  comicImage: {fileID: 569661199}
   comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
