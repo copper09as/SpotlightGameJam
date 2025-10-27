@@ -341,5 +341,9 @@
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10033,
+		"InitPath": ["Physics/SetStatic"]
 	}]
 }
