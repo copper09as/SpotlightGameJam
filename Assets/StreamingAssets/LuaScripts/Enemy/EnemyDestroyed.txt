@@ -1,5 +1,5 @@
 function EnemyDestroyed(entity,otherEntity)
-	
+
     if otherEntity~= nil and otherEntity:CompareTag("Enemy") then
         print("史莱姆碰撞不死亡")
         return
@@ -31,7 +31,8 @@ function EnemyDestroyed(entity,otherEntity)
         entity.col.enabled = false
     end
 	CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
-    if otherEntity ~= nil and otherEntity.rb ~= nil then
+    if otherEntity ~= nil and otherEntity.rb ~= nil and
+            not otherEntity.dataTable.isDragon  then
 		local velocity = otherEntity.rb.velocity
         velocity.y = 10
         otherEntity.rb.velocity = velocity

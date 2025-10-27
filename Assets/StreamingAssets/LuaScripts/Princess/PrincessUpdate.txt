@@ -1,0 +1,36 @@
+function PrincessUpdate(entity, dt)
+    local data = entity.dataTable
+
+    data.actionTimer = data.actionTimer + dt
+    if data.actionTimer >= data.nextActionTime then
+        data.actionTimer = 0
+        data.nextActionTime = math.random(data.minActionGap, data.maxActionGap)
+
+        local r = math.random(1, 3)
+        if r == 1 then
+            local v = entity.rb.velocity
+            v.y = -data.jumpPower
+            entity.rb.velocity = v
+
+        elseif r == 2 then
+            entity.sr.flipX = not entity.sr.flipX
+
+        elseif r == 3 then
+            local scale = entity.transform.localScale
+            scale.y = data.defaultScaleY * 1.1
+            entity.transform.localScale = scale
+            data.scaleTimer = 0.3
+		end
+    end
+
+    if data.scaleTimer then
+        data.scaleTimer = data.scaleTimer - dt
+        if data.scaleTimer <= 0 then
+            local scale = entity.transform.localScale
+            scale.y = data.defaultScaleY
+            entity.transform.localScale = scale
+            data.scaleTimer = nil
+        end
+    end
+
+end

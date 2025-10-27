@@ -216,6 +216,14 @@ public class BattleStreaming : MonoBehaviour
 
     private void ResetBattle(InputAction.CallbackContext context)
     {
-        SceneChangeManager.Instance.ReloadCurrentScene();
+        if(BattleConfig.Instance.DeadMode)
+        {
+            return;
+        }
+        else
+        {
+            SceneChangeManager.Instance.ReloadCurrentScene();
+        }
+        
     }
 }

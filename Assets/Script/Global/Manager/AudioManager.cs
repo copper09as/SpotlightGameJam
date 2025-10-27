@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("淡入淡出设置")]
     public float fadeDuration = 1f; // BGM淡入淡出时长
-
+    private string currentAudio;
     private Coroutine fadeCoroutine;
     private readonly Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
 
@@ -32,16 +32,17 @@ public class AudioManager : MonoBehaviour
         bgmSource.loop = true;
         SetBGMVolume(0.5f);
         SetSFXVolume(0.5f);
-
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ERROR 02.wav");
     }
 
     #region 音量管理
     public void SetBGMVolume(float volume)
     {
-
+        /*
         float linear = Mathf.Clamp(volume, 0.0001f, 1f);
         float scale = 0.2518f; // 校准系数
-        float dB = 20f * Mathf.Log10(linear * scale);
+        float dB = 20f * Mathf.Log10(linear * scale);*/
+        float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
         mixer.SetFloat("BgmVolume", dB);
     }
 
@@ -61,9 +62,14 @@ public class AudioManager : MonoBehaviour
     #region 播放BGM
     public void PlayBGM(string clipName)
     {
+        if (currentAudio == clipName)
+        {
+            return;
+        }
         AudioClip clip = LoadClip(clipName);
         if (clip == null) return;
 
+        currentAudio = clipName;
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
 

@@ -23,10 +23,91 @@ public class GiftPanel : MonoBehaviour
 
     private void Confirm()
     {
-        if(input.text == "BlackField")
+        if (input.text == "BlackField")
         {
             BattleConfig.Instance.UnLockLevel();
             Close();
+            NotificationManager.Instance.ShowNotification("已解锁关卡至7600！", "解锁所有关卡！");
+        }
+        else if (input.text == "Clear")
+        {
+            BattleConfig.Instance.ClearLevel();
+            Close();
+            NotificationManager.Instance.ShowNotification("已清空存档！", "已经清空存档！");
+        }
+        else if (input.text == "DeadMode")
+        {
+            BattleConfig.Instance.DeadMode = true;
+            Close();
+            BattleConfig.Instance.ClearLevel();
+            NotificationManager.Instance.ShowNotification("开启死亡模式！死亡后会损失所有存档！", "开启死亡模式！");
+        }
+
+        else if (input.text == "CloseDeadMode")
+        {
+            BattleConfig.Instance.DeadMode = false;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭死亡模式！", "关闭死亡模式！");
+        }
+        else if (input.text == "DragMode")
+        {
+            BattleConfig.Instance.DragMode = true;
+            Close();
+            NotificationManager.Instance.ShowNotification("开启拖拽模式！所有物体都可以被拖拽！", "开启拖拽模式！");
+        }
+        else if (input.text == "CloseDragMode")
+        {
+            BattleConfig.Instance.DragMode = false;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭拖拽模式！", "关闭拖拽模式！");
+        }
+        else if (input.text == "Alive!")
+        {
+            BattleConfig.Instance.EverythingMoveMode = true;
+            Close();
+            NotificationManager.Instance.ShowNotification("所有物体活了起来！", "开启活力模式！");
+        }
+        else if (input.text == "CloseAlive")
+        {
+            BattleConfig.Instance.EverythingMoveMode = false;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭活力模式！", "关闭活力模式！");
+        }
+        else if (input.text == "Poison")
+        {
+            BattleConfig.Instance.PoisionMode = true;
+            Close();
+            NotificationManager.Instance.ShowNotification("开启毒素模式！所有的物体都有毒。。。", "开启毒素模式！");
+        }
+        else if (input.text == "ClosePoison")
+        {
+            BattleConfig.Instance.PoisionMode = false;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭毒素模式!", "关闭毒素模式！");
+        }
+        else if (input.text == "DontDead")
+        {
+            BattleConfig.Instance.DontDeadMode = true;
+            Close();
+            NotificationManager.Instance.ShowNotification("开启角色无敌模式!", "开启无敌模式！");
+        }
+        else if (input.text == "CloseDontDead")
+        {
+            BattleConfig.Instance.PoisionMode = false;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭角色无敌模式!", "关闭角色无敌模式！");
+        }
+        else if (input.text == "SpecialSfx")
+        {
+            BattleConfig.Instance.SpecialSfx = 1;
+            Close();
+            NotificationManager.Instance.ShowNotification("开启特殊音效!", "开启特殊音效！");
+        }
+        else if (input.text == "CloseSpecialSfx")
+        {
+            BattleConfig.Instance.SpecialSfx = 0;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭特殊音效!", "关闭特殊音效！");
         }
         else
         {

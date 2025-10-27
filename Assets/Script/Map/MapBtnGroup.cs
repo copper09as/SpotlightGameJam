@@ -50,14 +50,7 @@ public class MapBtnGroup : MonoBehaviour
     private IEnumerator LoadMapButtonsCoroutine()
     {
         var levelDataList = GameConfig.Instance.LevtlDC.levelDataList;
-        /*
-        // 先添加开头的虚假按钮
-        for (int i = 0; i < 3; i++)
-        {
-            CreateFakeButton();
-            yield return null;
-        }
-        */
+
         for (int i = 0; i < levelDataList.Count; i++)
         {
             var levelData = levelDataList[i];
@@ -67,15 +60,6 @@ public class MapBtnGroup : MonoBehaviour
                 unLockCount++;
             yield return null;
         }
-
-        /*
-        // 添加结尾的虚假按钮
-        for (int i = 0; i < 3; i++)
-        {
-            CreateFakeButton();
-            yield return null;
-        }
-        */
         LayoutButtons(true);
 
         if (panelCanvasGroup != null)
@@ -146,7 +130,7 @@ public class MapBtnGroup : MonoBehaviour
 
     private void EnterByIndex(int id, MapBtn mapBtn)
     {
-        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
         BattleConfig.Instance.levelId = id;
 
         string scenePath = GameConfig.Instance.LevtlDC.levelDataList.Find(i => i.Id == id).ScenePath;

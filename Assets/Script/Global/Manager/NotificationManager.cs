@@ -32,8 +32,10 @@ public class NotificationManager : MonoBehaviour
         if (Notification.count > 3)
             return;
         // 清除旧的提示
+
         foreach (Transform child in notificationParent)
         {
+            if(child.GetComponent<Notification>()!=null)
             Destroy(child.gameObject);
         }
 

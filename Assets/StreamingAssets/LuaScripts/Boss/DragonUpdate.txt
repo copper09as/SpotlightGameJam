@@ -15,17 +15,25 @@ function DragonUpdate(entity, dt)
         DragonAttackBefore(entity, dt)
     elseif data.state == "attackAfter" then
         DragonAttackAfter(entity, dt,1)
+    --elseif data.state == "find" then
+    --    DragonFindPlayer(entity)
     end
-    CS.UnityEngine.Debug.Log(data.state)
+    --CS.UnityEngine.Debug.Log(data.state)
 end
 
 
 function DragonIdle(entity) --什么都不做
     local data = entity.dataTable
-    if data.attackTimer == 0 then
+
+    local Direction = data.target.transform.position - entity.transform.position
+
+    if data.attackTimer == 0 and Direction.magnitude <= data.DMRadius then
         data.state = "attackBefore" --进入攻击前摇阶段
         data.beforeTimer = data.beforeTime
         CS.UnityEngine.Debug.Log("进入恶龙攻击前摇")
+    elseif data.attackTimer == 0 and Direction.magnitude > data.DMRadius then
+        DragonFindPlayer(entity)
+        data.attackTimer = data.attackTime
     end
 
     return
@@ -47,7 +55,7 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     --Mathf.Atan2(normalizedDirection.y,normalizedDirection.x) * Mathf.Rad2Deg + 90 ;--巨龙朝向
     --
     --entity.gameObject.transform:DORotate(Vector3(0, 0, angle),0.3):SetAutoKill(false)--0.3秒将显示层转到相应角度
-    --
+
     if Direction.x <=0 then
         entity.transform.localScale = Vector3(1, 1, 1)
     else
@@ -81,7 +89,7 @@ end
 
 
 function DragonAttackAfter(entity, dt)--攻击后摇期间
-    entity.sr.gameObject.transform:DORotate(Vector3(0, 0, 0),0.3)
+    --entity.sr.gameObject.transform:DORotate(Vector3(0, 0, 0),0.3)
     CS.UnityEngine.Debug.Log("恶龙攻击后摇")
     local data = entity.dataTable
     data.afterTimer = math.max(0, data.afterTimer - dt)--更新时间计时器
@@ -97,10 +105,10 @@ function DragonAttackAfter(entity, dt)--攻击后摇期间
 end
 
 
-function DragonFly(entity)--飞回原来的位置
-    CS.UnityEngine.Debug.Log("恶龙飞到随机的点位")--点位提前放置
+function DragonFly(entity)--飞到指定的点位
+    --CS.UnityEngine.Debug.Log()--点位提前放置
     local data = entity.dataTable
-    entity.transform:DOMove( CS.BossStopPoint.Instance:GetPoint(),data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+    entity.transform:DOMove(CS.BossStopPoint.Instance:GetPoint(),data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
     :OnComplete(function ()
     data.state = "idle"
         CS.UnityEngine.Debug.Log("飞回完成")
@@ -108,4 +116,16 @@ function DragonFly(entity)--飞回原来的位置
     end)
 end
 
+function DragonFindPlayer(entity)--寻找角色
+    CS.UnityEngine.Debug.Log("恶龙寻找角色")
+    local data = entity.dataTable
+    data.attackPosition = data.target.transform.position
+    local Direction =  data.attackPosition - entity.transform.position
+    local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius)
+    entity.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+          :OnComplete(function ()
+        data.state = "idle"
+        CS.UnityEngine.Debug.Log("到角色附近")
+    end)
+end
 

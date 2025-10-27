@@ -30,15 +30,18 @@ public class StartUiManager : MonoBehaviour
             websiteButton.onClick.AddListener(OnWebsiteButtonClicked);
         OpenMenusButton.onClick.AddListener(OpenMenu);
         openGiftPanelBtn.onClick.AddListener(OpenGiftPanel);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/GameStart (1).wav");
     }
-
+    
     private void OpenGiftPanel()
     {
         giftPanel.SetActive(true);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
     }
 
     private void OpenMenu()
     {
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
         EventBus.Publish(new Global.Events.OpenSettingUi());
     }
     private void Start()
@@ -47,13 +50,13 @@ public class StartUiManager : MonoBehaviour
     }
     private void OnStartButtonClicked()
     {
-        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
         SceneChangeManager.Instance.LoadScene("Map");
     }
 
     private void OnWebsiteButtonClicked()
     {
-        AudioManager.Instance.PlaySFX(StringResource.LeftClickSfxPath);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
         if (!string.IsNullOrEmpty(websiteUrl))
         {
             Application.OpenURL(websiteUrl);

@@ -331,5 +331,15 @@
 		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10032,
+		"InitPath": ["Physics/SetDynamic","Princess/PrincessInit"],
+		"UpdatePath": ["Princess/PrincessUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
 	}]
 }
