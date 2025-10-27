@@ -11,14 +11,12 @@ function ScrollVirtualCameraSize(entity)
 	if data == nil then
 		return
 	end
-    local cam = CS.UnityEngine.Camera.main
     local t = data.scrollProgress
-
+	
     t = math.clamp(t, 0, 1)
 
     local targetSize = maxSize + (minSize - maxSize) * t
-
-    cam.orthographicSize = targetSize
+	CS.CameraSwitch.Instance:SetTheCinameSize(targetSize)
 end
 
 function math.clamp(val, min, max)
