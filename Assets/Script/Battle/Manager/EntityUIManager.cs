@@ -34,7 +34,7 @@ public class EntityUIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
+            
         }
         else
         {

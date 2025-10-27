@@ -30,6 +30,7 @@ public class BattleStreaming : MonoBehaviour
 
     private void Awake()
     {
+        AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
         if (panel != null && panel.transform.childCount > 0)
         {
             var child1 = panel.transform.GetChild(1);

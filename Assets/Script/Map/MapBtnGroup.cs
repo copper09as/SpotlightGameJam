@@ -38,7 +38,7 @@ public class MapBtnGroup : MonoBehaviour
     private JumpSource currentJumpSource = JumpSource.None;
     private void Awake()
     {
-        AudioManager.Instance.PlayBGM(StringResource.MapBgmPath);
+        AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
         StartCoroutine(LoadMapButtonsCoroutine());
         returnStartBtn.onClick.AddListener(ReturnStartScene);
     }
