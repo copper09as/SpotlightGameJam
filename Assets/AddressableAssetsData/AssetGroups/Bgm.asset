@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6ff20f9336afb9a40b5f64640a9837a0
   m_SerializeEntries:
-  - m_GUID: 21bef62571f5cc14d9fa91ad112faa7c
-    m_Address: Assets/Audio/Bgm/Battle.ogg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 558756055374e564f95a5d5f070cd390
     m_Address: Assets/Audio/Bgm/Map.ogg
     m_ReadOnly: 0
@@ -29,6 +24,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb3fe8b556bb5c9488c19c1cff468d6f
     m_Address: Assets/Audio/Bgm/StartScene.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffae6b66bd6694e499840878b290a30d
+    m_Address: Assets/Audio/Bgm/Battle.ogg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

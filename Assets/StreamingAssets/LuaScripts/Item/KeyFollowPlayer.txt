@@ -1,17 +1,13 @@
 --钥匙跟随角色
 local Tool=CS.Tool
 local DM = CS.DetectionManager
-local  function OpenTheDoor(entity,character) --这里的entity是门
+local function OpenTheDoor(entity,character) --这里的entity是门
     if character:Equals(nil) then
         return false
     end
     entity.animator:SetBool("IsOpen",true)--开门动画
-    character.entityStop = true --角色lua脚本失活
-    if character.rb then --刚体速度置空
-        character.rb.velocity=CS.UnityEngine.Vector2(0,0)
-        character.rb.angularVelocity=0
-    end
     CS.UnityEngine.Debug.Log("开门成功")
+	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/OpenDoor.wav");
     entity.entityManager:Win(1)--一秒后胜利
     return true
 end

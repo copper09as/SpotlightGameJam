@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+
 using Game.Battle.Entity;
 using Global.Data.BattleConfig;
+using UnityEngine;
 
 public class EntityManager
 {
@@ -27,6 +29,7 @@ public class EntityManager
         foreach (var entity in GetAllEntities())
         {
             entity.entityStop = true;
+
         }
         if (BattleConfig.Instance.DeadMode)
         {
@@ -46,8 +49,13 @@ public class EntityManager
         foreach (var entity in GetAllEntities())
         {
             entity.entityStop = true;
+            if (entity.rb != null)
+            {
+                entity.rb.velocity = Vector2.zero;
+                entity.rb.angularVelocity = 0;
+            }
         }
-        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/OpenDoor.wav");
+        
         BattleConfig.Instance.Win(delay);
     }
     public List<Entity> FindEntityByDataTable(string key)

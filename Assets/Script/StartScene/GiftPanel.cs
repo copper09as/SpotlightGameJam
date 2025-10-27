@@ -23,17 +23,19 @@ public class GiftPanel : MonoBehaviour
 
     private void Confirm()
     {
-        if(input.text == "BlackField")
+        if (input.text == "BlackField")
         {
             BattleConfig.Instance.UnLockLevel();
             Close();
+            NotificationManager.Instance.ShowNotification("已解锁关卡至7600！", "解锁所有关卡！");
         }
-        else if(input.text == "Clear")
+        else if (input.text == "Clear")
         {
             BattleConfig.Instance.ClearLevel();
             Close();
+            NotificationManager.Instance.ShowNotification("已清空存档！", "已经清空存档！");
         }
-        else if(input.text == "DeadMode")
+        else if (input.text == "DeadMode")
         {
             BattleConfig.Instance.DeadMode = true;
             Close();
@@ -94,6 +96,18 @@ public class GiftPanel : MonoBehaviour
             BattleConfig.Instance.PoisionMode = false;
             Close();
             NotificationManager.Instance.ShowNotification("关闭角色无敌模式!", "关闭角色无敌模式！");
+        }
+        else if (input.text == "SpecialSfx")
+        {
+            BattleConfig.Instance.SpecialSfx = 1;
+            Close();
+            NotificationManager.Instance.ShowNotification("开启特殊音效!", "开启特殊音效！");
+        }
+        else if (input.text == "CloseSpecialSfx")
+        {
+            BattleConfig.Instance.SpecialSfx = 0;
+            Close();
+            NotificationManager.Instance.ShowNotification("关闭特殊音效!", "关闭特殊音效！");
         }
         else
         {

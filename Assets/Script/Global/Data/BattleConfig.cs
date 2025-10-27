@@ -28,7 +28,7 @@ namespace Global.Data.BattleConfig
         public bool PoisionMode = false;
         public bool DontDeadMode = false;
         public bool DeadMode = false;
-
+        public int SpecialSfx = 0;
         private void Awake()
         {
             if (Instance == null)
