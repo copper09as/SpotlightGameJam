@@ -1816,7 +1816,6 @@ MonoBehaviour:
   exitGameBtn: {fileID: 1682428998}
   settingUi: {fileID: 207079903}
   panelCanvasGroup: {fileID: 207079905}
-  toStartSceneBtn: {fileID: 0}
   mapBtn: {fileID: 633906829}
   settingUIPrefab: {fileID: 6764843567380739736, guid: a825153cca85ae2438312886d7229bb4, type: 3}
   hiddenPos: {x: -233.0729, y: 1454, z: 0}
@@ -1975,7 +1974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16ef74f22523ce469a252788468a5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testScene: LEVEL10(Boss1)
+  testScene: StartScene
 --- !u!4 &1451376373
 Transform:
   m_ObjectHideFlags: 0
