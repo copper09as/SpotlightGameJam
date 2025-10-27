@@ -97,6 +97,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc880efdd1b511547a498190a0a3f0ee
+    m_Address: Assets/Audio/Sfx/ERROR 01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0b40a646b36dd24b929b7f191dbcdc2
     m_Address: Assets/Audio/Sfx/PlayerWalk (5).wav
     m_ReadOnly: 0

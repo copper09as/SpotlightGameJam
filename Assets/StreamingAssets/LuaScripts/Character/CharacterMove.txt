@@ -57,7 +57,11 @@ function CharacterMove(entity)
     if entity.animator ~= nil and groundCheck then
         local threshold = 0.1
         if math.abs(rb.velocity.x) > threshold and not data.jumpUsed then
-            entity.animator:Play("Walk")
+			if CS.UnityEngine.Time.timeScale < (data.noiseSound or 0.6) then
+				entity.animator:Play("NoiseWalk") 
+			else
+				entity.animator:Play("Walk")
+			end
         elseif math.abs(rb.velocity.x) <= threshold and not data.jumpUsed then
 			if CS.UnityEngine.Time.timeScale < (data.noiseSound or 0.6) then
 				entity.animator:Play("NoiseIdle") 
@@ -67,14 +71,13 @@ function CharacterMove(entity)
         end
     end
 
-    -- ====== 脚步声播放 ======
-    -- 只有接地 + 有水平速度时播放
+
     if groundCheck and math.abs(rb.velocity.x) > 0.1 then
         local now = CS.UnityEngine.Time.time
         if data.lastStepTime == nil then
             data.lastStepTime = 0
         end
-        local stepInterval = 0.35 -- 每隔多少秒播一次脚步声
+        local stepInterval = 0.35
 
         if now - data.lastStepTime >= stepInterval then
             local index = math.random(1, #walkAudios)

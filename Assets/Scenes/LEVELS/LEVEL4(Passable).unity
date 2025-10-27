@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 593277203}
   - component: {fileID: 593277202}
   - component: {fileID: 593277201}
+  - component: {fileID: 593277205}
   m_Layer: 5
   m_Name: Really
   m_TagString: Untagged
@@ -1218,6 +1219,27 @@ RectTransform:
   m_AnchoredPosition: {x: -898, y: 480}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &593277205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593277200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1001 &598894215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1451,6 +1473,7 @@ GameObject:
   - component: {fileID: 760528057}
   - component: {fileID: 760528056}
   - component: {fileID: 760528055}
+  - component: {fileID: 760528059}
   m_Layer: 5
   m_Name: FakeBtn
   m_TagString: Untagged
@@ -1559,6 +1582,27 @@ RectTransform:
   m_AnchoredPosition: {x: 900, y: 481}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &760528059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760528054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ee68f3d292cfd4ab7650c4596fa188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  clickScale: 0.9
+  duration: 0.15
+  isMainTitle: 0
+  hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  clickColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 0.4}
+  enableGlow: 1
+  glowIntensity: 0.15
 --- !u!1 &815461990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,6 +3186,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!1 &1290686251
 GameObject:
@@ -20332,6 +20377,7 @@ GameObject:
   - component: {fileID: 2010740930}
   - component: {fileID: 2010740929}
   - component: {fileID: 2010740928}
+  - component: {fileID: 2010740932}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -20410,6 +20456,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010740926}
   m_CullTransparentMesh: 1
+--- !u!114 &2010740932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010740926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2010740929}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2011406862
 PrefabInstance:
   m_ObjectHideFlags: 0

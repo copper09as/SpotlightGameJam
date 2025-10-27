@@ -46,6 +46,7 @@ public class EntityManager
     }
     public void Win(float delay)
     {
+        delay = 2f;
         foreach (var entity in GetAllEntities())
         {
             entity.entityStop = true;
