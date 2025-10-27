@@ -363,7 +363,7 @@
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
 		"OnDragPath": [],
-		"DeadPath": [ "Boss/DragonBeAttacked"],
+		"DeadPath": [ "Boss/WakeDragonBeAttacked" ],
 		"OnDisablePath": []
 	},
 	{
