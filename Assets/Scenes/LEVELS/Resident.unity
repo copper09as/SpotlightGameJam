@@ -1870,6 +1870,10 @@ MonoBehaviour:
   confirmResolutionBtn: {fileID: 0}
   fullscreen: 1
   fullScreenTog: {fileID: 0}
+  bgmFillImage: {fileID: 402453638}
+  seFillImage: {fileID: 591245669}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1108921706
 MonoBehaviour:
   m_ObjectHideFlags: 0

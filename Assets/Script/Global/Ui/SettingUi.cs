@@ -33,6 +33,13 @@ public class SettingUi : MonoBehaviour
     private float currentScale = 1f;
     private Coroutine slideCoroutine;
     private bool isOpen = false;
+    [SerializeField] private Image bgmFillImage; // 拖拽 BGM 滑条的 Fill 区域
+    [SerializeField] private Image seFillImage;  // 拖拽 SE 滑条的 Fill 区域
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color activeColor = new Color(1f, 0.8f, 0.2f); 
+
+    private Coroutine bgmFlashRoutine;
+    private Coroutine seFlashRoutine;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -123,19 +130,39 @@ public class SettingUi : MonoBehaviour
         SceneChangeManager.Instance.LoadScene("StartScene");
         CloseSettingPanel();
     }
-
     private void BgmSoundChange(float value)
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.SetBGMVolume(value);
+
+        if (bgmFlashRoutine != null) StopCoroutine(bgmFlashRoutine);
+        bgmFlashRoutine = StartCoroutine(FlashSlider(bgmFillImage));
     }
 
     private void SeSoundChange(float value)
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.SetSFXVolume(value);
+
+        if (seFlashRoutine != null) StopCoroutine(seFlashRoutine);
+        seFlashRoutine = StartCoroutine(FlashSlider(seFillImage));
     }
 
+    private IEnumerator FlashSlider(Image fill)
+    {
+        if (fill == null) yield break;
+
+        fill.color = activeColor;
+        float t = 0f;
+        const float duration = 0.4f;
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime / duration;
+            fill.color = Color.Lerp(activeColor, normalColor, t);
+            yield return null;
+        }
+        fill.color = normalColor;
+    }
     private void ShowSettingUi()
     {
         if (isOpen)
