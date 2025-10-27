@@ -292,6 +292,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!1 &2156303639155031727
 GameObject:
@@ -437,6 +438,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 8605231624446242588}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!1 &2435984876462384712
 GameObject:
@@ -707,9 +709,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1077103149
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -95816713, guid: 5ef95d78c89b2de4a97f28a3a8e36c96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_FlipX: 0
@@ -959,9 +961,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1077103149
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -95816713, guid: 5ef95d78c89b2de4a97f28a3a8e36c96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_FlipX: 0
