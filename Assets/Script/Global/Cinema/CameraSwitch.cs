@@ -21,4 +21,9 @@ public class CameraSwitch : SingleCaseMono<CameraSwitch>
         EntityUIManager.Instance.HideAllMenus();
     }
 
+    public void SetTheCinameSize(float size) 
+    {
+        var virtualCamera = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
+        virtualCamera.m_Lens.OrthographicSize = size;
+    }
 }
