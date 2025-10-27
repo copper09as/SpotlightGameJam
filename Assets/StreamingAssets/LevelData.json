@@ -83,27 +83,6 @@
       "SpritePath": "",
       "ScenePath": "",
       "noteString": "注意时间限制"
-    },
-    {
-      "Id": 12,
-      "SceneName": "诱灵的甘蜜",
-      "SpritePath": "",
-      "ScenePath": "",
-      "noteString": "看不懂看不懂"
-    },
-    {
-      "Id": 13,
-      "SceneName": "幻想视差",
-      "SpritePath": "",
-      "ScenePath": "",
-      "noteString": "标题什么意思"
-    },
-    {
-      "Id": 14,
-      "SceneName": "悲惨的命运",
-      "SpritePath": "",
-      "ScenePath": "newEnemy",
-      "noteString": "策划注意到这个配置文件了"
     }
   ]
 }
