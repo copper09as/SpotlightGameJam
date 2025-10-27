@@ -30,7 +30,7 @@ namespace Game.Battle.Entity
         [SerializeField] private GameObject headDamageEffectPrefab; // 修改名字
         [NonSerialized] public Rigidbody2D rb;
         [NonSerialized] public EntityManager entityManager;
-        [NonSerialized] public Collider2D col;
+        [SerializeField] public Collider2D col;
 
 
         private bool isStop = false;

@@ -18,7 +18,7 @@ local function OpenTheCage(entity,character) --这里的entity是笼子
     end
     --entity.animator:SetBool("IsOpen",true)--开笼子动画
     --CS.UnityEngine.Debug.Log("开门成功")
-    CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/OpenDoor.wav");
+    CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/开锁.wav");
     entity.entityManager:Win(1)--一秒后胜利
     return true
 end
@@ -63,7 +63,7 @@ function KeyFollowPlayer(entity)
     local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
     if success then
         local otherEntity = hit:GetComponent("Entity")
-        if otherEntity == nil or otherEntity.dataId ~= 20016 or otherEntity.dataId ~= 20033 then --判断是否是魔法门或者笼子
+        if otherEntity == nil or (otherEntity.dataId ~= 20016 and otherEntity.dataId ~= 20033) then --判断是否是魔法门或者笼子
             return
         end
         if otherEntity.dataId == 20016 then --判断是否是魔法门
