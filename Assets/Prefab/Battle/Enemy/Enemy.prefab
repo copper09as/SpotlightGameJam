@@ -175,6 +175,9 @@ MonoBehaviour:
     ScaleY: 0
   entityPairs: []
   sr: {fileID: 7305681631814102595}
+  headDamageEffectPrefab: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!50 &3585497249330298471
 Rigidbody2D:
@@ -218,7 +221,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
