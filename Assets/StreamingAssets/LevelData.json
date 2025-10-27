@@ -67,14 +67,14 @@
       "Id": 9,
       "SceneName": "幽明的苦轮",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "LEVEL10(Boss1)",
       "noteString": "关卡节奏快，注意闪避"
     },
     {
       "Id": 10,
       "SceneName": "成佛得脱斩",
       "SpritePath": "",
-      "ScenePath": "",
+      "ScenePath": "Finally",
       "noteString": "Boss战需要耐心"
     },
     {
