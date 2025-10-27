@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1244988007847498551}
   - component: {fileID: 7043107060258262973}
   - component: {fileID: 149080930087760722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  col: {fileID: 0}
   entityStop: 0
 --- !u!212 &149080930087760722
 SpriteRenderer:
