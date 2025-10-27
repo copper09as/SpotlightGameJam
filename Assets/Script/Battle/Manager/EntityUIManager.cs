@@ -69,6 +69,7 @@ public class EntityUIManager : MonoBehaviour
     private void OpenReallyUi()
     {
         EventBus.Publish(new Global.Events.OpenSettingUi());
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
     }
 
     private void SetAllMenuActive(bool active)
@@ -140,8 +141,8 @@ public class EntityUIManager : MonoBehaviour
         openMenuBtn.gameObject.SetActive(false);
         SetMenuActive(settingMenu, true);
         isSettingMenuActive = true;
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ButtonDown (1).wav");
 
-       
     }
 
     private void HideSettingMenu()

@@ -42,6 +42,7 @@ public class NotificationManager : MonoBehaviour
         GameObject go = Instantiate(notificationPrefab, notificationParent);
         var notification = go.GetComponent<Notification>();
         notification.Init(message,title);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ERROR 02.wav");
     }
 
 
