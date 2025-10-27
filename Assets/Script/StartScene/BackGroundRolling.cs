@@ -45,7 +45,7 @@ public class BackGroundRolling : MonoBehaviour
         // 背景滚动
         for (int i = 0; i < backGrounds.Count; i++)
         {
-            backGrounds[i].position -= new Vector3(rollingSpeed * Time.deltaTime, 0, 0);
+            backGrounds[i].position -= new Vector3(rollingSpeed * Time.unscaledDeltaTime, 0, 0);
         }
 
         // 回收第一个背景
@@ -73,6 +73,6 @@ public class BackGroundRolling : MonoBehaviour
 
         Vector3 targetPosition = initialPosition + new Vector3(0, offsetNormalized.y * maxOffset, 0);
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.unscaledDeltaTime * followSpeed);
     }
 }

@@ -71,7 +71,7 @@ namespace Game.Battle.Entity
             try
             {
                 scriptData =
-             GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == CommonEntityData.EffectId);
+             GameConfig.Instance.EntitySDC.entityScriptList.Find(i => i.id == CommonEntityData.EffectId).Copy();
             }
             catch (Exception ex)
             {
