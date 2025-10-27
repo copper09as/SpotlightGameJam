@@ -20,6 +20,7 @@ public class StartUiManager : MonoBehaviour
     [SerializeField] private Button ExitBtn;
     [Header("制作人员按钮")]
     [SerializeField] private Button StaffBtn;
+    [SerializeField] private GameObject staffPanel;
     private string websiteUrl = 
         "https://message.bilibili.com/?spm_id_from=333.1387.0.0#/whisper/mid80632239";
 
@@ -43,7 +44,7 @@ public class StartUiManager : MonoBehaviour
 
     private void ShowStaff()
     {
-        SceneChangeManager.Instance.LoadScene("Prepare");
+         staffPanel.SetActive(true);
     }
 
     private void Exit()

@@ -10,7 +10,7 @@
 		"Character/CharacterDeadIfInMiddle"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["BattleStreaming/GameOver"]
 	},
 	{
@@ -69,7 +69,7 @@
 		"UpdatePath": ["Enemy/EnemyMove"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["Enemy/EnemyDestroyed"]
 	},
 	{
@@ -192,7 +192,7 @@
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
@@ -213,7 +213,7 @@
 		"UpdatePath": ["Boss/BossUpdate"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": ["Enemy/EnemyDestroyed"]
 	},
@@ -223,7 +223,7 @@
 		"UpdatePath": ["Boss/DragonUpdate"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [ "Boss/DragonBeAttacked"],
 		"OnDisablePath": []
 	},
@@ -238,7 +238,7 @@
 		"Character/CharacterDeadIfInMiddle","Character/CharacterCrossMap"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["BattleStreaming/GameOver"]
 	},
 	{
@@ -247,7 +247,7 @@
 		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
@@ -257,7 +257,7 @@
 		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
 		"OnMouseDownPath": ["Position/LockCross"],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
@@ -277,7 +277,7 @@
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
@@ -288,7 +288,7 @@
 		"UpdatePath": ["Enemy/EnemyMove"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["Enemy/EnemyDestroyed"]
 	},
 	{
@@ -299,7 +299,7 @@
 		"Character/CharacterDeadIfInMiddle"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["Enemy/EnemyDestroyed"]
 	},
 	{
@@ -309,7 +309,7 @@
 		"UpdatePath": ["Character/CharacterDeadIfInMiddle"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": ["BattleStreaming/GameOver"]
 	},
 	{
@@ -318,7 +318,7 @@
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [],
 		"OnDisablePath": []
 	},
@@ -362,7 +362,7 @@
 		"UpdatePath": ["Boss/DragonUpdate"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
-		"OnDragPath": ["Mouse/FollowMouse"],
+		"OnDragPath": [],
 		"DeadPath": [ "Boss/DragonBeAttacked"],
 		"OnDisablePath": []
 	}]

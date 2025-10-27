@@ -2625,14 +2625,14 @@ GameObject:
   - component: {fileID: 1204266053}
   - component: {fileID: 1204266056}
   - component: {fileID: 1204266055}
-  - component: {fileID: 1204266054}
+  - component: {fileID: 1204266057}
   m_Layer: 5
   m_Name: TeamPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1204266053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2645,7 +2645,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 901916161}
   - {fileID: 539022032}
   - {fileID: 1249098460}
   - {fileID: 237996816}
@@ -2654,6 +2653,7 @@ RectTransform:
   - {fileID: 186245178}
   - {fileID: 962144636}
   - {fileID: 1684264245}
+  - {fileID: 901916161}
   m_Father: {fileID: 243045572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2661,21 +2661,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000015259, y: 0.000015259}
   m_SizeDelta: {x: 960.9907, y: 600.1682}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1204266054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204266052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e288caf886ac643abfde202a391f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 0}
-  confirmBtn: {fileID: 0}
-  closeBtn: {fileID: 901916163}
 --- !u!114 &1204266055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,6 +2699,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204266052}
   m_CullTransparentMesh: 1
+--- !u!114 &1204266057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204266052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db129330b60e5454581cb5261fae7499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CloseBtn: {fileID: 901916163}
 --- !u!1 &1249098459
 GameObject:
   m_ObjectHideFlags: 0
@@ -5138,6 +5136,7 @@ MonoBehaviour:
   OpenMenusButton: {fileID: 310642018}
   ExitBtn: {fileID: 245959161}
   StaffBtn: {fileID: 2128621781}
+  staffPanel: {fileID: 1204266052}
 --- !u!1 &2127394652
 GameObject:
   m_ObjectHideFlags: 0

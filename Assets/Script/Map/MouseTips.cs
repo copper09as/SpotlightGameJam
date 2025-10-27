@@ -4,9 +4,10 @@ public class MouseTipsGroup : MonoBehaviour
 {
     public CanvasGroup group;        // 拖父物体上的 CanvasGroup
     public float fadeSpeed = 2f;     // 渐变速度
-    public float idleDelay = 0.5f;   // 滚轮停止多久后才显示
+    public float idleDelay = 0.5f;   // 滚轮停止多久后才显示（仅在没滚过时有效）
     private float idleTimer = 0f;    // 计时器
     private bool fadingOut = true;   // 是否正在淡出
+    private bool hasScrolled = false; // 是否滚动过滚轮
 
     void Start()
     {
@@ -19,18 +20,18 @@ public class MouseTipsGroup : MonoBehaviour
 
     void Update()
     {
-        // 获取滚轮输入
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        // 如果滚轮在动 → 立即隐藏并重置计时
+        // 如果滚轮滚动过一次 → 永远隐藏
         if (Mathf.Abs(scroll) > 0.0001f)
         {
-            idleTimer = 0f;
+            hasScrolled = true;
             FadeOut();
         }
-        else
+
+        // 如果从未滚动过滚轮，才允许显示
+        if (!hasScrolled)
         {
-            // 滚轮静止 → 开始计时
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleDelay)
             {
@@ -38,7 +39,7 @@ public class MouseTipsGroup : MonoBehaviour
             }
         }
 
-        // 执行渐变效果
+        // 执行渐变
         if (fadingOut)
         {
             group.alpha -= Time.deltaTime * fadeSpeed;
