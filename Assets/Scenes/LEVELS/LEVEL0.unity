@@ -6846,6 +6846,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  rb: {fileID: 0}
   col: {fileID: 0}
   entityStop: 0
 --- !u!1001 &1247356916
@@ -7190,6 +7191,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472658336681531093, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2285242108696789106, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.28
@@ -7230,26 +7247,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2835847381932805672, guid: 56547d7767b964947a83961448ab708c, type: 3}
-      propertyPath: m_Name
-      value: PedalNew
-      objectReference: {fileID: 0}
-    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+    - target: {fileID: 2345154541620115333, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+    - target: {fileID: 2345154541620115333, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      objectReference: {fileID: 474393081}
+    - target: {fileID: 2345154541620115333, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7472658336681531093, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
-      propertyPath: m_Constraints
-      value: 5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 379609045}
     - target: {fileID: 2674192705275919456, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: entityPairs.Array.data[0].entities.Array.size
       value: 2
@@ -7262,6 +7271,10 @@ PrefabInstance:
       propertyPath: entityPairs.Array.data[0].entities.Array.data[1]
       value: 
       objectReference: {fileID: 379609045}
+    - target: {fileID: 2835847381932805672, guid: 56547d7767b964947a83961448ab708c, type: 3}
+      propertyPath: m_Name
+      value: PedalNew
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
