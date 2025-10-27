@@ -722,8 +722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 77.99999}
+  m_AnchoredPosition: {x: 441.13, y: 41.433}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &342769181
 MonoBehaviour:
@@ -1000,8 +1000,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 77.99999}
+  m_AnchoredPosition: {x: 441.12, y: 41.433}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474114061
 MonoBehaviour:
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1ba4e0546508d4fb8539213b846933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotspot: {x: 10, y: 0}
+  hotspot: {x: 0, y: 0}
   defaultCursor: {fileID: 2800000, guid: f7d290f47f72dc44e8b0b164675862ca, type: 3}
   transCursor: {fileID: 2800000, guid: d96bdf24a2519cb47be3cc4cc5ed1ff4, type: 3}
 --- !u!4 &995870660
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16ef74f22523ce469a252788468a5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testScene: LEVEL4(Passable)
+  testScene: LEVEL10(Boss1)
 --- !u!4 &1451376373
 Transform:
   m_ObjectHideFlags: 0
