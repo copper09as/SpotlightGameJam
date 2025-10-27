@@ -365,5 +365,17 @@
 		"OnDragPath": [],
 		"DeadPath": [ "Boss/DragonBeAttacked"],
 		"OnDisablePath": []
+	},
+	{
+		"id": 10036,
+		"InitPath": ["Physics/SetKinematic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouseY",
+		"Scroll/ScrollVirtualCameraSize"],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
 	}]
 }

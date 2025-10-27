@@ -17,7 +17,7 @@ public class CameraSwitch : SingleCaseMono<CameraSwitch>
         
         for (int i = 0; i < virtualCameras.Length; i++)
         virtualCameras[i].Priority = virtualCamera == virtualCameras[i] ? 10 : 0;
-
+        EntityUIManager.Instance.isLoading = true;
         EntityUIManager.Instance.HideAllMenus();
     }
 
