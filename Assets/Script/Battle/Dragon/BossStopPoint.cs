@@ -23,7 +23,8 @@ public class BossStopPoint : MonoBehaviour
         {
             Destroy(this);
         }
-        points = GetComponentsInChildren<Transform>();
+        points = GetComponentsInChildren<Transform>().Where(t => t != transform)  // ÅÅ³ý×ÔÉí
+         .ToArray(); ;
     }
 
     public Vector3 GetPoint() => points[Random.Range(0, points.Length)].position;
