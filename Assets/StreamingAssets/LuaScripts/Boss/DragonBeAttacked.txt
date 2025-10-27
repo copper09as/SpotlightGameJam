@@ -18,6 +18,8 @@ local function DragonDead(entity)
     end
     CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
     entity.entityStop = true
+
+    --放胜利的逻辑
 end
 local function DragonInvincible(entity) --龙进入无敌状态
     local data = entity.dataTable
