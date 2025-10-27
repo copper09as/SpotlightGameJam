@@ -3,55 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSwitch : MonoBehaviour
+public class CameraSwitch : SingleCaseMono<CameraSwitch>
 {
     public CinemachineVirtualCamera[] virtualCameras;
-    public static CameraSwitch Instance;
-
-    [SerializeField] private float switchRecoverDelay = 1f;
-
-    private void Awake()
+    [SerializeField] private CinemachineVirtualCamera activeVirtualCamera;//此时活跃的虚拟相机
+    // Start is called before the first frame update
+    protected override void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-
+        base.Awake();
         virtualCameras = GetComponentsInChildren<CinemachineVirtualCamera>();
+        activeVirtualCamera = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
     }
-
-    private void OnDestroy()
-    {
-        if (Instance == this)
-        {
-            Instance = null;
-        }
-    }
-
-
-    public void Switch(CinemachineVirtualCamera virtualCamera)
+    public void Switch(CinemachineVirtualCamera virtualCamera)//切换摄像机机位（固定两个）
     {
         for (int i = 0; i < virtualCameras.Length; i++)
-        {
-            virtualCameras[i].Priority = (virtualCamera == virtualCameras[i]) ? 10 : 0;
-        }
-
+        virtualCameras[i].Priority = virtualCamera == virtualCameras[i] ? 10 : 0;
+        activeVirtualCamera = virtualCamera;
         EntityUIManager.Instance.isLoading = true;
         EntityUIManager.Instance.HideAllMenus();
-
-
-        StartCoroutine(RecoverLoadingFlag());
     }
 
-    private IEnumerator RecoverLoadingFlag()
+    public void SetTheCinameSize(float size) 
     {
-        yield return new WaitForSecondsRealtime(switchRecoverDelay);
-        EntityUIManager.Instance.isLoading = false;
-    }
-
-    public void SetTheCinameSize(float size)
-    {
-        var virtualCamera = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
-        virtualCamera.m_Lens.OrthographicSize = size;
+        activeVirtualCamera.m_Lens.OrthographicSize = size;
     }
 }
