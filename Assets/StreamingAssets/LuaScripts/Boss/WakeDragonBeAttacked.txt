@@ -66,34 +66,32 @@ function WakeDragonBeAttacked(entity,otherEntity)
     end
     local data = entity.dataTable
 
-	if not data.isInvincible then
-		data.ccbTime = data.ccbTime - 1
-
-		local liveFireList = entity:GetEntities("Live")
-
-		DragonInvincible(entity)
-
-		if liveFireList ~= nil and liveFireList.Count > 0 then
-			local index = liveFireList.Count - data.ccbTime
-
-			if index >= 1 and index <= liveFireList.Count then
-				local fireEntity = liveFireList[index-1]
-				if fireEntity ~= nil and fireEntity.dataTable ~= nil then
-					fireEntity.dataTable.live = false
-				end
-			end
-		end
-	end
-
 
     if otherEntity ~= nil and otherEntity.rb ~= nil then
         local velocity = otherEntity.rb.velocity
         velocity.y = 10
         otherEntity.rb.velocity = velocity
     end
+    if not data.isInvincible then
+        data.ccbTime = data.ccbTime - 1
 
-    if data.ccbTime <= 0 then
-        WakeDragonDead(entity) -- 龙死亡
+        local liveFireList = entity:GetEntities("Live")
+
+        if liveFireList ~= nil and liveFireList.Count > 0 then
+            local index = liveFireList.Count - data.ccbTime
+
+            if index >= 1 and index <= liveFireList.Count then
+                local fireEntity = liveFireList[index-1]
+                if fireEntity ~= nil and fireEntity.dataTable ~= nil then
+                    fireEntity.dataTable.live = false
+                end
+            end
+        end
+        if data.ccbTime <= 0 then
+            WakeDragonDead(entity) -- 龙死亡
+            return
+        end
+        DragonInvincible(entity)
     end
 
 end

@@ -74,7 +74,6 @@ function DragonBeAttacked(entity,otherEntity)
 
 		local liveFireList = entity:GetEntities("Live")
 
-		DragonInvincible(entity)
 
 		if liveFireList ~= nil and liveFireList.Count > 0 then
 			local index = liveFireList.Count - data.ccbTime
@@ -86,6 +85,12 @@ function DragonBeAttacked(entity,otherEntity)
 				end
 			end
 		end
+        if data.ccbTime <= 0 then
+            DragonWakeFly(entity) -- 龙飞走
+
+            return
+        end
+        DragonInvincible(entity)
 	end
 
 
@@ -93,10 +98,6 @@ function DragonBeAttacked(entity,otherEntity)
         local velocity = otherEntity.rb.velocity
         velocity.y = 10
         otherEntity.rb.velocity = velocity
-    end
-
-    if data.ccbTime <= 0 then
-        DragonWakeFly(entity) -- 龙死亡
     end
 
 end

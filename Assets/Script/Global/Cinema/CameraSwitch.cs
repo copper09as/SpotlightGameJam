@@ -1,12 +1,13 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
+    public CinemachineBrain brain;
     public CinemachineVirtualCamera[] virtualCameras;
     public static CameraSwitch Instance;
-
     [SerializeField] private float switchRecoverDelay = 2f;
 
     private Coroutine recoverCoroutine;
@@ -17,8 +18,10 @@ public class CameraSwitch : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
+        brain = GetComponentInChildren<CinemachineBrain>();
         virtualCameras = GetComponentsInChildren<CinemachineVirtualCamera>();
+
+        
     }
 
     private void OnDestroy()
@@ -66,4 +69,7 @@ public class CameraSwitch : MonoBehaviour
         var activeCam = virtualCameras[0].Priority == 10 ? virtualCameras[0] : virtualCameras[1];
         activeCam.m_Lens.OrthographicSize = size;
     }
+
+    public float GetSwitchTime()
+       => brain.m_DefaultBlend.m_Time;
 }
