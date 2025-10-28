@@ -27,12 +27,14 @@ local function DragonInvincible(entity) --龙进入无敌状态
     local data = entity.dataTable
     --状态处理
     data.isInvincible = true
-    entity.animator:SetTrigger("BeAttack")
+    --entity.animator:SetTrigger("BeAttack")
+    CS.UnityEngine.Debug.Log("被攻击一次")
     CS.UnityEngine.Debug.Log("调用飞行方法")
     data.afterTimer = data.afterTime--重置后摇计时器
 
     data.state = "flyBack"
     entity.animator:SetBool("CanAttack",false)
+    entity.animator:SetTrigger("Fly")
     DragonFly(entity)
 
     local colorA = entity.sr.color

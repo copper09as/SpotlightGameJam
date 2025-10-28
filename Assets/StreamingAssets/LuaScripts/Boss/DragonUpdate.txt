@@ -81,10 +81,12 @@ function DragonAttack(entity)
     end)
     function DragonAttackBack()   --攻击结束回调函数
         CS.UnityEngine.Debug.Log("调用回调方法")
+        if CS.Tool.AnimatorIsInState(entity.animator,"Attack") then --如果在攻击状态下
         entity.animator:SetTrigger("StopAttack")
         data.state = "attackAfter" --进行状态设置
         CS.UnityEngine.Debug.Log("攻击后摇")
-    end
+        end
+        end
 end
 
 
@@ -127,10 +129,10 @@ function DragonFindPlayer(entity)--寻找角色
     CS.UnityEngine.Debug.Log("恶龙寻找角色")
     local data = entity.dataTable
     data.attackPosition = data.target.transform.position
-    SetDirection( data.attackPosition,entity) --设置朝向
-    local Direction =  data.attackPosition - entity.transform.position
+    SetDirection( data.attackPosition,data.Dragon) --设置朝向
+    local Direction =  data.attackPosition - data.Dragon.transform.position
     if Direction.magnitude > data.DMRadius then
-        local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.2)
+        local point =data.Dragon.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.2)
         data.Dragon.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
               :OnComplete(function ()
             data.state = "idle"

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
@@ -160,7 +161,19 @@ public static class Tool
             targetOffset,
             time);
     }
+    /// <summary>
+    /// 获取动画机是否在相应的状态
+    /// </summary>
+    /// <param name="animator"></param>
+    /// <param name="stateName"></param>
+    /// <returns></returns>
+    public static bool AnimatorIsInState(Animator animator,string stateName)
+    {
+        if (animator == null) return false;
 
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.IsName(stateName);
+    }
 
     public static void AddBabbleEvent(int id,Action action) //注册触发多次的事件
     {

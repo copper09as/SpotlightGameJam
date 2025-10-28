@@ -31,6 +31,7 @@ local function DragonInvincible(entity) --龙进入无敌状态
 
     data.state = "flyBack"
     entity.animator:SetBool("CanAttack",false)
+    entity.animator:SetTrigger("Fly")
     DragonFly(entity)
 
     local colorA = entity.sr.color
