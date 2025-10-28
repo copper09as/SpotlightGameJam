@@ -18,7 +18,7 @@ local function DragonWakeFly(entity)
     end
     entity.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
 
-    entity.entityManager:DestroyEntityDelay(entity,5)
+    entity.entityManager:DestroyEntityDelay(entity,8)
 
     --放胜利的逻辑
 
