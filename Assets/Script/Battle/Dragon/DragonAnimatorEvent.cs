@@ -11,21 +11,30 @@ public class DragonAnimatorEvent : MonoBehaviour
     [SerializeField] private Entity entity;
     [SerializeField] private Animator animator;
 
+    readonly private string attackBeforeAudio = "Assets/Audio/Sfx/Dragoncharge.wav";
 
-    public void Fly()//动画事件
+    readonly private List<string> wingAudios= new List<string>()
     {
-        animator.SetTrigger("Fly");
+        "Assets/Audio/Sfx/wing01.wav",
+        "Assets/Audio/Sfx/wing02.wav",
+        "Assets/Audio/Sfx/wing03.wav",
+        "Assets/Audio/Sfx/wing04.wav",
+    }; 
+    public void FlyAudio()//动画事件，龙飞行的时候播放扇翅膀的声音
+    {
+        AudioManager.Instance.PlaySFX(wingAudios[UnityEngine.Random.Range(0, wingAudios.Count)]);
     }
 
-    public void StopAttack()//动画事件
+
+    public void AttackBeforeAudio()//动画事件，龙攻击前摇的时候播放蓄力的声音
     {
-        animator.SetTrigger("StopAttack");
+        AudioManager.Instance.PlaySFX(attackBeforeAudio);
     }
 
-    public void DragonAttack(Vector3 position, float time)
+    public void DeadAudio()//动画事件，龙死亡时的声音
     {
-        entity.transform.DOMove(position, time).SetEase(Ease.OutCubic);
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/wuyan.mp3");
     }
 
-    
+
 }

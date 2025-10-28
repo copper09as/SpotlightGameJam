@@ -401,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6532962633888246720}
   - component: {fileID: 2172244626877533191}
+  - component: {fileID: 4105201480176117205}
   m_Layer: 3
   m_Name: Dragon
   m_TagString: Untagged
@@ -446,6 +447,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4105201480176117205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870026131934488430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b495cb25a77ea4f96d52120844836c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &5254483779974813858
 GameObject:
   m_ObjectHideFlags: 0

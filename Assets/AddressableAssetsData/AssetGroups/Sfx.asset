@@ -22,6 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13e5d0c36de618e42b1a4080334773e7
+    m_Address: Assets/Audio/Sfx/Dragoncharge.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 15cded3c75ee5034f91adc87f8aa60df
     m_Address: Assets/Audio/Sfx/PlayerWalk (6).wav
     m_ReadOnly: 0
@@ -87,8 +92,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c31902c39e6ac5409e08fcc4d39eca8
+    m_Address: Assets/Audio/Sfx/wing04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3b56067051fe2e43b3d0ac7c34b7c36
+    m_Address: Assets/Audio/Sfx/wing02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a59cec8b045d0a4488adc6fddd079ca0
+    m_Address: Assets/Audio/Sfx/wing03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5e2fd95b9c722c478d6dd53513d4639
     m_Address: Assets/Audio/Sfx/PlayerDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b223900e69c056747b329255fd75e705
+    m_Address: Assets/Audio/Sfx/roar02.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -114,6 +139,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d324762150f356d4fbe14264536e3aec
     m_Address: Assets/Audio/Sfx/ShimeDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4a09ad6b1eb3ad46b4018a99a9d39f2
+    m_Address: Assets/Audio/Sfx/wing01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1730ec6b75af8f479d34fe1a664539d
+    m_Address: Assets/Audio/Sfx/roar01.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
