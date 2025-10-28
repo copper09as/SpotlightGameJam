@@ -234,7 +234,9 @@ MonoBehaviour:
     EffectId: 0
     ScaleX: 0
     ScaleY: 0
-  entityPairs: []
+  entityPairs:
+  - key: Live
+    entities: []
   sr: {fileID: 4745758323808495821}
   headDamageEffectPrefab: {fileID: 0}
   rb: {fileID: 0}
