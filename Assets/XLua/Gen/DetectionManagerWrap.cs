@@ -31,8 +31,10 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 11, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 13, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2D", _m_Raycast2D_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DEntitiesByTag", _m_Raycast2DEntitiesByTag_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DEntities", _m_Raycast2DEntities_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DByTag", _m_Raycast2DByTag_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "OverlapBoxByTag", _m_OverlapBoxByTag_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Raycast2DOutHit", _m_Raycast2DOutHit_xlua_st_);
@@ -82,6 +84,65 @@ namespace XLua.CSObjectWrap
                     
                         var gen_ret = DetectionManager.Raycast2D( _origin, _direction, _distance, _layerMask );
                         LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Raycast2DEntitiesByTag_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Vector2 _origin;translator.Get(L, 1, out _origin);
+                    UnityEngine.Vector2 _direction;translator.Get(L, 2, out _direction);
+                    float _distance = (float)LuaAPI.lua_tonumber(L, 3);
+                    string _tag = LuaAPI.lua_tostring(L, 4);
+                    
+                        var gen_ret = DetectionManager.Raycast2DEntitiesByTag( _origin, _direction, _distance, _tag );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Raycast2DEntities_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Vector2 _origin;translator.Get(L, 1, out _origin);
+                    UnityEngine.Vector2 _direction;translator.Get(L, 2, out _direction);
+                    float _distance = (float)LuaAPI.lua_tonumber(L, 3);
+                    
+                        var gen_ret = DetectionManager.Raycast2DEntities( _origin, _direction, _distance );
+                        translator.Push(L, gen_ret);
                     
                     
                     

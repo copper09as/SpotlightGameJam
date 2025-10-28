@@ -115,11 +115,11 @@
 	{
 		"id": 10011,
 		"InitPath": [ "Physics/SetDynamic", "Physics/SetGravityZero", "Item/PedalInit" ],
-		"UpdatePath": [],
+		"UpdatePath": ["Item/PedalDownByRay"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
-		"DeadPath": ["Item/PedalDown"],
+		"DeadPath": [],
 		"OnEntityExitPath": ["Item/CloseTheDoor"]
 	},
 	{
@@ -188,7 +188,7 @@
 	},
 	{
 		"id": 10018,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
 		"UpdatePath": ["Position/StickPlayerUp"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
@@ -243,7 +243,7 @@
 	},
 	{
 		"id": 10023,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
 		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
@@ -273,7 +273,7 @@
 	},
 	{
 		"id": 10026,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
@@ -314,7 +314,7 @@
 	},
 	{
 		"id": 10030,
-		"InitPath": ["Physics/SetDynamic"],
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
 		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],

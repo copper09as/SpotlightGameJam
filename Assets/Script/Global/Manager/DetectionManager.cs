@@ -16,6 +16,44 @@ public static class DetectionManager
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance,LayerMask.GetMask(layerMask));
         return hit.collider != null;
     }
+    public static List<Entity> Raycast2DEntitiesByTag(Vector2 origin, Vector2 direction, float distance, string tag)
+    {
+        List<Entity> entities = new List<Entity>();
+
+        // 发射射线，获取所有命中的碰撞体
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null && hit.collider.CompareTag(tag))
+            {
+                Entity entity = hit.collider.GetComponent<Entity>();
+                if (entity != null)
+                    entities.Add(entity);
+            }
+        }
+
+        return entities;
+    }
+    public static List<Entity> Raycast2DEntities(Vector2 origin, Vector2 direction, float distance)
+    {
+        List<Entity> entities = new List<Entity>();
+
+        // 发射射线，获取所有命中的碰撞体
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                Entity entity = hit.collider.GetComponent<Entity>();
+                if (entity != null)
+                    entities.Add(entity);
+            }
+        }
+
+        return entities;
+    }
     public static Entity Raycast2DByTag(Vector2 origin, Vector2 direction, float distance, string tag)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
@@ -42,6 +80,8 @@ public static class DetectionManager
 
         return col.GetComponent<Entity>();
     }
+
+
     // 2D射线检测（带命中信息）
     public static bool Raycast2DOutHit(Vector2 origin, Vector2 direction, float distance, string layerMask, out RaycastHit2D hitInfo)
     {
