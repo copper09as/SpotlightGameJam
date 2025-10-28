@@ -903,7 +903,7 @@ MonoBehaviour:
   comicPanel: {fileID: 0}
   comicImage: {fileID: 0}
   comicPages: []
-  fadeDuration: 2
+  fadeDuration: 3
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0

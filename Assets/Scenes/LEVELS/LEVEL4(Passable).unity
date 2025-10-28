@@ -1123,7 +1123,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 68ed0dadaa51a9f4bbfa010bfcf05cb7, type: 3}
   - {fileID: 21300000, guid: 90139b3df9db63044acbf9b95c00d529, type: 3}
   - {fileID: 21300000, guid: 32d45c9a428a2ff46987f2fdd6fa9e96, type: 3}
-  fadeDuration: 1
+  fadeDuration: 3
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0

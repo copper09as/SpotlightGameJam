@@ -824,7 +824,7 @@ MonoBehaviour:
   comicPanel: {fileID: 0}
   comicImage: {fileID: 0}
   comicPages: []
-  fadeDuration: 2
+  fadeDuration: 3
 --- !u!4 &508760909
 Transform:
   m_ObjectHideFlags: 0
@@ -8010,10 +8010,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
-      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2285242108696789106, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -8066,6 +8062,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PedalNew (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8079,10 +8079,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
-      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2285242108696789106, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.25
@@ -8134,6 +8130,10 @@ PrefabInstance:
     - target: {fileID: 2835847381932805672, guid: 56547d7767b964947a83961448ab708c, type: 3}
       propertyPath: m_Name
       value: PedalNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667974265811392355, guid: a06b6fb0c36c25e44afbdc03495e60ac, type: 3}
+      propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8318,6 +8318,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
+  - first: {x: 14, y: -6, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 15, y: -6, z: 0}
     second:
       serializedVersion: 2
@@ -8874,12 +8884,14 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: c6e534d42bacb2b469b6e6a208b75b04, type: 2}
   - m_RefCount: 58
     m_Data: {fileID: 11400000, guid: ebe847c95b1844440a67f064d15fb80e, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 8d2a0328fec650f47b6950ff888a88dc, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 17
     m_Data: {fileID: 634611995, guid: 50a41053cf68ecc4caeb9242eb0578b0, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 366823603, guid: 50a41053cf68ecc4caeb9242eb0578b0, type: 3}
-  - m_RefCount: 3
+  - m_RefCount: 4
     m_Data: {fileID: 1493012668, guid: 50a41053cf68ecc4caeb9242eb0578b0, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -8926,7 +8938,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 25
+  - m_RefCount: 26
     m_Data:
       e00: 1
       e01: 0
@@ -8945,7 +8957,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 60
+  - m_RefCount: 61
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -9053,7 +9065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.45
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 7789733817585694181, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_LocalPosition.z
