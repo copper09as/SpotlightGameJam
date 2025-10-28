@@ -49,29 +49,38 @@
       "ScenePath": "LEVEL4(Passable)",
       "noteString": "滑动相机试试吧"
     },
+
     {
       "Id": 7,
+      "SceneName": "箱子",
+      "SpritePath": "",
+      "ScenePath": "LEVEL7(Boxes)",
+      "noteString": "好多箱子啊"
+    },
+
+    {
+      "Id": 8,
       "SceneName": "深井",
       "SpritePath": "",
       "ScenePath": "LEVEL8(DeepWell)",
       "noteString": "墙壁里藏着什么"
     },
     {
-      "Id": 8,
+      "Id": 9,
       "SceneName": "恶龙",
       "SpritePath": "",
       "ScenePath": "LEVEL9(Boss0)",
       "noteString": "终于见到你了"
     },
     {
-      "Id": 9,
+      "Id": 10,
       "SceneName": "决战",
       "SpritePath": "",
       "ScenePath": "LEVEL10(Boss1)",
       "noteString": "我要终结这一切"
     },
     {
-      "Id": 10,
+      "Id": 11,
       "SceneName": "终章",
       "SpritePath": "",
       "ScenePath": "Finally",
