@@ -31,7 +31,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 15, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 16, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderWidthLua", _m_GetColliderWidthLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetColliderHeightLua", _m_GetColliderHeightLua_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetLuaName", _m_GetLuaName_xlua_st_);
@@ -43,6 +43,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetSpecialWordsCount", _m_GetSpecialWordsCount_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "TypeWriter", _m_TypeWriter_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "SetBoxColliderAnimation", _m_SetBoxColliderAnimation_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "AnimatorIsInState", _m_AnimatorIsInState_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEvent", _m_AddBabbleEvent_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "AddBabbleEventOneTime", _m_AddBabbleEventOneTime_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "BabbleEventTrigger", _m_BabbleEventTrigger_xlua_st_);
@@ -357,6 +358,34 @@ namespace XLua.CSObjectWrap
                     
                     
                     return 2;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_AnimatorIsInState_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    UnityEngine.Animator _animator = (UnityEngine.Animator)translator.GetObject(L, 1, typeof(UnityEngine.Animator));
+                    string _stateName = LuaAPI.lua_tostring(L, 2);
+                    
+                        var gen_ret = Tool.AnimatorIsInState( _animator, _stateName );
+                        LuaAPI.lua_pushboolean(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
                 }
                 
             } catch(System.Exception gen_e) {

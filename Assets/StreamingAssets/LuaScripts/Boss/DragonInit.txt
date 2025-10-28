@@ -49,7 +49,7 @@ function DragonInit(entity)
     data.flyTiming = 4                -- 飞行时间
 
     data.target = CS.UnityEngine.GameObject.Find("Character")       -- 追踪目标
-    data.originPosition = entity.transform.position   --龙在场景初始位置
+    data.originPosition = data.Dragon.transform.position   --龙在场景初始位置
     data.canAttack = true
     data.canSprint = true
     data.invincibleTime = 3           -- 无敌时间
