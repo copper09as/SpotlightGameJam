@@ -1,4 +1,4 @@
 function BoxInit(entity)
 	entity.dataTable.isBox = true
-	data.usePedal = true
+	entity.dataTable.usePedal = true
 end
