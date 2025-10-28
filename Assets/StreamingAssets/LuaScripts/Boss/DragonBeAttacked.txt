@@ -86,12 +86,12 @@ function DragonBeAttacked(entity,otherEntity)
 				end
 			end
 		end
+        
         if data.ccbTime <= 0 then
             DragonWakeFly(entity) -- 龙飞走
-
-            return
+        else
+            DragonInvincible(entity)
         end
-        DragonInvincible(entity)
 	end
 
 
