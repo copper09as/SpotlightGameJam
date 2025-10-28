@@ -112,6 +112,7 @@ function DragonFly(entity)--飞到指定的点位
     --CS.UnityEngine.Debug.Log()--点位提前放置
     local data = entity.dataTable
 
+    entity.animator:ResetTrigger("StopAttack")--保险起见清楚没有被触发的trigger
     if CS.BossStopPoint.Instance:Equals(nil) then --如果被销毁则返回
         return
     end
