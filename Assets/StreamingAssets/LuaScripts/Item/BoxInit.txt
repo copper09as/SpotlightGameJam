@@ -1,3 +1,4 @@
 function BoxInit(entity)
 	entity.dataTable.isBox = true
+	entity.dataTable.usePedal = true
 end

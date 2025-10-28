@@ -1,0 +1,137 @@
+local DM = CS.DetectionManager
+local Vector2 = CS.UnityEngine.Vector2
+local Vector3 = CS.UnityEngine.Vector3
+local Debug = CS.UnityEngine.Debug
+local Color = CS.UnityEngine.Color
+
+-- 🌿 踏板被踩下时执行
+local function PedalDownAction(entity)
+    local data = entity.dataTable
+    local key = "OpenTheDoor"
+
+    if entity.transform == nil then return end
+    entity.animator:SetBool("IsDown", true)
+
+    if data.sizeTween and data.offsetTween then
+        if data.sizeTween:IsPlaying() and data.offsetTween:IsPlaying() then
+            data.sizeTween:Pause()
+            data.offsetTween:Pause()
+            Debug.Log("暂停了dotween动画")
+        end
+    end
+
+    data.sizeTween, data.offsetTween = CS.Tool.SetBoxColliderAnimation(
+        data.col,
+        data.targetSize,
+        data.targetOffset,
+        data.time
+    )
+
+    local entities = entity:GetEntities(key)
+    if entities == nil then return end
+
+    for j = 0, entities.Count - 1 do
+        local otherEntity = entities[j]
+        otherEntity.dataTable.open = true
+    end
+end
+
+-- 🌿 踏板无人踩时执行（恢复状态）
+local function PedalUpAction(entity)
+    local data = entity.dataTable
+    local key = "OpenTheDoor"
+
+    if entity.transform == nil then return end
+    entity.animator:SetBool("IsDown", false)
+
+    -- 恢复碰撞体大小
+    data.sizeTween, data.offsetTween = CS.Tool.SetBoxColliderAnimation(
+        data.col,
+        data.originSize,
+        data.originOffset,
+        data.time
+    )
+
+    local entities = entity:GetEntities(key)
+    if entities == nil then return end
+
+    for j = 0, entities.Count - 1 do
+        local otherEntity = entities[j]
+        otherEntity.dataTable.open = false
+    end
+end
+
+-- 🌿 射线检测逻辑（支持旋转 + 自动关闭）
+function PedalDownByRay(entity)
+    if entity == nil or entity.col == nil then return end
+
+    local trans = entity.transform
+    local pos = trans.position
+    local colBounds = entity.col.bounds
+    local halfWidth = colBounds.extents.x
+    local halfHeight = colBounds.extents.y
+    local rayLength = 0.1
+    local rayCount = 5
+
+    local rotationZ = trans.eulerAngles.z % 360
+    local direction = Vector2(0, 1)
+    local startOffset = Vector2.zero
+    local step = 0
+
+    if math.abs(rotationZ - 0) < 15 then
+        direction = Vector2(0, 1)
+        startOffset = Vector2(-halfWidth, halfHeight + 0.02)
+        step = (halfWidth * 2) / (rayCount - 1)
+    elseif math.abs(rotationZ - 90) < 15 then
+        direction = Vector2(-1, 0)
+        startOffset = Vector2(halfWidth + 0.02, -halfHeight)
+        step = (halfHeight * 2) / (rayCount - 1)
+    elseif math.abs(rotationZ - 180) < 15 then
+        direction = Vector2(0, -1)
+        startOffset = Vector2(-halfWidth, -halfHeight - 0.02)
+        step = (halfWidth * 2) / (rayCount - 1)
+    elseif math.abs(rotationZ - 270) < 15 then
+        direction = Vector2(1, 0)
+        startOffset = Vector2(-halfWidth - 0.02, -halfHeight)
+        step = (halfHeight * 2) / (rayCount - 1)
+    else
+        Debug.Log("踏板旋转角度不是上下左右方向，不发射射线")
+        return
+    end
+
+    local detected = false
+    for i = 0, rayCount - 1 do
+        local offset
+        if direction.y ~= 0 then
+            offset = Vector2(startOffset.x + i * step, startOffset.y)
+        else
+            offset = Vector2(startOffset.x, startOffset.y + i * step)
+        end
+
+        local rayOrigin = Vector2(pos.x + offset.x, pos.y + offset.y)
+
+        local hitList = DM.Raycast2DEntities(rayOrigin, direction, rayLength)
+
+        if hitList ~= nil and hitList.Count > 0 then
+            for j = 0, hitList.Count - 1 do
+                local target = hitList[j]
+				if not target.dataTable.usePedal then 
+					target = nil
+				end
+                if target ~= nil then
+                    Debug.Log(string.format("检测到玩家[%s]，触发踏板下压", tostring(target)))
+                    PedalDownAction(entity)
+                    detected = true
+                    break
+                end
+            end
+        end
+
+        if detected then break end
+    end
+
+    -- 🌿 如果本帧没有检测到玩家，就抬起踏板
+    if not detected then
+        PedalUpAction(entity)
+    end
+end

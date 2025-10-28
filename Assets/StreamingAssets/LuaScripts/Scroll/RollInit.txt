@@ -13,5 +13,6 @@ function RollInit(entity)
 	data.scrollSpeedX = 500 --滑动速度X
     data.scrollProgress = nil
 	data.hitCharacter = nil
+	data.usePedal = true
 	
 end

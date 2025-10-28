@@ -1,13 +1,19 @@
 function CancleStick(entity)
-    local data = entity.dataTable
-	local EM = CS.EntityUIManager.Instance
-    if data.hitCharacter and EM then
+    if entity == nil then return end
 
-        EM:CallNextFrame(function()
-            if data.hitCharacter then
-                data.hitCharacter.transform:SetParent(nil, true)
-                data.hitCharacter.gameObject:SetActive(true)
+    local data = entity.dataTable
+    local EM = CS.EntityUIManager.Instance
+
+    if data.hitCharacters == nil or EM == nil then return end
+
+    EM:CallNextFrame(function()
+        for i = 1, #data.hitCharacters do
+            local character = data.hitCharacters[i]
+            if character and character.transform then
+                character.transform:SetParent(nil, true)
+                character.gameObject:SetActive(true)
             end
-        end)
-    end
+        end
+        data.hitCharacters = {}
+    end)
 end
