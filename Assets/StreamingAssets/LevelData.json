@@ -26,14 +26,14 @@
       "SceneName": "陷阱",
       "SpritePath": "",
       "ScenePath": "LEVEL1",
-      "noteString": "门去哪了？"
+      "noteString": "门去哪了？\n利用音量滑块可以减缓角色行动"
     },
     {
       "Id": 4,
       "SceneName": "城堡走廊",
       "SpritePath": "",
       "ScenePath": "LEVEL0",
-      "noteString": "我要好好利用这个能力"
+      "noteString": "我要好好利用这个能力救出公主"
     },
     {
       "Id": 5,
