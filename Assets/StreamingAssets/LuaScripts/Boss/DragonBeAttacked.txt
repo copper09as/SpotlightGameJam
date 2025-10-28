@@ -14,6 +14,7 @@ local function DragonWakeFly(entity)
         entity.rb.angularVelocity = 0
     end
     if entity.animator then
+        entity.animator:ResetTrigger("StopAttack")
         entity.animator:Play("Fly")
     end
     entity.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
@@ -86,12 +87,12 @@ function DragonBeAttacked(entity,otherEntity)
 				end
 			end
 		end
+
         if data.ccbTime <= 0 then
             DragonWakeFly(entity) -- 龙飞走
-
-            return
+        else
+            DragonInvincible(entity)
         end
-        DragonInvincible(entity)
 	end
 
 
