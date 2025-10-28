@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8440649381156668844}
   - component: {fileID: 4655418925519649452}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6532962633888246720}
   - component: {fileID: 2172244626877533191}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
