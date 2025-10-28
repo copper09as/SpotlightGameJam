@@ -32,6 +32,7 @@ local function DragonInvincible(entity) --龙进入无敌状态
     data.state = "flyBack"
     entity.animator:SetBool("CanAttack",false)
     entity.animator:SetTrigger("Fly")
+    entity.animator:ResetTrigger("StopAttack")--保险起见清楚没有被触发的trigger
     DragonFly(entity)
 
     local colorA = entity.sr.color
@@ -82,7 +83,7 @@ function WakeDragonBeAttacked(entity,otherEntity)
 
             if index >= 1 and index <= liveFireList.Count then
                 local fireEntity = liveFireList[index-1]
-                entity.entityManager:DestroyEntity(entity)
+                entity.entityManager:DestroyEntity(fireEntity)
             end
         end
         if data.ccbTime <= 0 then
