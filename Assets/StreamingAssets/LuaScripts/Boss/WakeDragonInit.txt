@@ -61,7 +61,7 @@ function WakeDragonInit(entity)
 
 	data.isEnemy= true
     data.isDragon = true
-    data.colliders = CS.Tool.GetCollider2Ds(entity.gameObject)
+    data.colliders = CS.Tool.GetCollider2Ds(entity.transform.parent.gameObject)
     data.state = "flyBack"               -- Boss 状态
     --idle（fly）/attack/attackBefore/attackAfter/
     DragonFly(entity)                 --boss从场外飞入场内随机一个点位

@@ -1,6 +1,6 @@
 local Mathf = CS.UnityEngine.Mathf
 local Vector3 = CS.UnityEngine.Vector3
-
+local AM = CS.AudioManager.Instance
 local function SetDirection(position,Dragon) --设置朝向
 
     local Direction = position - Dragon.transform.position
@@ -41,6 +41,8 @@ function DragonIdle(entity) --什么都不做
 
     if data.attackTimer == 0 and Direction.magnitude <= data.DMRadius then
         data.state = "attackBefore" --进入攻击前摇阶段
+        --加入播放攻击前摇音效
+        --AM:PlaySFX()
         data.beforeTimer = data.beforeTime
         CS.UnityEngine.Debug.Log("进入恶龙攻击前摇")
     elseif data.attackTimer == 0 and Direction.magnitude > data.DMRadius then
@@ -71,7 +73,8 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
 end
 
 function DragonAttack(entity)
-
+    --加入播放攻击音效
+    --AM:PlaySFX()
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable
     -- 攻击逻辑
@@ -118,6 +121,8 @@ function DragonFly(entity)--飞到指定的点位
     end
     local flyPosition = CS.BossStopPoint.Instance:GetPoint()
     SetDirection(flyPosition,data.Dragon) --设置朝向
+    --加入播放煽动翅膀音效
+    --AM:PlaySFX()
     data.Dragon.transform:DOMove(flyPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
     :OnComplete(function ()
     data.state = "idle"
