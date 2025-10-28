@@ -27,10 +27,9 @@ function DragonUpdate(entity, dt)
         DragonAttackBefore(entity, dt)
     elseif data.state == "attackAfter" then
         DragonAttackAfter(entity, dt,1)
-    --elseif data.state == "find" then
-    --    DragonFindPlayer(entity)
+    --elseif data.state == "flyBack" and "find"then
+    --
     end
-    --CS.UnityEngine.Debug.Log(data.state)
 end
 
 
@@ -43,10 +42,12 @@ function DragonIdle(entity) --什么都不做
         data.state = "attackBefore" --进入攻击前摇阶段
         --加入播放攻击前摇音效
         --AM:PlaySFX()
+        --在c#类中处理
         data.beforeTimer = data.beforeTime
         CS.UnityEngine.Debug.Log("进入恶龙攻击前摇")
     elseif data.attackTimer == 0 and Direction.magnitude > data.DMRadius then
         DragonFindPlayer(entity)
+        data.state = "find" --进入攻击前摇阶段
         data.attackTimer = data.attackTime
     end
 
@@ -72,9 +73,15 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     end
 end
 
+local roarAudios = {
+    "Assets/Audio/Sfx/roar01.wav",
+    "Assets/Audio/Sfx/roar02.wav",
+}
 function DragonAttack(entity)
     --加入播放攻击音效
-    --AM:PlaySFX()
+    local index = math.random(1, #roarAudios)
+    AM:PlaySFX(roarAudios[index])
+
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable
     -- 攻击逻辑
@@ -82,6 +89,7 @@ function DragonAttack(entity)
     OnComplete(function ()
         DragonAttackBack()
     end)
+
     function DragonAttackBack()   --攻击结束回调函数
         CS.UnityEngine.Debug.Log("调用回调方法")
         if CS.Tool.AnimatorIsInState(entity.animator,"Attack") then --如果在攻击状态下
