@@ -5,7 +5,7 @@ function KeyStartFollow(entity,character)
     if character.dataId ~= 20000 and character.dataId ~= 20022then
         return
     end
-
+    entity.transform.parent = nil --父物体置空
     local data  = entity.dataTable or {}
     --存放在luaTable中的数据
     data.player = character--存放要跟随的角色实体
