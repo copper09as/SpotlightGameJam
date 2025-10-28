@@ -2,7 +2,7 @@ local CE = CS.XLuaCustomExport
 local CT = CS.Tool
 function BabbleInit(entity)
     local data = entity.dataTable or {}
-    data.player = CS.UnityEngine.GameObject.Find("Character"):GetComponent("Entity")
+    data.player = entity.transform.parent:GetComponent("Entity")
     data.TMP = CE.GetTMPText(entity)
     data.sprite = entity.sr
     data.words = nil
