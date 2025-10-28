@@ -114,12 +114,12 @@
 	},
 	{
 		"id": 10011,
-		"InitPath": [ "Physics/SetDynamic", "Physics/SetGravityZero", "Item/PedalInit" ],
-		"UpdatePath": ["Item/PedalDownByRay"],
+		"InitPath": [ "Physics/SetDynamic", "Physics/SetGravityZero", "Item/PedalInit"],
+		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],
-		"DeadPath": [],
+		"DeadPath": ["Item/PedalDown"],
 		"OnEntityExitPath": ["Item/CloseTheDoor"]
 	},
 	{
