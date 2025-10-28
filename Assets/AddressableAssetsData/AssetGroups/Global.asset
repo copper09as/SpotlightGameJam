@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 66bd36a0e1519484baa47936cffa5a23
   m_SerializeEntries:
-  - m_GUID: c944290394ffbd44a853be683932e56c
-    m_Address: Assets/Audio/Sfx/wuyan.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccb67adc3f6501646a5689761dbdab12
     m_Address: Assets/Prefab/Global/TimeroutTimer.prefab
     m_ReadOnly: 0

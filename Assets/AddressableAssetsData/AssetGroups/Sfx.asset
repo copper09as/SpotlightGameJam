@@ -142,6 +142,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db9fd64f7b1208a4ab13bccf0ea05d12
+    m_Address: Assets/Audio/Sfx/DragonDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4a09ad6b1eb3ad46b4018a99a9d39f2
     m_Address: Assets/Audio/Sfx/wing01.wav
     m_ReadOnly: 0
