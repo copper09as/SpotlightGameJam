@@ -15,6 +15,7 @@ local function WakeDragonDead(entity)
     end
     if entity.animator then
         entity.animator:ResetTrigger("StopAttack")
+        entity.animator:SetBool("CanAttack",false)
         entity.animator:ResetTrigger("Fly")
         entity.animator:Play("Dead")
     end

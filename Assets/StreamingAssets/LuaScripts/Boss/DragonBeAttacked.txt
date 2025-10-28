@@ -15,6 +15,7 @@ local function DragonWakeFly(entity)
     end
     if entity.animator then
         entity.animator:ResetTrigger("StopAttack")
+        entity.animator:SetBool("CanAttack",false)
         entity.animator:Play("Fly")
     end
     entity.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
