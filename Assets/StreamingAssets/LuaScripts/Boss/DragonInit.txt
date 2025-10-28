@@ -17,6 +17,8 @@ local function DragonFly(entity)--飞回原来的位置
     end
     local flyPosition = CS.BossStopPoint.Instance:GetPoint()
     SetDirection(flyPosition,data.Dragon) --设置朝向
+    --加入播放煽动翅膀音效
+    --AM:PlaySFX()
     data.Dragon.transform:DOMove( flyPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
           :OnComplete(function ()
         data.state = "idle"
