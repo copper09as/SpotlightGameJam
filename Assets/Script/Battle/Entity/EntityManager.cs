@@ -15,6 +15,11 @@ public class EntityManager
         Unregister(entity);
         UnityEngine.Object.Destroy(entity.gameObject);
     }
+    public void DestroyEntityDelay(Entity entity,float delay)
+    {
+        Unregister(entity);
+        UnityEngine.Object.Destroy(entity.gameObject,delay);
+    }
     //ªÒ»°
     public Entity GetEntity(int id)
     {

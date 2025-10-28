@@ -18,7 +18,7 @@ local function DragonWakeFly(entity)
     end
     entity.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
 
-    CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
+    entity.entityManager:DestroyEntityDelay(entity,8)
 
     --放胜利的逻辑
 
@@ -69,9 +69,21 @@ function DragonBeAttacked(entity,otherEntity)
 
 	if not data.isInvincible then
 		data.ccbTime = data.ccbTime - 1
-        if data.ccbTime ~= 0 then
+
+		local liveFireList = entity:GetEntities("Live")
+
 		DragonInvincible(entity)
-        end
+
+		if liveFireList ~= nil and liveFireList.Count > 0 then
+			local index = liveFireList.Count - data.ccbTime
+
+			if index >= 1 and index <= liveFireList.Count then
+				local fireEntity = liveFireList[index-1]
+				if fireEntity ~= nil and fireEntity.dataTable ~= nil then
+					fireEntity.dataTable.live = false
+				end
+			end
+		end
 	end
 
 

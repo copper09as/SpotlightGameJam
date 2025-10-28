@@ -30,7 +30,7 @@ function EnemyDestroyed(entity,otherEntity)
     if entity.col then
         entity.col.enabled = false
     end
-	CS.UnityEngine.GameObject.Destroy(entity.gameObject,3)
+	entity.entityManager:DestroyEntityDelay(entity,3)
     if otherEntity ~= nil and otherEntity.rb ~= nil and
             not otherEntity.dataTable.isDragon  then
 		local velocity = otherEntity.rb.velocity
