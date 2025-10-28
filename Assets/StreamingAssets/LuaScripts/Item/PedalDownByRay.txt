@@ -109,9 +109,6 @@ function PedalDownByRay(entity)
         end
 
         local rayOrigin = Vector2(pos.x + offset.x, pos.y + offset.y)
-        Debug.DrawRay(Vector3(rayOrigin.x, rayOrigin.y, 0),
-                      Vector3(direction.x, direction.y, 0) * rayLength,
-                      Color.yellow)
 
         local hitList = DM.Raycast2DEntities(rayOrigin, direction, rayLength)
 
