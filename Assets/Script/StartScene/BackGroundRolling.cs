@@ -30,7 +30,7 @@ public class BackGroundRolling : MonoBehaviour
         SpriteRenderer spriteRenderer = backGrounds[0].GetComponent<SpriteRenderer>();
         if (spriteRenderer != null && spriteRenderer.sprite != null)
         {
-            backGroundWidth = spriteRenderer.sprite.bounds.size.x * backGrounds[0].localScale.x;
+            backGroundWidth = spriteRenderer.sprite.bounds.size.x * backGrounds[0].localScale.x * transform.localScale.x;
         }
     }
 
