@@ -134,24 +134,9 @@ public class EntityUIManager : MonoBehaviour
         ShowSettingMenu();
     }
 
-    public void RemoveObject(GameObject obj)
+    public void RemoveObjectInCamera(GameObject obj)
     {
-        foreach (var obj1 in cameraMenu)
-        {
-            if (obj1.Equals(obj))
-                cameraMenu.Remove(obj1);
-        }
-        foreach (var obj1 in settingMenu)
-        {
-            if (obj1.Equals(obj))
-                settingMenu.Remove(obj1);
-        }
-        foreach (var obj1 in audioMenu)
-        {
-            if (obj1.Equals(obj))
-                audioMenu.Remove(obj1);
-        }
-        
+        cameraMenu.Remove(obj);
     }
     // ---------------- ÏÔÊ¾Òþ²ØÂß¼­ ----------------
 
