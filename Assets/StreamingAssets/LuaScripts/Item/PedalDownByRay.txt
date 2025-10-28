@@ -70,7 +70,7 @@ function PedalDownByRay(entity)
     local colBounds = entity.col.bounds
     local halfWidth = colBounds.extents.x
     local halfHeight = colBounds.extents.y
-    local rayLength = 0.1
+    local rayLength = 0.2
     local rayCount = 5
 
     local rotationZ = trans.eulerAngles.z % 360
