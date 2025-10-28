@@ -1,13 +1,14 @@
 local Mathf = CS.UnityEngine.Mathf
 local Vector3 = CS.UnityEngine.Vector3
 
-local function SetDirection(position,entity) --设置朝向
-    local Direction = position - entity.transform.position
+local function SetDirection(position,Dragon) --设置朝向
+
+    local Direction = position - Dragon.transform.position
 
     if Direction.x <=0 then
-        entity.transform.localScale = Vector3(1, 1, 1)
+        Dragon.transform.localScale = Vector3(1, 1, 1)
     else
-        entity.transform.localScale = Vector3(-1, 1, 1)
+        Dragon.transform.localScale = Vector3(-1, 1, 1)
     end
 end
 
@@ -60,7 +61,7 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
     end
     -- 攻击逻辑
     data.attackPosition = data.target.transform.position -- 记录将要攻击的位置
-    SetDirection(data.attackPosition,entity) --设置朝向
+    SetDirection(data.attackPosition,data.Dragon) --设置朝向
     data.beforeTimer = math.max(0, data.beforeTimer - dt)--更新时间计时器
     if data.beforeTimer == 0 then --前摇结束开始攻击
         data.state = "attack" --进行状态设置
@@ -74,7 +75,7 @@ function DragonAttack(entity)
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable
     -- 攻击逻辑
-    entity.transform:DOMove(data.attackPosition, data.attackTime):SetEase(CS.DG.Tweening.Ease.OutCubic):
+    data.Dragon.transform:DOMove(data.attackPosition, data.attackTime):SetEase(CS.DG.Tweening.Ease.OutCubic):
     OnComplete(function ()
         DragonAttackBack()
     end)
@@ -113,8 +114,8 @@ function DragonFly(entity)--飞到指定的点位
         return
     end
     local flyPosition = CS.BossStopPoint.Instance:GetPoint()
-    SetDirection(flyPosition,entity) --设置朝向
-    entity.transform:DOMove(flyPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+    SetDirection(flyPosition,data.Dragon) --设置朝向
+    data.Dragon.transform:DOMove(flyPosition,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
     :OnComplete(function ()
     data.state = "idle"
         CS.UnityEngine.Debug.Log("飞回完成")
@@ -130,7 +131,7 @@ function DragonFindPlayer(entity)--寻找角色
     local Direction =  data.attackPosition - entity.transform.position
     if Direction.magnitude > data.DMRadius then
         local point =entity.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.2)
-        entity.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
+        data.Dragon.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
               :OnComplete(function ()
             data.state = "idle"
             CS.UnityEngine.Debug.Log("到角色附近")
