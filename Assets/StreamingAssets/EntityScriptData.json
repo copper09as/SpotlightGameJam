@@ -348,8 +348,8 @@
 	},
 	{
 		"id": 10034,
-		"InitPath": ["Boss/BossHpFireInit"],
-		"UpdatePath": ["Boss/BossHpFireUpdate"],
+		"InitPath": [],
+		"UpdatePath": [],
 		"OnMouseDownPath": [],
 		"OnCollisionPath": [],
 		"OnDragPath": [],

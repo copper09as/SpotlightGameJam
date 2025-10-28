@@ -82,9 +82,7 @@ function WakeDragonBeAttacked(entity,otherEntity)
 
             if index >= 1 and index <= liveFireList.Count then
                 local fireEntity = liveFireList[index-1]
-                if fireEntity ~= nil and fireEntity.dataTable ~= nil then
-                    fireEntity.dataTable.live = false
-                end
+                entity.entityManager:DestroyEntity(entity)
             end
         end
         if data.ccbTime <= 0 then
