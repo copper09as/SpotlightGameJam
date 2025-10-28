@@ -33,7 +33,7 @@ public class DragonAnimatorEvent : MonoBehaviour
 
     public void DeadAudio()//动画事件，龙死亡时的声音
     {
-        //AudioManager.Instance.PlaySFX("");
+        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/wuyan.mp3");
     }
 
 
