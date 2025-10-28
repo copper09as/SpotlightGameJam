@@ -14,7 +14,8 @@ local function WakeDragonDead(entity)
         entity.rb.angularVelocity = 0
     end
     if entity.animator then
-
+        entity.animator:ResetTrigger("StopAttack")
+        entity.animator:ResetTrigger("Fly")
         entity.animator:Play("Dead")
     end
     entity.entityManager:DestroyEntityDelay(entity,3)
