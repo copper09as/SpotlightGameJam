@@ -5,49 +5,57 @@
       "SceneName": "故事的起点",
       "SpritePath": "",
       "ScenePath": "Course0",
-      "noteString": "我一定要救回公主！\n按R重置当前关卡"
+      "noteString": "我一定要救回公主！\n按R重置当前关卡",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 1,
       "SceneName": "世界的变动",
       "SpritePath": "",
       "ScenePath": "Course1",
-      "noteString": "奇怪？怎么打开Ui没法暂停了"
+      "noteString": "奇怪？怎么打开Ui没法暂停了",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
+	  
     },
     {
       "Id": 2,
       "SceneName": "抵达城堡",
       "SpritePath": "",
       "ScenePath": "LEVEL2",
-      "noteString": "听说缩放相机时站在亮度滑块上也可以变小"
+      "noteString": "听说缩放相机时站在亮度滑块上也可以变小",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 3,
       "SceneName": "陷阱",
       "SpritePath": "",
       "ScenePath": "LEVEL1",
-      "noteString": "门去哪了？\n利用音量滑块可以减缓角色行动"
+      "noteString": "门去哪了？\n利用音量滑块可以减缓角色行动",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 4,
       "SceneName": "城堡走廊",
       "SpritePath": "",
       "ScenePath": "LEVEL0",
-      "noteString": "我要好好利用这个能力救出公主"
+      "noteString": "我要好好利用这个能力救出公主",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 5,
       "SceneName": "分裂",
       "SpritePath": "",
       "ScenePath": "LEVEL3(Double)",
-      "noteString": "我怎么一分为二了"
+      "noteString": "我怎么一分为二了",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 6,
       "SceneName": "箱子",
       "SpritePath": "",
       "ScenePath": "LEVEL7(Boxes)",
-      "noteString": "好多箱子啊"
+      "noteString": "好多箱子啊",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
 
     {
@@ -55,7 +63,8 @@
       "SceneName": "监狱",
       "SpritePath": "",
       "ScenePath": "LEVEL4(Passable)",
-      "noteString": "滑动相机试试吧\n听说箱子也可以穿越相机"
+      "noteString": "滑动相机试试吧\n听说箱子也可以穿越相机",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
 
     {
@@ -63,28 +72,32 @@
       "SceneName": "深井",
       "SpritePath": "",
       "ScenePath": "LEVEL8(DeepWell)",
-      "noteString": "墙壁里藏着什么\n降低亮度滑块试试吧"
+      "noteString": "墙壁里藏着什么\n降低亮度滑块试试吧",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     },
     {
       "Id": 9,
       "SceneName": "恶龙",
       "SpritePath": "",
       "ScenePath": "LEVEL9(Boss0)",
-      "noteString": "终于见到你了"
+      "noteString": "终于见到你了",
+	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙(1).mp3"
     },
     {
       "Id": 10,
       "SceneName": "决战",
       "SpritePath": "",
       "ScenePath": "LEVEL10(Boss1)",
-      "noteString": "我要终结这一切"
+      "noteString": "我要终结这一切",
+	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙(1).mp3"
     },
     {
       "Id": 11,
       "SceneName": "终章",
       "SpritePath": "",
       "ScenePath": "Finally",
-      "noteString": "Boss战需要耐心"
+      "noteString": "Boss战需要耐心",
+	  "AudioPath":"Assets/Audio/Bgm/Battle.ogg"
     }
   ]
 }

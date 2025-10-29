@@ -30,7 +30,9 @@ public class BattleStreaming : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.Instance.PlayBGM(StringResource.BattleBgmPath);
+        AudioManager.Instance.PlayBGM
+            (GameConfig.Instance.LevtlDC.levelDataList.Find
+            (i=>i.Id == BattleConfig.Instance.levelId).AudioPath);
         if (panel != null && panel.transform.childCount > 0)
         {
             var child1 = panel.transform.GetChild(1);

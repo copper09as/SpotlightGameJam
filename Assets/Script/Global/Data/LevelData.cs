@@ -11,6 +11,7 @@ namespace Global.Data.Level
         public string SpritePath;
         public string ScenePath;
         public string noteString;
+        public string AudioPath;
     }
     [Serializable]
     public class LevelDataCollection
