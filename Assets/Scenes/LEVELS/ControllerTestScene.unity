@@ -352,11 +352,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5285472560600551448, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
   m_PrefabInstance: {fileID: 59891813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &59891815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
-  m_PrefabInstance: {fileID: 59891813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &99208322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8515,6 +8510,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
+  comicPanel: {fileID: 0}
+  comicImage: {fileID: 0}
+  comicPages: []
   fadeDuration: 2
 --- !u!4 &508760909
 Transform:
@@ -9210,7 +9208,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000d3b5ccbf9dfd7a97
+  m_ApplyToSortingLayers: 00000000d3b5ccbf9dfd7a970d8a1a0f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -9356,12 +9354,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1636d6602776c4baf243bde143f1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingMenu: {fileID: 59891815}
-  audioMenu: {fileID: 2011406864}
-  cameraMenu: {fileID: 2020392622}
+  settingMenu:
+  - {fileID: 0}
+  audioMenu:
+  - {fileID: 0}
+  cameraMenu:
+  - {fileID: 0}
   reallSettingUi: {fileID: 756249789}
   autoInit: 1
   openMenuBtn: {fileID: 1860227122}
+  isLoading: 1
 --- !u!1001 &1747004601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16738,11 +16740,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7053834725868912432, guid: c9418e994ab69074db41d42477e43118, type: 3}
   m_PrefabInstance: {fileID: 2011406862}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2011406864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
-  m_PrefabInstance: {fileID: 2011406862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2020392620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16843,11 +16840,6 @@ PrefabInstance:
 --- !u!224 &2020392621 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3618759915288087748, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
-  m_PrefabInstance: {fileID: 2020392620}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2020392622 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
   m_PrefabInstance: {fileID: 2020392620}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055242829
