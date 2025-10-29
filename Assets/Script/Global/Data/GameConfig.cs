@@ -68,6 +68,8 @@ namespace Global.Data
                 Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
                 Application.targetFrameRate = UserCD.TargetFrameRate;
                 QualitySettings.vSyncCount = UserCD.vSync ? 1 : 0;
+                
+
                 Debug.Log($"已应用分辨率: {UserCD.ResolutionX}x{UserCD.ResolutionY}, 全屏:{UserCD.isFullScreen}");
             }
         }
