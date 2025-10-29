@@ -23,7 +23,7 @@ namespace Global.Data
                 Destroy(gameObject);
                 return;
             }
-            Application.targetFrameRate = 60;
+            
                  Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
@@ -62,6 +62,7 @@ namespace Global.Data
             if (UserCD != null)
             {
                 Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
+                Application.targetFrameRate = UserCD.TargetFrameRate;
                 Debug.Log($"已应用分辨率: {UserCD.ResolutionX}x{UserCD.ResolutionY}, 全屏:{UserCD.isFullScreen}");
             }
         }
