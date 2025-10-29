@@ -22,6 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71c9c20edfc20a147a6aa308aacc2227
+    m_Address: "Assets/Audio/Bgm/\u6218\u6597\u66F201\u5DE8\u9F99(1).mp3"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb3fe8b556bb5c9488c19c1cff468d6f
     m_Address: Assets/Audio/Bgm/StartScene.ogg
     m_ReadOnly: 0
