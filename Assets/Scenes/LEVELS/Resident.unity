@@ -206,6 +206,7 @@ MonoBehaviour:
     ResolutionX: 0
     ResolutionY: 0
     isFullScreen: 0
+    TargetFrameRate: 0
   WordsD:
     words: []
   SpecialWD:
