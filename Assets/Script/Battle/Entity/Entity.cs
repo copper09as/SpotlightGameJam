@@ -85,7 +85,8 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this);
             }
         }
-        void Update()
+
+        void FixedUpdate()
         {
             if (isStop || entityStop)
             {

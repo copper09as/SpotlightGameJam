@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Assets.Script.Global.Data;
+using Global.Data.BattleConfig;
 using Global.Data.Entity;
 using Global.Data.Level;
 using UnityEngine;
@@ -41,20 +42,23 @@ namespace Global.Data
             if (UserCD == null)
             {
                 UserCD = new UserConfigData();
-                SaveUserConfig(Screen.currentResolution.width, Screen.currentResolution.height, Screen.fullScreen);
+                SaveUserConfig(Screen.currentResolution.width, Screen.currentResolution.height, Screen.fullScreen,true);
             }
             Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
         }
-        public void SaveUserConfig(int x,int y,bool fulls)
+        public void SaveUserConfig(int x,int y,bool fulls,bool isOn)
         {
             UserCD.ResolutionX =x ;
             UserCD.ResolutionY = y;
             UserCD.isFullScreen = fulls;
+            UserCD.vSync = isOn;
+
             JsonTool.SaveByJson(Path.Combine(Application.streamingAssetsPath, "UserConfigData.json"), UserCD);
         }
         public void SetResolution()
         {
             Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
+            QualitySettings.vSyncCount = UserCD.vSync ? 1 : 0;
         }
         private void ApplyUserResolution()
         {
@@ -63,6 +67,7 @@ namespace Global.Data
             {
                 Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
                 Application.targetFrameRate = UserCD.TargetFrameRate;
+                QualitySettings.vSyncCount = UserCD.vSync ? 1 : 0;
                 Debug.Log($"已应用分辨率: {UserCD.ResolutionX}x{UserCD.ResolutionY}, 全屏:{UserCD.isFullScreen}");
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Script.Global.Data
 {
@@ -13,5 +14,6 @@ namespace Assets.Script.Global.Data
         public int ResolutionY;
         public bool isFullScreen;
         public int TargetFrameRate;
+        public bool vSync;
     }
 }

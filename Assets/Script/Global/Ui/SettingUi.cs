@@ -25,7 +25,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private TMP_Dropdown dropDown;
     [SerializeField] private Toggle fullScreenTog;
     [SerializeField] private bool fullscreen = true;
-
+    [SerializeField] private Toggle vSyncTog;
     private readonly string[] resolutionOptions = { "1366X768", "1600X900", "1920X1080", "2560X1440" };
 
     private float currentScale = 1f;
@@ -63,7 +63,8 @@ public class SettingUi : MonoBehaviour
         mapBtn.onClick.AddListener(ToMapScene);
         fullScreenTog.onValueChanged.AddListener(SetFullscreen);
         dropDown.onValueChanged.AddListener(ChangeResolution);
-
+        vSyncTog.onValueChanged.AddListener(SetVSync);
+        vSyncTog.isOn = QualitySettings.vSyncCount > 0;
         // 初始化状态
         fullScreenTog.isOn = Screen.fullScreen;
         InitResolutionDropdown();
@@ -88,14 +89,19 @@ public class SettingUi : MonoBehaviour
         {
             dropDown.value = 0;
         }
+        vSyncTog.isOn = QualitySettings.vSyncCount==1;
     }
-
+    private void SetVSync(bool isOn)
+    {
+        
+        GameConfig.Instance.SaveUserConfig(Screen.width, Screen.height, fullscreen,isOn);
+    }
     private void SetFullscreen(bool isFullscreen)
     {
         fullscreen = isFullscreen;
         Screen.fullScreen = fullscreen;
         Debug.Log($"全屏状态: {fullscreen}");
-        GameConfig.Instance.SaveUserConfig(Screen.width, Screen.height, fullscreen);
+        GameConfig.Instance.SaveUserConfig(Screen.width, Screen.height, fullscreen,vSyncTog.isOn);
     }
 
     private void ChangeResolution(int index)
@@ -120,7 +126,7 @@ public class SettingUi : MonoBehaviour
             Debug.Log($"分辨率已设置为: {width}x{height}, 全屏: {fullscreen}");
 
             dropDown.captionText.text = $"{width}X{height}";
-            GameConfig.Instance.SaveUserConfig(width, height, fullscreen);
+            GameConfig.Instance.SaveUserConfig(width, height, fullscreen,vSyncTog.isOn);
         }
         else
         {
