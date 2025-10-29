@@ -19,7 +19,7 @@
       "SceneName": "抵达城堡",
       "SpritePath": "",
       "ScenePath": "LEVEL2",
-      "noteString": "听说在亮度滑块上也可以变小"
+      "noteString": "听说缩放相机时站在亮度滑块上也可以变小"
     },
     {
       "Id": 3,
@@ -55,7 +55,7 @@
       "SceneName": "监狱",
       "SpritePath": "",
       "ScenePath": "LEVEL4(Passable)",
-      "noteString": "滑动相机试试吧"
+      "noteString": "滑动相机试试吧\n听说箱子也可以穿越相机"
     },
 
     {
@@ -63,7 +63,7 @@
       "SceneName": "深井",
       "SpritePath": "",
       "ScenePath": "LEVEL8(DeepWell)",
-      "noteString": "墙壁里藏着什么"
+      "noteString": "墙壁里藏着什么\n降低亮度滑块试试吧"
     },
     {
       "Id": 9,
