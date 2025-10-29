@@ -23,7 +23,8 @@ namespace Global.Data
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            
+                 Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
             Debug.Log("查看" + EntitySDC.entityScriptList.Count);
@@ -61,8 +62,15 @@ namespace Global.Data
             if (UserCD != null)
             {
                 Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
+                Application.targetFrameRate = UserCD.TargetFrameRate;
                 Debug.Log($"已应用分辨率: {UserCD.ResolutionX}x{UserCD.ResolutionY}, 全屏:{UserCD.isFullScreen}");
             }
+        }
+        private void Update()
+        {
+            // 当前帧率 = 1 / deltaTime
+            float fps = 1f / Time.deltaTime;
+            Debug.Log("FPS: " + Mathf.RoundToInt(fps));
         }
 
         private void OnEnable()

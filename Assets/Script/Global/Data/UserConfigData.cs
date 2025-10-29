@@ -12,5 +12,6 @@ namespace Assets.Script.Global.Data
         public int ResolutionX;
         public int ResolutionY;
         public bool isFullScreen;
+        public int TargetFrameRate;
     }
 }
