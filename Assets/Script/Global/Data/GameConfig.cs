@@ -23,7 +23,8 @@ namespace Global.Data
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            Application.targetFrameRate = 60;
+                 Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
             Debug.Log("查看" + EntitySDC.entityScriptList.Count);
