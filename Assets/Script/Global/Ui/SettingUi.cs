@@ -15,36 +15,38 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Button exitGameBtn;
     [SerializeField] private GameObject settingUi;
     [SerializeField] private CanvasGroup panelCanvasGroup;
-    //[SerializeField] private Button toStartSceneBtn;
-    //[SerializeField] private Button openSettingUi;
     [SerializeField] private Button mapBtn;
-    [SerializeField] private GameObject settingUIPrefab;
     [Header("Animation Settings")]
     [SerializeField] private Vector3 hiddenPos = new Vector3(0, 1000, 0); // 面板屏幕外位置
     [SerializeField] private Vector3 shownPos = new Vector3(0, 0, 0);     // 面板显示位置
     [SerializeField] private float slideDuration = 0.3f;                  // 动画时间
 
-    [SerializeField] private TMP_InputField txtResolutionX;
-    [SerializeField] private TMP_InputField txtResolutionY;
-    [SerializeField] private Button confirmResolutionBtn;
-    [SerializeField] private bool fullscreen = true;
+    [Header("分辨率设置")]
+    [SerializeField] private TMP_Dropdown dropDown;
     [SerializeField] private Toggle fullScreenTog;
+    [SerializeField] private bool fullscreen = true;
+
+    private readonly string[] resolutionOptions = { "1366X768", "1600X900", "1920X1080", "2560X1440" };
 
     private float currentScale = 1f;
     private Coroutine slideCoroutine;
     private bool isOpen = false;
-    [SerializeField] private Image bgmFillImage; // 拖拽 BGM 滑条的 Fill 区域
-    [SerializeField] private Image seFillImage;  // 拖拽 SE 滑条的 Fill 区域
+
+    [Header("Slider UI")]
+    [SerializeField] private Image bgmFillImage;
+    [SerializeField] private Image seFillImage;
     [SerializeField] private Color normalColor = Color.white;
-    [SerializeField] private Color activeColor = new Color(1f, 0.8f, 0.2f); 
+    [SerializeField] private Color activeColor = new Color(1f, 0.8f, 0.2f);
 
     private Coroutine bgmFlashRoutine;
     private Coroutine seFlashRoutine;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         EventBus.Subscribe<Global.Events.OpenSettingUi>(OpenUiEve);
-        // 初始化面板状态
+
+        // 初始化UI状态
         settingUi.transform.localPosition = hiddenPos;
         if (panelCanvasGroup != null)
         {
@@ -52,62 +54,80 @@ public class SettingUi : MonoBehaviour
             panelCanvasGroup.interactable = false;
             panelCanvasGroup.blocksRaycasts = false;
         }
-        // 绑定按钮事件
+
+        // 按钮绑定
         bgmSlider.onValueChanged.AddListener(BgmSoundChange);
         seSlider.onValueChanged.AddListener(SeSoundChange);
-       // openSettingUi.onClick.AddListener(ShowSettingUi);
         closePanelBtn.onClick.AddListener(CloseSettingPanel);
         exitGameBtn.onClick.AddListener(ExitGame);
-       // toStartSceneBtn.onClick.AddListener(ToStartScene);
         mapBtn.onClick.AddListener(ToMapScene);
-        //confirmResolutionBtn.onClick.AddListener(ChangeResolution);
-        //fullScreenTog.onValueChanged.AddListener(SetFullscreen);
-        //txtResolutionX.onEndEdit.AddListener(_ => ValidateInput(txtResolutionX));
-        //txtResolutionY.onEndEdit.AddListener(_ => ValidateInput(txtResolutionY));
+        fullScreenTog.onValueChanged.AddListener(SetFullscreen);
+        dropDown.onValueChanged.AddListener(ChangeResolution);
+
+        // 初始化状态
+        fullScreenTog.isOn = Screen.fullScreen;
+        InitResolutionDropdown();
     }
-    private void OnEnable()
+
+    private void InitResolutionDropdown()
     {
-        //txtResolutionX.text = Screen.width.ToString();
-        //txtResolutionY.text = Screen.height.ToString();
-        //fullScreenTog.isOn = Screen.fullScreen;
-    }
-    private void ValidateInput(TMP_InputField field)
-    {
-        string newText = "";
-        foreach (char c in field.text)
+        dropDown.ClearOptions();
+
+        foreach (var res in resolutionOptions)
+            dropDown.options.Add(new TMP_Dropdown.OptionData(res));
+
+        // 匹配当前屏幕分辨率
+        string currentRes = $"{Screen.width}X{Screen.height}";
+        int index = Array.FindIndex(resolutionOptions, r => r == currentRes);
+        if (index >= 0)
         {
-            if (char.IsDigit(c))
-                newText += c;
+            dropDown.value = index;
+            dropDown.captionText.text = $"{resolutionOptions[index]}（已应用）";
         }
-        if (newText != field.text)
-            field.text = newText;
+        else
+        {
+            dropDown.value = 0;
+        }
     }
+
     private void SetFullscreen(bool isFullscreen)
     {
         fullscreen = isFullscreen;
-        Screen.SetResolution(Screen.width, Screen.height, fullscreen);
+        Screen.fullScreen = fullscreen;
+        Debug.Log($"全屏状态: {fullscreen}");
         GameConfig.Instance.SaveUserConfig(Screen.width, Screen.height, fullscreen);
     }
-    private void ChangeResolution()
+
+    private void ChangeResolution(int index)
     {
-        if (!int.TryParse(txtResolutionX.text, out int width))
+        string optionText = dropDown.options[index].text;
+        if (string.IsNullOrEmpty(optionText) || !optionText.Contains("X"))
         {
-            txtResolutionX.text = string.Empty;
+            Debug.LogWarning($"无法解析分辨率: {optionText}");
             return;
         }
 
-        if (!int.TryParse(txtResolutionY.text, out int height))
+        string[] parts = optionText.ToLower().Split('x');
+        if (parts.Length != 2)
         {
-            txtResolutionY.text = string.Empty;
+            Debug.LogWarning($"格式错误: {optionText}");
             return;
         }
-        width = Mathf.Max(800, width);
-        height = Mathf.Max(600, height);
-        txtResolutionX.text = width.ToString();
-        txtResolutionY.text = height.ToString();
-        Screen.SetResolution(width, height, fullscreen);
-        GameConfig.Instance.SaveUserConfig(width,height,fullscreen);
+
+        if (int.TryParse(parts[0], out int width) && int.TryParse(parts[1], out int height))
+        {
+            Screen.SetResolution(width, height, fullscreen);
+            Debug.Log($"分辨率已设置为: {width}x{height}, 全屏: {fullscreen}");
+
+            dropDown.captionText.text = $"{width}X{height}";
+            GameConfig.Instance.SaveUserConfig(width, height, fullscreen);
+        }
+        else
+        {
+            Debug.LogWarning($"无法转换为数字: {optionText}");
+        }
     }
+
     private void OpenUiEve(Global.Events.OpenSettingUi eve)
     {
         ShowSettingUi();
@@ -130,6 +150,7 @@ public class SettingUi : MonoBehaviour
         SceneChangeManager.Instance.LoadScene("StartScene");
         CloseSettingPanel();
     }
+
     private void BgmSoundChange(float value)
     {
         if (AudioManager.Instance != null)
@@ -151,7 +172,6 @@ public class SettingUi : MonoBehaviour
     private IEnumerator FlashSlider(Image fill)
     {
         if (fill == null) yield break;
-
         fill.color = activeColor;
         float t = 0f;
         const float duration = 0.4f;
@@ -163,18 +183,19 @@ public class SettingUi : MonoBehaviour
         }
         fill.color = normalColor;
     }
+
     private void ShowSettingUi()
     {
         if (isOpen)
             return;
+
         isOpen = true;
-      
         currentScale = Time.timeScale;
         try
         {
             settingUi.SetActive(true);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             NotificationManager.Instance.ShowNotification(ex.Message, "设置界面打开错误！");
             SceneChangeManager.Instance.LoadScene("StartScene");
@@ -186,9 +207,9 @@ public class SettingUi : MonoBehaviour
 
         slideCoroutine = StartCoroutine(SlideAndFade(settingUi.transform, hiddenPos, shownPos, 0f, 1f, slideDuration));
         Time.timeScale = 0f;
-
         EventBus.Publish(new Global.Events.OnOpenSettingUi());
     }
+
     private void CloseSettingPanel()
     {
         isOpen = false;
@@ -197,7 +218,6 @@ public class SettingUi : MonoBehaviour
 
         slideCoroutine = StartCoroutine(SlideAndFade(settingUi.transform, shownPos, hiddenPos, 1f, 0f, slideDuration, true));
         Time.timeScale = currentScale;
-
         EventBus.Publish(new Global.Events.OnCloseSettingUi());
     }
 
