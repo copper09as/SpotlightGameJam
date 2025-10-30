@@ -573,6 +573,10 @@ PrefabInstance:
       propertyPath: entityPairs.Array.data[0].entities.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2153566413970396718, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: bbe8c045c92613f49b400b6a17a0cc65, type: 2}
     - target: {fileID: 2457349452065179704, guid: 51a4c8374ce399c419c11c52d5629109, type: 3}
       propertyPath: m_Name
       value: MechanismDoor
