@@ -44,7 +44,7 @@ function WakeDragonInit(entity)
     data.afterTime = 2               --攻击后摇时间
     data.beforeTimer = 1             --攻击前摇计时器
     data.afterTimer = 2              --攻击后摇计时器
-    data.attackCooldown = 1          -- 攻击冷却时间
+    data.attackCooldown = 2          -- 攻击冷却时间
     data.attackTimer = 0
     data.attackTime = 2               --龙攻击到角色的时间
     data.attackPosition = nil         --攻击前往的位置

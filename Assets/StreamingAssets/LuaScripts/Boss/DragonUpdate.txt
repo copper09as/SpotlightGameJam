@@ -53,7 +53,7 @@ function DragonIdle(entity) --什么都不做
     elseif data.attackTimer == 0 and Direction.magnitude > data.DMRadius then
         DragonFindPlayer(entity)
         data.state = "find" --进入攻击前摇阶段
-        data.attackTimer = data.attackTime
+        data.attackTimer = data.attackCooldown
     end
     return
 
@@ -161,6 +161,7 @@ function DragonFindPlayer(entity)--寻找角色
         end)
     else
         CS.UnityEngine.Debug.Log("已经角色附近")
+        data.state = "idle"
     end
 end
 
