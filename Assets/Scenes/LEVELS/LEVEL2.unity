@@ -130,9 +130,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1027292107}
     m_Modifications:
+    - target: {fileID: 963251675274161712, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1820.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 963251675274161712, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1123.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 963251675274161712, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 327.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_Name
       value: SettingMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372696721759594457, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2529476699931978256, guid: 0f0f90e3de380b148b1d7b97ade8e5d8, type: 3}
       propertyPath: m_IsActive
@@ -385,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraMenu 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2435984876462384712, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3618759915288087748, guid: 3dd5990b1099c79499f4be0f4ce90ff7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -590,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8032353788050845218, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8389015469251553352, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2233,7 +2253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8032353788050845218, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8389015469251553352, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3113,7 +3133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8032353788050845218, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8389015469251553352, guid: b12bd5deccb2ea746bb80af392702d31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15901,6 +15921,10 @@ PrefabInstance:
     - target: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_Name
       value: AudioMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345160951402250277, guid: c9418e994ab69074db41d42477e43118, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6658087073865000337, guid: c9418e994ab69074db41d42477e43118, type: 3}
       propertyPath: m_IsActive
