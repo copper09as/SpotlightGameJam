@@ -31,7 +31,7 @@ function DragonInit(entity)
 
     data.Dragon = entity.transform.parent.gameObject
     -- 基础属性
-    data.ccbTime = 3              --被踩背次数
+    data.ccbTime = 3             --被踩背次数
 
     data.speed = 3.5                  -- 普通移动速度
     data.gravity = 0
