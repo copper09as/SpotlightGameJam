@@ -48,6 +48,7 @@ function WakeDragonInit(entity)
     data.attackTimer = 0
     data.attackTime = 2               --龙攻击到角色的时间
     data.attackPosition = nil         --攻击前往的位置
+    data.extraAttackDistance = 2      --额外冲刺距离
     data.sprintSpeed = 10             -- 冲刺速度
     data.flyTiming = 4                -- 飞行时间
 

@@ -63,7 +63,7 @@ function DragonAttackBefore(entity, dt)--攻击前摇期间
         entity.animator:SetBool("CanAttack",true)
     end
     -- 攻击逻辑
-    data.attackPosition = data.target.transform.position -- 记录将要攻击的位置
+    data.attackPosition = data.target.transform.position + Vector3(0,1,0) -- 记录将要攻击的位置,y轴向上偏移
     SetDirection(data.attackPosition,data.Dragon) --设置朝向
     data.beforeTimer = math.max(0, data.beforeTimer - dt)--更新时间计时器
     if data.beforeTimer == 0 then --前摇结束开始攻击
@@ -85,7 +85,10 @@ function DragonAttack(entity)
     CS.UnityEngine.Debug.Log("恶龙执行攻击")
     local data = entity.dataTable
     -- 攻击逻辑
-    data.Dragon.transform:DOMove(data.attackPosition, data.attackTime):SetEase(CS.DG.Tweening.Ease.OutCubic):
+    local extraAttack = data.attackPosition - data.Dragon.transform.position
+    local attackPosition = data.attackPosition + extraAttack.normalized * data.extraAttackDistance
+    --加上额外冲刺距离
+    data.Dragon.transform:DOMove(attackPosition, data.attackTime):SetEase(CS.DG.Tweening.Ease.OutCubic):
     OnComplete(function ()
         DragonAttackBack()
     end)
