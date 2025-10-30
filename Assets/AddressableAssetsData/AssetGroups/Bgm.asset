@@ -37,6 +37,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d53f5c6126fe4ba41b9c34e19e438b9e
+    m_Address: "Assets/Audio/Bgm/\u6218\u6597\u66F2\u5E26\u5F00\u5934\u6E10\u5165.mp3"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ffae6b66bd6694e499840878b290a30d
     m_Address: Assets/Audio/Bgm/Battle.ogg
     m_ReadOnly: 0
