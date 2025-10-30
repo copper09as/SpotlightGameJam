@@ -22,7 +22,7 @@ local function DragonWakeFly(entity)
         entity.animator:SetBool("CanAttack",false)
         entity.animator:Play("Fly")
     end
-    data.Dragon.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
+    data.Dragon.transform.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
 
 
     entity.entityManager:Unregister(entity)

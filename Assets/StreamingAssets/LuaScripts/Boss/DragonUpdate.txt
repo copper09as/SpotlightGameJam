@@ -19,7 +19,7 @@ function DragonUpdate(entity, dt)
 
     -- 更新冷却计时
     data.attackTimer = math.max(0, data.attackTimer - dt)
-
+    CS.UnityEngine.Debug.Log("龙的状态"..data.state)
     -- 根据状态执行行为
     if data.state == "idle" then --待机不执行动作
         DragonIdle(entity, dt)
@@ -153,7 +153,7 @@ function DragonFindPlayer(entity)--寻找角色
     SetDirection( data.attackPosition,data.Dragon) --设置朝向
     local Direction =  data.attackPosition - data.Dragon.transform.position
     if Direction.magnitude > data.DMRadius then
-        local point =data.Dragon.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.2)
+        local point =data.Dragon.transform.position + Direction.normalized*(Direction.magnitude - data.DMRadius+0.5)
         data.Dragon.transform:DOMove( point,data.flyTiming):SetEase(CS.DG.Tweening.Ease.InOutCubic)
               :OnComplete(function ()
             data.state = "idle"
