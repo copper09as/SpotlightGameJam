@@ -56,11 +56,6 @@ function CharacterMove(entity)
 		end
 	end
 
-    -- 落地效果
-    if entity.transform.childCount >= 3 then
-        local thirdChild = entity.transform:GetChild(2).gameObject
-        thirdChild:SetActive(groundCheck)
-    end
 
     -- 翻转
     if x > 0.1 then

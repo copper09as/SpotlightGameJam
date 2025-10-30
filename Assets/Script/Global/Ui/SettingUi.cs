@@ -26,6 +26,7 @@ public class SettingUi : MonoBehaviour
     [SerializeField] private Toggle fullScreenTog;
     [SerializeField] private bool fullscreen = true;
     [SerializeField] private Toggle vSyncTog;
+    [SerializeField] private Toggle frameLock;
     private readonly string[] resolutionOptions = { "1366X768", "1600X900", "1920X1080", "2560X1440" };
 
     private float currentScale = 1f;
@@ -54,7 +55,10 @@ public class SettingUi : MonoBehaviour
             panelCanvasGroup.interactable = false;
             panelCanvasGroup.blocksRaycasts = false;
         }
-
+        vSyncTog.isOn = QualitySettings.vSyncCount > 0;
+        // 初始化状态
+     
+        
         // 按钮绑定
         bgmSlider.onValueChanged.AddListener(BgmSoundChange);
         seSlider.onValueChanged.AddListener(SeSoundChange);
@@ -63,11 +67,26 @@ public class SettingUi : MonoBehaviour
         mapBtn.onClick.AddListener(ToMapScene);
         fullScreenTog.onValueChanged.AddListener(SetFullscreen);
         dropDown.onValueChanged.AddListener(ChangeResolution);
+        frameLock.onValueChanged.AddListener(ChangeLock);
         vSyncTog.onValueChanged.AddListener(SetVSync);
-        vSyncTog.isOn = QualitySettings.vSyncCount > 0;
-        // 初始化状态
         fullScreenTog.isOn = Screen.fullScreen;
+        frameLock.isOn = PlayerPrefs.GetInt("FrameLock", 0) == 1;
         InitResolutionDropdown();
+    }
+
+    private void ChangeLock(bool arg0)
+    {
+        PlayerPrefs.SetInt("FrameLock",Convert.ToInt32(arg0));
+
+        PlayerPrefs.Save();
+        if(arg0)
+        {
+            Application.targetFrameRate = GameConfig.Instance.UserCD.TargetFrameRate;
+        }
+        else
+        {
+            Application.targetFrameRate = -1;
+        }
     }
 
     private void InitResolutionDropdown()

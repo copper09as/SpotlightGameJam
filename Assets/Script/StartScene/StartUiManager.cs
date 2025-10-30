@@ -39,7 +39,7 @@ public class StartUiManager : MonoBehaviour
         openGiftPanelBtn.onClick.AddListener(OpenGiftPanel);
         ExitBtn.onClick.AddListener(Exit);
         StaffBtn.onClick.AddListener(ShowStaff);
-        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/GameStart (1).wav");
+        //AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/GameStart (1).wav");
     }
 
     private void ShowStaff()

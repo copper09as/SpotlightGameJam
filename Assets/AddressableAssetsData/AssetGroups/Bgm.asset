@@ -17,6 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6ff20f9336afb9a40b5f64640a9837a0
   m_SerializeEntries:
+  - m_GUID: 195d0fd208656c74a96de2871d6a85d0
+    m_Address: "Assets/Audio/Bgm/\u6218\u6597\u66F201\u5DE8\u9F99\u5FAA\u73AF.mp3"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 558756055374e564f95a5d5f070cd390
     m_Address: Assets/Audio/Bgm/Map.ogg
     m_ReadOnly: 0

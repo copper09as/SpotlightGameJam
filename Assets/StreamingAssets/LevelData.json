@@ -81,7 +81,7 @@
       "SpritePath": "",
       "ScenePath": "LEVEL9(Boss0)",
       "noteString": "终于见到你了",
-	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙(1).mp3"
+	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙循环.mp3"
     },
     {
       "Id": 10,
@@ -89,7 +89,7 @@
       "SpritePath": "",
       "ScenePath": "LEVEL10(Boss1)",
       "noteString": "我要终结这一切",
-	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙(1).mp3"
+	  "AudioPath":"Assets/Audio/Bgm/战斗曲01巨龙循环.mp3"
     },
     {
       "Id": 11,
