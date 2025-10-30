@@ -29,6 +29,7 @@ namespace Global.Data
             DontDestroyOnLoad(gameObject);
             LoadAllConfig();
             Debug.Log("查看" + EntitySDC.entityScriptList.Count);
+            ApplyUserResolution();
         }
 
         private void LoadAllConfig()
@@ -66,7 +67,7 @@ namespace Global.Data
             if (UserCD != null)
             {
                 Screen.SetResolution(UserCD.ResolutionX, UserCD.ResolutionY, UserCD.isFullScreen);
-                Application.targetFrameRate = UserCD.TargetFrameRate;
+                //Application.targetFrameRate = UserCD.TargetFrameRate;
                 QualitySettings.vSyncCount = UserCD.vSync ? 1 : 0;
                 
 

@@ -32,7 +32,6 @@ public class AudioManager : MonoBehaviour
         bgmSource.loop = true;
         SetBGMVolume(0.3f);
         SetSFXVolume(0.5f);
-        AudioManager.Instance.PlaySFX("Assets/Audio/Sfx/ERROR 02.wav");
     }
 
     #region “Ù¡øπ‹¿Ì
