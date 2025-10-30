@@ -15,7 +15,27 @@ function CharacterJumpUseForce(entity, dt)
 
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
+	local smoke = nil
+	if entity.transform.childCount >= 3 then
+		smoke = entity.transform:GetChild(2)
+	end
 
+	if smoke ~= nil then
+		local ps = smoke:GetComponent(typeof(CS.UnityEngine.ParticleSystem))
+		if ps ~= nil then
+			if groundCheck then
+				-- 在地面：确保粒子播放
+				if not ps.isPlaying then
+					ps:Play()
+				end
+			else
+				-- 不在地面：停止粒子
+				if ps.isPlaying then
+					ps:Stop(true, CS.UnityEngine.ParticleSystemStopBehavior.StopEmittingAndClear)
+				end
+			end
+		end
+	end
 
     if inputJump and not data.jumpUsed and (groundCheck or data.coyoteTimeCounter > 0) and not data.isJumping then
         data.isJumping = true
