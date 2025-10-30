@@ -28,13 +28,13 @@ function DragonUpdate(entity, dt)
     elseif data.state == "attackAfter" then
         DragonAttackAfter(entity, dt,1)
     elseif data.state == "find"then
-        local Direction =  data.attackPosition - data.Dragon.transform.position
-        if Direction.magnitude > data.DMRadius then
-                CS.UnityEngine.Debug.Log("到角色附近")
-        else
-            CS.UnityEngine.Debug.Log("已经角色附近")
-
-        end
+        --local Direction =  data.attackPosition - data.Dragon.transform.position
+        --if Direction.magnitude > data.DMRadius then
+        --        CS.UnityEngine.Debug.Log("到角色附近")
+        --else
+        --    CS.UnityEngine.Debug.Log("已经角色附近")
+        --
+        --end
     end
 end
 
