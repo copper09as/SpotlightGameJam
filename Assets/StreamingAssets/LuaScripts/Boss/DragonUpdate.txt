@@ -27,8 +27,14 @@ function DragonUpdate(entity, dt)
         DragonAttackBefore(entity, dt)
     elseif data.state == "attackAfter" then
         DragonAttackAfter(entity, dt,1)
-    --elseif data.state == "flyBack" and "find"then
-    --
+    elseif data.state == "find"then
+        local Direction =  data.attackPosition - data.Dragon.transform.position
+        if Direction.magnitude > data.DMRadius then
+                CS.UnityEngine.Debug.Log("到角色附近")
+        else
+            CS.UnityEngine.Debug.Log("已经角色附近")
+
+        end
     end
 end
 
@@ -36,7 +42,7 @@ end
 function DragonIdle(entity) --什么都不做
     local data = entity.dataTable
 
-    local Direction = data.target.transform.position - entity.transform.position
+    local Direction = data.target.transform.position - data.Dragon.transform.position
 
     if Direction.x > 0 then
         data.Dragon.transform.localScale = Vector3(-1,1,1)
