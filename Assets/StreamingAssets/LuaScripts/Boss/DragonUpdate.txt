@@ -41,7 +41,7 @@ function DragonIdle(entity) --什么都不做
     if Direction.x > 0 then
         entity.data.Dragon.transform.localScale = Vector3(-1,1,1)
     else
-        entity.Dragon.transform.localScale = Vector3(1,1,1)
+        entity.data.Dragon.transform.localScale = Vector3(1,1,1)
     end
     if data.attackTimer == 0 and Direction.magnitude <= data.DMRadius then
         data.state = "attackBefore" --进入攻击前摇阶段
