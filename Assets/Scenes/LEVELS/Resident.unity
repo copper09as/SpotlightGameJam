@@ -5016,7 +5016,7 @@ MonoBehaviour:
   - {fileID: 1876403291}
   - {fileID: 647161515}
   - {fileID: 1492703808}
-  fadeDuration: 1
+  fadeDuration: 0
 --- !u!4 &1845701378
 Transform:
   m_ObjectHideFlags: 0
