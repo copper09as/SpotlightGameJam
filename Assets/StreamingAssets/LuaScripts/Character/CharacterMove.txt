@@ -41,19 +41,11 @@ function CharacterMove(entity)
 	for i=1,3 do
 		local origin = CS.UnityEngine.Vector2(pos.x + offsets[i], bottomY)
 		local hit = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
-		if i ~= 2 then
-		-- 可视化射线
-			CS.UnityEngine.Debug.DrawRay(
-				CS.UnityEngine.Vector3(origin.x, origin.y, 0),
-				CS.UnityEngine.Vector3(0, -data.rayLen, 0),
-				CS.UnityEngine.Color.red
-			)
-		end
-		
 		if hit then
 			groundCheck = true
 			break
 		end
+		groundCheck = false
 	end
 
 

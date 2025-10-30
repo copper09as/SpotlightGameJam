@@ -9,9 +9,24 @@ function CharacterJumpUseForce(entity, dt)
     local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
 
     -- 检测是否在地面
-    local origin = CS.UnityEngine.Vector2(entity.transform.position.x, entity.col.bounds.min.y)
-    local groundCheck = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
-    CS.UnityEngine.Debug.DrawRay(CS.UnityEngine.Vector3(origin.x, origin.y, 0), CS.UnityEngine.Vector3(0, -data.rayLen, 0), CS.UnityEngine.Color.red)
+	local pos = entity.transform.position
+	local col = entity.col
+	local halfWidth = col.bounds.extents.x  -- 胶囊宽度一半
+	local bottomY = col.bounds.min.y        -- 胶囊底部 Y
+
+	local offsets = {-halfWidth, 0, halfWidth}  -- 左、中、右
+	local isGrounded = false
+
+	for i=1,3 do
+		local origin = CS.UnityEngine.Vector2(pos.x + offsets[i], bottomY)
+		local hit = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+		
+		if hit then
+			groundCheck = true
+			break
+		end
+		groundCheck = false
+	end
 
     dt = dt * data.jumpRate
     local currentHeight = entity.transform.position.y - (data.startY or entity.transform.position.y)
