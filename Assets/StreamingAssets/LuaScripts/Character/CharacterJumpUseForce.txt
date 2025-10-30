@@ -14,13 +14,17 @@ function CharacterJumpUseForce(entity, dt)
 	local halfWidth = col.bounds.extents.x  -- 胶囊宽度一半
 	local bottomY = col.bounds.min.y        -- 胶囊底部 Y
 
-	local offsets = {-halfWidth, 0, halfWidth}  -- 左、中、右
+	local offsets = {-halfWidth/2, 0, halfWidth/2}  -- 左、中、右
 	local isGrounded = false
 
 	for i=1,3 do
 		local origin = CS.UnityEngine.Vector2(pos.x + offsets[i], bottomY)
 		local hit = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
-		
+		CS.UnityEngine.Debug.DrawRay(
+				CS.UnityEngine.Vector3(origin.x, origin.y, 0),
+				CS.UnityEngine.Vector3(0, -data.rayLen, 0),
+				CS.UnityEngine.Color.red
+			)
 		if hit then
 			groundCheck = true
 			break

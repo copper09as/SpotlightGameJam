@@ -320,6 +320,7 @@ MonoBehaviour:
   entityPairs: []
   sr: {fileID: 0}
   headDamageEffectPrefab: {fileID: 0}
+  rb: {fileID: 0}
   col: {fileID: 0}
   entityStop: 0
 --- !u!61 &6068985564287849660
