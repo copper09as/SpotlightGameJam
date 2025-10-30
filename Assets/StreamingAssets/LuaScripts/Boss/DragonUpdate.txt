@@ -142,7 +142,10 @@ function DragonFly(entity)--飞到指定的点位
     :OnComplete(function ()
     data.state = "idle"
         CS.UnityEngine.Debug.Log("飞回完成")
-    data.attackTimer = data.attackCooldown --重置攻击冷却时间计时器
+        if entity.dataId == 20021 then
+            data.attackCooldown = math.random(3,5)
+        end
+        data.attackTimer = data.attackCooldown --重置攻击冷却时间计时器
     end)
 end
 
