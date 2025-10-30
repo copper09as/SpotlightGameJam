@@ -22,11 +22,11 @@ local function DragonWakeFly(entity)
         entity.animator:SetBool("CanAttack",false)
         entity.animator:Play("Fly")
     end
-    entity.data.Dragon.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
+    data.Dragon.localScale =  CS.UnityEngine.Vector3(-1, 1, 1)
 
 
     entity.entityManager:Unregister(entity)
-    CS.UnityEngine.GameObject.Destroy( entity.data.Dragon.gameObject, 3)
+    CS.UnityEngine.GameObject.Destroy(data.Dragon.gameObject, 3)
     --放胜利的逻辑
 
 end
