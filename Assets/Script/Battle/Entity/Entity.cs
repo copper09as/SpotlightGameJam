@@ -16,7 +16,7 @@ namespace Game.Battle.Entity
     }
 
 
-    public class Entity : MonoBehaviour, IObjectByCreate
+    public class Entity : MonoBehaviour, IObjectByCreate, IClick, IDrag
     {
         public EntityScriptData scriptData;//储存与随时修改脚本数据
         [SerializeField] public Animator animator;

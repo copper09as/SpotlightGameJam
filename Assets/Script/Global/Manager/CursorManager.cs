@@ -11,7 +11,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D defaultCursor;
     [SerializeField] private Texture2D transCursor;
     private bool isHold = false;
-    private List<Entity> currentEntities = new ();
+    private List<IDrag> currentEntities = new ();
     
     void Awake()
     {
@@ -52,11 +52,16 @@ public class CursorManager : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
         foreach (var hit in hits)
         {
-            var entity = hit.collider.GetComponent<Entity>();
-            if (entity != null)
+            var clickObj = hit.collider.GetComponent<IClick>();
+            if (clickObj != null)
             {
-                currentEntities.Add(entity);
-                entity.OnClick();
+                
+                clickObj.OnClick();
+            }
+            var dragObj = hit.collider.GetComponent<IDrag>();
+            if (dragObj != null)
+            {
+                currentEntities.Add(dragObj);
             }
         }
         Vector3 mousePos = Input.mousePosition;

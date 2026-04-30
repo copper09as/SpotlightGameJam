@@ -27,91 +27,95 @@ public class GiftPanel : MonoBehaviour
         {
             BattleConfig.Instance.UnLockLevel();
             Close();
-            NotificationManager.Instance.ShowNotification("ÒÑ½âËø¹Ø¿¨ÖÁ7600£¡", "½âËøËùÓÐ¹Ø¿¨£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½7600ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹Ø¿ï¿½ï¿½ï¿½");
         }
         else if (input.text == "Clear")
         {
             BattleConfig.Instance.ClearLevel();
             Close();
-            NotificationManager.Instance.ShowNotification("ÒÑÇå¿Õ´æµµ£¡", "ÒÑ¾­Çå¿Õ´æµµ£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½Õ´æµµï¿½ï¿½", "ï¿½Ñ¾ï¿½ï¿½ï¿½Õ´æµµï¿½ï¿½");
         }
         else if (input.text == "DeadMode")
         {
             BattleConfig.Instance.DeadMode = true;
             Close();
             BattleConfig.Instance.ClearLevel();
-            NotificationManager.Instance.ShowNotification("¿ªÆôËÀÍöÄ£Ê½£¡ËÀÍöºó»áËðÊ§ËùÓÐ´æµµ£¡", "¿ªÆôËÀÍöÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ð´æµµï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
 
         else if (input.text == "CloseDeadMode")
         {
             BattleConfig.Instance.DeadMode = false;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±ÕËÀÍöÄ£Ê½£¡", "¹Ø±ÕËÀÍöÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½", "ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "DragMode")
         {
             BattleConfig.Instance.DragMode = true;
             Close();
-            NotificationManager.Instance.ShowNotification("¿ªÆôÍÏ×§Ä£Ê½£¡ËùÓÐÎïÌå¶¼¿ÉÒÔ±»ÍÏ×§£¡", "¿ªÆôÍÏ×§Ä£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¶¼ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½×§ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "CloseDragMode")
         {
             BattleConfig.Instance.DragMode = false;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±ÕÍÏ×§Ä£Ê½£¡", "¹Ø±ÕÍÏ×§Ä£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±ï¿½ï¿½ï¿½×§Ä£Ê½ï¿½ï¿½", "ï¿½Ø±ï¿½ï¿½ï¿½×§Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "Alive!")
         {
             BattleConfig.Instance.EverythingMoveMode = true;
             Close();
-            NotificationManager.Instance.ShowNotification("ËùÓÐÎïÌå»îÁËÆðÀ´£¡", "¿ªÆô»îÁ¦Ä£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "CloseAlive")
         {
             BattleConfig.Instance.EverythingMoveMode = false;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±Õ»îÁ¦Ä£Ê½£¡", "¹Ø±Õ»îÁ¦Ä£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±Õ»ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½", "ï¿½Ø±Õ»ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "Poison")
         {
             BattleConfig.Instance.PoisionMode = true;
             Close();
-            NotificationManager.Instance.ShowNotification("¿ªÆô¶¾ËØÄ£Ê½£¡ËùÓÐµÄÎïÌå¶¼ÓÐ¶¾¡£¡£¡£", "¿ªÆô¶¾ËØÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½å¶¼ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "ClosePoison")
         {
             BattleConfig.Instance.PoisionMode = false;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±Õ¶¾ËØÄ£Ê½!", "¹Ø±Õ¶¾ËØÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±Õ¶ï¿½ï¿½ï¿½Ä£Ê½!", "ï¿½Ø±Õ¶ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "DontDead")
         {
             BattleConfig.Instance.DontDeadMode = true;
             Close();
-            NotificationManager.Instance.ShowNotification("¿ªÆô½ÇÉ«ÎÞµÐÄ£Ê½!", "¿ªÆôÎÞµÐÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½Þµï¿½Ä£Ê½!", "ï¿½ï¿½ï¿½ï¿½ï¿½Þµï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "CloseDontDead")
         {
             BattleConfig.Instance.PoisionMode = false;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±Õ½ÇÉ«ÎÞµÐÄ£Ê½!", "¹Ø±Õ½ÇÉ«ÎÞµÐÄ£Ê½£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±Õ½ï¿½É«ï¿½Þµï¿½Ä£Ê½!", "ï¿½Ø±Õ½ï¿½É«ï¿½Þµï¿½Ä£Ê½ï¿½ï¿½");
         }
         else if (input.text == "SpecialSfx")
         {
             BattleConfig.Instance.SpecialSfx = 1;
             Close();
-            NotificationManager.Instance.ShowNotification("¿ªÆôÌØÊâÒôÐ§!", "¿ªÆôÌØÊâÒôÐ§£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§!", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½");
         }
         else if (input.text == "CloseSpecialSfx")
         {
             BattleConfig.Instance.SpecialSfx = 0;
             Close();
-            NotificationManager.Instance.ShowNotification("¹Ø±ÕÌØÊâÒôÐ§!", "¹Ø±ÕÌØÊâÒôÐ§£¡");
+            NotificationManager.Instance.ShowNotification("ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§!", "ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½");
+        }
+        else if(input.text == "Edit")
+        {
+            SceneChangeManager.Instance.LoadScene("LevelEditor");
         }
         else
         {
-            input.text = "ÊäÈë´íÎó£¡";
+            input.text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
         }
 
 
