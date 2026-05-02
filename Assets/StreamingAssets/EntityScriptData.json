@@ -11,7 +11,7 @@
 		"OnMouseDownPath": [],
 		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
 		"OnDragPath": [],
-		"DeadPath": ["BattleStreaming/GameOver"]
+		"DeadPath": []
 	},
 	{
 		"id": 10001,

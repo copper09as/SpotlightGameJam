@@ -55,7 +55,7 @@ namespace Game.Battle.Entity
             if (col == null) col = GetComponent<Collider2D>();
             if (sr == null) sr = GetComponent<SpriteRenderer>();
 
-
+            
             dataTable = LuaManager.Instance._luaEnv.NewTable();
             try
             {
@@ -147,6 +147,18 @@ namespace Game.Battle.Entity
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
             }
+            if(collision.transform.tag == "Win")
+            {
+                foreach(var action in winActions)
+                {
+                    action?.Invoke();
+                }
+            }
+        }
+        private List<Action> deadAction = new();
+        public void BindDead(Action action)
+        {
+            deadAction.Add(action);
         }
 
         public void Dead(Entity entity)
@@ -158,6 +170,10 @@ namespace Game.Battle.Entity
             foreach (var i in scriptData.DeadPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, entity);
+            }
+            foreach(var action in deadAction)
+            {
+                action?.Invoke();
             }
         }
         private void OnCollisionStay2D(Collision2D collision)
@@ -260,6 +276,11 @@ namespace Game.Battle.Entity
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity, contactNormal.x, contactNormal.y);
             }
         }
+        private List<Action> winActions = new();
+        public void BindWin(Action action)
+        {
+            winActions.Add(action);
+        }
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
@@ -273,6 +294,13 @@ namespace Game.Battle.Entity
             foreach (var i in scriptData.OnTriggerPath)
             {
                 LuaManager.Instance.CallFunction(i, Tool.GetLuaName(i), this, otherEntity);
+            }
+            if(collider.transform.tag == "Win")
+            {
+                foreach(var action in winActions)
+                {
+                    action?.Invoke();
+                }
             }
         }
 

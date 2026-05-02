@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.MLAgents;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public static class GameController
 
     static GameController()
     {
+        
         Controller.Main.LeftClick.Enable();
         Controller.Main.Move.Enable();
         Controller.Main.MousePos.Enable();
@@ -23,9 +25,10 @@ public static class GameController
         Controller.Main.Space.performed += ctx => OnSpacePressed();
         Controller.Main.Space.canceled += ctx => OnSpaceReleased();
     }
+    public static float Move;
     public static float MoveX()
     {
-        return Controller.Main.Move.ReadValue<float>();
+        return Move;
     }
     public static Vector3 GetWorldMousePos()
     {
@@ -37,14 +40,14 @@ public static class GameController
     public static Vector3 GetScreenPos()=> Controller.Main.MousePos.ReadValue<Vector2>();
 
     //按下空格
-    private static void OnSpacePressed()
+    public static void OnSpacePressed()
     {
         isSpacePressed = true;
         spacePressStartTime = Time.time;
     }
 
     //松开空格
-    private static void OnSpaceReleased()
+    public static void OnSpaceReleased()
     {
         isSpacePressed = false;
     }

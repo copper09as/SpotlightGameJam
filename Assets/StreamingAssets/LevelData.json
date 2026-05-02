@@ -2,27 +2,27 @@
   "levelDataList": [
     {
       "Id": 0,
-      "SceneName": "故事的起点",
+      "SceneName": "TrainJump",
       "SpritePath": "",
-      "ScenePath": "Course0",
-      "noteString": "我一定要救回公主！\n按R重置当前关卡",
+      "ScenePath": "LEVELTEST01",
+      "noteString": "",
 	  "AudioPath":"Assets/Audio/Bgm/关卡bgm.mp3"
     },
     {
       "Id": 1,
-      "SceneName": "世界的变动",
+      "SceneName": "TrainJump2",
       "SpritePath": "",
-      "ScenePath": "Course1",
-      "noteString": "奇怪？怎么打开Ui没法暂停了",
+      "ScenePath": "LEVELTEST02",
+      "noteString": "",
 	  "AudioPath":"Assets/Audio/Bgm/关卡bgm.mp3"
 	  
     },
     {
       "Id": 2,
-      "SceneName": "抵达城堡",
+      "SceneName": "AttackEnemy",
       "SpritePath": "",
-      "ScenePath": "LEVEL2",
-      "noteString": "听说缩放相机时站在亮度滑块上也可以变小",
+      "ScenePath": "LEVELTEST03",
+      "noteString": "",
 	  "AudioPath":"Assets/Audio/Bgm/关卡bgm.mp3"
     },
     {

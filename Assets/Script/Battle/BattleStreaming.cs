@@ -14,6 +14,7 @@ public class BattleStreaming : MonoBehaviour
 {
     [Header("加载界面")]
     [SerializeField] private CanvasGroup panel;
+    public EntityManager entityManager;
     private TextMeshProUGUI tipText;
     private TextMeshProUGUI sceneNameText;
 
@@ -162,7 +163,7 @@ public class BattleStreaming : MonoBehaviour
         isLoading = true;
         SetPanelVisible(true);
         yield return new WaitForSecondsRealtime(0.5f);
-        var entityManager = new EntityManager();
+        entityManager = new EntityManager();
         EntityUIManager.Instance.entityManager = entityManager;
         foreach (var entity in FindObjectsOfType<Entity>(true))
         {

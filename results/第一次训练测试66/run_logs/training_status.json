@@ -1,0 +1,110 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 1949928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-1949928.onnx",
+                "reward": null,
+                "creation_time": 1777675473.728044,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-1949928.pt"
+                ]
+            },
+            {
+                "steps": 1999928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-1999928.onnx",
+                "reward": null,
+                "creation_time": 1777676240.4560063,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-1999928.pt"
+                ]
+            },
+            {
+                "steps": 2049928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2049928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777677003.9260366,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2049928.pt"
+                ]
+            },
+            {
+                "steps": 2099928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2099928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777677780.3112884,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2099928.pt"
+                ]
+            },
+            {
+                "steps": 2149928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2149928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777678555.4024346,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2149928.pt"
+                ]
+            },
+            {
+                "steps": 2199928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2199928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777679330.2352488,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2199928.pt"
+                ]
+            },
+            {
+                "steps": 2249928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2249928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777680102.2264338,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2249928.pt"
+                ]
+            },
+            {
+                "steps": 2299928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2299928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777680869.9396083,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2299928.pt"
+                ]
+            },
+            {
+                "steps": 2349928,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2349928.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777681648.2160046,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2349928.pt"
+                ]
+            },
+            {
+                "steps": 2351056,
+                "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2351056.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1777681674.095914,
+                "auxillary_file_paths": [
+                    "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2351056.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2351056,
+            "file_path": "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior.onnx",
+            "reward": -0.5000000260770321,
+            "creation_time": 1777681674.095914,
+            "auxillary_file_paths": [
+                "results\\\u7b2c\u4e00\u6b21\u8bad\u7ec3\u6d4b\u8bd566\\My Behavior\\My Behavior-2351056.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "1.12.1+cpu"
+    }
+}

@@ -32,7 +32,7 @@ public class PlacingTileState : EditorState
             gridSize = new Vector2Int(1,1),
             gridPosition = new Vector2Int(gridPos.x,gridPos.y)
         };
-        editor.PlaceEntity(entityData,gridPos);
+        //editor.PlaceEntity(entityData,gridPos);
     }
 }
 public enum State
