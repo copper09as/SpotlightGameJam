@@ -14,7 +14,17 @@ namespace Global.Data.BattleConfig
     [Serializable]
     public class UserData
     {
-        public int unLockLevel;
+        public int unLockLevel
+        {
+            get
+            {
+                return 1000;
+            }
+            set
+            {
+                
+            }
+        }
     }
 
     public class BattleConfig:MonoBehaviour
