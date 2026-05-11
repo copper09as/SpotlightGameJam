@@ -1,0 +1,7 @@
+function DamageEntityIfNotPlayer(entity, otherEntity)
+    if otherEntity ~= nil and otherEntity.gameObject.tag ~= "Player" and not otherEntity.dataTable.cantDeadInScroll then
+		
+        otherEntity:Dead()
+		
+    end
+end

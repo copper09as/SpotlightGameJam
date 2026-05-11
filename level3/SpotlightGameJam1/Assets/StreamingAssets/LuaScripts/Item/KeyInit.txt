@@ -1,0 +1,13 @@
+--钥匙初始化
+
+function KeyInit(entity)
+
+    local data  = entity.dataTable or {}
+    --存放在luaTable中的数据
+    data.player = nil--存放要跟随的角色实体
+    data.lastPosition = nil --存放角色上一帧的位置
+    data.canFollow = false
+    data.detectionRange = 1 --检测门位置的半径
+    data.followDuration = 0.8
+    data.tweener = nil
+end

@@ -1,0 +1,7 @@
+local GC = CS.GameController
+function SetStatic(entity)
+	if entity.rb == nil then
+		return
+	end
+	entity.rb.bodyType = CS.UnityEngine.RigidbodyType2D.Static
+end

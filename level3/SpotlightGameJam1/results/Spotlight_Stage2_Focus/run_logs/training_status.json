@@ -1,0 +1,56 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 49927,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-49927.onnx",
+                "reward": null,
+                "creation_time": 1778263361.9832623,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-49927.pt"
+                ]
+            },
+            {
+                "steps": 99904,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-99904.onnx",
+                "reward": null,
+                "creation_time": 1778263603.60177,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-99904.pt"
+                ]
+            },
+            {
+                "steps": 149920,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-149920.onnx",
+                "reward": null,
+                "creation_time": 1778263839.0471346,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-149920.pt"
+                ]
+            },
+            {
+                "steps": 150560,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-150560.onnx",
+                "reward": null,
+                "creation_time": 1778263839.1523073,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-150560.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 150560,
+            "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior.onnx",
+            "reward": null,
+            "creation_time": 1778263839.1523073,
+            "auxillary_file_paths": [
+                "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_Stage2_Focus\\My Behavior\\My Behavior-150560.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0+cpu"
+    }
+}

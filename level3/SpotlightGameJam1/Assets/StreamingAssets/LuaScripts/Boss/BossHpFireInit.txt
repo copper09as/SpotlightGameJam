@@ -1,0 +1,4 @@
+function BossHpFireInit(entity)
+	data = entity.dataTable
+	data.live = true
+end

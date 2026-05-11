@@ -1,0 +1,38 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 896,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior\\My Behavior-896.onnx",
+                "reward": null,
+                "creation_time": 1778256620.3086748,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior\\My Behavior-896.pt"
+                ]
+            },
+            {
+                "steps": 1128,
+                "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior\\My Behavior-1128.onnx",
+                "reward": -0.5000000260770321,
+                "creation_time": 1778256620.992542,
+                "auxillary_file_paths": [
+                    "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior\\My Behavior-1128.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1128,
+            "file_path": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior.onnx",
+            "reward": -0.5000000260770321,
+            "creation_time": 1778256620.992542,
+            "auxillary_file_paths": [
+                "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results\\Spotlight_smoke\\My Behavior\\My Behavior-1128.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0+cpu"
+    }
+}

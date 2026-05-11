@@ -1,0 +1,381 @@
+{
+	"entityScriptList": [{
+		"id": 10000,
+		"InitPath": ["Physics/SetDynamic",
+		"Character/CharacterInit"],
+		"UpdatePath": ["Character/CharacterJumpUseForce",
+		"Physics/FasterFall",
+		"Character/CharacterMove",
+		"Character/CharacterScaleController",
+		"Character/CharacterDeadIfInMiddle"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10001,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityHorizontal"],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10002,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10003,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": ["Ui/OpenAudio"],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10004,
+		"InitPath": ["Physics/SetKinematic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp",
+		"Scroll/ScrollBgm"],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouseX"],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10005,
+		"InitPath": ["Physics/SetStatic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": ["Mouse/FollowMouseX"],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10006,
+		"InitPath": ["Physics/SetDynamic",
+		"Enemy/EnemyInit"],
+		"UpdatePath": ["Enemy/EnemyMove"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
+		"OnDragPath": [],
+		"DeadPath": ["Enemy/EnemyDestroyed"]
+	},
+	{
+		"id": 10007,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntity"],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10008,
+		"InitPath": ["Physics/SetKinematic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouseY",
+		"Scroll/ScrollCameraSize"],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10009,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": ["Ui/OpenCamera"],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10010,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntity"],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10011,
+		"InitPath": [ "Physics/SetDynamic", "Physics/SetGravityZero", "Item/PedalInit"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": ["Item/PedalDown"],
+		"OnEntityExitPath": ["Item/CloseTheDoor"]
+	},
+	{
+		"id": 10012,
+		"InitPath": ["Physics/SetKinematic","Item/TriggeredDoorInit"],
+		"UpdatePath": ["Item/TriggeredDoorUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": []
+	},
+	{
+		"id": 10013,
+		"InitPath": ["Physics/SetKinematic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouseY",
+		"Scroll/ScrollLight"],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	},
+	{
+		"id": 10014,
+		"InitPath": ["Physics/SetStatic"],
+		"UpdatePath": ["Col/ColByLight"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10015,
+		"InitPath": ["Physics/SetKinematic",
+		"Item/KeyInit"],
+		"UpdatePath": ["Item/KeyFollowPlayer"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnTriggerPath": ["Item/KeyStartFollow"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10016,
+		"InitPath": ["Physics/SetKinematic"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10017,
+		"InitPath": ["Physics/SetKinematic",
+		"Babble/BabbleInit"],
+		"UpdatePath": [ "Babble/BabbleUpdate" ],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10018,
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10019,
+		"InitPath": ["CinemaTrigger/CinemaTriggerInit"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnTriggerPath": ["CinemaTrigger/TriggerSwitch"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10020,
+		"InitPath": ["Boss/BossInit"],
+		"UpdatePath": ["Boss/BossUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": ["Enemy/EnemyDestroyed"]
+	},
+	{
+		"id": 10021,
+		"InitPath": ["Boss/DragonInit", "Physics/SetKinematic"],
+		"UpdatePath": ["Boss/DragonUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
+		"OnDragPath": [],
+		"DeadPath": [ "Boss/DragonBeAttacked"],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10022,
+		"InitPath": ["Physics/SetDynamic",
+		"Character/CharacterInit"],
+		"UpdatePath": ["Character/CharacterJumpUseForce",
+		"Physics/FasterFall",
+		"Character/CharacterMove",
+		"Character/CharacterScaleController",
+		"Character/CharacterDeadIfInMiddle","Character/CharacterCrossMap"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
+		"OnDragPath": [],
+		"DeadPath": ["BattleStreaming/GameOver"]
+	},
+	{
+		"id": 10023,
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
+		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10024,
+		"InitPath": ["Physics/SetDynamic"],
+		"UpdatePath": ["Position/StickPlayerUp","Character/CharacterCrossMap"],
+		"OnMouseDownPath": ["Position/LockCross"],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10025,
+		"InitPath": [],
+		"UpdatePath": ["Col/ColByLightTiles"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10026,
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10027,
+		"InitPath": ["Physics/SetDynamic",
+		"Enemy/SuperEnemyInit"],
+		"UpdatePath": ["Enemy/EnemyMove"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
+		"OnDragPath": [],
+		"DeadPath": ["Enemy/EnemyDestroyed"]
+	},
+	{
+		"id": 10028,
+		"InitPath": ["Physics/SetDynamic",
+		"Enemy/SuperEnemyInit"],
+		"UpdatePath": ["Enemy/EnemyMove",
+		"Character/CharacterDeadIfInMiddle"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead"],
+		"OnDragPath": [],
+		"DeadPath": ["Enemy/EnemyDestroyed"]
+	},
+	{
+		"id": 10029,
+		"InitPath": ["Physics/SetDynamic",
+		"Character/CharacterInit"],
+		"UpdatePath": ["Character/CharacterDeadIfInMiddle"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityOnHead"],
+		"OnDragPath": [],
+		"DeadPath": ["BattleStreaming/GameOver"]
+	},
+	{
+		"id": 10030,
+		"InitPath": ["Physics/SetDynamic","Item/BoxInit"],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10031,
+		"InitPath": [],
+		"UpdatePath": ["Col/ShowByLightTiles"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10032,
+		"InitPath": ["Physics/SetDynamic","Princess/PrincessInit"],
+		"UpdatePath": ["Princess/PrincessUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10033,
+		"InitPath": ["Physics/SetStatic"]
+	},
+	{
+		"id": 10034,
+		"InitPath": [],
+		"UpdatePath": [],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [],
+		"OnDragPath": [],
+		"DeadPath": [],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10035,
+		"InitPath": ["Boss/WakeDragonInit", "Physics/SetKinematic"],
+		"UpdatePath": ["Boss/DragonUpdate"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": [ "Damage/DamageEntityHorizontal", "Damage/DamageEntityOnHead" ],
+		"OnDragPath": [],
+		"DeadPath": [ "Boss/WakeDragonBeAttacked" ],
+		"OnDisablePath": []
+	},
+	{
+		"id": 10036,
+		"InitPath": ["Physics/SetKinematic",
+		"Scroll/RollInit"],
+		"UpdatePath": ["Position/StickPlayerUp"],
+		"OnMouseDownPath": [],
+		"OnCollisionPath": ["Damage/DamageEntityIfNotPlayer"],
+		"OnDragPath": ["Mouse/FollowMouseY",
+		"Scroll/ScrollVirtualCameraSize"],
+		"DeadPath": [],
+		"OnDisablePath": ["Ui/CancleStick"]
+	}]
+}

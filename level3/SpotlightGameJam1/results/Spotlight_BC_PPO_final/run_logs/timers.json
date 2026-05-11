@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1778276207",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\python-envs\\mlagents39\\Scripts\\mlagents-learn C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\config\\MyAgent_stage1.yaml --env C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\Builds\\MLTraining\\LEVELTEST03_Stomp\\SpotlightTraining.exe --run-id Spotlight_BC_PPO_final --results-dir C:\\Users\\g2294\\Desktop\\UnityProjects\\SpotlightGameJam\\results --resume --inference --deterministic --no-graphics --time-scale 20 --target-frame-rate -1 --env-args --stomp-first",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.11.0+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1778276221"
+    },
+    "total": 13.5675531,
+    "count": 1,
+    "self": 0.006984999999998465,
+    "children": {
+        "run_training.setup": {
+            "total": 0.11534830000000018,
+            "count": 1,
+            "self": 0.11534830000000018
+        },
+        "TrainerController.start_learning": {
+            "total": 13.4452198,
+            "count": 1,
+            "self": 0.0005813999999997321,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 13.4446373,
+                    "count": 1,
+                    "self": 13.4446373
+                },
+                "trainer_threads": {
+                    "total": 1.1000000004202093e-06,
+                    "count": 1,
+                    "self": 1.1000000004202093e-06
+                }
+            }
+        }
+    }
+}
