@@ -1,0 +1,5 @@
+local autio = CS.AudioManager.Instance
+function ScrollSfx(entity)
+	local data = entity.dataTable
+	autio:SetSFXVolume(data.scrollProgress)
+end

@@ -1,0 +1,13 @@
+local GC = CS.GameController
+
+function DamageEntityOnHead(entity, otherEntity, x, y)
+    if y ~= nil and y > 0.5 then
+        if otherEntity ~= nil then
+            otherEntity:Dead(entity)
+            -- 把判断放在 otherEntity 不为 nil 的代码块内
+            if otherEntity.dataTable and otherEntity.dataTable.isEnemy then
+                entity:PlayDamageObj()
+            end
+        end
+    end
+end

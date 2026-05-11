@@ -1,0 +1,6 @@
+
+function DamageEntity(entity, otherEntity, collisionNormal)
+    if otherEntity ~= nil then
+        otherEntity:Dead()
+    end
+end

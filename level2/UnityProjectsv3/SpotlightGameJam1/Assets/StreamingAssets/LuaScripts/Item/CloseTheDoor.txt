@@ -1,0 +1,32 @@
+function CloseTheDoor(entity,_, a, b)--pedal关闭门
+    local data = entity.dataTable
+    if data.sizeTween and data.offsetTween then
+        if data.sizeTween:IsPlaying() and data.offsetTween:IsPlaying() then
+            data.sizeTween:Pause()
+            data.offsetTween:Pause()
+        end
+    end
+
+    --播放踏板上升动画
+    if not entity.animator:Equals(nil) then
+        entity.animator:SetBool("IsDown",false)
+    end
+    data.sizeTween ,data.offsetTween = CS.Tool.SetBoxColliderAnimation(data.col,
+            data.originSize,
+            data.originOffset,
+            data.time)
+
+    local entities = entity:GetEntities("OpenTheDoor")
+    local entitiesCount = entities.Count
+    for j = 0, entitiesCount - 1 do
+        local otherEntity = entities[j]
+        if otherEntity.animator == nil or otherEntity.animator:Equals(nil) then --如果门提前被销毁直接返回
+            return
+        end
+        otherEntity.dataTable.open= false
+    end
+
+
+end
+
+

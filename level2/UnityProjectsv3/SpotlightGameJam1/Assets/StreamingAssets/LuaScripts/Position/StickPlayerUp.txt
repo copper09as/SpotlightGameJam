@@ -1,0 +1,72 @@
+local DM = CS.DetectionManager
+local Vector2 = CS.UnityEngine.Vector2
+local Vector3 = CS.UnityEngine.Vector3
+local Color = CS.UnityEngine.Color
+local Debug = CS.UnityEngine.Debug
+
+function StickPlayerUp(entity)
+    local tag = "Player"
+    local data = entity.dataTable
+    local hitEntityTrans = entity.transform
+    local hitEntityPos = hitEntityTrans.position
+    local colBounds = entity.col.bounds
+    local halfWidth = colBounds.extents.x
+    local halfHeight = colBounds.extents.y
+    local raysCount = 12
+    local step = (halfWidth * 2) / (raysCount - 1)
+
+    -- 🌿 当前检测到的所有玩家
+    local detectedPlayers = {}
+
+    -- 🌿 射线检测玩家（上方向）
+    for i = 0, raysCount - 1 do
+        local offsetX = -halfWidth + i * step
+        local origin = Vector2(hitEntityPos.x + offsetX, hitEntityPos.y + halfHeight + 0.02)
+
+        local hitList = DM.Raycast2DEntitiesByTag(origin, Vector2(0, 1), 0.3, tag)
+
+        Debug.DrawRay(Vector3(origin.x, origin.y, 0), Vector3(0, 0.3, 0), Color.green)
+
+        if hitList ~= nil and hitList.Count > 0 then
+            for j = 0, hitList.Count - 1 do
+                local player = hitList[j]
+                if player ~= nil and not detectedPlayers[player] then
+                    detectedPlayers[player] = true
+                end
+            end
+        end
+    end
+
+    -- 初始化保存表
+    if data.hitCharacters == nil then
+        data.hitCharacters = {}
+    end
+
+    -- 🌿 解除脱离的角色
+    local toRemove = {}
+    for i, player in ipairs(data.hitCharacters) do
+        if not detectedPlayers[player] then
+            player.transform:SetParent(nil)
+            table.insert(toRemove, i)
+        end
+    end
+    -- 反向删除以防索引错乱
+    for i = #toRemove, 1, -1 do
+        table.remove(data.hitCharacters, toRemove[i])
+    end
+
+    -- 🌿 添加新检测到的角色
+    for player, _ in pairs(detectedPlayers) do
+        local alreadyAttached = false
+        for _, attached in ipairs(data.hitCharacters) do
+            if attached == player then
+                alreadyAttached = true
+                break
+            end
+        end
+        if not alreadyAttached then
+            player.transform:SetParent(hitEntityTrans)
+            table.insert(data.hitCharacters, player)
+        end
+    end
+end

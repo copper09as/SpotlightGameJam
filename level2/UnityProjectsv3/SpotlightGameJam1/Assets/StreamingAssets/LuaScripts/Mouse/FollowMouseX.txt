@@ -1,0 +1,58 @@
+local GC = CS.GameController
+local Screen = CS.UnityEngine.Screen
+local Mathf = CS.UnityEngine.Mathf
+local Vector3 = CS.UnityEngine.Vector3
+local Camera = CS.UnityEngine.Camera
+local Time = CS.UnityEngine.Time
+
+------------------------------------------------------
+-- 🟦 X方向跟随（动态屏幕适配）
+------------------------------------------------------
+function FollowMouseX(entity)
+    if entity:Equals(nil) or entity.transform:Equals(nil) then return end
+
+    local cam = Camera.main
+    local data = entity.dataTable
+    local mousePos = GC.GetScreenPos()
+    local dt = Time.unscaledDeltaTime
+
+    -- 🧮 屏幕自适配比例
+    local scaleX = Screen.width / 1920
+    local scaleY = Screen.height / 1080
+
+    -- 🧭 重新计算屏幕限制（根据当前分辨率）
+    local limitXMin = (data.baseLimitXMin or 380) * scaleX
+    local limitXMax = (data.baseLimitXMax or 1700) * scaleX
+
+    -- 🧍 限制鼠标X范围
+    mousePos.x = Mathf.Clamp(mousePos.x, limitXMin, limitXMax)
+
+    -- 获取当前实体屏幕坐标
+    local screenPos = cam:WorldToScreenPoint(entity.transform.position)
+
+    -- 匀速移动
+    local targetX = mousePos.x
+    local moveSpeed = (data.scrollSpeedX or 1000) * scaleX -- 速度随分辨率变化
+    local diffX = targetX - screenPos.x
+
+    if math.abs(diffX) > 0.1 then
+        local moveStep = moveSpeed * dt
+        if math.abs(diffX) < moveStep then
+            screenPos.x = targetX
+        else
+            screenPos.x = screenPos.x + moveStep * (diffX > 0 and 1 or -1)
+        end
+    end
+
+    -- 限制最终X
+    screenPos.x = Mathf.Clamp(screenPos.x, limitXMin, limitXMax)
+
+    -- 转回世界坐标
+    local worldPos = cam:ScreenToWorldPoint(Vector3(screenPos.x, screenPos.y, screenPos.z))
+    entity.transform.position = Vector3(worldPos.x, entity.transform.position.y, entity.transform.position.z)
+
+    -- 更新滚动进度
+    local rangeX = limitXMax - limitXMin
+    data.scrollProgress = (screenPos.x - limitXMin) / rangeX
+end
+

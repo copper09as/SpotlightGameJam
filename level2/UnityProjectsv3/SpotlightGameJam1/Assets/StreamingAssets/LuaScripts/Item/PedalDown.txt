@@ -1,0 +1,26 @@
+
+function PedalDown(entity)--踏板被踩下
+	local data = entity.dataTable
+    local key = "OpenTheDoor"
+	if entity.transform:Equals(nil) then return end
+    entity.animator:SetBool("IsDown",true)
+	if data.sizeTween and data.offsetTween then
+		if data.sizeTween:IsPlaying() and data.offsetTween:IsPlaying() then
+			data.sizeTween:Pause()
+			data.offsetTween:Pause()
+			CS.UnityEngine.Debug.Log("暂停了dotween动画")
+		end
+	end
+	data.sizeTween ,data.offsetTween = CS.Tool.SetBoxColliderAnimation(data.col,
+                                                        		data.targetSize,
+                                                        		data.targetOffset,
+                                                        data.time)
+
+	local entities = entity:GetEntities(key)
+	local entitiesCount = entities.Count
+	for j = 0, entitiesCount - 1 do
+		local otherEntity = entities[j]
+
+        otherEntity.dataTable.open = true
+	end
+end

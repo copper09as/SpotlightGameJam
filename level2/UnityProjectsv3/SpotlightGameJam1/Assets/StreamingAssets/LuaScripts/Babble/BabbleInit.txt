@@ -1,0 +1,19 @@
+local CE = CS.XLuaCustomExport
+local CT = CS.Tool
+function BabbleInit(entity)
+    local data = entity.dataTable or {}
+    data.player = entity.transform.parent:GetComponent("Entity")
+    data.TMP = CE.GetTMPText(entity)
+    data.sprite = entity.sr
+    data.words = nil
+    data.printTimer =  3--气泡输出计时器
+    data.extinctionTimer = 2 --气泡消失计时器
+    data.printTime = 3 --5秒停止不动开始打印
+    data.extinctionTime = 2 --输入按键2秒后气泡消失
+    data.canPrint = true
+
+    --调整气泡位置
+    entity.transform.parent = data.player.transform
+    entity.transform.localPosition = CS.UnityEngine.Vector3(0,0,0)
+
+end
