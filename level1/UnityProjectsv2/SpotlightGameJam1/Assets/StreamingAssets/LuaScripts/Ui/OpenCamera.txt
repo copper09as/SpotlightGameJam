@@ -1,0 +1,3 @@
+function OpenCamera()
+	CS.EntityUIManager.Instance:SwitchToCameraMenu()
+end

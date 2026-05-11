@@ -1,0 +1,5 @@
+function CinemaTriggerInit(entity)
+local data = entity.dataTable or {}
+    data.virtualCinema = --获取对应的虚拟摄像机
+    CS.CameraSwitch.Instance.virtualCameras[tonumber(entity.name)]
+end

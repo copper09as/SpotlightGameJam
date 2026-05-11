@@ -1,0 +1,25 @@
+function ColByLightTiles(entity, deltaTime)
+    local col = entity.col
+    local light = CS.LightManager.Instance
+    local value = light:GetGlobalLight()
+    local hideValue = 0.1
+    local fadeSpeed = 5 -- 透明度变化速度
+
+    -- 控制碰撞
+    if col ~= nil then
+        col.enabled = value >= hideValue
+    end
+
+    -- 获取 Tilemap
+    local tilemap = entity:GetComponent(typeof(CS.UnityEngine.Tilemaps.Tilemap))
+    if tilemap == nil then
+        return -- 没有 Tilemap 就直接返回
+    end
+
+    -- 控制透明度
+    local color = tilemap.color
+    local targetAlpha = (value < hideValue) and 0 or 1
+    -- Lerp 透明度
+    color.a = color.a + (targetAlpha - color.a) * math.min(deltaTime * fadeSpeed, 1)
+    tilemap.color = color
+end

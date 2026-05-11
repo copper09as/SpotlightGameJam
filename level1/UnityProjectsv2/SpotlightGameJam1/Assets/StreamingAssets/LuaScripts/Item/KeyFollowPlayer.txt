@@ -1,0 +1,81 @@
+--钥匙跟随角色
+local Tool=CS.Tool
+local DM = CS.DetectionManager
+local function OpenTheDoor(entity,character) --这里的entity是门
+    if character:Equals(nil) then
+        return false
+    end
+    entity.animator:SetBool("IsOpen",true)--开门动画
+    CS.UnityEngine.Debug.Log("开门成功")
+	CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/OpenDoor.wav");
+    entity.entityManager:Win(1)--一秒后胜利
+    return true
+end
+
+local function OpenTheCage(entity,character) --这里的entity是笼子
+    if character:Equals(nil) then
+        return false
+    end
+    --entity.animator:SetBool("IsOpen",true)--开笼子动画
+    --CS.UnityEngine.Debug.Log("开门成功")
+    CS.AudioManager.Instance:PlaySFX("Assets/Audio/Sfx/开锁.wav");
+    entity.entityManager:Win(1)--一秒后胜利
+    return true
+end
+
+
+
+
+function KeyFollowPlayer(entity)
+    local data  = entity.dataTable or {}
+    if not data.canFollow then--如果不可以进行跟随那么就停止
+        return
+    end
+
+    --local key = "OpenTheDoor"
+    --local changeVector = data.player.transform.position - data.lastPosition
+    --
+    --entity.transform.position = entity.transform.position + changeVector
+    --
+
+
+    if data.player.transform.position ~= data.lastPosition then
+
+        local origin = Tool.ToVector2(entity.transform.position)
+        local direction = Tool.ToVector2(data.player.transform.position-entity.transform.position)
+        local distance = direction.magnitude
+        direction = direction.normalized
+        local isHit,hit =DM.Raycast2DOutHit( origin ,
+                direction,
+                distance,
+                "Player"
+        )
+
+        if isHit then
+
+        data.tweener:ChangeEndValue(Tool.ToVector3(hit.point),true):Restart()
+
+        end
+
+    end
+    data.lastPosition = data.player.transform.position
+    local a = CS.Tool.ToVector2(entity.transform.position)
+    local success, hit = DM.CircleCastOutHit(a,data.detectionRange,"Item")
+    if success then
+        local otherEntity = hit:GetComponent("Entity")
+        if otherEntity == nil or (otherEntity.dataId ~= 20016 and otherEntity.dataId ~= 20033) then --判断是否是魔法门或者笼子
+            return
+        end
+        if otherEntity.dataId == 20016 then --判断是否是魔法门
+            if OpenTheDoor(otherEntity,data.player) then
+                CS.UnityEngine.GameObject.Destroy(entity.gameObject)
+            end
+        end
+        if otherEntity.dataId == 20033 then --判断是否是笼子
+            if OpenTheCage(otherEntity,data.player) then
+                CS.UnityEngine.GameObject.Destroy(entity.gameObject)
+            end
+        end
+
+        end
+end

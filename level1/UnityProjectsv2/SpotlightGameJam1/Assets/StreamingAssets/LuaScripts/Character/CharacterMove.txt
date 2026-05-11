@@ -1,0 +1,91 @@
+local GC = CS.GameController
+local DM = CS.DetectionManager
+local AM = CS.AudioManager.Instance
+
+-- 脚步声列表
+local walkAudios = {
+    "Assets/Audio/Sfx/PlayerWalk (1).wav",
+    "Assets/Audio/Sfx/PlayerWalk (2).wav",
+    "Assets/Audio/Sfx/PlayerWalk (3).wav",
+    "Assets/Audio/Sfx/PlayerWalk (4).wav",
+    "Assets/Audio/Sfx/PlayerWalk (5).wav",
+    "Assets/Audio/Sfx/PlayerWalk (6).wav"
+}
+
+function CharacterMove(entity)
+    if entity.rb == nil then return end
+
+    local data = entity.dataTable
+    local rb = entity.rb
+    local x = GC:MoveX()
+    local speed = data.characterSpeed or 10
+
+    -- 计算目标速度
+    local targetSpeed = x * speed
+    local accelRate = (math.abs(targetSpeed) > 0.01) and (data.runAccelAmount or 10) or (data.runDeccelAmount or 10)
+    local speedDif = targetSpeed - rb.velocity.x
+    local movement = speedDif * accelRate
+
+    local rawFactor = entity.transform.localScale.x / 0.3
+    local scaleFactor = rawFactor > 1 and rawFactor or 0.5 + 0.5 * rawFactor
+
+    rb:AddForce(CS.UnityEngine.Vector2(movement * scaleFactor, 0), CS.UnityEngine.ForceMode2D.Force)
+	local pos = entity.transform.position
+	local col = entity.col
+	local halfWidth = col.bounds.extents.x  -- 胶囊宽度一半
+	local bottomY = col.bounds.min.y        -- 胶囊底部 Y
+
+	local offsets = {-halfWidth/2, 0, halfWidth/2}  -- 左、中、右
+	local isGrounded = false
+
+	for i=1,3 do
+		local origin = CS.UnityEngine.Vector2(pos.x + offsets[i], bottomY)
+		local hit = DM.Raycast2D(origin, CS.UnityEngine.Vector2(0, -1), data.rayLen, "Ground")
+		if hit then
+			groundCheck = true
+			break
+		end
+		groundCheck = false
+	end
+
+
+    -- 翻转
+    if x > 0.1 then
+        entity.sr.flipX = false
+    elseif x < -0.1 then
+        entity.sr.flipX = true
+    end
+
+    -- ====== 动画控制 ======
+    if entity.animator ~= nil and groundCheck then
+        local threshold = 0.1
+        if math.abs(rb.velocity.x) > threshold and not data.jumpUsed then
+			if CS.UnityEngine.Time.timeScale < (data.noiseSound or 0.6) then
+				entity.animator:Play("NoiseWalk") 
+			else
+				entity.animator:Play("Walk")
+			end
+        elseif math.abs(rb.velocity.x) <= threshold and not data.jumpUsed then
+			if CS.UnityEngine.Time.timeScale < (data.noiseSound or 0.6) then
+				entity.animator:Play("NoiseIdle") 
+			else
+				entity.animator:Play("Idle")
+			end
+        end
+    end
+
+
+    if groundCheck and math.abs(rb.velocity.x) > 0.1 then
+        local now = CS.UnityEngine.Time.time
+        if data.lastStepTime == nil then
+            data.lastStepTime = 0
+        end
+        local stepInterval = 0.35
+
+        if now - data.lastStepTime >= stepInterval then
+            local index = math.random(1, #walkAudios)
+            AM:PlaySFX(walkAudios[index])
+            data.lastStepTime = now
+        end
+    end
+end

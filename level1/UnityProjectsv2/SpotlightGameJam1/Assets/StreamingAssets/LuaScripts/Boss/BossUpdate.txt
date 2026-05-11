@@ -1,0 +1,100 @@
+
+function BossUpdate(entity, dt)
+    local data = entity.dataTable
+    local target = data.target
+    if target == nil then return end
+
+    -- 更新冷却计时
+    data.attackTimer = math.max(0, data.attackTimer - dt)
+    data.sprintTimer = math.max(0, data.sprintTimer - dt)
+    data.flyTime = math.max(0, data.flyTime - dt)
+
+    -- 根据状态执行行为
+    if data.state == "idle" then
+        BossIdle(entity, dt)
+    elseif data.state == "move" then
+        BossMove(entity, dt)
+    elseif data.state == "attack" then
+        BossAttack(entity, dt)
+    elseif data.state == "fly" then
+        BossFly(entity, dt)
+    elseif data.state == "sprint" then
+        BossSprint(entity, dt)
+    end
+end
+
+
+function BossIdle(entity, dt)
+    entity.dataTable.state = "move"
+end
+
+
+function BossMove(entity, dt)
+    local data = entity.dataTable
+    local target = data.target
+    if target == nil then return end
+
+    local currentPos = entity.transform.position
+    local targetPos = target.transform.position
+
+    -- 平滑跟随玩家
+    local lerpFactor = math.min(1, dt * data.positionLerpSpeed or 5)
+    local newX = currentPos.x + (targetPos.x - currentPos.x) * lerpFactor
+    local newY = currentPos.y + (targetPos.y - currentPos.y) * lerpFactor
+    entity.transform.position = CS.UnityEngine.Vector3(newX, newY, currentPos.z)
+
+    -- 条件触发技能或攻击
+    if data.attackTimer <= 0 then
+        data.state = "attack"
+    elseif data.sprintTimer <= 0 then
+        data.state = "sprint"
+    elseif not data.isJumping and math.random() < 0.01 then
+        data.state = "fly"
+        data.flyTime = data.flyDuration
+    end
+end
+
+
+function BossAttack(entity, dt)
+    local data = entity.dataTable
+    if entity.animator then
+        entity.animator:Play("Attack")
+    end
+    -- 攻击逻辑由外部处理
+    data.attackTimer = data.attackCooldown
+    data.state = "move"
+end
+
+
+function BossFly(entity, dt)
+    local data = entity.dataTable
+    local pos = entity.transform.position
+    local targetY = data.flyHeight
+    local lerpFactor = math.min(1, dt * data.positionLerpSpeed or 5)
+    local newY = pos.y + (targetY - pos.y) * lerpFactor
+    entity.transform.position = CS.UnityEngine.Vector3(pos.x, newY, pos.z)
+
+    data.flyTime = data.flyTime - dt
+    if data.flyTime <= 0 then
+        data.state = "move"
+    end
+end
+
+
+function BossSprint(entity, dt)
+    local data = entity.dataTable
+    local target = data.target
+    if target == nil then
+        data.state = "move"
+        return
+    end
+
+    local pos = entity.transform.position
+    local dirX = target.transform.position.x - pos.x
+    dirX = dirX > 0 and 1 or -1
+    local dashDistance = dirX * (data.sprintDistance or 10) -- 冲刺距离
+    entity.transform.position = CS.UnityEngine.Vector3(pos.x + dashDistance, pos.y, pos.z)
+
+    data.sprintTimer = data.sprintCooldown
+    data.state = "move"
+end

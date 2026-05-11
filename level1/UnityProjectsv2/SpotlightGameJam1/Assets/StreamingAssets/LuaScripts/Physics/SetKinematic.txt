@@ -1,0 +1,4 @@
+local GC = CS.GameController
+function SetKinematic(entity)
+	entity.rb.bodyType = CS.UnityEngine.RigidbodyType2D.Kinematic;
+end

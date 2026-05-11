@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sfx
+  m_EditorClassIdentifier: 
+  m_GroupName: Sfx
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9d1eeeeddb1d88046a11b8920025f588
+  m_SerializeEntries:
+  - m_GUID: 135be6112151a23488252d577133cd0d
+    m_Address: Assets/Audio/Sfx/ButtonDown (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13e5d0c36de618e42b1a4080334773e7
+    m_Address: Assets/Audio/Sfx/Dragoncharge.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15cded3c75ee5034f91adc87f8aa60df
+    m_Address: Assets/Audio/Sfx/PlayerWalk (6).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1dd60976aa2689b46934156518e42910
+    m_Address: Assets/Audio/Sfx/MouseFlow (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 235dd32cc89e50b41a38d06d63cd61f1
+    m_Address: Assets/Audio/Sfx/ButtonDown (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24a566496b4ce0049bbdc75c614abc8c
+    m_Address: Assets/Audio/Sfx/LeftClick.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27150936504add24898767fef84d7d8e
+    m_Address: Assets/Audio/Sfx/GameStart (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3104aaf3281f01c4d9dc6d0ab6a1a921
+    m_Address: Assets/Audio/Sfx/MouseFlow (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 532e4950919d1e849b47f23616e52f81
+    m_Address: Assets/Audio/Sfx/PlayerWalk (3).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b459f5d31bdd754f80a4bd557d8a0f8
+    m_Address: Assets/Audio/Sfx/PlayerWalk (4).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 691b07ebde21aac488c1fbf70b947aa8
+    m_Address: Assets/Audio/Sfx/PlayerWalk (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7281545a158df62448937deb6778fbc0
+    m_Address: Assets/Audio/Sfx/Jump.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8db995b08271ce74e91fddb5130343df
+    m_Address: "Assets/Audio/Sfx/\u5F00\u9501.wav"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96dc2f7c2ccd16242a05a07643402a38
+    m_Address: Assets/Audio/Sfx/Magic10_A.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97deceed2acf5a34db732f517e701f5f
+    m_Address: Assets/Audio/Sfx/Dead.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c31902c39e6ac5409e08fcc4d39eca8
+    m_Address: Assets/Audio/Sfx/wing04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3b56067051fe2e43b3d0ac7c34b7c36
+    m_Address: Assets/Audio/Sfx/wing02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a59cec8b045d0a4488adc6fddd079ca0
+    m_Address: Assets/Audio/Sfx/wing03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5e2fd95b9c722c478d6dd53513d4639
+    m_Address: Assets/Audio/Sfx/PlayerDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b223900e69c056747b329255fd75e705
+    m_Address: Assets/Audio/Sfx/roar02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc67263cb83126a4592c76f726a4797c
+    m_Address: Assets/Audio/Sfx/GameStart (2).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc880efdd1b511547a498190a0a3f0ee
+    m_Address: Assets/Audio/Sfx/ERROR 01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0b40a646b36dd24b929b7f191dbcdc2
+    m_Address: Assets/Audio/Sfx/PlayerWalk (5).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8fff445ec24ddc4781f26c6a7d80132
+    m_Address: Assets/Audio/Sfx/OpenDoor.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d324762150f356d4fbe14264536e3aec
+    m_Address: Assets/Audio/Sfx/ShimeDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db9fd64f7b1208a4ab13bccf0ea05d12
+    m_Address: Assets/Audio/Sfx/DragonDead.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4a09ad6b1eb3ad46b4018a99a9d39f2
+    m_Address: Assets/Audio/Sfx/wing01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1730ec6b75af8f479d34fe1a664539d
+    m_Address: Assets/Audio/Sfx/roar01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ad5452766f76a4fa683bd118097df1
+    m_Address: Assets/Audio/Sfx/PlayerWalk (1).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcc2cee00d53a8c408a303143a68ea77
+    m_Address: Assets/Audio/Sfx/ERROR 02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ff711988d18b0ff4b81ea2654b75ca12, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 035f5d6679b79ba4d9a750d4fce516e3, type: 2}
+    - {fileID: 11400000, guid: 3a43a0f602f145040992a7a5028abe1e, type: 2}
